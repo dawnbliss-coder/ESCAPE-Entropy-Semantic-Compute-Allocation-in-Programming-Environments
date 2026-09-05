@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/*.jsonl
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+.vscode/
+.DS_Store
+
+# Stream B: frozen corpus & derived artifacts are large/regenerable — do not commit
+corpus/
+adversarial/
+structure/
+whitespace/
+memory_regions/
+identifiers/
+!golden_fixtures/
