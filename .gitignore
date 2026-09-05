@@ -10,6 +10,13 @@ data/raw/*.jsonl
 .vscode/
 .DS_Store
 
+# Personal drafts / course docs — not shared project code
+*.pdf
+*.tex
+*.rtf
+acl.sty
+acl_natbib.bst
+
 # Stream B: frozen corpus & derived artifacts are large/regenerable — do not commit
 corpus/
 adversarial/

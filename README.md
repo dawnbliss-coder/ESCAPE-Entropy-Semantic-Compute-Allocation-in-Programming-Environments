@@ -4,7 +4,7 @@
 
 Team Trimax · CS7.501 Advanced NLP · Final Project
 
-Full proposal: [`Trimax-Proposal-OrigMargin.pdf`](./Trimax-Proposal-OrigMargin.pdf)
+(Proposal and other writeups are kept locally per-member, not in this repo — this repo holds shared project code and the data contract only.)
 
 ## Work is split into three independent streams
 
