@@ -14,7 +14,7 @@ Team Trimax · CS7.501 Advanced NLP · Final Project
 | **B** — Ground Truth, Corpora & Adversarial Data | Priyanka | Frozen corpora, tree-sitter AST offsets, memory-unsafe region tagging, prose ground truth, adversarial mutations |
 | **C** — Scoring, Statistics & Confound Analysis | | Data contract, alignment scoring, null models/baselines, statistical inference |
 
-Each stream is runnable independently against the shared data contract in [`docs/SCHEMA.md`](./docs/SCHEMA.md) — **B has no upstream dependency and its Week-1 output is the project's critical path**, since A and C both index B's frozen bytes and offsets.
+Each stream is runnable independently against a shared data contract (file layout, `file_id` and byte-offset conventions), to be agreed with A and C and added here once finalized — **B has no upstream dependency and its Week-1 output is the project's critical path**, since A and C both index B's frozen bytes and offsets.
 
 ## Repo layout (as it fills in)
 
@@ -36,4 +36,4 @@ escape_eval/         C — scorer, baselines, permutation engine, figures
 results/             C — output tables/figures
 ```
 
-Large or regenerable data artifacts stay out of git (see `.gitignore`); only code, the schema, and golden fixtures are tracked.
+Large or regenerable data artifacts stay out of git (see `.gitignore`); only code and golden fixtures are tracked.
