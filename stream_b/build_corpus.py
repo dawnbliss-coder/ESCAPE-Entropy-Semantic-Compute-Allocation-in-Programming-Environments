@@ -18,8 +18,8 @@ import pandas as pd
 
 from corpus_lib import DOMAIN_TO_DATA_DIR, pull_pool
 
-CALIB_PER_DOMAIN = 50
-MAIN_PER_DOMAIN = 250
+CALIB_PER_DOMAIN = 100
+MAIN_PER_DOMAIN = 7_900
 
 CORPUS_DIR = "corpus"
 

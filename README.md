@@ -16,5 +16,5 @@
 - (Priyanka) Data contract drafted — `docs/SCHEMA.md`
 - (Priyanka) C++ source resolved — both languages now use `bigcode/the-stack-smol`
 - (Priyanka) tree-sitter smoke test — Python + C++ grammars
-- (Priyanka) Corpus v0 built — 300 Python + 300 C++ files (50 calib / 250 main each)
+- (Priyanka) Corpus built — 8,000 Python + 8,000 C++ files (100 calib / 7,900 main each)
 - (Priyanka) Selection made growth-safe — fixed-position prefixes, not a reshuffle
