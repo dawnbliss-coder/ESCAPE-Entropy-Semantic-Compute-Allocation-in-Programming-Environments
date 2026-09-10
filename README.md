@@ -3,7 +3,9 @@
 - Clone the repo, `cd` into it
 - `python3 -m venv .venv && source .venv/bin/activate`
 - `pip install -r stream_b/requirements.txt`
-- `hf auth login`
+- Create a token at huggingface.co/settings/tokens
+- `hf auth login --force`, paste the token
+- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token)
 - `python -m spacy download en_core_web_md`
 - `python -c "import benepar; benepar.download('benepar_en3')"`
 - `export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
