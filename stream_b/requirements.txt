@@ -4,3 +4,28 @@ tree-sitter-python==0.25.0
 pandas==3.0.5
 pyarrow==25.0.1
 numpy==2.4.6
+datasets==5.0.1
+huggingface_hub==1.27.0
+
+# Prose parsing (R3). benepar 0.2.0 is unmaintained (last release ~2021) and breaks on
+# current transformers' tokenizer API, so it's pinned to a compatible older transformers
+# here rather than whatever Stream A uses for the BLT patcher (that's a separate venv
+# concern, not a shared-requirements conflict). Two things are REQUIRED for benepar to
+# import successfully, not just this pin:
+#   1. transformers==4.30.2 (not the current 5.x line: T5Tokenizer lost
+#      build_inputs_with_special_tokens that benepar's retokenizer calls)
+#   2. env var PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python must be set BEFORE
+#      transformers/benepar are imported (the installed `protobuf` package is too new for
+#      transformers' bundled sentencepiece_model_pb2.py otherwise - "Descriptors cannot be
+#      created directly"). Set this in code: os.environ.setdefault(...) at the top of any
+#      script that imports benepar/spacy, or export it in your shell before running.
+# Also run once after installing: python -m spacy download en_core_web_md
+#                                  python -c "import benepar; benepar.download('benepar_en3')"
+transformers==4.30.2
+tokenizers==0.13.3
+sentencepiece==0.2.2
+torch==2.14.0
+torch-struct==0.5
+spacy==3.8.16
+benepar==0.2.0
+nltk==3.10.3
