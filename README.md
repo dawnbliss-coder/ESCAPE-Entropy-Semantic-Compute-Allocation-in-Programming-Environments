@@ -18,3 +18,6 @@
 - (Priyanka) tree-sitter smoke test — Python + C++ grammars
 - (Priyanka) Corpus built — 8,000 Python + 8,000 C++ files (100 calib / 7,900 main each)
 - (Priyanka) Selection made growth-safe — fixed-position prefixes, not a reshuffle
+- (Priyanka) Real tree-sitter extraction pipeline — `structure/{domain}/{file_id}.parquet` for all 16,000 files (node_type, parent_type, depth, start_byte, end_byte)
+- (Priyanka) `parse_ok` tracked per file in the manifest — 28.1% of C++ files hit tree-sitter error-recovery (isolated files missing macro/header context), kept and flagged rather than dropped
+- (Priyanka) AST tree viewer (`stream_b/tree_viewer.py`) — generates a local interactive HTML view of any file's full parse tree next to its source, for inspection/debugging
