@@ -1,0 +1,16 @@
+{
+  "assignment": "open_ended",
+  "assignment_expression": "open_ended",
+  "augmented_assignment": "open_ended",
+  "binary_expression": "open_ended",
+  "binary_operator": "open_ended",
+  "call": "open_ended",
+  "call_expression": "open_ended",
+  "declaration": "open_ended",
+  "expression_statement": "open_ended",
+  "for_statement": "deterministic_opener",
+  "function_definition": "deterministic_opener",
+  "if_statement": "deterministic_opener",
+  "return_statement": "open_ended",
+  "while_statement": "deterministic_opener"
+}
