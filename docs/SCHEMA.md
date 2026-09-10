@@ -19,14 +19,27 @@ below are a starting point — the discipline (byte offsets, never re-encoded te
 
 ```
 corpus/{domain}/{file_id}.bin      raw UTF-8 bytes, never re-encoded downstream
-corpus/manifest.parquet            file_id, domain, n_bytes, sha256, split
+corpus/manifest.parquet            file_id, domain, n_bytes, sha256, split, parse_ok
+                                    (parse_ok: false if tree-sitter's error-recovery
+                                    triggered anywhere in the file — kept, not excluded;
+                                    see STREAM-B-PLAN.md Day 3 for why)
 ```
 
 ## B → C — structure
 
 ```
 structure/{domain}/{file_id}.parquet   file_id, node_type, parent_type, depth, start_byte, end_byte
-whitespace/{domain}/{file_id}.parquet  file_id, byte_offset            (newline + indent-change positions)
+                                        (depth: full-tree depth from root=0, every
+                                        ancestor counted — not just tracked node types)
+whitespace/{domain}/{file_id}.parquet  file_id, byte_offset, kind ∈ {newline, indent_change}
+                                        - newline: position right after every `\n`
+                                          (the required P1 whitespace baseline — does
+                                          NOT skip leading indentation, see proposal §5.3)
+                                        - indent_change: position of the first real
+                                          content on lines whose indentation depth
+                                          differs from the previous non-blank line
+                                          (feeds the R2 quantification, additional to
+                                          the newline baseline, not a replacement)
 memory_regions/cpp/{file_id}.parquet   file_id, kind ∈ {deref, addr_of, new, delete}, start_byte, end_byte
 identifiers/{domain}/{file_id}.parquet file_id, start_byte, end_byte
 taxonomy.json                          node_type -> {deterministic_opener | open_ended}
