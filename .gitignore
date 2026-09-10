@@ -7,6 +7,7 @@ data/raw/*.jsonl
 *.out
 *.blg
 *.bbl
+*.toc
 .vscode/
 .DS_Store
 
