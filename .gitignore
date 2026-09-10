@@ -30,4 +30,3 @@ whitespace/
 memory_regions/
 identifiers/
 !golden_fixtures/
-stream_b/tree_views/
