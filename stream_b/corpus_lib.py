@@ -20,8 +20,17 @@ DOMAIN_TO_DATA_DIR = {
 #   HfApi().dataset_info("bigcode/the-stack-smol").sha
 DATASET_REVISION = "4a6938ce94446f324c6629e7de00ac591710044b"
 
-NEEDED_PER_DOMAIN = 300  # 50 calib + 250 main (see STREAM-B-PLAN.md)
-PULL_MULTIPLIER = 3  # pull extra to survive dedup + license filtering
+# the-stack-smol has exactly 10,000 files per language (verified directly). N is set
+# well under that (see build_corpus.py) to leave a deliberate buffer, not because the
+# pool is close to exhausted.
+POOL_SIZE_PER_DOMAIN = 10_000
+
+NEEDED_PER_DOMAIN = 8_000  # see STREAM-B-PLAN.md for the sizing rationale
+# Empirically ~0% dropped to dedup/license at 900-sample scale (see pull_and_check.py's
+# original run), so a small buffer is enough — NOT the earlier 3x, which at N=8000 would
+# ask for 24,000 and silently clamp to the entire 10,000-file pool, leaving no buffer at
+# all (the opposite of the intent).
+PULL_MULTIPLIER = 1.05
 
 # NOTE on growth-safety: `records` below preserves the dataset's own row order (never
 # shuffled). That means the first K entries of `records` are IDENTICAL no matter how
@@ -32,7 +41,7 @@ PULL_MULTIPLIER = 3  # pull extra to survive dedup + license filtering
 
 def pull_pool(domain: str, n_needed: int = NEEDED_PER_DOMAIN):
     data_dir = DOMAIN_TO_DATA_DIR[domain]
-    n_pull = n_needed * PULL_MULTIPLIER
+    n_pull = int(n_needed * PULL_MULTIPLIER)
     ds = load_dataset(
         "bigcode/the-stack-smol",
         data_dir=data_dir,
