@@ -1,16 +1,11 @@
-"""Day 5: golden fixtures. ~20 small files (picked by reading their actual
-content first, not just size - excluded at least one candidate for looking like
-ambiguous Python 2 syntax that could confuse hand-verification), freezing both
-the source bytes and the CURRENT pipeline's output as the "known correct"
-reference. stream_b/validate_golden_fixtures.py re-runs extraction against
-these frozen bytes and fails loudly if output ever drifts from this reference -
-the regression test this project's data contract calls for ("if your output
-disagrees with the golden fixtures, your code is wrong, not the fixtures").
-
-Selected files (6 py, 6 cpp, 6 prose) were read by eye before selection, and a
-sample of their extracted rows is spot-checked below against the actual byte
-content as an explicit hand-verification step, not just "the code produced it
-so it must be right."
+"""Golden fixtures: 18 small files (6 py, 6 cpp, 6 prose), picked by reading
+their actual content first, not just size. Freezes both the source bytes and
+the current pipeline's output as the "known correct" reference -
+validate_golden_fixtures.py re-runs extraction against these frozen bytes and
+fails loudly if output ever drifts ("if your output disagrees with the golden
+fixtures, your code is wrong, not the fixtures"). A sample of extracted rows is
+spot-checked below against actual byte content as an explicit hand-verification
+step, not just "the code produced it so it must be right."
 """
 
 import os

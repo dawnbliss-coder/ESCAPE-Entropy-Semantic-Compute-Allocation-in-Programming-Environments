@@ -33,4 +33,6 @@
 - (Priyanka) Prose tree viewer (`stream_b/prose_tree_viewer.py`) — same interactive style as the code viewer; 2 examples committed (one hand-verified, one with real multi-byte UTF-8 divergence)
 - (Priyanka) `prose_taxonomy.json` built for P3 — mirrors code's statement/expression split as clause_level vs phrase_level (not the deterministic/open-ended axis, which is code-keyword-specific), verified against all 32 real observed labels
 - (Priyanka) Golden fixtures — 18 files (6 py/6 cpp/6 prose), hand-picked and spot-checked by eye, `stream_b/validate_golden_fixtures.py` is the shared regression test (all pass)
+- (Priyanka) R2 quantified (`stream_b/quantify_r2.py`) — py 30.7%, cpp 22.5% of AST node starts sit immediately after newline+indent; Python shows the stronger confound, as expected
+- (Priyanka) Implementation-complete pass — audited all scripts, fixed real bugs (not just style): an empty-output schema bug affecting ~1.3% of files, an idempotency bug in `build_corpus.py` that would have silently dropped prose rows on a re-run, and a real miscounting bug in the prose tree viewer (caught by cross-checking its output against validated `structure/prose/` data). Only the write-up and TA repo access remain.
 - Memory-unsafe region tagging / identifier spans (O5) deliberately deferred — proposal's own timeline places O5 after mid-submission

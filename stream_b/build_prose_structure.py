@@ -37,10 +37,16 @@ mismatch raises immediately rather than silently writing a wrong offset.
 
 import os
 
+import benepar  # noqa: F401 - registers the "benepar" spaCy pipeline factory
 import pandas as pd
+import spacy
 
 CORPUS_DIR = "corpus"
 STRUCTURE_DIR = "structure"
+# Same fix as build_structure.py: explicit columns so a paragraph with zero
+# rows still gets the right schema, rather than a parquet missing everything
+# but file_id.
+STRUCTURE_COLUMNS = ["node_type", "parent_type", "depth", "start_byte", "end_byte"]
 
 
 def char_to_byte_offsets(text: str):
@@ -99,9 +105,6 @@ def walk_sentence(sent, char_to_byte, content: bytes):
 
 
 def main():
-    import spacy
-    import benepar
-
     nlp = spacy.load("en_core_web_md")
     nlp.add_pipe("benepar", config={"model": "benepar_en3"})
 
@@ -130,7 +133,7 @@ def main():
                     node_type_counts.get(r["node_type"], 0) + 1
                 )
 
-        df = pd.DataFrame(all_rows)
+        df = pd.DataFrame(all_rows, columns=STRUCTURE_COLUMNS)
         df.insert(0, "file_id", file_id)
         df.to_parquet(f"{STRUCTURE_DIR}/prose/{file_id}.parquet", index=False)
 

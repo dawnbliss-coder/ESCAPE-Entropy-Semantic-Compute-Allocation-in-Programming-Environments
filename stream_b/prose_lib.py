@@ -30,18 +30,14 @@ MAX_BYTES = 3000
 
 def heading_level_and_title(line: str):
     """WikiText's heading markup nests by wrapping: level 1 is "= Title =",
-    level 2 is "= = Title = =", level 3 "= = = Title = = =", etc - each level
-    adds a SEPARATE, space-delimited '=' token on each side, not an adjacent run
-    of '=' characters. That nesting means a level-2 heading contains a
-    syntactically valid-looking level-1 match as a substring ("= = X = ="
-    contains "= X ="), so a single non-recursive regex can't safely tell levels
-    apart - confirmed by testing (an earlier regex-based attempt classified
-    "= = Gameplay = =" as if it were a top-level article title "= Gameplay =").
-    Iteratively strip one level's markers ('= ' prefix + ' =' suffix, checked by
-    exact character position, not startswith/endswith on a re-derived string)
-    and count how many times that succeeds - this handles any nesting depth
-    correctly by construction. Returns (level, title) for a real heading line,
-    or (None, None) if the line isn't a heading at all.
+    level 2 is "= = Title = =", etc - each level adds a SEPARATE,
+    space-delimited '=' token on each side, not an adjacent run of '=' chars.
+    That nesting means a level-2 heading contains a valid-looking level-1
+    match as a substring ("= = X = =" contains "= X ="), so a single
+    non-recursive regex can't safely tell levels apart. Iteratively strip one
+    level's markers and count how many times that succeeds instead - correct
+    at any nesting depth by construction. Returns (level, title), or
+    (None, None) if the line isn't a heading.
     """
     s = line.strip()
     level = 0
@@ -51,19 +47,6 @@ def heading_level_and_title(line: str):
     if level == 0:
         return None, None
     return level, s.strip()
-
-
-def is_heading_or_blank(line: str) -> bool:
-    stripped = line.strip()
-    if not stripped:
-        return True
-    level, _ = heading_level_and_title(line)
-    return level is not None
-
-
-def current_article_title(line: str):
-    level, title = heading_level_and_title(line)
-    return title if level == 1 else None
 
 
 def pull_paragraphs(n_needed: int):
@@ -85,11 +68,13 @@ def pull_paragraphs(n_needed: int):
 
     for row in ds:
         line = row["text"]
-        title = current_article_title(line)
-        if title is not None:
+        if not line.strip():
+            continue
+        level, title = heading_level_and_title(line)
+        if level == 1:
             current_title = title
             continue
-        if is_heading_or_blank(line):
+        if level is not None:  # a deeper heading (section/subsection) - not content
             continue
 
         content = line.strip("\n")

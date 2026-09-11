@@ -4,14 +4,12 @@ reference. Run this after ANY change to ast_walker.py, whitespace_extractor.py,
 or build_prose_structure.py - before trusting a re-run over the full corpus.
 """
 
-import sys
-
 import pandas as pd
 
-sys.path.insert(0, "stream_b")
 from ast_walker import walk_file
-from whitespace_extractor import build_rows as build_whitespace_rows
 from build_golden_fixtures import SELECTED
+from build_structure import STRUCTURE_COLUMNS
+from whitespace_extractor import WHITESPACE_COLUMNS, build_rows as build_whitespace_rows
 
 GOLDEN_DIR = "golden_fixtures"
 
@@ -29,7 +27,7 @@ def check_structure(domain: str, file_id: str) -> bool:
         return True
 
     rows, _ = walk_file(domain, content)
-    actual = pd.DataFrame(rows).reset_index(drop=True)
+    actual = pd.DataFrame(rows, columns=STRUCTURE_COLUMNS).reset_index(drop=True)
 
     if not actual.equals(expected):
         print(f"MISMATCH structure {domain}/{file_id}:")
@@ -46,7 +44,7 @@ def check_whitespace(domain: str, file_id: str) -> bool:
     expected = expected.drop(columns=["file_id"]).reset_index(drop=True)
 
     rows = build_whitespace_rows(content)
-    actual = pd.DataFrame(rows).reset_index(drop=True)
+    actual = pd.DataFrame(rows, columns=WHITESPACE_COLUMNS).reset_index(drop=True)
 
     if not actual.equals(expected):
         print(f"MISMATCH whitespace {domain}/{file_id}")

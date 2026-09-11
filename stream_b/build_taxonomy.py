@@ -1,51 +1,23 @@
-"""Day 4, part 1: taxonomy.json - classify every node type ast_walker.py extracts
-as deterministic_opener or open_ended, for Stream C's P4 stratification.
+"""taxonomy.json - classify every node type ast_walker.py extracts as
+deterministic_opener or open_ended, for Stream C's P4 stratification.
 
-THE TEST THAT ACTUALLY MATTERS (found via stream_b/taxonomy_analysis.py, an
-empirical check run before finalizing this): it is NOT "is the opening keyword
-drawn from a small/fixed set." That test fails on the proposal's own examples -
-C++ return_statement's opener is literally "return" in 100% of 119,627
-occurrences (distinct=1), exactly as fixed as if/for/while's openers, yet the
-proposal explicitly classifies return_statement as open-ended (P4, S5.3):
-"...than for open-ended ones (expression_statement, return_statement, assignment
-right-hand sides)."
+Classification test: NOT "is the opening keyword fixed" - C++'s return_statement
+opener is "return" 100% of the time (see taxonomy_analysis.py), exactly as fixed
+as if/for/while, yet the proposal classifies it open-ended (P4, S5.3). The real
+test is what's grammatically forced AFTER the keyword: if/for/while/def commit
+to a rigid template (S5.2: "followed by a forced token" / "must be followed by
+a name"); return can be followed by nothing or by an arbitrarily-shaped
+expression, exactly as open as expression_statement.
 
-The real distinction is what's grammatically forced AFTER the keyword, not the
-keyword's own uniqueness:
-  - if/for/while commit to a rigid template once entered (a forced condition
-    shape, in C++ literally a forced '(' next) - branching factor near one for
-    what follows, per S5.2: "if, for and while are followed by a forced token."
-  - def/function_definition commits to "must be followed by a name" (S5.2) -
-    the token CLASS is forced even though the specific name varies.
-  - return can be followed by nothing at all, or by an expression of completely
-    unbounded shape - the keyword is fixed but what follows it is exactly as
-    open as expression_statement's content. Same fixed opener, opposite
-    classification - this is why "opener uniqueness" is the wrong test.
+Types the proposal never classifies (call/call_expression, binary_operator/
+binary_expression, C++ declaration) are decided by the same test, backed by
+taxonomy_analysis.py's opener-diversity data: call/binary-op have no keyword at
+all (43K-105K distinct openers, none above ~18%); declaration's primitive-type
+keywords (const/auto/int/static) cover only ~32% of real occurrences, so the
+empirical majority is a custom type, not a keyword. All open_ended.
 
-So: deterministic_opener = types with a mandatory keyword that additionally
-constrains what comes next to a narrow/rigid continuation. open_ended = every
-other type extracted, including ones with no keyword at all (call, binary op)
-and ones with a keyword but unconstrained continuation (return).
-
-Types the proposal never explicitly classifies (call/call_expression,
-binary_operator/binary_expression, C++ declaration) are decided by the same
-principle, using taxonomy_analysis.py's empirical opener-diversity numbers as
-supporting evidence:
-  - call/call_expression, binary_operator/binary_expression: no keyword at all,
-    start directly with arbitrary content (a callee expression / left operand).
-    Empirically: 43,169-105,338 distinct openers, no single opener above ~18%
-    of occurrences (cpp binary_expression's top opener, '<non-word>', covers
-    17.9%; most others are far lower). Open-ended.
-  - declaration (C++ only, no Python equivalent): sometimes begins with a
-    primitive-type keyword (const/auto/int/static), but empirically these
-    together cover only ~32% of occurrences (top1_share alone is 11.2%,
-    18,715 distinct openers total) - the empirical majority begins with a
-    custom class/template/namespaced type, not a fixed keyword. Open-ended.
-
-Node-type name differences between languages (py's call/binary_operator vs
-cpp's call_expression/binary_expression) mean no string collisions occur, so
-this is a single flat mapping, matching docs/SCHEMA.md's stated shape
-("taxonomy.json  node_type -> {deterministic_opener | open_ended}").
+Single flat mapping (matches docs/SCHEMA.md) since py/cpp node-type names never
+collide (call vs call_expression, etc).
 """
 
 import json

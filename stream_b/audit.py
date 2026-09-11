@@ -1,11 +1,15 @@
 """Consolidated sanity audit across everything built so far: manifest
 consistency, on-disk file presence/absence in both directions, dedup
-correctness, and a content spot-check for the new prose corpus.
+correctness, and a content spot-check for the prose corpus.
 """
 
-import hashlib
+import glob
+import json
+import os
 
 import pandas as pd
+
+from ast_walker import NODE_TYPES
 
 CORPUS_DIR = "corpus"
 STRUCTURE_DIR = "structure"
@@ -28,8 +32,6 @@ def check_files_on_disk(m: pd.DataFrame):
     print("\n=== corpus/*.bin presence (manifest -> disk) ===")
     missing = []
     for _, row in m.iterrows():
-        import os
-
         path = f"{CORPUS_DIR}/{row['domain']}/{row['file_id']}.bin"
         if not os.path.exists(path):
             missing.append(path)
@@ -38,8 +40,6 @@ def check_files_on_disk(m: pd.DataFrame):
         print(missing[:5])
 
     print("\n=== corpus/*.bin presence (disk -> manifest, orphans) ===")
-    import glob
-
     on_disk = set()
     for domain in ("py", "cpp", "prose"):
         for p in glob.glob(f"{CORPUS_DIR}/{domain}/*.bin"):
@@ -58,8 +58,6 @@ def check_structure_whitespace_coverage(m: pd.DataFrame):
     missing_struct = []
     missing_ws = []
     for _, row in code.iterrows():
-        import os
-
         if not os.path.exists(f"{STRUCTURE_DIR}/{row['domain']}/{row['file_id']}.parquet"):
             missing_struct.append(row["file_id"])
         if not os.path.exists(f"{WHITESPACE_DIR}/{row['domain']}/{row['file_id']}.parquet"):
@@ -70,13 +68,6 @@ def check_structure_whitespace_coverage(m: pd.DataFrame):
 
 def check_taxonomy():
     print("\n=== taxonomy.json vs ast_walker.NODE_TYPES ===")
-    import json
-
-    import sys
-
-    sys.path.insert(0, "stream_b")
-    from ast_walker import NODE_TYPES
-
     with open("taxonomy.json") as f:
         tax = json.load(f)
     all_tracked = NODE_TYPES["py"] | NODE_TYPES["cpp"]

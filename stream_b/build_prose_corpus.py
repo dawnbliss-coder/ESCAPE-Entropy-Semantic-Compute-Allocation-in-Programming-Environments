@@ -7,6 +7,8 @@ code corpus needed - and prose has no calib split at all, since tolerance k is
 calibrated per CODE language (per the proposal), not for prose.
 """
 
+import os
+
 import pandas as pd
 
 from prose_lib import pull_paragraphs
@@ -16,8 +18,6 @@ CORPUS_DIR = "corpus"
 
 
 def main():
-    import os
-
     paras = pull_paragraphs(N_NEEDED)
     if len(paras) < N_NEEDED:
         raise SystemExit(f"only {len(paras)} usable paragraphs, need {N_NEEDED}")

@@ -36,10 +36,10 @@ def opener_token(content: bytes, start_byte: int) -> str:
 
 def main():
     manifest = pd.read_parquet(f"{CORPUS_DIR}/manifest.parquet")
+    code_manifest = manifest[manifest["domain"].isin(["py", "cpp"])]
     openers = {}  # (domain, node_type) -> Counter of opener strings
 
-    for domain, group in manifest.groupby("domain"):
-        content_cache = {}
+    for domain, group in code_manifest.groupby("domain"):
         for file_id in group["file_id"]:
             struct_path = f"{STRUCTURE_DIR}/{domain}/{file_id}.parquet"
             df = pd.read_parquet(struct_path)
