@@ -83,6 +83,11 @@ results/          output tables for the report
 
 ## Golden fixtures
 
-`golden_fixtures/` holds ~20 hand-verified files (offsets checked by eye) covering both
-languages. This is the regression test all three streams run against their own code —
-if your output disagrees with the golden fixtures, your code is wrong, not the fixtures.
+`golden_fixtures/{domain}/{file_id}.bin` + `{file_id}.structure.parquet` (+
+`{file_id}.whitespace.parquet` for py/cpp) hold 18 hand-picked, hand-verified files
+(6 py, 6 cpp, 6 prose — content read and spot-checked by eye before selection, not
+just picked by size) with frozen expected output. This is the regression test all
+three streams run against their own code — if your output disagrees with the golden
+fixtures, your code is wrong, not the fixtures. `stream_b/validate_golden_fixtures.py`
+re-runs Stream B's own extraction against these and fails loudly on any mismatch; A
+and C should build an equivalent check for whatever they consume from these files.

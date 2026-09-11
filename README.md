@@ -15,6 +15,8 @@
 - `python stream_b/build_taxonomy.py`
 - `python stream_b/build_prose_corpus.py`
 - `python stream_b/build_prose_structure.py`
+- `python stream_b/build_prose_taxonomy.py`
+- `python stream_b/build_golden_fixtures.py`
 
 ## Progress so far
 
@@ -29,4 +31,6 @@
 - (Priyanka) Prose corpus built for R3/P3 — 300 WikiText-103 paragraphs in `corpus/prose/`, same discipline as code
 - (Priyanka) Prose parsed with benepar — `structure/prose/{file_id}.parquet`, 1,778 sentences, byte-offset conversion validated per-span
 - (Priyanka) Prose tree viewer (`stream_b/prose_tree_viewer.py`) — same interactive style as the code viewer; 2 examples committed (one hand-verified, one with real multi-byte UTF-8 divergence)
+- (Priyanka) `prose_taxonomy.json` built for P3 — mirrors code's statement/expression split as clause_level vs phrase_level (not the deterministic/open-ended axis, which is code-keyword-specific), verified against all 32 real observed labels
+- (Priyanka) Golden fixtures — 18 files (6 py/6 cpp/6 prose), hand-picked and spot-checked by eye, `stream_b/validate_golden_fixtures.py` is the shared regression test (all pass)
 - Memory-unsafe region tagging / identifier spans (O5) deliberately deferred — proposal's own timeline places O5 after mid-submission
