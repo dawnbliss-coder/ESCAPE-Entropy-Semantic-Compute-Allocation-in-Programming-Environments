@@ -10,19 +10,23 @@
 - `python -c "import benepar; benepar.download('benepar_en3')"`
 - `export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
 - `python stream_b/build_corpus.py`
+- `python stream_b/build_structure.py`
+- `python stream_b/whitespace_extractor.py`
+- `python stream_b/build_taxonomy.py`
+- `python stream_b/build_prose_corpus.py`
+- `python stream_b/build_prose_structure.py`
 
 ## Progress so far
 
 - (Priyanka) Data contract drafted — `docs/SCHEMA.md`
-- (Priyanka) C++ source resolved — both languages now use `bigcode/the-stack-smol`
-- (Priyanka) tree-sitter smoke test — Python + C++ grammars
-- (Priyanka) Corpus built — 8,000 Python + 8,000 C++ files (100 calib / 7,900 main each)
-- (Priyanka) Selection made growth-safe — fixed-position prefixes, not a reshuffle
-- (Priyanka) Real tree-sitter extraction pipeline — `structure/{domain}/{file_id}.parquet` for all 16,000 files (node_type, parent_type, depth, start_byte, end_byte)
-- (Priyanka) `parse_ok` tracked per file in the manifest — 28.1% of C++ files hit tree-sitter error-recovery (isolated files missing macro/header context), kept and flagged rather than dropped
-- (Priyanka) AST tree viewer (`stream_b/tree_viewer.py`) — generates a local interactive HTML view of any file's full parse tree next to its source, for inspection/debugging. 4 example views committed in `stream_b/tree_views/` (2 clean Python, 1 clean C++, 1 C++ with a parse error) — just open the `.html` files directly, no setup needed. Run `python stream_b/tree_viewer.py <file_id>` to generate one for any other file in `corpus/manifest.parquet`
-- (Priyanka) Whitespace baseline extracted — `whitespace/{domain}/{file_id}.parquet` for all 16,000 files: `newline` positions (the required P1 baseline) and `indent_change` positions (feeds the R2 confound question) as separate tagged rows
-- (Priyanka) `taxonomy.json` built for P4 — empirically checked opener-token diversity per node type first (`stream_b/taxonomy_analysis.py`) rather than only trusting the proposal's stated examples; found `return_statement`'s opener is 100% fixed ("return") yet the proposal classifies it open-ended, which corrected the classification principle used for the node types the proposal never explicitly covers (`call`/`binary_operator`/C++ `declaration`)
-- (Priyanka) Prose corpus built for R3/P3 — 300 WikiText-103 paragraphs frozen to `corpus/prose/`, same discipline as code. WikiText-103 isn't discrete per-document rows like the code source, so this required reconstructing article boundaries from heading markup first; found and fixed a real bug in nested-heading detection (level-2 headings were misread as level-1 article titles) before running at scale
-- Memory-unsafe region tagging / identifier spans (O5) deliberately deferred — the proposal's own timeline places O5 at weeks 9-11, after mid-submission (weeks 7-8), so this isn't in scope for the current checkpoint
-- (Priyanka) Prose parsed with benepar for R3 — `structure/prose/{file_id}.parquet` for all 300 files (1,778 sentences), same schema as code. Byte-offset conversion validated per-span (not assumed), ran clean with zero mismatches including genuine multi-byte UTF-8 content. Rich, real label distribution (NP/PP/VP/S/SBAR/WHNP/QP/CONJP etc.)
+- (Priyanka) C++ source resolved — both languages use `bigcode/the-stack-smol`, not CodeSearchNet
+- (Priyanka) Code corpus built — 8,000 Python + 8,000 C++ files (100 calib / 7,900 main each), growth-safe and reproducible
+- (Priyanka) Tree-sitter extraction pipeline — `structure/{domain}/{file_id}.parquet` for all 16,000 files
+- (Priyanka) `parse_ok` tracked per file — 28.1% of C++ hits tree-sitter error-recovery (isolated files missing macro/header context), kept and flagged rather than dropped
+- (Priyanka) AST tree viewer (`stream_b/tree_viewer.py`) — interactive local HTML view of any code file's parse tree + source; 4 examples committed in `stream_b/tree_views/`
+- (Priyanka) Whitespace baseline extracted — `whitespace/{domain}/{file_id}.parquet`, `newline` (P1 baseline) and `indent_change` (R2) as tagged rows
+- (Priyanka) `taxonomy.json` built for P4 — empirically checked opener-token diversity per node type rather than trusting examples alone; corrected the classification test itself (`stream_b/taxonomy_analysis.py`)
+- (Priyanka) Prose corpus built for R3/P3 — 300 WikiText-103 paragraphs in `corpus/prose/`, same discipline as code
+- (Priyanka) Prose parsed with benepar — `structure/prose/{file_id}.parquet`, 1,778 sentences, byte-offset conversion validated per-span
+- (Priyanka) Prose tree viewer (`stream_b/prose_tree_viewer.py`) — same interactive style as the code viewer; 2 examples committed (one hand-verified, one with real multi-byte UTF-8 divergence)
+- Memory-unsafe region tagging / identifier spans (O5) deliberately deferred — proposal's own timeline places O5 after mid-submission
