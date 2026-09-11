@@ -11,6 +11,9 @@ import json
 import os
 import sys
 
+import benepar  # noqa: F401 - registers the "benepar" spaCy pipeline factory
+import spacy
+
 CORPUS_DIR = "corpus"
 OUT_DIR = "stream_b/tree_views"
 
@@ -27,78 +30,47 @@ def char_to_byte_offsets(text: str):
 
 def collect_nodes(doc, char_to_byte, content: bytes):
     """Flat list of {id, parent_id, type, depth, start_byte, end_byte,
-    extracted} across every sentence in the paragraph. Leaves (individual
-    tokens) ARE included, using their POS tag as node_type, so the tree looks
-    complete - mirroring how the code viewer shows every tree-sitter node, not
-    just the ones structure/ keeps. extracted=True marks spans actually written
-    to structure/prose/ (every non-leaf, i.e. every real constituent)."""
+    extracted} across every sentence in the paragraph.
+
+    `span._.children` can yield UNLABELED single-token children even under a
+    labeled parent (e.g. NP -> "New", "gods", each with empty labels) - this
+    must be checked at every call, not just at the entry point, or those bare
+    tokens get miscounted as real constituents (extracted=True). This mirrors
+    build_prose_structure.py's validated walk_sentence exactly: extracted=True
+    only when `labels` is non-empty; recursion into `span._.children` happens
+    unconditionally either way, same as there. The one addition here (this is
+    a viewer, not the real extractor) is showing an unlabeled leaf's own POS
+    tag as its node_type, so the tree looks complete rather than silently
+    stopping.
+    """
     nodes = []
     next_id = [0]
-    roots = []
 
-    def recurse(span, parent_id, depth, is_leaf_token=None):
+    def recurse(span, parent_id, depth):
         my_id = next_id[0]
         next_id[0] += 1
-        labels = span._.labels if hasattr(span, "_") and hasattr(span._, "labels") else ()
+        labels = span._.labels
         start_char, end_char = span.start_char, span.end_char
-        start_byte = char_to_byte[start_char]
-        end_byte = char_to_byte[end_char]
-        if labels:
-            node_type = "+".join(labels)
-            extracted = True
-        else:
-            node_type = is_leaf_token or "?"
-            extracted = False
         nodes.append(
             {
                 "id": my_id,
                 "parent_id": parent_id,
-                "type": node_type,
+                "type": "+".join(labels) if labels else (span[0].tag_ or span[0].pos_ or "TOKEN"),
                 "depth": depth,
-                "start_byte": start_byte,
-                "end_byte": end_byte,
+                "start_byte": char_to_byte[start_char],
+                "end_byte": char_to_byte[end_char],
                 "start_char": start_char,
                 "end_char": end_char,
-                "extracted": extracted,
+                "extracted": bool(labels),
                 "is_error": False,
             }
         )
-        children = list(span._.children) if labels else []
-        if not children and labels:
-            # A labeled span with no benepar children is a pre-terminal
-            # (directly dominates one token) - show that token as a leaf.
-            for tok in span:
-                recurse_leaf(tok, my_id, depth + 1)
-        else:
-            for child in children:
-                recurse(child, my_id, depth + 1)
+        for child in span._.children:
+            recurse(child, my_id, depth + 1)
         return my_id
 
-    def recurse_leaf(token, parent_id, depth):
-        my_id = next_id[0]
-        next_id[0] += 1
-        start_char = token.idx
-        end_char = token.idx + len(token.text)
-        start_byte = char_to_byte[start_char]
-        end_byte = char_to_byte[end_char]
-        nodes.append(
-            {
-                "id": my_id,
-                "parent_id": parent_id,
-                "type": token.tag_ or token.pos_ or "TOKEN",
-                "depth": depth,
-                "start_byte": start_byte,
-                "end_byte": end_byte,
-                "start_char": start_char,
-                "end_char": end_char,
-                "extracted": False,
-                "is_error": False,
-            }
-        )
-
     for sent in doc.sents:
-        root_id = recurse(sent, None, 1)
-        roots.append(root_id)
+        recurse(sent, None, 1)
 
     return nodes
 
@@ -246,9 +218,6 @@ def main():
         print("usage: python stream_b/prose_tree_viewer.py <file_id>")
         sys.exit(1)
     file_id = sys.argv[1]
-
-    import spacy
-    import benepar
 
     nlp = spacy.load("en_core_web_md")
     nlp.add_pipe("benepar", config={"model": "benepar_en3"})

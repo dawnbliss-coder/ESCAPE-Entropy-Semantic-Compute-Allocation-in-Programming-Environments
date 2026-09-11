@@ -1,33 +1,23 @@
-"""Real tree-sitter extraction (Day 3, part 1): walk the AST and emit node_type,
-parent_type, depth, start_byte, end_byte for the statement/expression-level nodes the
-proposal's hypothesis (§5.2) and predictions (P4) actually need.
+"""Walks the AST and emits node_type, parent_type, depth, start_byte, end_byte
+for the statement/expression-level nodes the proposal's hypothesis (§5.2) and
+predictions (P4) need - a superset of the 5 example types in Methodology
+(also: expression_statement/return_statement/assignment for P4's open-ended
+contrast set, since P4 can't run without them).
 
-Node-type names are verified empirically per language (see STREAM-B-PLAN.md Day 3
-notes) rather than copied from the proposal's prose, which uses C++'s names
-(call_expression, binary_expression) even when describing Python, where the real
-node types are `call` and `binary_operator`.
+Node-type names are verified empirically per language, not copied from the
+proposal's prose (which uses C++'s names even when describing Python - the real
+Python types are `call`/`binary_operator`, not `call_expression`/
+`binary_expression`). `declaration` is cpp-only; Python has no equivalent node.
 
-Coverage, and why each is here (not just the proposal's 5 example types):
-  - if/for/while/function-def: named as deterministic openers in §5.2 ("if, for and
-    while are followed by a forced token, and def must be followed by a name")
-  - expression_statement/return_statement/assignment: named as the open-ended
-    contrast set in P4 ("...than for open-ended ones (expression_statement,
-    return_statement, assignment right-hand sides)")
-  - call/binary-op: the proposal's own Methodology example types
-  - declaration (cpp only; Python has no equivalent node - its declarations are just
-    `assignment`): kept since Methodology names it explicitly for C++
+DEPTH: full-tree depth from the parse root (root=0), counting every ancestor,
+not just whitelisted types - required for cross-language depth comparison (O3)
+to mean anything, since Python and C++ carry very different amounts of grammar
+scaffolding per statement. Stream C does the depth NORMALIZATION; this only
+produces the raw depth it's computed from.
 
-DEPTH CONVENTION: full-tree depth from the parse root (root = 0), counting every
-ancestor node — not just whitelisted ones. This is required for cross-language
-depth comparison (O3) to mean anything, since Python and C++ have very different
-amounts of grammar scaffolding per statement. Stream C does the depth NORMALIZATION
-(relative depth, quantiles, etc. — still an open item per the proposal); this module
-only produces the raw depth those normalizations are computed from.
-
-TIE-BREAK NOTE for Stream C: the Methodology's "credit the outermost matching node
-once, when node types share a start offset" rule is resolvable from (start_byte, depth)
-alone — outermost = smallest depth among rows sharing a start_byte — no parent-chain
-walk needed, since `depth` here is already full-tree depth.
+TIE-BREAK for Stream C: "credit the outermost matching node when types share a
+start offset" is resolvable from (start_byte, depth) alone - outermost = smallest
+depth among rows sharing a start_byte - no parent-chain walk needed.
 """
 
 import tree_sitter_cpp

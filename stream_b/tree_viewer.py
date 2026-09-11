@@ -8,6 +8,7 @@ Usage:
 """
 
 import json
+import os
 import sys
 
 from tree_sitter import Language, Parser
@@ -155,11 +156,11 @@ for (const n of NODES) {{
 }}
 const roots = NODES.filter(n => n.parent_id === null).map(n => n.id);
 
-function labelFor(n) {{
+function classFor(n) {{
   const cls = ['node'];
   if (n.extracted) cls.push('extracted');
   if (n.is_error) cls.push('err');
-  return {{cls: cls.join(' ')}};
+  return cls.join(' ');
 }}
 
 function renderNode(id, depthLimit) {{
@@ -167,8 +168,7 @@ function renderNode(id, depthLimit) {{
   const kids = children[id] || [];
   const wrap = document.createElement('div');
   const row = document.createElement('div');
-  const {{cls}} = labelFor(n);
-  row.className = cls;
+  row.className = classFor(n);
 
   const toggle = document.createElement('span');
   toggle.className = 'toggle';
@@ -206,7 +206,6 @@ for (const rid of roots) {{
   treeEl.appendChild(renderNode(rid, 3)); // auto-expand first 3 levels
 }}
 
-let lastMark = null;
 function highlightSource(startByte, endByte) {{
   const startChar = CHAR_OFFSETS[startByte];
   const endChar = CHAR_OFFSETS[endByte];
@@ -252,8 +251,6 @@ def main():
         nodes_json=json.dumps(nodes),
         char_offsets_json=json.dumps(char_offsets),
     )
-
-    import os
 
     os.makedirs(OUT_DIR, exist_ok=True)
     out_path = f"{OUT_DIR}/{file_id}.html"

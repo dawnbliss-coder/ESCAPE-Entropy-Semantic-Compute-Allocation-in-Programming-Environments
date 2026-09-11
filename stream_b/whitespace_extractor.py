@@ -1,25 +1,16 @@
-"""Day 3, part 2: whitespace baseline extraction. Two tagged kinds of byte offset,
-per the proposal's own text and the R2 open item (not one blended signal):
+"""Whitespace baseline extraction. Two tagged kinds, not one blended signal:
 
-  - "newline": byte offset right after every `\\n`. This is the literal required
-    baseline ("Second baseline: whitespace... a trivial 'split at every newline'
-    rule"). Deliberately does NOT skip past leading indentation — the proposal's
-    argument is that boundary-tolerance k can absorb the small gap from raw
-    newline to real content, which is exactly the confound this baseline exists to
-    expose. Skipping the indentation here would test a different, stricter claim.
+  - "newline": byte offset right after every `\\n` - the literal required P1
+    baseline. Deliberately does NOT skip leading indentation: the proposal's
+    argument is that tolerance k absorbing that small gap IS the confound this
+    baseline exists to expose; skipping it would test a different, stricter claim.
+  - "indent_change": byte offset of the first non-whitespace byte on lines whose
+    leading-whitespace length differs from the previous non-blank line's - what
+    R2 asks directly, additional to (not a replacement for) the newline baseline.
 
-  - "indent_change": byte offset of the first non-whitespace byte on any non-blank
-    line whose leading-whitespace length differs from the previous non-blank
-    line's. This is what R2 asks directly ("what fraction of AST node starts sit
-    immediately after a newline + indent") and is additional to, not a replacement
-    for, the newline baseline above.
-
-Indentation is compared by raw leading-whitespace BYTE LENGTH, not by interpreting
-tabs/spaces semantically — sufficient for a baseline signal; real indent/dedent
-correctness is already handled structurally by tree-sitter in structure/.
-
-Byte offsets use the exact same convention as structure/ (raw byte positions into
-corpus/{domain}/{file_id}.bin, no re-encoding).
+Indentation compared by raw leading-whitespace byte length, not tab/space
+semantics - sufficient for a baseline signal; real indent/dedent correctness is
+already handled structurally by tree-sitter in structure/.
 """
 
 import os
@@ -28,6 +19,9 @@ import pandas as pd
 
 CORPUS_DIR = "corpus"
 WHITESPACE_DIR = "whitespace"
+# Explicit columns so a file with zero rows (e.g. a single line, no trailing
+# newline) still gets the right schema - see the same fix in build_structure.py.
+WHITESPACE_COLUMNS = ["byte_offset", "kind"]
 
 
 def extract_newlines(content: bytes):
@@ -87,7 +81,7 @@ def main():
             n_newline += sum(1 for r in rows if r["kind"] == "newline")
             n_indent += sum(1 for r in rows if r["kind"] == "indent_change")
 
-            df = pd.DataFrame(rows)
+            df = pd.DataFrame(rows, columns=WHITESPACE_COLUMNS)
             df.insert(0, "file_id", file_id)
             df.to_parquet(
                 f"{WHITESPACE_DIR}/{domain}/{file_id}.parquet", index=False

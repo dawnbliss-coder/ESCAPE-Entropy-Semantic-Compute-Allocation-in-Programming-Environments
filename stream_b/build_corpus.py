@@ -14,6 +14,8 @@ later and re-running this script only APPENDS new files — every file_id alread
 to calib or main (and anything Stream A/C built on top of it) stays exactly as it was.
 """
 
+import os
+
 import pandas as pd
 
 from corpus_lib import DOMAIN_TO_DATA_DIR, pull_pool
@@ -34,8 +36,6 @@ def select_split(records: list):
 
 
 def write_domain(domain: str, calib: list, main: list) -> list:
-    import os
-
     os.makedirs(f"{CORPUS_DIR}/{domain}", exist_ok=True)
     manifest_rows = []
     for split_name, records in [("calib", calib), ("main", main)]:
@@ -73,8 +73,19 @@ def main():
         all_rows.extend(rows)
         print(f"wrote {len(rows)} files ({len(calib)} calib + {len(main_)} main)")
 
-    manifest = pd.DataFrame(all_rows)
-    manifest.to_parquet(f"{CORPUS_DIR}/manifest.parquet", index=False)
+    new_rows = pd.DataFrame(all_rows)
+    manifest_path = f"{CORPUS_DIR}/manifest.parquet"
+    # Replace only the domains THIS script owns (py, cpp) - other domains
+    # (prose) and columns added later by other scripts (parse_ok) must survive
+    # a re-run, e.g. to grow N. Overwriting the whole manifest unconditionally
+    # would silently destroy both.
+    if os.path.exists(manifest_path):
+        existing = pd.read_parquet(manifest_path)
+        existing = existing[~existing["domain"].isin(DOMAIN_TO_DATA_DIR.keys())]
+        manifest = pd.concat([existing, new_rows], ignore_index=True)
+    else:
+        manifest = new_rows
+    manifest.to_parquet(manifest_path, index=False)
     print(f"\nmanifest.parquet: {len(manifest)} rows total")
     print(manifest.groupby(["domain", "split"]).size())
 

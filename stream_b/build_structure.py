@@ -12,15 +12,22 @@ from ast_walker import walk_file
 
 CORPUS_DIR = "corpus"
 STRUCTURE_DIR = "structure"
+# Explicit columns so a file with zero tracked nodes (e.g. imports-only) still
+# gets the right schema - pd.DataFrame([]) with no columns= would otherwise
+# produce a parquet file missing every column but file_id.
+STRUCTURE_COLUMNS = ["node_type", "parent_type", "depth", "start_byte", "end_byte"]
 
 
 def main():
     manifest = pd.read_parquet(f"{CORPUS_DIR}/manifest.parquet")
+    # Only py/cpp - ast_walker.py is tree-sitter-based and has no "prose" grammar.
+    # Prose structure is built separately by build_prose_structure.py (benepar).
+    code_manifest = manifest[manifest["domain"].isin(["py", "cpp"])]
 
     parse_ok_by_file_id = {}
     node_type_counts = {}
 
-    for domain, group in manifest.groupby("domain"):
+    for domain, group in code_manifest.groupby("domain"):
         os.makedirs(f"{STRUCTURE_DIR}/{domain}", exist_ok=True)
         for file_id in group["file_id"]:
             bin_path = f"{CORPUS_DIR}/{domain}/{file_id}.bin"
@@ -35,7 +42,7 @@ def main():
                     node_type_counts.get((domain, r["node_type"]), 0) + 1
                 )
 
-            df = pd.DataFrame(rows)
+            df = pd.DataFrame(rows, columns=STRUCTURE_COLUMNS)
             df.insert(0, "file_id", file_id)
             df.to_parquet(f"{STRUCTURE_DIR}/{domain}/{file_id}.parquet", index=False)
 

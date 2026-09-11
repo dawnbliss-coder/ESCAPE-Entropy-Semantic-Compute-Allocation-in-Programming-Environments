@@ -1,30 +1,27 @@
-"""Day 5: prose_taxonomy.json - the prose-side mirror of taxonomy.json, for P3
-(code/prose contrast). Verified against the real label set actually produced by
-build_prose_structure.py (32 distinct types across all 300 files), not guessed.
+"""prose_taxonomy.json - the prose-side mirror of taxonomy.json, for P3
+(code/prose contrast). Verified against the real label set produced by
+build_prose_structure.py (32 distinct types across all 300 files).
 
-WHY THIS AXIS, NOT deterministic_opener/open_ended: code's taxonomy.json splits
-on whether what's grammatically forced after a keyword is narrow (if/for/while)
-or open (return, assignment) - a mechanism specific to code having fixed
-keywords at all. Prose constituents have no keyword-driven openers, so that
-axis doesn't transfer. The genuine structural mirror is code's OTHER split -
-statement-level vs expression-level (see ast_walker.py's NODE_TYPES) - expressed
-in constituency-grammar's own vocabulary: CLAUSE-level (a constituent with its
-own subject/predicate structure, standing in for a full clause - S/SBAR/SINV,
-mirrors code's statement-level: if_statement/for_statement/etc.) vs
-PHRASE-level (a single-category constituent with no independent clause
-structure - NP/VP/PP/etc., mirrors code's expression-level: call/binary_operator/
-etc.). Stacked labels (unary-chain collapses, e.g. "S+VP") are classified by
-their OUTERMOST label - "S+VP" is clause-level because it IS an S, just one
-that happens to unary-dominate a VP.
+WHY THIS AXIS, NOT deterministic_opener/open_ended: that split is specifically
+about whether a keyword forces a narrow continuation, and prose constituents
+have no keyword-driven openers. The genuine mirror is code's OTHER split -
+statement-level vs expression-level - expressed in constituency grammar's own
+vocabulary: CLAUSE-level (has its own subject/predicate structure - S/SBAR/
+SINV/RRC, mirrors statement-level) vs PHRASE-level (single-category, no
+independent clause structure - NP/VP/PP/etc., mirrors expression-level).
+Stacked labels (unary-chain collapses, e.g. "S+VP") are classified by their
+OUTERMOST label.
 
-A third bucket is kept, not forced into the other two: FRAG/LST/PRN/UCP/X are
-genuinely structural/miscellaneous categories in the Penn Treebank tagset
-(fragment, list marker, parenthetical, unlike-coordinated-phrase, unknown) -
-none of them carry the clause-vs-phrase distinction the other 27 do, and
-mislabeling them either way would be worse than an honest third category.
+A third bucket, structural_other (FRAG/LST/PRN/UCP/X), is kept rather than
+forced into the other two - these are genuinely miscellaneous Penn Treebank
+categories (fragment, list marker, parenthetical, unlike-coordination, unknown)
+that don't carry the clause-vs-phrase distinction the rest do.
 """
 
+import glob
 import json
+
+import pandas as pd
 
 CLAUSE_LEVEL = {"S", "SBAR", "SINV", "RRC"}
 PHRASE_LEVEL = {
@@ -48,10 +45,6 @@ def classify(node_type: str) -> str:
 
 
 def main():
-    import glob
-
-    import pandas as pd
-
     observed = set()
     for p in glob.glob("structure/prose/*.parquet"):
         df = pd.read_parquet(p)
