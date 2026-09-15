@@ -1,0 +1,4 @@
+domain,method,mean_best_iou,lo,hi,n_files,n_spans,secondary_metric,k_mode,preliminary
+prose,blt,0.37734086150461515,0.37403305117769786,0.38074943620694346,300,34317,True,grid_uncalibrated,True
+prose,whitespace,,,,300,34317,True,grid_uncalibrated,True
+prose,h0,0.3341816941556463,0.33222590096788135,0.3361845668042592,300,34317,True,grid_uncalibrated,True

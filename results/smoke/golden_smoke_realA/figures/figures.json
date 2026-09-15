@@ -1,0 +1,13 @@
+{
+  "analysis_dir": "results/smoke/golden_smoke_realA",
+  "k_dir": "results/smoke/k_calibration",
+  "outputs": [
+    "p1_alignment_effects.png",
+    "depth_alignment.png",
+    "p2_start_end.png",
+    "p4_openers.png",
+    "k_calibration.png"
+  ],
+  "preliminary": true,
+  "smoke": true
+}

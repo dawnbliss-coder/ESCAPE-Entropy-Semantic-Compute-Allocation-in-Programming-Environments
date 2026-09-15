@@ -1,0 +1,100 @@
+{
+  "hf_full-float32-t1.3354-mplnone-91aa6b8e": {
+    "add_bos": true,
+    "add_eos": false,
+    "attn_implementation": "sdpa",
+    "backend": "patcher",
+    "boundary_convention": "one row per patch; byte_offset = first byte of the patch (start-of-patch convention); trigger init = byte 0 (architecturally forced), entropy = entropies[byte_offset] > tau (strict, float64 comparison of the stored float32), length_cap = cut of a patch longer than max_patch_length",
+    "checkpoint": "itazap/blt-1b-hf",
+    "checkpoint_revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+    "chunk_len": null,
+    "code_sha256": "c0a7aac2eed10e850f324e0cb54107786c7dc20fd1da420e099397854507a20f",
+    "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+    "commit_dirty": true,
+    "context_mode": "hf_full",
+    "created_by": "stream_a/extract.py",
+    "cuda_version": "13.0",
+    "date": "2026-09-15T06:50:13+00:00",
+    "device": "cuda",
+    "dtype": "float32",
+    "entropy_definition": "entropies[i] = -sum_v p(v) ln p(v) over all 260 patcher logits of the prediction made at token position i of [BOS, b_0+4, ..., b_{n-1}+4], i.e. the distribution of byte i given BOS and bytes < i (nats)",
+    "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+    "invocations": [
+      {
+        "code_sha256": "c0a7aac2eed10e850f324e0cb54107786c7dc20fd1da420e099397854507a20f",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:50:13+00:00"
+      }
+    ],
+    "max_patch_length": null,
+    "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d",
+    "python_version": "3.12.14",
+    "seed": null,
+    "seed_note": "no randomness in Stream A: inference and patching are deterministic",
+    "sliding_window": null,
+    "tau": 1.335442066192627,
+    "tf32_matmul": false,
+    "torch_version": "2.12.1+cu130",
+    "transformers_version": "5.17.0"
+  },
+  "swa512-float32-t1.3354-mplnone-91aa6b8e": {
+    "add_bos": true,
+    "add_eos": false,
+    "attn_implementation": "sdpa",
+    "backend": "patcher",
+    "boundary_convention": "one row per patch; byte_offset = first byte of the patch (start-of-patch convention); trigger init = byte 0 (architecturally forced), entropy = entropies[byte_offset] > tau (strict, float64 comparison of the stored float32), length_cap = cut of a patch longer than max_patch_length",
+    "checkpoint": "itazap/blt-1b-hf",
+    "checkpoint_revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+    "chunk_len": 8192,
+    "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+    "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+    "commit_dirty": true,
+    "context_mode": "swa512",
+    "created_by": "stream_a/extract.py",
+    "cuda_version": "13.0",
+    "date": "2026-09-15T06:39:59+00:00",
+    "device": "cuda",
+    "dtype": "float32",
+    "entropy_definition": "entropies[i] = -sum_v p(v) ln p(v) over all 260 patcher logits of the prediction made at token position i of [BOS, b_0+4, ..., b_{n-1}+4], i.e. the distribution of byte i given BOS and bytes < i (nats)",
+    "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+    "invocations": [
+      {
+        "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:39:59+00:00"
+      },
+      {
+        "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:47:03+00:00",
+        "device": "cuda",
+        "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+        "torch_version": "2.12.1+cu130",
+        "transformers_version": "5.17.0"
+      },
+      {
+        "code_sha256": "c0a7aac2eed10e850f324e0cb54107786c7dc20fd1da420e099397854507a20f",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:49:38+00:00",
+        "device": "cuda",
+        "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+        "torch_version": "2.12.1+cu130",
+        "transformers_version": "5.17.0"
+      }
+    ],
+    "max_patch_length": null,
+    "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d",
+    "python_version": "3.12.14",
+    "seed": null,
+    "seed_note": "no randomness in Stream A: inference and patching are deterministic",
+    "sliding_window": 512,
+    "tau": 1.335442066192627,
+    "tf32_matmul": false,
+    "torch_version": "2.12.1+cu130",
+    "transformers_version": "5.17.0"
+  }
+}
