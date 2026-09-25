@@ -5,11 +5,12 @@
 - `pip install -r stream_b/requirements.txt`
 - Create a token at huggingface.co/settings/tokens
 - `hf auth login --force`, paste the token
-- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token)
+- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token) — needed for C++ only; Python's source (CodeSearchNet) isn't gated
 - `python -m spacy download en_core_web_md`
 - `python -c "import benepar; benepar.download('benepar_en3')"`
 - `export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
-- `python stream_b/build_corpus.py`
+- `python stream_b/build_corpus.py` (C++, from `bigcode/the-stack-smol`)
+- `python stream_b/build_py_corpus.py` (Python, from CodeSearchNet)
 - `python stream_b/build_structure.py`
 - `python stream_b/whitespace_extractor.py`
 - `python stream_b/build_taxonomy.py`
@@ -21,7 +22,7 @@
 ## Progress so far
 
 - (Priyanka) Data contract drafted — `docs/SCHEMA.md`
-- (Priyanka) C++ source resolved — both languages use `bigcode/the-stack-smol`, not CodeSearchNet
+- (Priyanka) Code sources: C++ from `bigcode/the-stack-smol` (a sampled subset of the proposal's "The Stack" — CodeSearchNet has no C++ split); Python from **CodeSearchNet**, matching proposal §6 exactly. **Note for Stream C:** Python rows are isolated functions (not whole files like C++) and carry no license metadata at all (CodeSearchNet has no per-example license field, unlike C++'s the-stack-smol rows) — both are known limitations, flagged for the write-up and relevant to O3's cross-language granularity comparison.
 - (Priyanka) Code corpus built — 8,000 Python + 8,000 C++ files (100 calib / 7,900 main each), growth-safe and reproducible
 - (Priyanka) Tree-sitter extraction pipeline — `structure/{domain}/{file_id}.parquet` for all 16,000 files
 - (Priyanka) `parse_ok` tracked per file — 28.1% of C++ hits tree-sitter error-recovery (isolated files missing macro/header context), kept and flagged rather than dropped
@@ -33,6 +34,7 @@
 - (Priyanka) Prose tree viewer (`stream_b/prose_tree_viewer.py`) — same interactive style as the code viewer; 2 examples committed (one hand-verified, one with real multi-byte UTF-8 divergence)
 - (Priyanka) `prose_taxonomy.json` built for P3 — mirrors code's statement/expression split as clause_level vs phrase_level (not the deterministic/open-ended axis, which is code-keyword-specific), verified against all 32 real observed labels
 - (Priyanka) Golden fixtures — 18 files (6 py/6 cpp/6 prose), hand-picked and spot-checked by eye, `stream_b/validate_golden_fixtures.py` is the shared regression test (all pass)
-- (Priyanka) R2 quantified (`stream_b/quantify_r2.py`) — py 30.7%, cpp 22.5% of AST node starts sit immediately after newline+indent; Python shows the stronger confound, as expected
-- (Priyanka) Implementation-complete pass — audited all scripts, fixed real bugs (not just style): an empty-output schema bug affecting ~1.3% of files, an idempotency bug in `build_corpus.py` that would have silently dropped prose rows on a re-run, and a real miscounting bug in the prose tree viewer (caught by cross-checking its output against validated `structure/prose/` data). Only the write-up and TA repo access remain.
+- (Priyanka) R2 quantified (`stream_b/quantify_r2.py`) — py 31.8%, cpp 22.5% of AST node starts sit immediately after newline+indent; Python shows the stronger confound, as expected
+- (Priyanka) Implementation-complete pass — audited all scripts, fixed real bugs (not just style): an empty-output schema bug affecting ~1.3% of files, an idempotency bug in `build_corpus.py` that would have silently dropped prose rows on a re-run, and a real miscounting bug in the prose tree viewer (caught by cross-checking its output against validated `structure/prose/` data).
+- (Priyanka) Python corpus reverted from `the-stack-smol` to CodeSearchNet (26 Sep) — closes out the earlier deviation from proposal §6. C++ untouched. Full rebuild for Python only: `corpus/py`, `structure/py`, `whitespace/py`, `golden_fixtures/py` regenerated under new file_ids; `taxonomy.json` re-verified empirically against the new corpus (no change); all 18 golden fixtures still pass; R2 re-quantified. Only the write-up and TA repo access remain.
 - Memory-unsafe region tagging / identifier spans (O5) deliberately deferred — proposal's own timeline places O5 after mid-submission
