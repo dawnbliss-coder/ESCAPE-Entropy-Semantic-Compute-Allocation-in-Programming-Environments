@@ -1,5 +1,7 @@
-"""Day 2 step 2: from the validated py/cpp pools, select calib/main splits, freeze raw
-bytes to corpus/{domain}/{file_id}.bin, and write corpus/manifest.parquet.
+"""Day 2 step 2: from the validated cpp pool (the-stack-smol), select calib/main
+splits, freeze raw bytes to corpus/{domain}/{file_id}.bin, and write
+corpus/manifest.parquet. py now comes from build_py_corpus.py (CodeSearchNet, per
+proposal §6) instead of this script's the-stack-smol path.
 
 file_id convention: "{domain}_{sha256[:12]}" — content-addressed, stable across reruns,
 unique across domains. Once written, corpus/*.bin are never re-encoded downstream.

@@ -19,13 +19,16 @@ WHITESPACE_DIR = "whitespace"
 GOLDEN_DIR = "golden_fixtures"
 
 SELECTED = {
+    # Re-picked after the CodeSearchNet switch (old the-stack-smol-derived file_ids
+    # no longer exist) - same discipline: read actual content first, spread across
+    # a size range, all clean unambiguous Python 3 syntax, parse_ok=True.
     "py": [
-        "py_8bf2cc2f468d",
-        "py_a30150e6da73",
-        "py_07fbe9f688ef",
-        "py_330c5ac1b62f",
-        "py_ecbef3331744",
-        "py_70c461e16fe6",
+        "py_182f41b1a962",
+        "py_ca2ef22485b6",
+        "py_dd8332bfcc3f",
+        "py_61c03226d22f",
+        "py_a0132d6203e8",
+        "py_44f23ec7455e",
     ],
     "cpp": [
         "cpp_d337aa88b1c3",

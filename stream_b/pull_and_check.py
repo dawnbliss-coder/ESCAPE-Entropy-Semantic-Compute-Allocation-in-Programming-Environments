@@ -1,7 +1,11 @@
-"""Day 2 step 1: pull candidate pools for py/cpp from bigcode/the-stack-smol,
+"""Day 2 step 1: pull the candidate pool for cpp from bigcode/the-stack-smol,
 dedup by content hash, and sanity-check license metadata. Writes nothing to corpus/
 yet — this is the report-before-you-commit step; corpus/ + manifest.parquet come next
-once the candidate pools look sane (see build_corpus.py).
+once the candidate pool looks sane (see build_corpus.py).
+
+py is no longer pulled here — it reverted to CodeSearchNet (proposal §6); see
+build_py_corpus.py, which pulls and writes in one step (CodeSearchNet has no
+license field to sanity-check, so there's no separate report-first step for it).
 """
 
 from corpus_lib import DOMAIN_TO_DATA_DIR, NEEDED_PER_DOMAIN, pull_pool

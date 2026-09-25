@@ -1,6 +1,10 @@
 """Shared corpus-building logic for Stream B: pulling from the-stack-smol, dedup,
 license sanity-checking. Used by pull_and_check.py (report-only) and build_corpus.py
 (writes corpus/ + manifest.parquet).
+
+cpp-only: Python reverted to CodeSearchNet (matching proposal §6) - see
+build_py_corpus.py, which has its own pull/dedup logic since CodeSearchNet has a
+different schema (no license field, isolated functions not whole files).
 """
 
 import hashlib
@@ -11,7 +15,6 @@ from datasets import load_dataset
 # domain -> the-stack-smol data_dir. domain names follow docs/SCHEMA.md ("py", "cpp",
 # "prose"), not the-stack-smol's own folder names (which is why py maps to data/python).
 DOMAIN_TO_DATA_DIR = {
-    "py": "data/python",
     "cpp": "data/c++",
 }
 
