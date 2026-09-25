@@ -1,23 +1,11 @@
 ## Setup
 
 - Clone the repo, `cd` into it
-- `python3 -m venv .venv && source .venv/bin/activate`
-- `pip install -r stream_b/requirements.txt`
 - Create a token at huggingface.co/settings/tokens
 - `hf auth login --force`, paste the token
-- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token) — needed for C++ only; Python's source (CodeSearchNet) isn't gated
-- `python -m spacy download en_core_web_md`
-- `python -c "import benepar; benepar.download('benepar_en3')"`
-- `export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`
-- `python stream_b/build_corpus.py` (C++, from `bigcode/the-stack-smol`)
-- `python stream_b/build_py_corpus.py` (Python, from CodeSearchNet)
-- `python stream_b/build_structure.py`
-- `python stream_b/whitespace_extractor.py`
-- `python stream_b/build_taxonomy.py`
-- `python stream_b/build_prose_corpus.py`
-- `python stream_b/build_prose_structure.py`
-- `python stream_b/build_prose_taxonomy.py`
-- `python stream_b/build_golden_fixtures.py`
+- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token)
+- `bash setup.sh`
+- `source .venv/bin/activate`
 
 ## Progress so far
 
