@@ -6,7 +6,8 @@ so it can be re-run at any time without the model.
 Columns:
   - Contract (docs/SCHEMA.md) first: file_id, run_id, n_bytes, n_patches, mean_bpp, var_bpp.
   - Then additive: domain, split, median/min/max/p10/p90 bpp, trigger counts, entropy quantiles,
-    frac_bytes_above_tau.
+    frac_bytes_above_tau, chunk_len, n_chunk_edges, n_bytes_truncated_context (the swa512
+    8192-token chunk-reset exposure; see stream_a/patching.chunk_context_meta).
   - BPP counts ALL patches (init, entropy-triggered and length-capped); var_bpp is the population
     variance (ddof=0).
 
@@ -25,12 +26,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from escape_common.io import atomic_to_parquet  # noqa: E402
 from escape_common.schema import BPP_SUMMARY_CONTRACT_COLUMNS, BPP_SUMMARY_PATH, MANIFEST_PATH, RUNS_JSON_PATH  # noqa: E402
-from stream_a.patching import bpp_stats, entropy_stats  # noqa: E402
+from stream_a.patching import bpp_stats, chunk_context_meta, entropy_stats  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def summarize_run(root: Path, run_id: str, tau: float, manifest: pd.DataFrame) -> list:
+def summarize_run(root: Path, run_id: str, tau: float, chunk_len, manifest: pd.DataFrame) -> list:
     meta = manifest.set_index("file_id")
     rows = []
     for bp in sorted((root / "boundaries" / run_id).glob("*.parquet")):
@@ -49,6 +50,7 @@ def summarize_run(root: Path, run_id: str, tau: float, manifest: pd.DataFrame) -
                     "n_init": int(trig.get("init", 0)), "n_entropy": int(trig.get("entropy", 0)),
                     "n_length_cap": int(trig.get("length_cap", 0))})
         row.update(entropy_stats(ent, tau))
+        row.update(chunk_context_meta(n_bytes, chunk_len))
         rows.append(row)
     return rows
 
@@ -64,7 +66,7 @@ def main(argv=None):
     manifest = pd.read_parquet(root / MANIFEST_PATH)
     rows = []
     for run_id in run_ids:
-        run_rows = summarize_run(root, run_id, float(runs[run_id]["tau"]), manifest)
+        run_rows = summarize_run(root, run_id, float(runs[run_id]["tau"]), runs[run_id].get("chunk_len"), manifest)
         print(f"{run_id}: {len(run_rows)} files")
         rows.extend(run_rows)
     df = pd.DataFrame(rows)

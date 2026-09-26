@@ -172,3 +172,45 @@ def whitespace_segment_starts(newline_offsets, n_bytes: int) -> np.ndarray:
     w = np.unique(np.asarray(newline_offsets, dtype=np.int64))
     w = w[(w > 0) & (w < n_bytes)]
     return np.concatenate([np.zeros(1, dtype=np.int64), w])
+
+
+# Word-boundary baseline (the P3 prose confound control). Constituent starts in prose
+# largely coincide with word starts (after a space), and the whitespace baseline is
+# newline-only - empty for single-line paragraphs. This baseline splits at every word
+# start instead, so BLT can be compared against word segmentation directly.
+_WORD_TABLE = np.zeros(256, dtype=bool)
+for _c in b"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_":
+    _WORD_TABLE[_c] = True
+
+
+def word_start_offsets(content: bytes) -> np.ndarray:
+    """Byte offsets of word starts: byte i is a word byte ([A-Za-z0-9_]) and byte i-1
+    is not (or i == 0). Multi-byte UTF-8 continuation bytes (>= 0x80) are never word
+    bytes, so this is a byte-level segmentation control, not a tokenizer."""
+    b = np.frombuffer(content, dtype=np.uint8)
+    if b.size == 0:
+        return np.empty(0, dtype=np.int64)
+    is_word = _WORD_TABLE[b]
+    starts = np.zeros(b.size, dtype=bool)
+    starts[0] = is_word[0]
+    starts[1:] = is_word[1:] & ~is_word[:-1]
+    return np.flatnonzero(starts).astype(np.int64)
+
+
+def word_boundaries(content: bytes, exclude_offsets=()) -> np.ndarray:
+    """S_f: unique word-start offsets minus X_f (same exclusion convention as the
+    whitespace baseline). Not density matched."""
+    w = word_start_offsets(content)
+    excl = np.asarray(list(exclude_offsets), dtype=np.int64)
+    if excl.size:
+        w = w[~np.isin(w, excl)]
+    return w
+
+
+def word_segment_starts(content: bytes, n_bytes: int) -> np.ndarray:
+    """Word segmentation for IoU: segments start at 0 and at every word start."""
+    if n_bytes == 0:
+        return np.empty(0, dtype=np.int64)
+    w = word_start_offsets(content)
+    w = w[(w > 0) & (w < n_bytes)]
+    return np.concatenate([np.zeros(1, dtype=np.int64), w])

@@ -7,7 +7,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from escape_eval.baselines import H0Sampler, h0_spec, whitespace_boundaries, whitespace_segment_starts
+from escape_eval.baselines import (H0Sampler, h0_spec, whitespace_boundaries, whitespace_segment_starts,
+                                   word_boundaries, word_segment_starts, word_start_offsets)
 from escape_eval.targets import build_targets
 
 TAXONOMY = {"expression_statement": "open_ended", "call": "open_ended", "assignment": "open_ended",
@@ -106,3 +107,23 @@ def test_h0_preserves_forced_prefix_when_two_init_rows():
 def test_whitespace_baseline():
     assert whitespace_boundaries([5, 12, 5, 0], exclude_offsets=[0]).tolist() == [5, 12]
     assert whitespace_segment_starts([5, 12], 20).tolist() == [0, 5, 12]
+
+
+def test_word_start_offsets_ascii():
+    content = b"The cat, sat: on\tMAT_2 mats."
+    assert word_start_offsets(content).tolist() == [0, 4, 9, 14, 17, 23]
+    assert word_boundaries(content, exclude_offsets=[0]).tolist() == [4, 9, 14, 17, 23]
+
+
+def test_word_start_offsets_multibyte_and_empty():
+    # UTF-8 continuation bytes are never word bytes; word chars are ASCII only.
+    assert word_start_offsets("café noir".encode("utf-8")).tolist() == [0, 6]
+    assert word_start_offsets(b"123 !!!").tolist() == [0]
+    assert word_start_offsets(b"").tolist() == []
+    assert word_boundaries(b"", exclude_offsets=[0]).tolist() == []
+    assert word_segment_starts(b"abc def", 7).tolist() == [0, 4]
+
+
+def test_word_segment_starts_bounds():
+    assert word_segment_starts(b"ab cd", 5).tolist() == [0, 3]
+    assert word_segment_starts(b"", 0).tolist() == []

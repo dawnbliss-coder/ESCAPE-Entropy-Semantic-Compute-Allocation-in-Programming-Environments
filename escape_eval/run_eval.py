@@ -2,9 +2,10 @@
 
 Tables written to results/{analysis_id}/ (parquet + csv, each with preliminary=True):
   alignment      one row per (domain, target kind, k, stratum axis, stratum, metric):
-                 - BLT, E[H0] and whitespace metrics with file-bootstrap CIs
+                 - BLT, E[H0], whitespace and word-boundary metrics with file-bootstrap CIs
                  - permutation test vs H0 (p, null mean/sd/quantiles, z, ratio)
-                 - BLT-H0 and BLT-whitespace deltas with CIs, and the paired randomisation p vs whitespace
+                 - BLT-H0, BLT-whitespace and BLT-word deltas with CIs, and the paired
+                   randomisation p-values vs whitespace and vs the word baseline
                  - length-capped boundaries scored separately (never mixed into BLT)
                  P1 = kind start, axis all; per depth = axis depth; P4 detail = axis category/node_type
   p2_start_end   start vs end alignment (BLT and margin over H0) with CIs; precision > recall at starts
@@ -43,6 +44,7 @@ from escape_eval.engine import (  # noqa: E402
     METHOD_CAP,
     METHOD_H0,
     METHOD_WS,
+    METHOD_WORD,
     EngineConfig,
     count_sets,
     run_engine,
@@ -53,7 +55,7 @@ from escape_eval.targets import AXES  # noqa: E402
 METRICS = S.METRICS
 CI_LEVEL = 0.95
 DEFAULT_SEED = 20260915
-QUANTITIES = ("blt", "h0", "ws", "delta_h0", "delta_ws")
+QUANTITIES = ("blt", "h0", "ws", "delta_h0", "delta_ws", "word", "delta_word")
 COLS_PER_BOOT_CHUNK = 4
 
 
@@ -65,6 +67,7 @@ def _alignment_draws(cs: dict, w: np.ndarray, cols: np.ndarray) -> np.ndarray:
     blt = cs[METHOD_BLT].select(cols).pooled(w)
     h0 = cs[METHOD_H0].select(cols).pooled(w)
     ws = cs[METHOD_WS].select(cols).pooled(w) if METHOD_WS in cs else None
+    word = cs[METHOD_WORD].select(cols).pooled(w) if METHOD_WORD in cs else None
     out = np.full((w.shape[0], len(QUANTITIES), len(METRICS), len(cols)), np.nan)
     for mi, m in enumerate(METRICS):
         out[:, 0, mi] = blt[m]
@@ -73,6 +76,9 @@ def _alignment_draws(cs: dict, w: np.ndarray, cols: np.ndarray) -> np.ndarray:
         if ws is not None:
             out[:, 2, mi] = ws[m]
             out[:, 4, mi] = blt[m] - ws[m]
+        if word is not None:
+            out[:, 5, mi] = word[m]
+            out[:, 6, mi] = blt[m] - word[m]
     return out
 
 
@@ -86,7 +92,8 @@ def alignment_rows(domain, res, file_ids, kind, k, axis, n_boot, n_rand, seed) -
     keys = stratum_keys(res.counts, kind, k, axis)
     if not keys:
         return []
-    cs = count_sets(res.counts, file_ids, kind, k, keys, (METHOD_BLT, METHOD_WS, METHOD_H0, METHOD_CAP))
+    cs = count_sets(res.counts, file_ids, kind, k, keys,
+                    (METHOD_BLT, METHOD_WS, METHOD_WORD, METHOD_H0, METHOD_CAP))
     n_pred_total = float(cs[METHOD_BLT].n_pred.sum())
     n_t_total = cs[METHOD_BLT].n_targets.sum(0)
     obs = {m: cs[m].pooled() for m in cs}
@@ -102,10 +109,16 @@ def alignment_rows(domain, res, file_ids, kind, k, axis, n_boot, n_rand, seed) -
         l_, h_ = S.percentile_ci(draws, CI_LEVEL)
         lo[..., cols], hi[..., cols] = l_, h_
     rand = None
+    rand_word = None
     if METHOD_WS in cs:
         rand = S.paired_randomisation(cs[METHOD_BLT], cs[METHOD_WS],
                                       S.seed_entropy(seed, f"{domain}|{kind}|k={k}|{axis}", S.PURPOSE_RANDOMISATION_WS),
                                       n_rand)
+    if METHOD_WORD in cs:
+        rand_word = S.paired_randomisation(cs[METHOD_BLT], cs[METHOD_WORD],
+                                           S.seed_entropy(seed, f"{domain}|{kind}|k={k}|{axis}",
+                                                          S.PURPOSE_RANDOMISATION_WORD),
+                                           n_rand)
     rows = []
     nan = float("nan")
     for j, (ax, st) in enumerate(keys):
@@ -113,13 +126,16 @@ def alignment_rows(domain, res, file_ids, kind, k, axis, n_boot, n_rand, seed) -
             b = float(obs[METHOD_BLT][m][j])
             h = float(obs[METHOD_H0][m][j])
             w = float(obs[METHOD_WS][m][j]) if METHOD_WS in cs else nan
+            wd = float(obs[METHOD_WORD][m][j]) if METHOD_WORD in cs else nan
             rows.append({
                 "domain": domain, "kind": kind, "k": int(k), "axis": ax, "stratum": st, "metric": m,
                 "n_files": len(file_ids), "n_targets": int(n_t_total[j]), "n_pred_blt": int(n_pred_total),
                 "n_pred_ws": int(cs[METHOD_WS].n_pred.sum()) if METHOD_WS in cs else None,
+                "n_pred_word": int(cs[METHOD_WORD].n_pred.sum()) if METHOD_WORD in cs else None,
                 "blt": b, "blt_lo": lo[0, mi, j], "blt_hi": hi[0, mi, j],
                 "h0": h, "h0_lo": lo[1, mi, j], "h0_hi": hi[1, mi, j],
                 "ws": w, "ws_lo": lo[2, mi, j], "ws_hi": hi[2, mi, j],
+                "word": wd, "word_lo": lo[5, mi, j], "word_hi": hi[5, mi, j],
                 "delta_h0": b - h, "delta_h0_lo": lo[3, mi, j], "delta_h0_hi": hi[3, mi, j],
                 "p_perm_h0": float(perm[m]["p_value"][j]), "h0_null_mean": float(perm[m]["null_mean"][j]),
                 "h0_null_sd": float(perm[m]["null_sd"][j]), "h0_null_q025": float(perm[m]["null_q025"][j]),
@@ -127,6 +143,8 @@ def alignment_rows(domain, res, file_ids, kind, k, axis, n_boot, n_rand, seed) -
                 "ratio_h0": float(perm[m]["ratio"][j]),
                 "delta_ws": b - w, "delta_ws_lo": lo[4, mi, j], "delta_ws_hi": hi[4, mi, j],
                 "p_rand_ws": float(rand[m]["p_value"][j]) if rand is not None else nan,
+                "delta_word": b - wd, "delta_word_lo": lo[6, mi, j], "delta_word_hi": hi[6, mi, j],
+                "p_rand_word": float(rand_word[m]["p_value"][j]) if rand_word is not None else nan,
                 "length_cap": float(obs[METHOD_CAP][m][j]) if METHOD_CAP in cs else nan,
                 "n_pred_length_cap": int(cs[METHOD_CAP].n_pred.sum()) if METHOD_CAP in cs else 0,
             })
@@ -204,7 +222,7 @@ def iou_rows(domain, iou: pd.DataFrame, n_boot, seed) -> list:
     if iou.empty:
         return []
     n = iou["n_spans"].to_numpy(dtype=np.float64)
-    sums = iou[["iou_sum_blt", "iou_sum_whitespace", "iou_sum_h0"]].to_numpy(dtype=np.float64)
+    sums = iou[["iou_sum_blt", "iou_sum_whitespace", "iou_sum_word", "iou_sum_h0"]].to_numpy(dtype=np.float64)
 
     def quantities(w):
         if w is None:
@@ -216,7 +234,7 @@ def iou_rows(domain, iou: pd.DataFrame, n_boot, seed) -> list:
     lo, hi = S.percentile_ci(draws, CI_LEVEL)
     return [{"domain": domain, "method": m, "mean_best_iou": float(obs[i]), "lo": float(lo[i]), "hi": float(hi[i]),
              "n_files": int(len(n)), "n_spans": int(n.sum()), "secondary_metric": True}
-            for i, m in enumerate(("blt", "whitespace", "h0"))]
+            for i, m in enumerate(("blt", "whitespace", "word", "h0"))]
 
 
 def f1_margin_draws(domain, res, file_ids, k, n_boot, seed):
@@ -326,6 +344,10 @@ def main(argv=None):
     ap.add_argument("--iou", action="store_true")
     ap.add_argument("--iou-resamples", type=int, default=100)
     ap.add_argument("--limit-per-domain", type=int)
+    ap.add_argument("--parse-ok", choices=("all", "clean", "recovered"), default="all",
+                    help="restrict CODE files by the manifest parse_ok flag (tree-sitter error-recovery). "
+                         "prose is unaffected (no parse_ok). clean = parse_ok True, recovered = parse_ok False. "
+                         "Recorded in params.json.")
     ap.add_argument("--results-root", default="results")
     ap.add_argument("--analysis-id")
     args = ap.parse_args(argv)
@@ -354,6 +376,12 @@ def main(argv=None):
                                    split=None if args.source == "golden" else args.split,
                                    prose_split=None if args.source == "golden" else args.prose_split,
                                    limit_per_domain=args.limit_per_domain)
+        if domain in ("py", "cpp") and args.parse_ok != "all":
+            mask = files["parse_ok"].astype(object) == (args.parse_ok == "clean")
+            files = files.loc[mask].reset_index(drop=True)
+            if files.empty:
+                print(f"{domain}: no files with parse_ok == {args.parse_ok == 'clean'} - skipped")
+                continue
         if files.empty:
             print(f"{domain}: no files - skipped")
             continue
@@ -411,6 +439,7 @@ def main(argv=None):
         "n_resamples": args.n_resamples, "n_bootstrap": args.n_bootstrap, "master_seed": args.seed,
         "ci_level": CI_LEVEL, "ci_method": "percentile, paired cluster (file) bootstrap",
         "kinds": args.kinds, "axes": args.axes, "iou": args.iou, "iou_resamples": args.iou_resamples,
+        "parse_ok": args.parse_ok,
         "smoke": args.smoke, "preliminary": True,
         "run_entry": entry, "file_ids": file_ids_by_domain,
         "file_ids_sha256": {d: D.file_ids_sha256(v) for d, v in file_ids_by_domain.items()},
@@ -426,7 +455,8 @@ def main(argv=None):
         p1 = align[(align["kind"] == "start") & (align["axis"] == "all") & (align["metric"] == "f1")]
         for r in p1.itertuples(index=False):
             print(f"P1 {r.domain} k={r.k}: F1 BLT {r.blt:.4f} [{r.blt_lo:.4f}, {r.blt_hi:.4f}]  "
-                  f"E[H0] {r.h0:.4f}  WS {r.ws:.4f}  p_perm(H0)={r.p_perm_h0:.4g}  p_rand(WS)={r.p_rand_ws:.4g}")
+                  f"E[H0] {r.h0:.4f}  WS {r.ws:.4f}  WORD {r.word:.4f}  "
+                  f"p_perm(H0)={r.p_perm_h0:.4g}  p_rand(WS)={r.p_rand_ws:.4g}  p_rand(WORD)={r.p_rand_word:.4g}")
     print(f"wrote {out_dir}" + (" (SMOKE)" if args.smoke else ""))
     return out_dir
 

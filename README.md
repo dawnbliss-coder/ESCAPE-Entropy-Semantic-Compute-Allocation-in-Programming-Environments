@@ -3,8 +3,8 @@
 - Clone the repo, `cd` into it
 - Create a token at huggingface.co/settings/tokens
 - `hf auth login --force`, paste the token
-- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token)
-- `bash setup.sh`
+- Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and access repository" (same account as the token) — needed for C++ only; Python (CodeSearchNet) and prose (WikiText-103) are not gated
+- `bash setup.sh` (Stream B only; `STREAM_A=1 bash setup.sh` also builds the Stream A/C venv and fetches the patcher)
 - `source .venv/bin/activate`
 
 ## Progress so far
@@ -37,7 +37,7 @@
 pulled record against `corpus/manifest.parquet` (n_bytes, sha256, split, source path), and
 never writes the manifest. Run it inside `.venv`:
 
-- `HF_TOKEN=... .venv/bin/python scripts/restore_stream_b_artifacts.py --code` needs a token for gated `bigcode/the-stack-smol`.
+- `HF_TOKEN=... .venv/bin/python scripts/restore_stream_b_artifacts.py --code` restores py from CodeSearchNet (no token needed) and cpp from gated `bigcode/the-stack-smol` (token needed).
 - `.venv/bin/python scripts/restore_stream_b_artifacts.py --prose` works on WikiText-103 without a token.
 - `.venv/bin/python scripts/restore_stream_b_artifacts.py --structure --whitespace py cpp prose`
 - `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES="" .venv/bin/python stream_b/build_prose_structure.py`
@@ -90,12 +90,14 @@ Every output table is marked `preliminary`.
 
 - `.venv_a/bin/python -m escape_eval.calibrate_k --run-id RUN --source corpus` fixes k per language on the calib split only. It writes `results/k_calibration/selected_k.json`.
 - `.venv_a/bin/python -m escape_eval.run_eval --run-id RUN --source corpus --split main --iou` scores the main split. It computes:
-  - P1 overall and per depth, P2 and P4, all against H0 (10,000-resample permutation test) and against the whitespace baseline (paired randomisation test);
+  - P1 overall and per depth, P2 and P4, all against H0 (10,000-resample permutation test), against the whitespace baseline and against the **word-boundary baseline** (the P3 prose confound control; paired randomisation tests);
   - 95% file-bootstrap confidence intervals;
   - P3 code vs prose;
   - span IoU as a secondary metric.
+  - `--parse-ok {all,clean,recovered}` restricts code files by the manifest `parse_ok` flag (tree-sitter error-recovery; ≈28% of C++) for sensitivity runs; prose is unaffected.
 - `.venv_a/bin/python -m escape_eval.figures --analysis-dir results/<analysis_id> --k-dir results/k_calibration` draws the figures.
 - Smoke runs on golden fixtures need `--smoke` or `--allow-non-calib` and are written only under `results/smoke/`.
+- `bpp_summary.parquet` carries `chunk_len`, `n_chunk_edges` and `n_bytes_truncated_context` per file: the swa512 8192-token chunk reset affects only files longer than 8191 bytes, and these columns let Stream C stratify or flag the affected bytes.
 
 ## Tests
 

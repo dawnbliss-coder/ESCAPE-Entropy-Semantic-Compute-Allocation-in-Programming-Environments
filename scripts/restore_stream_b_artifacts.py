@@ -9,9 +9,13 @@ committed manifest as the read-only source of truth.
 
 Modes (combinable; they run in this order):
   --code       corpus/{py,cpp}/{file_id}.bin
-               corpus_lib.pull_pool(domain, 8000) -> build_corpus.select_split,
-               exactly as build_corpus.main. bigcode/the-stack-smol is gated:
-               HF_TOKEN must belong to an account that accepted its terms.
+               py:  build_py_corpus.pull_pool -> build_py_corpus.select_split,
+                    exactly as build_py_corpus.main (CodeSearchNet; not gated,
+                    no per-example license field, so the manifest licenses=""
+                    convention is mirrored and no license check applies).
+               cpp: corpus_lib.pull_pool(domain, 8000) -> build_corpus.select_split,
+                    exactly as build_corpus.main. bigcode/the-stack-smol is gated:
+                    HF_TOKEN must belong to an account that accepted its terms.
   --prose      corpus/prose/{file_id}.bin
                prose_lib.pull_paragraphs(300)[:300], as build_prose_corpus.main.
   --structure  structure/{py,cpp}/{file_id}.parquet
@@ -322,33 +326,61 @@ def verify_and_write(domain: str, pulled: list, manifest: pd.DataFrame, root: Pa
 
 def restore_code(manifest: pd.DataFrame, root: Path) -> None:
     import build_corpus
+    import build_py_corpus
     import corpus_lib
 
     n_needed = build_corpus.CALIB_PER_DOMAIN + build_corpus.MAIN_PER_DOMAIN
     for domain in CODE_DOMAINS:
         t0 = time.monotonic()
-        log(f"\n=== --code {domain}: corpus_lib.pull_pool({domain!r}, n_needed={n_needed}) ===")
-        pool = corpus_lib.pull_pool(domain, n_needed=n_needed)
-        log(
-            f"{domain}: pulled={pool['pulled']} kept={pool['kept']} dropped_dup={pool['dropped_dup']} "
-            f"dropped_no_license={pool['dropped_no_license']} ({time.monotonic() - t0:.1f}s)"
-        )
-        if pool["kept"] < n_needed:  # same guard as build_corpus.main
-            abort(f"{domain} pool", [f"only {pool['kept']} usable candidates, need {n_needed}"])
-        calib, main_ = build_corpus.select_split(pool["records"])
-        pulled = [
-            {
-                "file_id": f"{domain}_{rec['sha256'][:12]}",
-                "split": split_name,
-                "n_bytes": rec["n_bytes"],
-                "sha256": rec["sha256"],
-                "source_path": rec["path"],
-                "licenses": ",".join(rec["licenses"]),
-                "data": rec["content"].encode("utf-8"),
-            }
-            for split_name, recs in (("calib", calib), ("main", main_))
-            for rec in recs
-        ]
+        if domain == "py":
+            # CodeSearchNet (proposal §6): its own pull/dedup, no license field,
+            # manifest licenses="" - see stream_b/build_py_corpus.py.
+            log(f"\n=== --code {domain}: build_py_corpus.pull_pool(n_needed={n_needed}) ===")
+            pool = build_py_corpus.pull_pool(n_needed=n_needed)
+            log(
+                f"{domain}: pulled={pool['pulled']} kept={pool['kept']} dropped_dup={pool['dropped_dup']} "
+                f"(license check N/A: CodeSearchNet has no per-example license field; "
+                f"{time.monotonic() - t0:.1f}s)"
+            )
+            if pool["kept"] < n_needed:  # same guard as build_py_corpus.main
+                abort(f"{domain} pool", [f"only {pool['kept']} usable candidates, need {n_needed}"])
+            calib, main_ = build_py_corpus.select_split(pool["records"])
+            pulled = [
+                {
+                    "file_id": f"{domain}_{rec['sha256'][:12]}",
+                    "split": split_name,
+                    "n_bytes": rec["n_bytes"],
+                    "sha256": rec["sha256"],
+                    "source_path": rec["path"],
+                    "licenses": "",  # matches build_py_corpus.write_domain
+                    "data": rec["content"].encode("utf-8"),
+                }
+                for split_name, recs in (("calib", calib), ("main", main_))
+                for rec in recs
+            ]
+        else:
+            log(f"\n=== --code {domain}: corpus_lib.pull_pool({domain!r}, n_needed={n_needed}) ===")
+            pool = corpus_lib.pull_pool(domain, n_needed=n_needed)
+            log(
+                f"{domain}: pulled={pool['pulled']} kept={pool['kept']} dropped_dup={pool['dropped_dup']} "
+                f"dropped_no_license={pool['dropped_no_license']} ({time.monotonic() - t0:.1f}s)"
+            )
+            if pool["kept"] < n_needed:  # same guard as build_corpus.main
+                abort(f"{domain} pool", [f"only {pool['kept']} usable candidates, need {n_needed}"])
+            calib, main_ = build_corpus.select_split(pool["records"])
+            pulled = [
+                {
+                    "file_id": f"{domain}_{rec['sha256'][:12]}",
+                    "split": split_name,
+                    "n_bytes": rec["n_bytes"],
+                    "sha256": rec["sha256"],
+                    "source_path": rec["path"],
+                    "licenses": ",".join(rec["licenses"]),
+                    "data": rec["content"].encode("utf-8"),
+                }
+                for split_name, recs in (("calib", calib), ("main", main_))
+                for rec in recs
+            ]
         del pool, calib, main_
         gc.collect()
         verify_and_write(domain, pulled, manifest, root, "n_bytes, sha256, split, source_path, licenses")
@@ -665,7 +697,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(
         description="Restore Stream B's regenerable data artifacts without writing the manifest."
     )
-    ap.add_argument("--code", action="store_true", help="corpus/{py,cpp}/*.bin from the-stack-smol (needs HF_TOKEN)")
+    ap.add_argument("--code", action="store_true", help="corpus/{py,cpp}/*.bin (py: CodeSearchNet, no token; cpp: the-stack-smol, needs HF_TOKEN)")
     ap.add_argument("--prose", action="store_true", help="corpus/prose/*.bin from WikiText-103")
     ap.add_argument("--structure", action="store_true", help="structure/{py,cpp}/*.parquet via tree-sitter")
     ap.add_argument(

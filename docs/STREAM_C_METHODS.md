@@ -29,6 +29,7 @@ configurable parameter, so changing it does not require restructuring the code.
 | T_f | unique `start_byte` values minus X_f. Nested nodes sharing a start count once. |
 | E_f | unique `end_byte` values minus X_f (P2). |
 | W_f | unique `byte_offset` of `kind == "newline"` rows minus X_f. This is the only whitespace baseline; there is no second definition. Prose has no whitespace baseline (paragraphs contain no newlines), so it is reported as N/A. |
+| S_f | unique word-start offsets minus X_f: byte i where byte i is a word byte (`[A-Za-z0-9_]`) and byte i-1 is not (or i == 0). This is the word-boundary baseline, added as the control for the P3 prose confound: constituent starts in prose largely coincide with word starts, and W_f is empty for prose. Not density matched. |
 
 **Outermost attribution.**
 - Each start is attributed to its outermost node, taken as the smallest `depth`, then the larger `end_byte`, then the lexicographically smallest `node_type` (`stream_b/ast_walker.py` docstring).
@@ -95,6 +96,7 @@ configurable parameter, so changing it does not require restructuring the code.
   - E[H0] uses each file's mean H0 counts over the R resamples.
   - Percentile intervals are simple and transformation-invariant. The bootstrap also handles the ratio-of-sums estimators without any normality assumption.
 - **BLT vs whitespace: paired randomisation test** (R = 10,000). Per file, BLT and whitespace counts are swapped (numerators and denominators) with probability ½. The statistic is the pooled difference, tested one-sided.
+- **BLT vs word baseline: paired randomisation test** (R = 10,000, same procedure, separate purpose stream). This is the P3 confound control; it is reported for every domain, not just prose.
 - **P3, BPP.**
   - Difference of the medians of per-file `var_bpp` (and `mean_bpp`) between code and prose, with bootstrap CIs that resample within each group.
   - Two-sided Mann–Whitney U test.
@@ -104,7 +106,7 @@ configurable parameter, so changing it does not require restructuring the code.
 
 | Table | Content |
 |---|---|
-| `alignment` | P1 (kind=start, axis=all), per depth (axis=depth), per node_type and category; P2's end rows (kind=end). BLT / E[H0] / whitespace with CIs, permutation and randomisation p-values, deltas with CIs, length-capped rows separately |
+| `alignment` | P1 (kind=start, axis=all), per depth (axis=depth), per node_type and category; P2's end rows (kind=end). BLT / E[H0] / whitespace / word-boundary with CIs, permutation and randomisation p-values, deltas with CIs, length-capped rows separately |
 | `p2_start_end` | start − end for BLT, and for the margin over H0, with CIs; whether precision > recall at starts, plus the bootstrap share |
 | `p4_openers` | recall lift over H0 for deterministic openers vs open-ended constructs; open − deterministic contrast with CI; P4 predicts a positive contrast |
 | `p3_bpp` | code vs prose BPP variance and mean |
@@ -118,12 +120,19 @@ hashes, the run config snapshot, git state and package versions. It is registere
 
 ## 8. Decisions for the Stream C owner to confirm
 
-1. **Any-match counts rather than one-to-one bipartite matching.** The two coincide at k = 0. One-to-one matching would lower recall where one boundary sits within k of two nested starts.
-2. **Per-file permutation of BLT's own patch lengths as H0.** The alternative is drawing lengths from the pooled per-language distribution, which gives only an approximate count and span.
-3. **k selection criterion.** The F1 margin over E[H0]; alternatives are pure F1 or a precision margin. Grid 0..8.
-4. **Targets at init offsets are excluded** for all methods symmetrically.
-5. **End targets at `n_bytes` are kept** (`exclude_eof_end` is available).
-6. **Per-depth and per-type precision use the full |B| denominator.** Recall is the primary per-stratum quantity.
-7. **Percentile bootstrap CIs.** BCa is the alternative.
-8. **Prose is scored at the code k values** (it has no calib split).
-9. **BPP counts all patches**, including the init patch (the `n_init` column allows exclusion).
+Each item below is implemented as a single configurable parameter. **Provisional
+defaults (set by Shashwat on 2026-09-15, pending Divyansh's confirmation)** are
+marked "PROVISIONAL". Changing any of them does not require restructuring the
+code; re-run `run_eval` with the new parameter.
+
+1. **Any-match counts rather than one-to-one bipartite matching.** The two coincide at k = 0. One-to-one matching would lower recall where one boundary sits within k of two nested starts. **PROVISIONAL: any-match (as implemented).**
+2. **Per-file permutation of BLT's own patch lengths as H0.** The alternative is drawing lengths from the pooled per-language distribution, which gives only an approximate count and span. **PROVISIONAL: per-file (as implemented).**
+3. **k selection criterion.** The F1 margin over E[H0]; alternatives are pure F1 or a precision margin. Grid 0..8. **PROVISIONAL: F1 margin over E[H0] (as implemented).**
+4. **Targets at init offsets are excluded** for all methods symmetrically. **PROVISIONAL: excluded (as implemented).**
+5. **End targets at `n_bytes` are kept** (`exclude_eof_end` is available). **PROVISIONAL: kept (as implemented).**
+6. **Per-depth and per-type precision use the full |B| denominator.** Recall is the primary per-stratum quantity. **PROVISIONAL: full |B| denominator (as implemented).**
+7. **Percentile bootstrap CIs.** BCa is the alternative. **PROVISIONAL: percentile (as implemented).**
+8. **Prose is scored at the code k values** (it has no calib split). **PROVISIONAL: as implemented.**
+9. **BPP counts all patches**, including the init patch (the `n_init` column allows exclusion). **PROVISIONAL: all patches (as implemented).**
+10. **Word-boundary baseline S_f (NEW).** Definition in §2. It exists because the prose constituent-start signal was observed to overlap with word segmentation (`docs/MID_HANDOFF.md` §6 caveat), and W_f is empty for prose. **PROVISIONAL: byte-level `[A-Za-z0-9_]` word starts, not density matched.**
+11. **parse_ok stratification (NEW).** `run_eval --parse-ok {all,clean,recovered}` restricts code files by the manifest `parse_ok` flag (tree-sitter error-recovery, ≈28% of C++). Prose is unaffected. **PROVISIONAL: `all` is the default; clean/recovered are sensitivity runs.**

@@ -3,7 +3,8 @@
 For every file of a file table, and every requested (target kind, tolerance k), the engine
 produces:
   - observed any-match counts for BLT entropy-triggered boundaries, for the whitespace
-    (newline) baseline, and separately for length-capped boundaries;
+    (newline) baseline, for the word-boundary baseline (the P3 prose confound control),
+    and separately for length-capped boundaries;
   - R density-matched H0 resamples, scored with the same scorer. They are added directly
     into pooled per-resample sums, so memory is O(R x strata), not O(files x R);
   - per-file mean H0 counts, which the file-level bootstrap needs;
@@ -24,14 +25,15 @@ import pandas as pd
 
 from escape_common.validate import validate_boundaries
 from escape_eval import data as D
-from escape_eval.baselines import H0Sampler, h0_spec, whitespace_boundaries, whitespace_segment_starts
+from escape_eval.baselines import (H0Sampler, h0_spec, whitespace_boundaries, whitespace_segment_starts,
+                                   word_boundaries, word_segment_starts)
 from escape_eval.matching import ToleranceScorer, best_patch_iou, build_layout
 from escape_eval.stats import metric_dict
 from escape_eval.targets import AXES, build_targets, unique_spans
 
 COUNT_COLUMNS = ["file_id", "domain", "kind", "k", "axis", "stratum", "method", "tp_p", "tp_r", "n_pred", "n_targets"]
-IOU_COLUMNS = ["file_id", "domain", "n_spans", "iou_sum_blt", "iou_sum_whitespace", "iou_sum_h0"]
-METHOD_BLT, METHOD_WS, METHOD_CAP, METHOD_H0 = "blt", "whitespace", "length_cap", "h0_mean"
+IOU_COLUMNS = ["file_id", "domain", "n_spans", "iou_sum_blt", "iou_sum_whitespace", "iou_sum_word", "iou_sum_h0"]
+METHOD_BLT, METHOD_WS, METHOD_WORD, METHOD_CAP, METHOD_H0 = "blt", "whitespace", "word", "length_cap", "h0_mean"
 
 
 @dataclass(frozen=True)
@@ -135,6 +137,8 @@ def run_engine(files: pd.DataFrame, stream_a_root, run_id: str, run_entry: dict,
         if row.whitespace_path is not None and not pd.isna(row.whitespace_path):
             newline_raw = D.load_newline_offsets(row.whitespace_path, fid)
             ws = whitespace_boundaries(newline_raw, init)
+        content = D.load_source_bytes(row.bin_path, n)
+        word_raw = word_boundaries(content, init)
 
         scorers = []
         for kind in cfg.kinds:
@@ -144,7 +148,7 @@ def run_engine(files: pd.DataFrame, stream_a_root, run_id: str, run_entry: dict,
             for k in cfg.ks:
                 scorer = ToleranceScorer(targets.offsets, layout.target_cols, layout.n_strata, n, int(k))
                 scorers.append((kind, int(k), layout, n_t, scorer))
-                for method, pred in ((METHOD_BLT, blt), (METHOD_WS, ws), (METHOD_CAP, cap)):
+                for method, pred in ((METHOD_BLT, blt), (METHOD_WS, ws), (METHOD_WORD, word_raw), (METHOD_CAP, cap)):
                     if pred is None:
                         continue
                     tp_p, tp_r = scorer.counts(pred[None, :])
@@ -178,9 +182,10 @@ def run_engine(files: pd.DataFrame, stream_a_root, run_id: str, run_entry: dict,
                 iou_blt = float(best_patch_iou(s, e, off, n).sum())
                 iou_ws = (float(best_patch_iou(s, e, whitespace_segment_starts(newline_raw, n), n).sum())
                           if newline_raw is not None else np.nan)
+                iou_word = float(best_patch_iou(s, e, word_segment_starts(content, n), n).sum())
                 layouts = sampler.draw_layouts(cfg.iou_resamples)
                 iou_h0 = float(np.mean([best_patch_iou(s, e, layouts[r], n).sum() for r in range(layouts.shape[0])]))
-                iou_rows.append((fid, domain, int(s.size), iou_blt, iou_ws, iou_h0))
+                iou_rows.append((fid, domain, int(s.size), iou_blt, iou_ws, iou_word, iou_h0))
         n_scored += 1
         if log is not None and (i % 50 == 0 or i == len(files)):
             log(f"  engine: {i}/{len(files)} files ({time.time() - t0:.1f}s)")

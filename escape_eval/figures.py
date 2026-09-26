@@ -1,11 +1,11 @@
 """Stream C figures, drawn only from saved results tables (PRELIMINARY; SMOKE runs are
 watermarked in every title).
 
-  p1_alignment_effects.png  precision / recall / F1 of BLT vs E[H0] vs whitespace per domain
-                            (start targets, all strata) with 95% bootstrap CIs and the
-                            permutation p-value vs H0
-  depth_alignment.png       recall by raw AST depth (BLT, E[H0], whitespace), strata with
-                            >= --min-targets targets
+  p1_alignment_effects.png  precision / recall / F1 of BLT vs E[H0] vs whitespace vs word
+                            baseline per domain (start targets, all strata) with 95%
+                            bootstrap CIs and the permutation p-value vs H0
+  depth_alignment.png       recall by raw AST depth (BLT, E[H0], whitespace, word), strata
+                            with >= --min-targets targets
   p2_start_end.png          BLT start vs end alignment per domain
   p4_openers.png            recall lift over H0: deterministic openers vs open-ended (with CIs)
   k_calibration.png         F1_BLT(k), E[F1_H0](k) and margin(k) per language
@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from escape_common.io import atomic_write_json  # noqa: E402
 
 METHOD_STYLE = {"blt": ("BLT (entropy-triggered)", "#1d3557"), "h0": ("E[H0] density-matched", "#adb5bd"),
-                "ws": ("whitespace (newline)", "#e76f51")}
+                "ws": ("whitespace (newline)", "#e76f51"), "word": ("word starts", "#2a9d8f")}
 DOMAIN_ORDER = ("py", "cpp", "prose")
 
 
@@ -57,11 +57,12 @@ def p1_effects(align: pd.DataFrame, params: dict, out: Path) -> None:
         k_values = sorted(d["k"].unique())
         d = d[d["k"] == k_values[0]].set_index("metric").loc[["precision", "recall", "f1"]]
         x = np.arange(3)
+        n_methods = len(METHOD_STYLE)
         for i, (key, (label, colour)) in enumerate(METHOD_STYLE.items()):
             vals = d[key].to_numpy(dtype=float)
             if np.all(np.isnan(vals)):
                 continue
-            ax.bar(x + (i - 1) * 0.26, vals, width=0.25, color=colour, label=label,
+            ax.bar(x + (i - (n_methods - 1) / 2) * 0.22, vals, width=0.21, color=colour, label=label,
                    yerr=_err(vals, d[f"{key}_lo"], d[f"{key}_hi"]), capsize=3)
         p = d.loc["f1", "p_perm_h0"]
         ax.set_xticks(x, ["precision", "recall", "F1"])

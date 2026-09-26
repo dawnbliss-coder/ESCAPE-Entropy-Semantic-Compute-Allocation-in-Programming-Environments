@@ -155,3 +155,26 @@ def entropy_stats(entropies, tau: float) -> dict:
         "ent_max": float(ent.max()),
         "frac_bytes_above_tau": float((ent > float(tau)).mean()),
     }
+
+
+def chunk_context_meta(n_bytes: int, chunk_len) -> dict:
+    """Additive BPP-summary columns describing the swa512 8192-token chunk resets.
+
+    The token stream is [BOS] + n_bytes byte tokens, cut into independent chunks of
+    chunk_len tokens. A chunk boundary falls strictly inside the stream at every
+    multiple of chunk_len < n_bytes + 1, i.e. n_chunk_edges = n_bytes // chunk_len.
+    Byte i is predicted by token i+1; bytes whose predicting token lies in chunk >= 2
+    (token index >= chunk_len, i.e. byte index >= chunk_len - 1) have truncated
+    context. Only files longer than chunk_len - 1 bytes are affected; downstream
+    consumers can flag or stratify by these columns without re-deriving the rule."""
+    if chunk_len is None:
+        return {"chunk_len": None, "n_chunk_edges": 0, "n_bytes_truncated_context": 0}
+    c = int(chunk_len)
+    if c < 1:
+        raise ValueError(f"chunk_len must be >= 1, got {chunk_len}")
+    n = int(n_bytes)
+    return {
+        "chunk_len": c,
+        "n_chunk_edges": n // c,
+        "n_bytes_truncated_context": max(0, n - (c - 1)),
+    }

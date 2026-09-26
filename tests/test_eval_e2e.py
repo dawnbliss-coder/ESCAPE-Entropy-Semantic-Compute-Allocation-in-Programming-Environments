@@ -96,15 +96,17 @@ def test_mock_pipeline_end_to_end(mini_golden_root, capsys):
     p1 = align[(align["kind"] == "start") & (align["axis"] == "all")]
     assert set(p1["domain"]) == {"py", "cpp", "prose"}
     assert set(p1[p1["domain"] == "prose"]["k"]) == {1, 2}
-    for col in ("blt", "blt_lo", "blt_hi", "h0", "ws", "p_perm_h0", "p_rand_ws", "delta_h0_lo", "preliminary", "smoke"):
+    for col in ("blt", "blt_lo", "blt_hi", "h0", "ws", "word", "p_perm_h0", "p_rand_ws", "p_rand_word",
+                "delta_h0_lo", "delta_word_lo", "preliminary", "smoke"):
         assert col in align.columns
     assert align["preliminary"].all()
     assert (p1["p_perm_h0"].between(0, 1)).all()
+    assert (p1["p_rand_word"].between(0, 1)).all()
     p2 = pd.read_parquet(out / "p2_start_end.parquet")
     assert set(p2["metric"]) == {"precision", "recall", "f1"}
     assert set(pd.read_parquet(out / "p3_bpp.parquet")["code_domain"]) == {"py", "cpp"}
     assert len(pd.read_parquet(out / "p3_alignment.parquet")) == 2
-    assert set(pd.read_parquet(out / "iou.parquet")["method"]) == {"blt", "whitespace", "h0"}
+    assert set(pd.read_parquet(out / "iou.parquet")["method"]) == {"blt", "whitespace", "word", "h0"}
     params = json.loads((out / "params.json").read_text())
     assert params["smoke"] and params["ks"] == {"py": 1, "cpp": 2}
     manifest = json.loads((root / "results" / "smoke" / "manifest.json").read_text())

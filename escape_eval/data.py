@@ -3,10 +3,12 @@
 A file table is the one input every Stream C entry point takes: a DataFrame with
 one row per source file and the columns
 
-  file_id, domain, split, n_bytes, bin_path, structure_path, whitespace_path, source
+  file_id, domain, split, n_bytes, bin_path, structure_path, whitespace_path, source, parse_ok
 
 whitespace_path is None where no whitespace baseline applies (prose, in both
-layouts). The table is built from either the corpus layout
+layouts). parse_ok is the manifest's tree-sitter error-recovery flag (None for
+prose or when the manifest does not carry it); run_eval --parse-ok uses it for
+sensitivity runs. The table is built from either the corpus layout
 (corpus/manifest.parquet, corpus/, structure/, whitespace/) or golden_fixtures/.
 It is always sorted by (domain in schema.DOMAINS order, file_id). Within a
 domain that is the canonical order bootstrap and randomisation weights use, so
@@ -25,7 +27,7 @@ from escape_common import schema
 from escape_common.io import sha256_bytes, sha256_file
 
 FILE_TABLE_COLUMNS = [
-    "file_id", "domain", "split", "n_bytes", "bin_path", "structure_path", "whitespace_path", "source",
+    "file_id", "domain", "split", "n_bytes", "bin_path", "structure_path", "whitespace_path", "source", "parse_ok",
 ]
 SOURCES = ("corpus", "golden")
 
@@ -71,7 +73,8 @@ def file_table_from_golden(root, domains=schema.DOMAINS, *, split=None, prose_sp
     builder does (default: no filter)."""
     root = Path(root)
     manifest = load_manifest(root)
-    info = {} if manifest is None else manifest.set_index("file_id")[["split", "n_bytes"]].to_dict("index")
+    info_cols = ["split", "n_bytes"] + (["parse_ok"] if manifest is not None and "parse_ok" in manifest.columns else [])
+    info = {} if manifest is None else manifest.set_index("file_id")[info_cols].to_dict("index")
     rows = []
     for domain in domains:
         _check_domain(domain)
@@ -87,6 +90,8 @@ def file_table_from_golden(root, domains=schema.DOMAINS, *, split=None, prose_sp
             file_split = None if meta is None else meta["split"]
             if want is not None and file_split != want:
                 continue
+            parse_ok = None if (meta is None or "parse_ok" not in meta) else (
+                None if pd.isna(meta.get("parse_ok")) else bool(meta["parse_ok"]))
             spath = schema.golden_structure_path(root, domain, fid)
             if not spath.exists():
                 raise FileNotFoundError(spath)
@@ -99,7 +104,7 @@ def file_table_from_golden(root, domains=schema.DOMAINS, *, split=None, prose_sp
             rows.append({
                 "file_id": fid, "domain": domain, "split": file_split, "n_bytes": n_bytes,
                 "bin_path": str(bin_path), "structure_path": str(spath), "whitespace_path": wpath,
-                "source": "golden",
+                "source": "golden", "parse_ok": parse_ok,
             })
     return _finish(rows)
 
@@ -115,6 +120,7 @@ def file_table_from_corpus(
     manifest = load_manifest(root)
     if manifest is None:
         raise FileNotFoundError(root / schema.MANIFEST_PATH)
+    manifest_cols = manifest.set_index("file_id")["parse_ok"] if "parse_ok" in manifest.columns else None
     rows, missing = [], []
     for domain in domains:
         _check_domain(domain)
@@ -128,10 +134,15 @@ def file_table_from_corpus(
             wpath = schema.whitespace_path(root, domain, fid) if domain in schema.CODE_DOMAINS else None
             if require_files:
                 missing.extend(str(p) for p in (bpath, spath, wpath) if p is not None and not p.exists())
+            parse_ok = None
+            if manifest_cols is not None:
+                v = manifest_cols.get(fid)
+                parse_ok = None if pd.isna(v) else bool(v)
             rows.append({
                 "file_id": fid, "domain": domain, "split": file_split, "n_bytes": int(n_bytes),
                 "bin_path": str(bpath), "structure_path": str(spath),
                 "whitespace_path": None if wpath is None else str(wpath), "source": "corpus",
+                "parse_ok": parse_ok,
             })
     if missing:
         raise FileNotFoundError(f"{len(missing)} input files missing, e.g. {missing[:3]}")
@@ -277,3 +288,12 @@ def load_bpp_summary(stream_a_root, run_id: str | None = None) -> pd.DataFrame |
     if run_id is not None:
         df = df[df["run_id"] == run_id]
     return df.reset_index(drop=True)
+
+
+def load_source_bytes(bin_path, n_bytes: int | None = None) -> bytes:
+    """The frozen source bytes of one file, with an optional length check."""
+    p = Path(bin_path)
+    content = p.read_bytes()
+    if n_bytes is not None and len(content) != int(n_bytes):
+        raise ValueError(f"{p}: {len(content)} bytes on disk, expected {n_bytes}")
+    return content

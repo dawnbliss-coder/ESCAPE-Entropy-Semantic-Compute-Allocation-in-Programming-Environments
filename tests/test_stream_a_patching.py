@@ -11,6 +11,7 @@ from stream_a.patching import (
     byte_entropies_from_token_entropies,
     byte_starts_from_token_patch_lengths,
     bytes_to_token_ids,
+    chunk_context_meta,
     compute_patches,
     entropy_stats,
     reference_start_ids,
@@ -153,3 +154,13 @@ def test_bpp_stats():
 def test_entropy_stats():
     s = entropy_stats(np.array([0.0, 1.0, 2.0, 3.0], np.float32), TAU)
     assert s["ent_mean"] == pytest.approx(1.5) and s["frac_bytes_above_tau"] == pytest.approx(0.5)
+
+
+def test_chunk_context_meta():
+    assert chunk_context_meta(0, None) == {"chunk_len": None, "n_chunk_edges": 0, "n_bytes_truncated_context": 0}
+    assert chunk_context_meta(8191, 8192) == {"chunk_len": 8192, "n_chunk_edges": 0, "n_bytes_truncated_context": 0}
+    # 8192 bytes -> 8193 tokens: one chunk boundary at token 8192 (byte 8191 loses full context).
+    assert chunk_context_meta(8192, 8192) == {"chunk_len": 8192, "n_chunk_edges": 1, "n_bytes_truncated_context": 1}
+    assert chunk_context_meta(20000, 8192) == {"chunk_len": 8192, "n_chunk_edges": 2, "n_bytes_truncated_context": 11809}
+    with pytest.raises(ValueError):
+        chunk_context_meta(10, 0)
