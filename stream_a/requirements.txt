@@ -1,0 +1,19 @@
+# Stream A + minimum Stream C environment (.venv_a), validated on Python 3.12.14.
+# Separate from stream_b/requirements.txt: benepar needs transformers==4.30.2, while the
+# BLT classes need a current transformers release.
+#
+# torch: the validated environment ran torch 2.12.1+cu130 (CUDA 13.0 build). On a fresh
+# machine install it from the PyTorch index first:
+#   pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cu130
+# (see docs/IMPL_STATUS.md, decision D6, for how it was provided on the build machine)
+torch==2.12.1
+transformers==5.17.0
+tokenizers==0.23.2
+safetensors==0.8.0
+huggingface_hub==1.20.1
+numpy==2.4.6
+pandas==3.0.5
+pyarrow==25.0.1
+scipy==1.18.1
+matplotlib==3.11.2
+pytest==9.1.1

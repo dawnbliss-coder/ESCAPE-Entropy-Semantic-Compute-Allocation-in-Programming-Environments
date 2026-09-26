@@ -1,0 +1,38 @@
+# .venv_a pip freeze — 2026-09-14T21:17:53Z
+# Python 3.12.14; pyvenv.cfg include-system-site-packages = true
+# ===== venv-local packages (pip freeze --local) =====
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.65.0
+iniconfig==2.3.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+numpy==2.4.6
+packaging==26.3
+pandas==3.0.5
+pillow==12.3.0
+pluggy==1.6.0
+pyarrow==25.0.1
+Pygments==2.21.0
+pyparsing==3.3.2
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+scipy==1.18.1
+six==1.17.0
+tokenizers==0.23.2
+transformers==5.17.0
+# ===== user-site packages this venv imports for Stream A/C (versions as resolved at runtime) =====
+torch==2.12.1    # ~/.local/lib/python3.12/site-packages
+triton==3.7.1    # ~/.local/lib/python3.12/site-packages
+safetensors==0.8.0    # ~/.local/lib/python3.12/site-packages
+huggingface_hub==1.20.1    # ~/.local/lib/python3.12/site-packages
+filelock==3.29.4    # ~/.local/lib/python3.12/site-packages
+fsspec==2025.9.0    # ~/.local/lib/python3.12/site-packages
+Jinja2==3.1.6    # ~/.local/lib/python3.12/site-packages
+networkx==3.6.1    # ~/.local/lib/python3.12/site-packages
+sympy==1.14.0    # ~/.local/lib/python3.12/site-packages
+typing_extensions==4.15.0    # ~/.local/lib/python3.12/site-packages
+regex==2026.5.9    # ~/.local/lib/python3.12/site-packages
+PyYAML==6.0.3    # ~/.local/lib/python3.12/site-packages
+tqdm==4.68.3    # ~/.local/lib/python3.12/site-packages
+packaging==26.3    # <repo>/.venv_a/lib64/python3.12/site-packages

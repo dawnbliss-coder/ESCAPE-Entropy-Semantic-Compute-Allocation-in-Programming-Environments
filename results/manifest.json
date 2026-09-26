@@ -1,0 +1,11 @@
+{
+  "prose_kgrid_swa512-float32-t1.3354-mplnone-91aa6b8e": {
+    "created": "2026-09-15T07:28:40Z",
+    "kind": "alignment_eval",
+    "path": "prose_kgrid_swa512-float32-t1.3354-mplnone-91aa6b8e",
+    "preliminary": true,
+    "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+    "source": "corpus",
+    "split": "main"
+  }
+}

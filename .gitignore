@@ -31,3 +31,15 @@ whitespace/
 memory_regions/
 identifiers/
 !golden_fixtures/
+
+# Stream A / Stream C: venv, fetched model weights, bulk per-file outputs and logs are
+# large/regenerable — do not commit. Small metadata (runs.json, per-run status manifests,
+# results/ tables and manifests) stays committed.
+.venv_a/
+checkpoints/
+entropies/
+boundaries/
+bpp_summary.parquet
+runs/*/logs/
+*.lock
+.pytest_cache/
