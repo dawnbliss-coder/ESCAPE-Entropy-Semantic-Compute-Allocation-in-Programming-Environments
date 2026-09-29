@@ -1,0 +1,124 @@
+note: Running TeX ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:14: Underfull \hbox (badness 2799) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+note: Running BibTeX on Trimax-Mid-Submission.aux ...
+warning: errors were issued by BibTeX, but were ignored; use --print and/or --keep-logs for details.
+note: Rerunning TeX because bibtex was run ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:14: Underfull \hbox (badness 2799) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+note: Rerunning TeX because "Trimax-Mid-Submission.bbl" changed ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+note: Rerunning TeX because "Trimax-Mid-Submission.bbl" changed ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+note: Rerunning TeX because "Trimax-Mid-Submission.bbl" changed ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+note: Rerunning TeX because "Trimax-Mid-Submission.bbl" changed ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+note: Rerunning TeX because "Trimax-Mid-Submission.bbl" changed ...
+warning: paper-body:5: Underfull \hbox (badness 8170) in paragraph at lines 4--5
+warning: paper-body:11: Underfull \hbox (badness 10000) in paragraph at lines 10--11
+warning: paper-body:11: Underfull \hbox (badness 2426) in paragraph at lines 10--11
+warning: paper-body:14: Underfull \hbox (badness 1052) in paragraph at lines 13--14
+warning: paper-body:31: Underfull \hbox (badness 3098) in paragraph at lines 30--31
+warning: paper-body:31: Underfull \hbox (badness 1838) in paragraph at lines 30--31
+warning: paper-body:33: Underfull \hbox (badness 10000) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 5189) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 2035) in paragraph at lines 32--33
+warning: paper-body:33: Underfull \hbox (badness 1163) in paragraph at lines 32--33
+warning: paper-body:37: Underfull \hbox (badness 2189) in paragraph at lines 36--37
+warning: paper-body:40: Underfull \hbox (badness 3769) in paragraph at lines 39--40
+warning: paper-body:40: Underfull \hbox (badness 2119) in paragraph at lines 39--40
+warning: paper-body:68: Underfull \hbox (badness 1221) in paragraph at lines 67--68
+warning: internal consistency problem when checking if Trimax-Mid-Submission.bbl changed
+warning: TeX rerun seems needed, but stopping at 6 passes
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+note: Writing `build/Trimax-Mid-Submission.aux` (7.72 KiB)
+note: Writing `build/Trimax-Mid-Submission.pdf` (110.05 KiB)
+note: Writing `build/Trimax-Mid-Submission.blg` (404 B)
+note: Writing `build/Trimax-Mid-Submission.log` (18.89 KiB)
+note: Writing `build/Trimax-Mid-Submission.bbl` (2.95 KiB)
+note: Writing `build/Trimax-Mid-Submission.out` (850 B)

@@ -1,0 +1,20 @@
+==========================================
+SLURM_JOB_ID = 2719654
+SLURM_NODELIST = gnode052
+SLURM_JOB_GPUS = 
+==========================================
+gnode052
+Python 3.12.4
+{'numpy': '2.5.3', 'pandas': '2.3.3', 'pyarrow': '25.0.1', 'scipy': '1.18.1', 'jsonschema': '4.26.0', 'pytest': '9.1.1'}
+........................................................................ [ 42%]
+........................................................................ [ 84%]
+..........................                                               [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_stream_a_model.py:11: could not import 'transformers': No module named 'transformers'
+170 passed, 1 skipped in 16.47s
+SYNTHETIC data written to results/ada/synthetic-2719654/data
+Validated 15 samples
+{"cpp": 0, "english": 0, "python": 0}
+{"kind": "start", "axis": "global", "language": "all", "stratum": "all", "n_files": 12, "tp": 84, "fp": 0, "fn": 0, "precision": 1.0, "precision_h0_mean": 0.259675, "precision_h0_sd": 0.037533833473628396, "precision_h0_p025": 0.19047619047619047, "precision_h0_p975": 0.3333333333333333, "precision_permutation_p": 9.999000099990002e-05, "precision_margin": 0.740325, "precision_ratio": 3.850967555598344, "recall": 1.0, "recall_h0_mean": 0.259675, "recall_h0_sd": 0.037533833473628396, "recall_h0_p025": 0.19047619047619047, "recall_h0_p975": 0.3333333333333333, "recall_permutation_p": 9.999000099990002e-05, "recall_margin": 0.740325, "recall_ratio": 3.850967555598344, "f1": 1.0, "f1_h0_mean": 0.259675, "f1_h0_sd": 0.037533833473628396, "f1_h0_p025": 0.19047619047619047, "f1_h0_p975": 0.3333333333333333, "f1_permutation_p": 9.999000099990002e-05, "f1_margin": 0.740325, "f1_ratio": 3.850967555598344, "precision_ci_low": 1.0, "precision_ci_high": 1.0, "recall_ci_low": 1.0, "recall_ci_high": 1.0, "f1_ci_low": 1.0, "f1_ci_high": 1.0, "f1_margin_ci_low": 0.7232919345238096, "f1_margin_ci_high": 0.7570428571428571, "f1_ratio_ci_low": 3.613917067117681, "f1_ratio_ci_high": 4.115952270375773, "ci_method": "paired file percentile bootstrap"}
+unavailable: rank-deficient design; coefficients not uniquely identified
+SYNTHETIC demonstration finished: results/ada/synthetic-2719654

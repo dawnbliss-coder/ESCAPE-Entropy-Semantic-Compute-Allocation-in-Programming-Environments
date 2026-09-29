@@ -317,6 +317,10 @@ def latest_status(run_dir: Path) -> dict:
                     ev = json.loads(line)
                 except json.JSONDecodeError:
                     continue  # a torn final line from a crash
+                # Shards on several hosts appending over NFS can also tear lines into
+                # fragments that happen to parse; artifacts, not this log, decide completion.
+                if not isinstance(ev, dict) or "file_id" not in ev or "status" not in ev:
+                    continue
                 latest[ev["file_id"]] = ev
     return latest
 

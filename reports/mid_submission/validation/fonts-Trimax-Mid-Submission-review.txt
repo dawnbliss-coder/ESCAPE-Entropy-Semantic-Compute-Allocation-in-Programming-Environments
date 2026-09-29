@@ -1,0 +1,22 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+IHAIZV+NimbusRomNo9L-Medi            Type 1C           Custom           yes yes yes      4  0
+BZIVMZ+NimbusSanL-Bold               Type 1C           Custom           yes yes yes      5  0
+IXFAWU+NimbusRomNo9L-Regu            Type 1C           Custom           yes yes yes      6  0
+TQTHRL+NimbusMonL-Regu               Type 1C           Custom           yes yes yes      7  0
+YEUUOC+CMMI10                        Type 1C           Builtin          yes yes yes     11  0
+AKHCZK+CMSY10                        Type 1C           Builtin          yes yes yes     12  0
+VDVGTR+CMR10                         Type 1C           Builtin          yes yes yes     13  0
+CAFSZL+CMMI8                         Type 1C           Builtin          yes yes yes     31  0
+DDIEWW+CMEX10                        Type 1C           Builtin          yes yes yes     32  0
+FKPJSN+CMSY8                         Type 1C           Builtin          yes yes yes     33  0
+PVTTLK+CMR8                          Type 1C           Builtin          yes yes yes     34  0
+JAGKKY+CMMI9                         Type 1C           Builtin          yes yes yes     39  0
+NOMARO+CMR6                          Type 1C           Builtin          yes yes yes     40  0
+KPXLOM+CMR9                          Type 1C           Builtin          yes yes yes     41  0
+UTACNV+CMSY9                         Type 1C           Builtin          yes yes yes     42  0
+FZDNHS+CMR7                          Type 1C           Builtin          yes yes yes     43  0
+FTUMPH+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes     48  0
+FWLIYC+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     55  0
+DFMDIT+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     62  0
+DZGKAF+NimbusRomNo9L-ReguItal        Type 1C           Custom           yes yes yes     90  0

@@ -324,13 +324,13 @@ def verify_and_write(domain: str, pulled: list, manifest: pd.DataFrame, root: Pa
         log(f"{domain}: orphan .bin files (left untouched): {orphans}")
 
 
-def restore_code(manifest: pd.DataFrame, root: Path) -> None:
+def restore_code(manifest: pd.DataFrame, root: Path, domains=CODE_DOMAINS) -> None:
     import build_corpus
     import build_py_corpus
     import corpus_lib
 
     n_needed = build_corpus.CALIB_PER_DOMAIN + build_corpus.MAIN_PER_DOMAIN
-    for domain in CODE_DOMAINS:
+    for domain in domains:
         t0 = time.monotonic()
         if domain == "py":
             # CodeSearchNet (proposal §6): its own pull/dedup, no license field,
@@ -698,6 +698,8 @@ def main(argv=None) -> int:
         description="Restore Stream B's regenerable data artifacts without writing the manifest."
     )
     ap.add_argument("--code", action="store_true", help="corpus/{py,cpp}/*.bin (py: CodeSearchNet, no token; cpp: the-stack-smol, needs HF_TOKEN)")
+    ap.add_argument("--code-domains", nargs="+", choices=CODE_DOMAINS, default=list(CODE_DOMAINS),
+                    help="with --code: restore only these (py needs no token; cpp is gated)")
     ap.add_argument("--prose", action="store_true", help="corpus/prose/*.bin from WikiText-103")
     ap.add_argument("--structure", action="store_true", help="structure/{py,cpp}/*.parquet via tree-sitter")
     ap.add_argument(
@@ -721,7 +723,7 @@ def main(argv=None) -> int:
     t0 = time.monotonic()
     status = 0
     if args.code:
-        restore_code(manifest, REPO_ROOT)
+        restore_code(manifest, REPO_ROOT, args.code_domains)
     if args.prose:
         restore_prose(manifest, REPO_ROOT)
     if args.structure and not restore_structure(manifest, REPO_ROOT):

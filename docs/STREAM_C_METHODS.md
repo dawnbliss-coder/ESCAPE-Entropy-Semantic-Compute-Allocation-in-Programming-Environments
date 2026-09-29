@@ -134,5 +134,5 @@ code; re-run `run_eval` with the new parameter.
 7. **Percentile bootstrap CIs.** BCa is the alternative. **PROVISIONAL: percentile (as implemented).**
 8. **Prose is scored at the code k values** (it has no calib split). **PROVISIONAL: as implemented.**
 9. **BPP counts all patches**, including the init patch (the `n_init` column allows exclusion). **PROVISIONAL: all patches (as implemented).**
-10. **Word-boundary baseline S_f (NEW).** Definition in §2. It exists because the prose constituent-start signal was observed to overlap with word segmentation (`docs/MID_HANDOFF.md` §6 caveat), and W_f is empty for prose. **PROVISIONAL: byte-level `[A-Za-z0-9_]` word starts, not density matched.**
+10. **Word-boundary baseline S_f (NEW).** Definition in §2. It exists because the prose constituent-start signal was observed to overlap with word segmentation (historical exploratory prose caveat), and W_f is empty for prose. **PROVISIONAL: byte-level `[A-Za-z0-9_]` word starts, not density matched.**
 11. **parse_ok stratification (NEW).** `run_eval --parse-ok {all,clean,recovered}` restricts code files by the manifest `parse_ok` flag (tree-sitter error-recovery, ≈28% of C++). Prose is unaffected. **PROVISIONAL: `all` is the default; clean/recovered are sensitivity runs.**

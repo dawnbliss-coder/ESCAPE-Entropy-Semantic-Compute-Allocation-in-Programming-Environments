@@ -1,0 +1,10 @@
+# C only. Already installed locally; do not install A/B's GPU/parser stack for C.
+# Tested versions are recorded with results. Python >= 3.10.
+numpy>=1.23
+jsonschema>=4.18
+pytest>=7
+# Existing Parquet adapter and legacy regression suite:
+pandas>=1.5
+pyarrow>=10
+scipy>=1.9
+# Optional: statsmodels for O5 file-cluster robust inference. No automatic install.

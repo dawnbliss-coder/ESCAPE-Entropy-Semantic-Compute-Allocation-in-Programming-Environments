@@ -1,0 +1,68 @@
+% Numbers and data-dependent verdicts are macros from generated/results.tex
+% (build_final_results.py). Their decision rules are fixed in that script.
+\begin{abstract}
+The Byte Latent Transformer (BLT) spends latent computation per patch, and opens a new patch where a small byte-level model is uncertain. We ask whether these entropy-triggered boundaries align with the starts of syntactic constituents beyond a density-matched null, in Python, C++, and English prose. Using the released patcher with its 512-byte sliding window restored, one-to-one matching, a tolerance frozen on a calibration split, and \nPerm{} permutations of each file's own patch lengths, held-out start F1 \POnePy{} the null in Python (\FonePy{} vs.\ \FoneNullPy{}), \POneCpp{} it in C++ (\FoneCpp{} vs.\ \FoneNullCpp{}), and \POneEn{} it in English (\FoneEn{} vs.\ \FoneNullEn{}). Against the strongest structure-blind baseline, BLT \RTwoPy{} it in Python and \RTwoCpp{} it in C++. For C++ regions containing memory-unsafe operations, a fixed-effects regression that conditions on identifier entropy and share finds \OFive{} in boundary density. Entropy is a surface statistic; none of these results is evidence of semantic understanding.
+\end{abstract}
+
+\section{Introduction}
+Byte-level language models avoid a fixed subword vocabulary, but still have to decide where to spend computation. BLT groups bytes into variable-length patches and runs its large latent transformer once per patch \citep{pagnoni-etal-2025-byte}. A small entropy model decides the grouping: a new patch starts wherever next-byte entropy exceeds a global threshold. If those points coincide with the starts of syntactic units, the model allocates computation along grammatical lines without ever being told about grammar.
+
+There is a simple reason to expect some alignment. Entropy bounds branching, $H \le \log B$, so a boundary above $\tau$ implies at least $e^\tau$ plausible continuations. Once a production is committed, grammar constrains what follows and closing delimiters are near-deterministic, which pushes boundaries away from constituent interiors and ends. This predicts an average-case asymmetry between starts and interiors (P1), stronger at starts than ends (P2), stronger in code than prose (P3), and weaker for constructs whose first tokens are forced, such as \texttt{if (} or \texttt{def NAME}, than for open-ended ones (P4). It does not predict that boundaries are necessary at starts: skewed distributions over many options have low entropy.
+
+Proximity alone is weak evidence. Correctly dense random boundaries align with many targets, most code constituents begin after a newline, and in prose most constituents begin at words. We therefore compare against a density-matched null and against newline, indentation and word-start baselines. Finally we test a narrower question (O5): whether any extra patching around memory-unsafe C++ operations remains after conditioning on the surface unpredictability of nearby identifiers. We treat a null result there as informative, since the mechanism predicts low entropy at \texttt{new}, \texttt{delete}, \texttt{*} and \texttt{\&}.
+
+\section{Background and Related Work}
+BLT dynamically segments byte sequences so that expensive latent computation operates over patches \citep{pagnoni-etal-2025-byte}. ByT5 processes raw bytes with uniform computation \citep{xue-etal-2022-byt5}. Neither architecture by itself establishes that its computational units correspond to syntax. We use tree-sitter ASTs for code and a neural constituency parser for English \citep{kitaev-klein-2018-constituency} as external structural references. Python functions come from CodeSearchNet \citep{husain2019codesearchnet}, C++ files from a sample of The Stack \citep{kocetkov2022stack}, and paragraphs from WikiText-103 \citep{merity2017pointer}. The references differ in granularity and reliability, so every tolerance is calibrated and every score reported per language.
+
+\section{Method}
+\paragraph{Patcher.} We use the Hugging Face conversion \texttt{itazap/blt-1b-hf} (revision \texttt{91aa6b8e}), loading only the 99.5M-parameter entropy model. The reference implementation attends over a 512-token sliding window and processes 8{,}192-token chunks; the port attends over the full sequence. Since the mechanism we test depends on short context, we restore the window and chunking and use float32, the checkpoint threshold $\tau=1.3354$ nats and no length cap. $H_i$ is the Shannon entropy, in nats, of the model's 260-way distribution over byte $i$ given the preceding bytes. Bytes $0$ and $1$ are architectural patch starts and are never scored.
+
+\paragraph{Targets and matching.} Offsets are UTF-8 byte positions. Code targets are the starts of ten statement- and expression-level node types per language, with wrappers and file edges excluded; English targets are benepar constituent starts. Duplicate starts count once. Predictions are interior entropy-triggered boundaries. A maximum-cardinality one-to-one matching pairs predictions with targets within $k$ bytes, giving pooled precision $T/P$, recall $T/G$ and F1 $2T/(P+G)$. Ends are scored the same way (P2).
+
+\paragraph{Frozen tolerance.} Each language is split at the file level by a seeded SHA256 rank: 20\% calibration, 80\% test. On calibration files only, we select $k\in\{0,1,2,4,8\}$ maximizing the median per-file F1 margin over the null, ties to the smaller $k$. The record is hashed and scoring verifies it; there is no test-time override.
+
+\paragraph{Null model and inference.} For each file, $H_0$ shuffles the observed (length, termination) pairs of all patches except the last and rebuilds the endpoints. This preserves the file length, the patch-length multiset and the number of entropy boundaries exactly. Each of \nPerm{} seeded permutations shuffles every test file independently. We report the null mean, the one-sided permutation $p$, and paired file-bootstrap 95\% intervals (\nBoot{} replicates) for F1 and for its margin over the null.
+
+\paragraph{Structure-blind baselines.} Under the same targets, $k$ and matching, we score boundaries after every newline, at indentation changes, and at every word start. These are the confounds a structural reading must beat: a model could align with code constituents only because it breaks lines, or with prose only because it breaks words. BLT minus baseline F1 gets a paired file-bootstrap interval.
+
+\paragraph{O5 regions.} Analysis units are simple statements directly inside a block (expression statements, declarations, returns). A unit is memory-unsafe if it contains \texttt{new}/\texttt{delete}, unary \texttt{*} or \texttt{\&}, a call to C allocation, raw-memory or string functions, \texttt{reinterpret\_cast}/\texttt{const\_cast}, or a C-style cast to a pointer type. Among cleanly parsed C++ files with at least one unsafe and one comparison unit (\OFiveEligible{} files), we draw up to five units of each kind from each of up to 1{,}500 files by seeded rank. The outcome is the boundary density in the region. OLS includes the unsafe indicator, mean identifier entropy, identifier byte share, region length, statement type and file fixed effects, with file-clustered intervals. We repeat it with the patch-mass compute proxy (mean inverse patch length). These labels are syntactic: no types, aliasing or bounds are known.
+
+\section{Experimental Setup}
+The frozen manifest has \nSamples{} samples: 8{,}000 Python functions, 8{,}000 C++ files and 300 English paragraphs. Bytes were restored from the pinned dataset revisions and checked against stored hashes. Calibration used \nCalPy{}/\nCalCpp{}/\nCalEn{} files and testing \nTestPy{}/\nTestCpp{}/\nTestEn{} (Python/C++/English). Extraction ran on RTX 2080 Ti GPUs with PyTorch 2.6 and \texttt{transformers} 5.17; \nExtracted{} files completed. Because this differs from the environment in which the port was first validated, we reran the checkpoint-fidelity gates there; the amended gate set \FidelityAda{}. Scoring ran on CPU. The selected tolerances were $k=\kPy$ (Python), $k=\kCpp$ (C++) and $k=\kEn$ (English).
+
+\section{Results}
+\TableMain
+\paragraph{P1: alignment beyond the null.} Table~\ref{tab:main} shows held-out start alignment. In Python, F1 margin over $H_0$ is \MarginPy{} \MarginCIPy{}; in C++, \MarginCpp{} \MarginCICpp{}; in English, \MarginEn{} \MarginCIEn{}. Precision and recall are \PrecPy{}/\RecPy{} (Python), \PrecCpp{}/\RecCpp{} (C++) and \PrecEn{}/\RecEn{} (English), against the \emph{precision~$>$~recall} expectation of a sufficient-but-not-necessary mechanism.
+
+\TableBaselines
+\paragraph{Baselines.} The strongest structure-blind proposer is the \StrongestPy{} baseline for Python (F1 \StrongestFonePy{}), the \StrongestCpp{} baseline for C++ (\StrongestFoneCpp{}) and the \StrongestEn{} baseline for English (\StrongestFoneEn{}). BLT \RTwoPy{} it in Python (difference \VsBasePy{} \VsBaseCIPy{}), \RTwoCpp{} it in C++ (\VsBaseCpp{} \VsBaseCICpp{}) and \RTwoEn{} it in English (\VsBaseEn{} \VsBaseCIEn{}). A margin over $H_0$ that does not survive this comparison indicates line or word segmentation rather than syntactic structure.
+
+\TableStartEnd
+\paragraph{P2: starts versus ends.} The start margin is \PTwoPy{} than the end margin in Python (end margin \EndMarginPy{}) and \PTwoCpp{} in C++ (\EndMarginCpp{}); Table~\ref{tab:startend}. This comparison is descriptive: the two margins share predictions and are not independent.
+
+\paragraph{P3: code versus prose.} Pooled over languages, the code margin (\MarginCode{}) is \PThree{} than the prose margin (\MarginProse{}). Mean bytes per patch are \BppPy{}, \BppCpp{} and \BppEn{} for Python, C++ and English. Across files, their standard deviations are \BppSdPy{}, \BppSdCpp{} and \BppSdEn{}, and the mean within-file BPP variances are \BppVarPy{}, \BppVarCpp{} and \BppVarEn{}.
+
+\TableTypes
+\paragraph{P4: constituent types.} Averaged over types, the recall margin for deterministic-opener constructs is \DetMarginPy{} in Python and \DetMarginCpp{} in C++. For open-ended constructs it is \OpenMarginPy{} and \OpenMarginCpp{}, so the deterministic-opener margin is \PFourPy{} in Python and \PFourCpp{} in C++ (Table~\ref{tab:types}). Figure~\ref{fig:depth} shows the start margin by tree depth.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{generated/depth_margin.pdf}
+\caption{Held-out start F1 margin over $H_0$ by raw tree-sitter depth, for depth strata with at least 200 target starts. Raw depth is not comparable across languages. Whiskers are paired file-bootstrap 95\% intervals.}
+\label{fig:depth}
+\end{figure}
+
+\TableOFive
+\paragraph{O5: memory-unsafe regions.} Over \OFiveRegions{} regions in \OFiveFiles{} files, the memory-unsafe coefficient on boundary density is \OFiveUnsafe{} (95\% CI \OFiveUnsafeCI{}), after conditioning on identifier entropy and share, region length, statement type and file (Table~\ref{tab:o5}); inference: \OFiveInference{}. We read this as \OFive{} beyond surface identifier statistics under our syntactic labels.
+
+\section{Discussion}
+The null and the baselines test different claims. $H_0$ asks whether BLT's boundaries sit at constituent starts more often than its own patch lengths would by chance. The baselines ask whether that placement carries information beyond line and word segmentation. Only a margin that survives both supports the structural reading, and only where the calibrated tolerance is small. Large $k$ inflates the null as much as the observed score. The type-level analysis (P4) is the most direct probe of the mechanism, since it contrasts constituents whose openings are forced with those that are not. Because entropy only bounds branching, weak recall with higher precision is the expected signature, not a failure. O5 is a confound test: its outcome concerns identifier surface statistics, and says nothing about whether the model represents memory safety.
+
+\section*{Limitations}
+The checkpoint is a third-party conversion. Fidelity was checked against an independent reference implementation, not against the original weights. We restored the sliding window ourselves, and the gate set was amended for two checks, as documented with the code. Tolerances were frozen on calibration files, but the English paragraphs were inspected in an earlier exploratory analysis. English targets come from a predicted parse. About 28\% of C++ files trigger parser error recovery; they are kept in P1--P4 and excluded from O5. Python samples are functions that may share repositories, so file bootstraps need not generalize across projects. The null fixes the final patch. Depth and type strata are rematched separately and are exploratory. The memory-unsafe labels are syntactic heuristics chosen by the authors.
+
+\section*{Ethical Considerations}
+We analyze public text and source code without executing it; per-file licenses of restored inputs follow their sources, and CodeSearchNet carries none. Memory-unsafe labels are analysis annotations and must not be read as vulnerability findings or as evidence that a model understands exploitability. Parts of this report and its supporting code were drafted with AI assistance and reviewed by the authors under the course's disclosure rules.
+
+\bibliography{references}
+\bibliographystyle{acl_natbib}

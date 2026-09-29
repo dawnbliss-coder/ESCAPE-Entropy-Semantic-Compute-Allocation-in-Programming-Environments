@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escape.example/schemas/v1/patcher_output.schema.json",
+  "title": "patcher_output",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "byte_length": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "checkpoint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configuration": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "checkpoint",
+        "revision",
+        "run_id",
+        "configuration"
+      ],
+      "additionalProperties": false
+    },
+    "threshold": {
+      "type": "number",
+      "minimum": 0
+    },
+    "entropy_definition": {
+      "const": "global_next_byte_shannon"
+    },
+    "entropy_unit": {
+      "enum": [
+        "nats",
+        "bits"
+      ]
+    },
+    "entropy_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "byte_offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "entropy": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "byte_offset",
+          "entropy"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "patches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start_byte": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_byte": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "termination_reason": {
+            "enum": [
+              "entropy",
+              "max_length",
+              "eof"
+            ]
+          }
+        },
+        "required": [
+          "start_byte",
+          "end_byte",
+          "termination_reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "boundaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "byte_offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "termination_reason": {
+            "enum": [
+              "entropy",
+              "max_length",
+              "eof"
+            ]
+          }
+        },
+        "required": [
+          "byte_offset",
+          "termination_reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "sample_id",
+    "byte_length",
+    "model",
+    "threshold",
+    "entropy_definition",
+    "entropy_unit",
+    "entropy_records",
+    "patches",
+    "boundaries"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,55 @@
+{
+  "ada_synthetic_software_check": {
+    "bootstrap": 2000,
+    "f1": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "h0_mean_f1": 0.259675,
+    "interpretation": "synthetic software validation only; no BLT experiment",
+    "n_o5_regions": 10,
+    "n_test_files": 12,
+    "o5_inference": "unavailable: rank-deficient design; coefficients not uniquely identified",
+    "permutation_p": 9.999000099990002e-05,
+    "permutations": 10000,
+    "scores_sha256": "c00723985ec2a1e4b9605e86fe74aca918eaea23c91030965a4173341e24c957",
+    "selected_k": {
+      "cpp": 0,
+      "english": 0,
+      "python": 0
+    },
+    "source": "results/ada/synthetic-2719654",
+    "tp": 84
+  },
+  "checkpoint_fidelity": {
+    "gate_caveat": "G2/G7 thresholds were amended and must be reported transparently",
+    "source": "results/stream_a_fidelity/fidelity.json",
+    "status": "effective amended gates pass; original G2/G7 declared criteria failed"
+  },
+  "code_real_data": {
+    "preflight_missing_files": 65200,
+    "samples_in_manifest": 16300,
+    "status": "not run"
+  },
+  "legacy_real_prose": {
+    "alignment_sha256": "e0be1a53f50e029200058e90eafca011128bffd24d1e3590c6b18a23e8553052",
+    "f1": 0.4963836824696803,
+    "f1_ci95": [
+      0.4896079657324889,
+      0.5030021662242543
+    ],
+    "h0_mean_f1": 0.1480704630650496,
+    "h0_sd_f1": 0.0014512213763357,
+    "language_word_control": "absent from this legacy CSV; do not claim controlled",
+    "margin": 0.3483132194046306,
+    "n_entropy_boundaries": 65515,
+    "n_files": 300,
+    "n_targets": 25185,
+    "params_sha256": "abe1bcdf0734c22092f5410f400284910dacb2ce06285febbb604aaa2ff9863b",
+    "permutation_p": 9.999000099990002e-05,
+    "precision": 0.3436007021292834,
+    "recall": 0.8938256898947786,
+    "scorer": "legacy escape_eval; any-match; exploratory; k=0 from an unselected grid",
+    "source": "results/prose_kgrid_swa512-float32-t1.3354-mplnone-91aa6b8e/alignment.csv",
+    "whitespace_control": "not applicable to saved single-paragraph prose rows"
+  }
+}

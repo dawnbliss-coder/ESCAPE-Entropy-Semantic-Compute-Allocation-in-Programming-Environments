@@ -5,7 +5,7 @@
 # torch: the validated environment ran torch 2.12.1+cu130 (CUDA 13.0 build). On a fresh
 # machine install it from the PyTorch index first:
 #   pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cu130
-# (see docs/IMPL_STATUS.md, decision D6, for how it was provided on the build machine)
+# See docs/env/stream_a_venv_freeze.txt for the recorded build environment.
 torch==2.12.1
 transformers==5.17.0
 tokenizers==0.23.2

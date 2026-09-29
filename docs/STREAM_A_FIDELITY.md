@@ -191,7 +191,7 @@ The first 512 bytes are identical in both regimes.
 - **bf16 vs fp32 (swa512, 28 inputs).** Entropy differs by up to 0.24 nats. 7 of 2,705 boundaries (0.26%) differ between the two. The pipeline uses float32.
 - **Throughput per 8192-token swa512 chunk:** float32 3,400 tokens/s, bfloat16 14,854 tokens/s; peak GPU memory 1.36 GiB. For the ~178 MB code corpus this means ~15 h in float32 or ~3.3 h in bf16.
 - **Run 1 vs run 2.** Run 1 was 2026-09-14T21:19:54Z; run 2 used identical code except for reporting and memory-light loading. Gate outcomes are identical. HF vs reference max |Δlogits| moved from 7.6e-5 to 1.05e-4 between processes (GPU kernel selection); both are far below the 1e-3 gate.
-- **Saved outputs.** Cross-process reproducibility of saved extraction outputs is checked separately in `docs/IMPL_STATUS.md` §8.
+- **Saved outputs.** Cross-process reproducibility of saved extraction outputs is covered by the extraction regression tests in `tests/`.
 
 ### 5.5 Limitations
 

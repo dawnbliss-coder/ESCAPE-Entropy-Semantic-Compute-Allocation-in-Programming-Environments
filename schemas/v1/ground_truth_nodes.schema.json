@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escape.example/schemas/v1/ground_truth_nodes.schema.json",
+  "title": "ground_truth_nodes",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "node_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start_byte": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "end_byte": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "is_primary_alignment_target": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "sample_id",
+    "node_id",
+    "node_type",
+    "start_byte",
+    "end_byte",
+    "depth",
+    "is_primary_alignment_target"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,33 @@
+{
+  "coefficient_method": "OLS minimum-norm least squares",
+  "coefficients": {
+    "identifier_byte_proportion": 0.0020004769270822323,
+    "intercept": 0.00026668915373288804,
+    "is_memory_unsafe": 0.013003100026034511,
+    "mean_identifier_entropy_nats": 0.002600620005206905,
+    "region_length": 0.001131425121808416,
+    "sample_id=synthetic_cpp_1": 0.0005442670537009905,
+    "sample_id=synthetic_cpp_2": -2.591920818598159e-17,
+    "sample_id=synthetic_cpp_3": 0.00036284470246733227,
+    "sample_id=synthetic_cpp_4": -0.00018142235123368437
+  },
+  "identified": false,
+  "inference": "unavailable: rank-deficient design; coefficients not uniquely identified",
+  "interpretation": "surface-confound isolation only; no semantic-risk-understanding claim",
+  "n_files": 5,
+  "n_regions": 10,
+  "outcome": "all_boundary_density",
+  "predictors": [
+    "intercept",
+    "is_memory_unsafe",
+    "mean_identifier_entropy_nats",
+    "identifier_byte_proportion",
+    "region_length",
+    "sample_id=synthetic_cpp_1",
+    "sample_id=synthetic_cpp_2",
+    "sample_id=synthetic_cpp_3",
+    "sample_id=synthetic_cpp_4"
+  ],
+  "rank": 6,
+  "synthetic": true
+}

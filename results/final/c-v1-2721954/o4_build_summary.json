@@ -1,0 +1,81 @@
+{
+  "seed": 20260927,
+  "rate": 0.2,
+  "case_rate": 0.5,
+  "files_per_language": 1000,
+  "calibration_record_sha256": "d5f08e4f4c63aeb34618a3ae2db9783ddadf0988e47cef600942a3093a9b2ae5",
+  "summary": [
+    {
+      "language": "cpp",
+      "condition": "case_inversion",
+      "files": 1000,
+      "edits": 83037,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "clean",
+      "files": 1000,
+      "edits": 0,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "indentation",
+      "files": 1000,
+      "edits": 68746,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "keyword_typo",
+      "files": 1000,
+      "edits": 17884,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "missing_semicolon",
+      "files": 1000,
+      "edits": 25972,
+      "dropped": 69,
+      "nodes": 388309
+    },
+    {
+      "language": "python",
+      "condition": "case_inversion",
+      "files": 1000,
+      "edits": 4601,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "clean",
+      "files": 1000,
+      "edits": 0,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "indentation",
+      "files": 1000,
+      "edits": 4416,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "keyword_typo",
+      "files": 1000,
+      "edits": 1626,
+      "dropped": 0,
+      "nodes": 23941
+    }
+  ]
+}
