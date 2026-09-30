@@ -19,6 +19,14 @@ STREAM-B-PLAN.md
 acl.sty
 acl_natbib.bst
 
+# Personal handoff/status logs 
+PLAN.md
+docs/DIVYANSH_HANDOFF.md
+docs/IMPL_STATUS.md
+docs/MID_HANDOFF.md
+docs/MID_SUBMISSION_C.md
+docs/RUN_SCORER.md
+
 # Stream B: frozen corpus & derived artifacts are large/regenerable — do not commit.
 # corpus/ uses `corpus/*` (not `corpus/`) so the manifest exception below actually
 # works — git can't apply a `!` exception to a file inside a directory that's ignored

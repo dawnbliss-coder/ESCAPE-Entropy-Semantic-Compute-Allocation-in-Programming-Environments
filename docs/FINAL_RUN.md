@@ -73,8 +73,7 @@ fonts, a body longer than 4 pages, or any pubcheck finding.
 
 Read the generated sentences against the tables before submitting. The Discussion is
 written to hold whatever the direction of the results, but the authors are responsible
-for the interpretation. Check the course's AI-authorship policy too (see
-`reports/mid_submission/README.md`).
+for the interpretation.
 
 ## Changes to C made for this run
 

@@ -37,5 +37,3 @@ The result generator refuses synthetic input by default. All expected report mac
 ## Course requirements
 
 This is an ACL-formatted course report with a four-page body and five pages overall. The course-specific rubric was not supplied, so formatting validation does not establish compliance with its page limit or required sections.
-
-The report discloses AI assistance. Earlier project instructions recorded that AI-written academic report prose was prohibited by the course. The authors must verify the applicable authorship policy and review the manuscript; if that restriction applies, it cannot be submitted as written. No upload has been performed.
