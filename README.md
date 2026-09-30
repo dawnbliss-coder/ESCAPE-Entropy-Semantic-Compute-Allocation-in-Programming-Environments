@@ -8,7 +8,7 @@
 | Shashwat Mukadam | 2024102008 |
 | Divyansh Atri | 2024113001 |
 
-> **📄 Submitted report: [`reports/mid_submission/Trimax-Mid-Submission.pdf`](reports/mid_submission/Trimax-Mid-Submission.pdf)**
+> **Submitted report: [`reports/mid_submission/Trimax-Mid-Submission.pdf`](reports/mid_submission/Trimax-Mid-Submission.pdf)**
 > ACL format · passes the official [ACL pubcheck](https://github.com/acl-org/aclpubcheck) ("All Clear!") ·
 > [anonymous version](reports/mid_submission/Trimax-Mid-Submission-review.pdf) ·
 > [Overleaf/LaTeX source](reports/mid_submission/Trimax-Mid-Submission-source.zip) ·
@@ -52,13 +52,13 @@ with 2,000 replicates.
 
 | Prediction | Verdict |
 |---|---|
-| **P1:** boundaries align with starts beyond the null | ✅ Supported in all three languages (margins far outside the null) |
-| **Structure-blind baselines** | ❌ BLT is *beaten* by indentation or word-start splitting in every language, so most of the alignment is line and word segmentation, not grammar |
-| **P2:** starts align better than ends | ✅ Supported; end margins are negative |
-| **P3:** alignment stronger in code than prose | ❌ Not supported; prose has the largest margin |
-| **P4:** weaker for forced-opener constructs (`if`, `for`, `def`) | ❌ Reversed; forced openers align more strongly |
-| **Precision > recall** (entropy bounds branching) | ❌ Precision is far below recall; BLT proposes many more boundaries than there are targets |
-| **O4:** robustness to code noise | ✅ Degrades gracefully; the worst drop is −0.016, and keyword typos lower BPP most (−0.23 / −0.34) |
+| **P1:** boundaries align with starts beyond the null | Supported in all three languages (margins far outside the null) |
+| **Structure-blind baselines** | Not supported: BLT is *beaten* by indentation or word-start splitting in every language, so most of the alignment is line and word segmentation, not grammar |
+| **P2:** starts align better than ends | Supported; end margins are negative |
+| **P3:** alignment stronger in code than prose | Not supported; prose has the largest margin |
+| **P4:** weaker for forced-opener constructs (`if`, `for`, `def`) | Reversed; forced openers align more strongly |
+| **Precision > recall** (entropy bounds branching) | Not supported: precision is far below recall; BLT proposes many more boundaries than there are targets |
+| **O4:** robustness to code noise | Supported: degrades gracefully; the worst drop is −0.016, and keyword typos lower BPP most (−0.23 / −0.34) |
 
 Entropy is a surface statistic, and none of these results is evidence of semantic understanding.
 
@@ -66,11 +66,11 @@ Entropy is a surface statistic, and none of these results is evidence of semanti
 
 | Objective | Status in this submission |
 |---|---|
-| O1 Syntactic alignment (P1, P2, P4) | ✅ Done, with null, baselines, per-type and per-depth analysis |
-| O2 Compute-allocation ratio (BPP, code vs. prose) | ✅ Done (P3) |
-| O3 Python vs. C++ | ✅ Reported side by side in every table |
-| O4 Robustness to code noise | ✅ Done, with the four noise types of the proposal, 1,000 held-out files per language |
-| O5 Memory-unsafe compute vs. identifier confound | ⏳ Computed (`results/final/c-v1-2721954/o5*/`), reviewed for the end submission |
+| O1 Syntactic alignment (P1, P2, P4) | Done, with null, baselines, per-type and per-depth analysis |
+| O2 Compute-allocation ratio (BPP, code vs. prose) | Done (P3) |
+| O3 Python vs. C++ | Done: reported side by side in every table |
+| O4 Robustness to code noise | Done, with the four noise types of the proposal, 1,000 held-out files per language |
+| O5 Memory-unsafe compute vs. identifier confound | Pending: computed (`results/final/c-v1-2721954/o5*/`), reviewed for the end submission |
 
 ## Method in one screen
 
