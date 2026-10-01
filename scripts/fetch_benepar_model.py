@@ -4,7 +4,7 @@ verify it against benepar's own package index (size + md5), and install it exact
 `benepar.download('benepar_en3')` would put it: the NLTK download directory, under
 `models/`, with the verified zip kept and its contents extracted beside it.
 
-Why this exists: `benepar.download` (nltk.downloader) fetches the 66.2 MB zip over a single
+`benepar.download` (nltk.downloader) fetches the 66.2 MB zip over a single
 connection. GitHub release assets were served at ~15-30 KB/s here, and the single stream was
 cut at exactly 60 MiB:
   "Integrity check failed for 'benepar_en3': size mismatch (got 62914560, expected 66207553)".

@@ -11,10 +11,9 @@ stream of LINES that together reconstruct articles:
 There is no ready-made "one row = one document" unit here (unlike the code
 corpus), so the unit used for corpus/prose/{file_id}.bin is one PARAGRAPH (one
 non-heading, non-blank row) - comparable in size to the code corpus's files,
-and small enough to keep benepar's per-file parsing cost bounded (see
-STREAM-B-PLAN.md's benepar throughput measurement). Headings are excluded on
-purpose: they are not prose sentences and would not parse as one under a
-constituency grammar.
+and small enough to keep benepar's per-file parsing cost bounded. Headings are
+excluded on purpose: they are not prose sentences and would not parse as one
+under a constituency grammar.
 """
 
 import hashlib

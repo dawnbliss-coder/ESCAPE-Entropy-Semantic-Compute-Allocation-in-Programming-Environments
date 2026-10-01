@@ -3,21 +3,20 @@ to byte offsets, and write structure/prose/{file_id}.parquet - same schema as
 code's structure/ (file_id, node_type, parent_type, depth, start_byte, end_byte)
 so Stream C's scoring code can treat all three domains uniformly.
 
-Real structural differences from code, decided before writing the walker (see
-STREAM-B-PLAN.md for the full reasoning, verified against real benepar output on
-an actual corpus file, not a toy sentence):
+Real structural differences from code, decided before writing the walker and
+verified against real benepar output on the corpus, not a synthetic example:
 
   - benepar/NLTK collapses unary chains (a constituent whose only child is
     itself, structurally, e.g. S dominating nothing but VP) into ONE span with
     a STACKED label tuple, e.g. ('S', 'VP'). Represented here as node_type
     "S+VP" (labels joined with '+') rather than picking one and discarding the
-    rest - lossless and simple to split back out later if needed. NOTE for
-    whoever does O3-style depth comparison: this means prose depth is not
-    perfectly comparable to code depth in an absolute sense (a collapsed
-    "S+VP" counts as ONE depth level here, where tree-sitter would give S and
-    VP separate levels if code had an equivalent unary chain) - relative/
-    normalized depth comparisons (already an open item per the proposal) matter
-    more than raw depth counts for this reason.
+    rest - lossless and simple to split back out later if needed. Consequently,
+    prose depth is not perfectly comparable to code depth in an absolute sense
+    for any O3-style depth comparison (a collapsed "S+VP" counts as ONE depth
+    level here, where tree-sitter would give S and VP separate levels if code
+    had an equivalent unary chain) - relative/normalized depth comparisons
+    (already an open item per the proposal) matter more than raw depth counts
+    for this reason.
   - Leaf tokens (individual words/punctuation) have an EMPTY label tuple - not
     real constituents, skipped, same principle as not tracking every AST leaf.
   - A paragraph is multiple independent sentences (multiple parse-tree roots),

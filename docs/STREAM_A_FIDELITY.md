@@ -1,6 +1,11 @@
 # Stream A: BLT patcher checkpoint fidelity (Phase 1 hard gate)
 
-This is a technical record, not report prose. Every number in §5 comes from
+What this is: the evidence that the Hugging Face port of the BLT checkpoint
+used throughout this project (`itazap/blt-1b-hf`) behaves like the original
+reference implementation, gating every downstream result. This is a technical
+record, not report prose; the report's own fidelity claims (and the 512-byte
+sliding-window fix in particular) are backed by the numbers here. Every number
+in §5 comes from
 `results/stream_a_fidelity/fidelity.json`: run 2, 2026-09-15T06:57:58Z, written by
 `python -m stream_a.fidelity --device cuda` in `.venv_a` (torch 2.12.1+cu130,
 transformers 5.17.0, RTX 3050 Laptop GPU).

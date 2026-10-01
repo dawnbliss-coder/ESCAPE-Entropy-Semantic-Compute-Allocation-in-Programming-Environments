@@ -2,15 +2,15 @@
 (code/prose contrast). Verified against the real label set produced by
 build_prose_structure.py (32 distinct types across all 300 files).
 
-WHY THIS AXIS, NOT deterministic_opener/open_ended: that split is specifically
-about whether a keyword forces a narrow continuation, and prose constituents
-have no keyword-driven openers. The genuine mirror is code's OTHER split -
-statement-level vs expression-level - expressed in constituency grammar's own
-vocabulary: CLAUSE-level (has its own subject/predicate structure - S/SBAR/
-SINV/RRC, mirrors statement-level) vs PHRASE-level (single-category, no
-independent clause structure - NP/VP/PP/etc., mirrors expression-level).
-Stacked labels (unary-chain collapses, e.g. "S+VP") are classified by their
-OUTERMOST label.
+This axis is deliberately not deterministic_opener/open_ended: that split is
+specifically about whether a keyword forces a narrow continuation, and prose
+constituents have no keyword-driven openers. The genuine mirror is code's
+OTHER split - statement-level vs expression-level - expressed in constituency
+grammar's own vocabulary: CLAUSE-level (has its own subject/predicate
+structure - S/SBAR/SINV/RRC, mirrors statement-level) vs PHRASE-level
+(single-category, no independent clause structure - NP/VP/PP/etc., mirrors
+expression-level). Stacked labels (unary-chain collapses, e.g. "S+VP") are
+classified by their OUTERMOST label.
 
 A third bucket, structural_other (FRAG/LST/PRN/UCP/X), is kept rather than
 forced into the other two - these are genuinely miscellaneous Penn Treebank

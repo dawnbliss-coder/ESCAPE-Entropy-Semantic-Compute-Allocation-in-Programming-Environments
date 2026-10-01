@@ -1,11 +1,11 @@
 """Golden fixtures: 18 small files (6 py, 6 cpp, 6 prose), picked by reading
 their actual content first, not just size. Freezes both the source bytes and
-the current pipeline's output as the "known correct" reference -
+the current pipeline's output as the known-correct reference;
 validate_golden_fixtures.py re-runs extraction against these frozen bytes and
-fails loudly if output ever drifts ("if your output disagrees with the golden
-fixtures, your code is wrong, not the fixtures"). A sample of extracted rows is
-spot-checked below against actual byte content as an explicit hand-verification
-step, not just "the code produced it so it must be right."
+fails loudly if output ever drifts, treating the frozen fixtures as authoritative
+over any later output. A sample of extracted rows is spot-checked below against
+actual byte content as an explicit hand-verification step, rather than assuming
+correctness from the fact that the code produced it.
 """
 
 import os

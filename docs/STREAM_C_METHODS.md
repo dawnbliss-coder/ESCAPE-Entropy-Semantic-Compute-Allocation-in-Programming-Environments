@@ -1,10 +1,17 @@
-# Stream C: minimum evaluation methods (PRELIMINARY, mid submission)
+# Stream C: the earlier exploratory scorer's methods
 
-This is a technical specification of what `escape_common/` and `escape_eval/` compute. It is
-not report prose. Every number these modules produce is **preliminary**, and every table
-carries `preliminary=True`. Stream C methodology belongs to the Stream C owner. The last
-section lists the decisions that owner still needs to confirm. Each one is a single
-configurable parameter, so changing it does not require restructuring the code.
+What this is: a technical specification of what `escape_common/` and
+`escape_eval/` compute. This was Stream C's first scorer, used only for
+exploratory results; it was later superseded for the submitted mid-submission
+numbers by the frozen `escape_scoring` C-v1 protocol in
+`docs/SCORING_PROTOCOL.md`. It is kept here because `escape_eval/` still exists
+in the repository and this is its only specification. Every number it produces
+is marked **preliminary** (every table carries `preliminary=True`).
+
+The last section lists the configuration choices made for this scorer. Each one
+is a single parameter, so revisiting any of them does not require restructuring
+the code; the choices actually frozen for the final, submitted results are the
+ones in `docs/SCORING_PROTOCOL.md`, not here.
 
 ## 1. Inputs (all read from disk, never recomputed)
 
@@ -118,21 +125,22 @@ hashes, the run config snapshot, git state and package versions. It is registere
 `results/manifest.json`. Smoke runs (golden fixtures, overridden k) go only under
 `results/smoke/`.
 
-## 8. Decisions for the Stream C owner to confirm
+## 8. Configuration choices made for this scorer
 
-Each item below is implemented as a single configurable parameter. **Provisional
-defaults (set by Shashwat on 2026-09-15, pending Divyansh's confirmation)** are
-marked "PROVISIONAL". Changing any of them does not require restructuring the
-code; re-run `run_eval` with the new parameter.
+Each item below is a single configurable parameter in `escape_eval`, set by
+Shashwat on 2026-09-15 and confirmed by Divyansh for this exploratory scorer.
+Changing any of them does not require restructuring the code; re-run `run_eval`
+with the new parameter. (The frozen choices for the submitted C-v1 results are
+in `docs/SCORING_PROTOCOL.md`, and are not all the same as these.)
 
-1. **Any-match counts rather than one-to-one bipartite matching.** The two coincide at k = 0. One-to-one matching would lower recall where one boundary sits within k of two nested starts. **PROVISIONAL: any-match (as implemented).**
-2. **Per-file permutation of BLT's own patch lengths as H0.** The alternative is drawing lengths from the pooled per-language distribution, which gives only an approximate count and span. **PROVISIONAL: per-file (as implemented).**
-3. **k selection criterion.** The F1 margin over E[H0]; alternatives are pure F1 or a precision margin. Grid 0..8. **PROVISIONAL: F1 margin over E[H0] (as implemented).**
-4. **Targets at init offsets are excluded** for all methods symmetrically. **PROVISIONAL: excluded (as implemented).**
-5. **End targets at `n_bytes` are kept** (`exclude_eof_end` is available). **PROVISIONAL: kept (as implemented).**
-6. **Per-depth and per-type precision use the full |B| denominator.** Recall is the primary per-stratum quantity. **PROVISIONAL: full |B| denominator (as implemented).**
-7. **Percentile bootstrap CIs.** BCa is the alternative. **PROVISIONAL: percentile (as implemented).**
-8. **Prose is scored at the code k values** (it has no calib split). **PROVISIONAL: as implemented.**
-9. **BPP counts all patches**, including the init patch (the `n_init` column allows exclusion). **PROVISIONAL: all patches (as implemented).**
-10. **Word-boundary baseline S_f (NEW).** Definition in §2. It exists because the prose constituent-start signal was observed to overlap with word segmentation (historical exploratory prose caveat), and W_f is empty for prose. **PROVISIONAL: byte-level `[A-Za-z0-9_]` word starts, not density matched.**
-11. **parse_ok stratification (NEW).** `run_eval --parse-ok {all,clean,recovered}` restricts code files by the manifest `parse_ok` flag (tree-sitter error-recovery, ≈28% of C++). Prose is unaffected. **PROVISIONAL: `all` is the default; clean/recovered are sensitivity runs.**
+1. **Any-match counts rather than one-to-one bipartite matching.** The two coincide at k = 0. One-to-one matching would lower recall where one boundary sits within k of two nested starts. **Chosen: any-match (as implemented).**
+2. **Per-file permutation of BLT's own patch lengths as H0.** The alternative is drawing lengths from the pooled per-language distribution, which gives only an approximate count and span. **Chosen: per-file (as implemented).**
+3. **k selection criterion.** The F1 margin over E[H0]; alternatives are pure F1 or a precision margin. Grid 0..8. **Chosen: F1 margin over E[H0] (as implemented).**
+4. **Targets at init offsets are excluded** for all methods symmetrically. **Chosen: excluded (as implemented).**
+5. **End targets at `n_bytes` are kept** (`exclude_eof_end` is available). **Chosen: kept (as implemented).**
+6. **Per-depth and per-type precision use the full |B| denominator.** Recall is the primary per-stratum quantity. **Chosen: full |B| denominator (as implemented).**
+7. **Percentile bootstrap CIs.** BCa is the alternative. **Chosen: percentile (as implemented).**
+8. **Prose is scored at the code k values** (it has no calib split). **Chosen: as implemented.**
+9. **BPP counts all patches**, including the init patch (the `n_init` column allows exclusion). **Chosen: all patches (as implemented).**
+10. **Word-boundary baseline S_f.** Definition in §2. It exists because the prose constituent-start signal was observed to overlap with word segmentation (an exploratory prose finding), and W_f is empty for prose. **Chosen: byte-level `[A-Za-z0-9_]` word starts, not density matched.**
+11. **parse_ok stratification.** `run_eval --parse-ok {all,clean,recovered}` restricts code files by the manifest `parse_ok` flag (tree-sitter error-recovery, ≈28% of C++). Prose is unaffected. **Chosen: `all` is the default; clean/recovered are sensitivity runs.**

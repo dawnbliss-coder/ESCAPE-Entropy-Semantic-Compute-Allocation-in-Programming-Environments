@@ -1,9 +1,12 @@
-# Data Contract (DRAFT — review with A & C before freezing)
+# Stream B Data Contract
 
-This is what lets the three streams run in parallel: agree it once, freeze it, and every
-downstream file traces back to a `file_id` and a byte offset defined here. Column names
-below are a starting point — the discipline (byte offsets, never re-encoded text, one
-`file_id` per source file) matters more than the exact names.
+What this is: the on-disk schema that lets Stream A (BLT patcher), Stream B
+(corpus/structure) and Stream C (scoring) run independently and still agree on
+every file. Frozen early in the project and mirrored in code by
+`escape_common/schema.py`; the discipline it fixes (byte offsets, never
+re-encoded text, one `file_id` per source file) is still exactly what the
+pipeline implements. The O4/O5 sections below were added later, once those
+pipelines were built, to keep this document matching the real output paths.
 
 ## Conventions
 
@@ -22,7 +25,7 @@ corpus/{domain}/{file_id}.bin      raw UTF-8 bytes, never re-encoded downstream
 corpus/manifest.parquet            file_id, domain, n_bytes, sha256, split, parse_ok
                                     (parse_ok: false if tree-sitter's error-recovery
                                     triggered anywhere in the file — kept, not excluded;
-                                    see STREAM-B-PLAN.md Day 3 for why)
+                                    see stream_b/build_structure.py for why)
 ```
 
 ## B → C — structure
@@ -42,7 +45,7 @@ structure/{domain}/{file_id}.parquet   file_id, node_type, parent_type, depth, s
                                         placeholder for a sentence root, not a real benepar
                                         node. Raw depth is not perfectly comparable
                                         cross-domain because of the unary-collapse — see
-                                        STREAM-B-PLAN.md Day 5.)
+                                        stream_b/build_prose_structure.py.)
 whitespace/{domain}/{file_id}.parquet  file_id, byte_offset, kind ∈ {newline, indent_change}
                                         - newline: position right after every `\n`
                                           (the required P1 whitespace baseline — does
@@ -52,16 +55,24 @@ whitespace/{domain}/{file_id}.parquet  file_id, byte_offset, kind ∈ {newline, 
                                           differs from the previous non-blank line
                                           (feeds the R2 quantification, additional to
                                           the newline baseline, not a replacement)
-memory_regions/cpp/{file_id}.parquet   file_id, kind ∈ {deref, addr_of, new, delete}, start_byte, end_byte
-identifiers/{domain}/{file_id}.parquet file_id, start_byte, end_byte
 taxonomy.json                          node_type -> {deterministic_opener | open_ended}
 ```
 
-## B → A — the adversarial condition (not needed until ~Week 7)
+## B → C — O5 inputs (C++ only; `stream_b/build_o5_regions.py`)
 
 ```
-adversarial/{domain}/{file_id}.bin     mutated bytes
-adversarial/manifest.parquet           file_id, clean_file_id, mutation_kind, n_mutations
+analysis_regions/cpp/{file_id}.parquet  file_id, start_byte, end_byte, statement_type
+memory_regions/cpp/{file_id}.parquet    file_id, start_byte, end_byte, unsafe_kind
+identifiers/cpp/{file_id}.parquet       file_id, start_byte, end_byte
+analysis_regions/cpp/_selection.json    the sampling rule, seed and unit counts
+```
+
+## B → A — O4 noise conditions (`stream_b/build_o4_perturbations.py`)
+
+```
+o4/manifest.parquet                        file_id, condition, ... (per-condition edit record)
+o4/{condition}/text/{sample_id}.bin        noised bytes for one condition
+o4/{condition}/structure/{sample_id}.parquet  clean-AST targets remapped onto the noised bytes
 ```
 
 ## A → C — boundaries and entropy
@@ -77,7 +88,8 @@ runs.json                              run_id -> {tau, sliding_window, max_patch
 
 ```
 escape_common/    schema definitions, offset utilities, file_id conventions, validator
-escape_eval/      scorer, baselines, permutation engine, figures
+escape_eval/      earlier, exploratory scorer: baselines, permutation engine, figures
+escape_scoring/   frozen C-v1 scorer used for the submitted results (docs/SCORING_PROTOCOL.md)
 results/          output tables for the report
 ```
 
@@ -87,7 +99,8 @@ results/          output tables for the report
 `{file_id}.whitespace.parquet` for py/cpp) hold 18 hand-picked, hand-verified files
 (6 py, 6 cpp, 6 prose — content read and spot-checked by eye before selection, not
 just picked by size) with frozen expected output. This is the regression test all
-three streams run against their own code — if your output disagrees with the golden
-fixtures, your code is wrong, not the fixtures. `stream_b/validate_golden_fixtures.py`
-re-runs Stream B's own extraction against these and fails loudly on any mismatch; A
-and C should build an equivalent check for whatever they consume from these files.
+three streams run against their own code: the frozen fixtures are treated as
+ground truth, so a mismatch means the code regressed, not that the fixtures need
+updating. `stream_b/validate_golden_fixtures.py` re-runs Stream B's own
+extraction against these and fails loudly on any mismatch; A and C have an
+equivalent check for whatever they consume from these files.

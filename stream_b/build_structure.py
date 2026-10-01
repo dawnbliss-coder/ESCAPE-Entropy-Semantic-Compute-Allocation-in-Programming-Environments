@@ -56,9 +56,9 @@ def main():
         )
 
     # Record parse_ok on the manifest itself — not a separate report — so anyone
-    # reading corpus/manifest.parquet sees it without joining another file. See
-    # STREAM-B-PLAN.md for why files with recovery triggered are kept, not dropped:
-    # tree-sitter's error recovery only affects the region right around the issue
+    # reading corpus/manifest.parquet sees it without joining another file. Files
+    # with recovery triggered are kept, not dropped: tree-sitter's error recovery
+    # only affects the region right around the issue
     # (typically an unresolved macro/preprocessor construct), the rest of the file's
     # nodes are still trustworthy, and ~28% of the entire C++ pool has this property,
     # so excluding them would both fail to reach N=8000 clean and bias the sample

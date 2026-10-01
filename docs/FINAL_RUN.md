@@ -1,26 +1,29 @@
-# Reproduce the Ada run used in the mid-submission
+# Reproducing the Ada run
 
-The retained completed run is `results/final/c-v1-2721954/`. The steps below
-reproduce extraction and scoring; cluster paths are historical defaults to adapt
-to your account. Scripts are in `scripts/ada_final/`; the report is in
-`reports/`.
+What this is: the operational runbook for the SLURM pipeline on IIIT-H Ada that
+produced the frozen, submitted results in `results/final/c-v1-2721954/`. Follow
+this to regenerate that run from scratch (e.g. on a new machine, or to extend it
+with more data); it is not needed to read or verify the already-retained results.
+Cluster paths below are historical defaults; adapt them to your account. Scripts
+are in `scripts/ada_final/`; the report is in `reports/`.
 
 ## Before you start (once)
 
-1. **C++ data access.** Log in to huggingface.co as the account whose token is on Ada
-   (`Devatri`, in `~/.cache/huggingface/token`). Open
+1. **C++ data access.** Log in to huggingface.co as the account whose token is on
+   Ada (`Devatri`, in `~/.cache/huggingface/token`). Open
    <https://huggingface.co/datasets/bigcode/the-stack-smol> and click
-   **Agree and access repository**. Access is granted immediately (gate: `auto`).
-   On 2026-09-28 the token got `403 GatedRepo: not in the authorized list`.
-   The token is fine-grained. If it still gets 403 after you agree, edit it at
-   huggingface.co/settings/tokens and enable *Read access to contents of all public
-   gated repos you can access*.
-   Check from the Ada login node:
+   **Agree and access repository**. Access is normally granted immediately
+   (gate: `auto`). Verify from the Ada login node:
    ```bash
    T=$(cat ~/.cache/huggingface/token); curl -s -o /dev/null -w '%{http_code}\n' -H "Authorization: Bearer $T" \
      https://huggingface.co/datasets/bigcode/the-stack-smol/resolve/4a6938ce94446f324c6629e7de00ac591710044b/data/cpp/data.json
    ```
    The result should be `200` or `302`.
+
+   **If this returns 403** (`GatedRepo: not in the authorized list`), the token
+   is fine-grained and needs an explicit scope: edit it at
+   huggingface.co/settings/tokens and enable *Read access to contents of all
+   public gated repos you can access*, then re-run the check above.
 2. VPN on, so `ssh ada` works.
 
 ## Run

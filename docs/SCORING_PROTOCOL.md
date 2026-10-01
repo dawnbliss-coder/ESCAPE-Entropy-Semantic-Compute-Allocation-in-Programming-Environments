@@ -1,6 +1,9 @@
 # Workstream C scoring protocol v1.0.0
 
-This freezes the requested C protocol before its new test run. It supersedes the
+What this is: the authoritative methodology behind every number in the
+submitted mid-submission report, implemented by `escape_scoring/` and tested
+against the frozen run `results/final/c-v1-2721954/`. This document freezes the
+protocol before its new test run. It supersedes the
 preliminary choices in `STREAM_C_METHODS.md` **only for `escape_scoring`**. Existing
 `escape_eval`, A/B implementations, results and golden files remain unchanged.
 Earlier prose results were already examined by the team; this document cannot

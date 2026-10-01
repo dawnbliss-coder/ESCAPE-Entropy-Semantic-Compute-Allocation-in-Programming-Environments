@@ -2,12 +2,12 @@
 checkpoint, plus its small config/tokenizer files, into
 checkpoints/itazap__blt-1b-hf/{REVISION}/.
 
-Why not download the whole repo: model.safetensors is 15.4 GB (the hash n-gram
-embeddings alone are 3.07B float32 parameters), while H1 needs nothing but the
-patcher. The patcher's 129 BF16 tensors (99.5M parameters) occupy one contiguous
-199 MB byte range of that file, so they are fetched with HTTP Range requests and
-re-packed VERBATIM (no dtype conversion, no re-serialisation of values) into a
-standalone safetensors file with the original tensor names.
+model.safetensors is 15.4 GB (the hash n-gram embeddings alone are 3.07B
+float32 parameters), while H1 needs nothing but the patcher. The patcher's 129
+BF16 tensors (99.5M parameters) occupy one contiguous 199 MB byte range of that
+file, so they are fetched with HTTP Range requests and re-packed VERBATIM (no
+dtype conversion, no re-serialisation of values) into a standalone safetensors
+file with the original tensor names.
 
 Integrity: the revision is pinned by commit sha; every range response must be
 HTTP 206 with exactly the Content-Range requested; contiguity and per-tensor byte
