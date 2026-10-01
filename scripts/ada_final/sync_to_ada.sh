@@ -12,7 +12,7 @@ rsync -a --info=stats1 \
   --exclude 'checkpoints/' --exclude 'entropies/' --exclude 'boundaries/' --exclude 'structure/' \
   --exclude 'whitespace/' --exclude 'identifiers/' --exclude 'memory_regions/' --exclude 'analysis_regions/' \
   --exclude '/corpus/py/' --exclude '/corpus/cpp/' --exclude '/corpus/prose/' \
-  --exclude 'reports/*/build/' --exclude '.claude/' --exclude 'results/final/' \
+  --exclude 'reports/*/build/' --exclude 'results/final/' \
   ./ "ada:~/$REMOTE/"
 echo "Synced to ada:~/$REMOTE. Next, on Ada:"
 echo "  cd ~/$REMOTE && bash scripts/ada_final/submit_all.sh"

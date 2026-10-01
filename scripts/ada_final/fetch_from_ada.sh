@@ -8,5 +8,4 @@ REMOTE=${1:-escape-final-20260928}
 mkdir -p results/final
 rsync -a --info=stats1 "ada:~/$REMOTE/results/final/" results/final/
 rsync -a "ada:~/$REMOTE/runs.json" results/final/runs.ada.json
-echo "Fetched. Build the report:"
-echo "  python3 reports/mid_submission/build_results.py && bash reports/mid_submission/build.sh && python reports/mid_submission/check_report.py"
+echo "Fetched. Results are in results/final/ -- the mid-submission report's build pipeline was removed post-submission; see docs/FINAL_RUN.md to reconstruct it if rebuilding the report."

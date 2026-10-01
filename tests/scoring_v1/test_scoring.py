@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from escape_scoring.calibration import calibrate, split_manifest, verify_frozen
-from escape_scoring.contract import Dataset, derived_boundaries, digest
+from escape_scoring.contract import Dataset, derived_boundaries
 from escape_scoring.engine import evaluate
 from escape_scoring.fixtures import create_fixture
 from escape_scoring.metrics import (InvalidNull, counts, match, metrics, predictions,

@@ -1,6 +1,17 @@
 # C only. Already installed locally; do not install A/B's GPU/parser stack for C.
-# Tested versions are recorded with results. Python >= 3.10.
-numpy>=1.23
+# Tested versions are recorded with results.
+#
+# numpy is pinned exactly, not >=, because tests/scoring_v1/test_fast.py checks
+# byte-exact reproduction of the frozen Ada reference (results/ada/synthetic-2719654/).
+# That reference was generated on Ada with Python 3.12.4 + numpy 2.5.3. Investigated
+# and confirmed empirically: the earlier failure looked like a numba-version issue
+# (numba is optional, imported via try/except in escape_scoring/fast.py, and was
+# never pinned anywhere) but disabling numba entirely did NOT fix it - the actual
+# cause is numpy's float64 reduction (mean/std) changing at the last bit between
+# 1.26.x and 2.x. Confirmed passing (6/6 in test_fast.py, both worker counts) with
+# this exact numpy version under Python 3.12. numpy 2.5.3 requires Python >= 3.12.
+numpy==2.5.3
+numba>=0.68  # optional at runtime (see fast.py); pinned here so CI/dev envs match what was tested
 jsonschema>=4.18
 pytest>=7
 # Existing Parquet adapter and legacy regression suite:

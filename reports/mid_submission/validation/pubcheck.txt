@@ -1,3 +1,0 @@
-Command: ['/home/divyansh/Semester 5/ANLP/project/.tools/pc/bin/python', '-m', 'aclpubcheck', '--paper_type', 'short', '/home/divyansh/Semester 5/ANLP/project/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/reports/mid_submission/Trimax-Mid-Submission.pdf']
-Checking /home/divyansh/Semester 5/ANLP/project/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/reports/mid_submission/Trimax-Mid-Submission.pdf
-[32mAll Clear![0m

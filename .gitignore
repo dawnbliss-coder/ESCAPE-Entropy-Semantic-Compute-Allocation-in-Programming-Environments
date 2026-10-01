@@ -8,6 +8,11 @@ data/raw/*.jsonl
 *.blg
 *.bbl
 *.toc
+*.nav
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
 .vscode/
 .DS_Store
 
@@ -15,11 +20,17 @@ data/raw/*.jsonl
 *.pdf
 *.tex
 *.rtf
+reports/Trimax-Report-source.zip
+reports/references.bib
+reports/paper-body.tex
+reports/paper-preamble.tex
+reports/paper-appendix.tex
+TEAM-REFERENCE-DECK.pptx
 STREAM-B-PLAN.md
 acl.sty
 acl_natbib.bst
 
-# Personal handoff/status logs 
+# Personal handoff/status logs
 PLAN.md
 docs/DIVYANSH_HANDOFF.md
 docs/IMPL_STATUS.md
@@ -55,15 +66,9 @@ runs/*/logs/
 # Isolated Ada-only C test dependencies (user-approved install).
 /.c-deps/
 
-# Reproducible mid-submission report (official ACL sources and final PDFs).
-!reports/mid_submission/*.tex
-!reports/mid_submission/Trimax-Mid-Submission*.pdf
-!reports/mid_submission/figures/*.pdf
-!reports/mid_submission/vendor/acl.sty
-!reports/mid_submission/vendor/acl_natbib.bst
+# Submitted mid-submission report (build pipeline trimmed post-submission; PDFs are the deliverable).
+!reports/Trimax-Mid-Submission*.pdf
 !results/ada/*.log
-/reports/mid_submission/build/
-/reports/mid_submission/archive/
 
 # Final Ada run (scripts/ada_final): environments, model data and O5 inputs are regenerable.
 .venv_b/
@@ -71,7 +76,6 @@ runs/*/logs/
 .nltk_data/
 analysis_regions/
 results/final/logs/
-reports/final/build/
 
 # Local credentials and submission tooling
 .secrets
@@ -81,12 +85,8 @@ reports/final/build/
 .venv_c/
 .tools/
 *.synctex.gz
-!reports/mid_submission/generated/*.pdf
+errors-*.json
 !docs/proposal/*.pdf
 !docs/proposal/*.tex
-
-# Report sources that the *.tex rule would otherwise hide (needed to rebuild the PDFs).
-!reports/mid_submission/generated/*.tex
-!reports/final/*.tex
 # O5 design matrices are large and regenerable (`python -m escape_scoring o5`).
 results/final/*/o5*/o5_design.csv

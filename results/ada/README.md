@@ -22,9 +22,10 @@ byte-identical. The skipped test requires the unavailable `transformers` package
 no GPU/model test is claimed. O5 inference is unavailable because the synthetic
 design is rank deficient.
 
-Remote job status and retrieval SHA256 inventory are under
-`../../reports/mid_submission/validation/ada-status.txt` and
-`../../reports/mid_submission/evidence/ada-retrieval.json`.
+Remote job status and retrieval SHA256 inventory were recorded under
+`reports/mid_submission/validation/` and `reports/mid_submission/evidence/`
+during preparation; that trail was trimmed from the repo after the report was
+submitted, leaving only the submitted PDFs there.
 
 The completed real-data C-v1 run is now retained in `../final/c-v1-2721954/`
 and is the source of the mid-submission report. These older synthetic outputs

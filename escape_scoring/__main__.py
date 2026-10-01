@@ -99,7 +99,7 @@ def main(argv=None):
                                  bootstrap=args.bootstrap, workers=args.workers)
         print(f"{len(result['rows'])} baseline rows written to {args.output}")
     elif args.command == "o5":
-        from .o5 import region_table, regress
+        from .o5 import regress
         jobs = [(m["sample_id"],) for m in dataset.manifest]
         rows = [row for part in ordered_map(_region_rows, jobs, dataset, args.workers) for row in part]
         result, design = regress(rows, outcome=args.outcome, controls=args.controls, numeric_controls=args.numeric_controls)

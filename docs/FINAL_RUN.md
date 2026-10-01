@@ -3,7 +3,7 @@
 The retained completed run is `results/final/c-v1-2721954/`. The steps below
 reproduce extraction and scoring; cluster paths are historical defaults to adapt
 to your account. Scripts are in `scripts/ada_final/`; the report is in
-`reports/mid_submission/`.
+`reports/`.
 
 ## Before you start (once)
 
@@ -58,10 +58,9 @@ for C++/O5 and fails its check, by design.
 ```bash
 # laptop, repo root
 bash scripts/ada_final/fetch_from_ada.sh
-python3 reports/mid_submission/build_results.py        # newest results/final/c-v1-*/
-TECTONIC_BIN=/path/to/tectonic bash reports/mid_submission/build.sh   # or a TeX Live with bibtex
-python reports/mid_submission/check_report.py                # official aclpubcheck, --paper_type short
 ```
+
+The mid-submission report's build pipeline (`build_results.py`, `build.sh`, `check_report.py`) was removed from the repo after submission; `reports/` now holds only the submitted PDFs. To rebuild from scratch, reconstruct that pipeline from `results/final/c-v1-*/` using the same evidence-generation approach (frozen results -> `generated/results.tex` macros -> pdfLaTeX/BibTeX -> `aclpubcheck`).
 
 `build_results.py` writes every number and every data-dependent phrase
 (`generated/results.tex`, `evidence.json`, `depth_margin.pdf`). Its verdict rules are

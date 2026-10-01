@@ -1,9 +1,0 @@
-{
-  "source_repository": "https://github.com/acl-org/acl-style-files",
-  "retrieved_date": "2026-09-28",
-  "modified": false,
-  "files": {
-    "acl.sty": "19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de",
-    "acl_natbib.bst": "6fbb306202290f4b68e74ac1460a8b27398500cb6dfeb4492e74c457eae7cd1e"
-  }
-}
