@@ -121,7 +121,7 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 
 | Path                                            | Contents                                                                                       |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `reports/`                                    | **Submitted report**: named (`Trimax-Mid-Submission.pdf`) + anonymous (`-review.pdf`) PDFs |
+| `reports/`                                    | **Project report**: `Trimax-Mid-Report.pdf` (ACL style, aclpubcheck-clean) |
 | `results/final/c-v1-2721954/`                 | **Real results**: calibration record, held-out scores, baselines, IoU, O4, O5, checksums |
 | `stream_a/`                                   | BLT patcher loading, sliding-window fix, fidelity gates, extraction (incl. O4)                 |
 | `stream_b/`                                   | Corpus restore, tree-sitter/benepar parsing, baselines, O4 noise builder, O5 regions           |

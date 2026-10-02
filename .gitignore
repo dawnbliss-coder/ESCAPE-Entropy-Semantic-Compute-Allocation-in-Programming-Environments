@@ -20,7 +20,7 @@ data/raw/*.jsonl
 *.pdf
 *.tex
 *.rtf
-reports/Trimax-Report-source.zip
+reports/Trimax-Mid-Report-source.zip
 reports/references.bib
 reports/paper-body.tex
 reports/paper-preamble.tex
@@ -66,8 +66,8 @@ runs/*/logs/
 # Isolated Ada-only C test dependencies (user-approved install).
 /.c-deps/
 
-# Submitted mid-submission report (build pipeline trimmed post-submission; PDFs are the deliverable).
-!reports/Trimax-Mid-Submission*.pdf
+# Project report PDF (source stays untracked; the PDF is the tracked deliverable).
+!reports/Trimax-Mid-Report.pdf
 !results/ada/*.log
 
 # Final Ada run (scripts/ada_final): environments, model data and O5 inputs are regenerable.
