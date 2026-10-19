@@ -90,3 +90,8 @@ errors-*.json
 !docs/proposal/*.tex
 # O5 design matrices are large and regenerable (`python -m escape_scoring o5`).
 results/final/*/o5*/o5_design.csv
+
+# Extension corpus (teacher-student pool): large and regenerable, keep only the manifest and data note.
+corpus_ext/*
+!corpus_ext/manifest_ext.parquet
+!corpus_ext/DATA_NOTE.json
