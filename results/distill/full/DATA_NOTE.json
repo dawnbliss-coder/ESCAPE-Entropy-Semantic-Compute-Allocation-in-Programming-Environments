@@ -1,0 +1,67 @@
+{
+  "py": {
+    "domain": "py",
+    "files": 15000,
+    "bytes": 15932154,
+    "by_split": {
+      "train": 13975,
+      "val": 1025
+    },
+    "by_source": {
+      "code_search_net": 15000
+    },
+    "groups": 4765,
+    "dropped": {
+      "duplicate_hash": 8000,
+      "evaluation_repo": 106
+    },
+    "limit": 15000,
+    "evaluation_repos": 317,
+    "pool_after_filters": null
+  },
+  "revisions": {
+    "the-stack-smol": "4a6938ce94446f324c6629e7de00ac591710044b",
+    "code_search_net": "bd0cf261e357a3eb5c8fba490d23ec1a1cd59555",
+    "wikitext-103": "b08601e04326c79dfdd32d625aee71d232d685c3"
+  },
+  "prose": {
+    "domain": "prose",
+    "files": 8000,
+    "bytes": 6144905,
+    "by_split": {
+      "train": 7470,
+      "val": 530
+    },
+    "by_source": {
+      "wikitext-103": 8000
+    },
+    "groups": 374,
+    "dropped": {
+      "evaluation_article": 313,
+      "length_or_bytes": 2646
+    },
+    "limit": 8000,
+    "evaluation_articles": 18
+  },
+  "cpp": {
+    "domain": "cpp",
+    "files": 6000,
+    "bytes": 59585583,
+    "by_split": {
+      "train": 5708,
+      "val": 292
+    },
+    "by_source": {
+      "the-stack-smol-xl": 4590,
+      "the-stack-smol": 1410
+    },
+    "groups": 5375,
+    "dropped": {
+      "evaluation_repo": 1185,
+      "too_large": 144
+    },
+    "limit": 6000,
+    "candidates": 12000,
+    "evaluation_repos": 6551
+  }
+}

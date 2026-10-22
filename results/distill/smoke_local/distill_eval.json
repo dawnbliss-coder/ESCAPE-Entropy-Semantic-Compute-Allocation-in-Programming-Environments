@@ -1,0 +1,106 @@
+{
+  "tau": 1.335442066192627,
+  "n_files": 18,
+  "n_windows": 179,
+  "student_config": {
+    "vocab_size": 260,
+    "dim": 256,
+    "n_layers": 6,
+    "n_heads": 4,
+    "ffn_mult": 2.6666666666666665,
+    "ffn_multiple_of": 64,
+    "max_seq_len": 513,
+    "rope_theta": 10000.0,
+    "norm_eps": 1e-05,
+    "tie_embeddings": true
+  },
+  "student_params": 4886784,
+  "trained": {
+    "prose": {
+      "n_bytes": 1761,
+      "boundary_tp": 567,
+      "boundary_fp": 327,
+      "boundary_fn": 67,
+      "boundary_precision": 0.6342,
+      "boundary_recall": 0.8943,
+      "boundary_f1": 0.7421,
+      "entropy_mae_nats": 0.5802,
+      "entropy_pearson_r": 0.7775,
+      "kl_teacher_student_nats_per_byte": 0.9707,
+      "bits_per_byte_student": 2.9806,
+      "bits_per_byte_teacher": 1.9104
+    },
+    "all": {
+      "n_bytes": 86631,
+      "boundary_tp": 20647,
+      "boundary_fp": 15241,
+      "boundary_fn": 4684,
+      "boundary_precision": 0.5753,
+      "boundary_recall": 0.8151,
+      "boundary_f1": 0.6745,
+      "entropy_mae_nats": 0.5682,
+      "entropy_pearson_r": 0.7226,
+      "kl_teacher_student_nats_per_byte": 0.8873,
+      "bits_per_byte_student": 2.344,
+      "bits_per_byte_teacher": 1.3899
+    },
+    "py": {
+      "n_bytes": 84870,
+      "boundary_tp": 20080,
+      "boundary_fp": 14914,
+      "boundary_fn": 4617,
+      "boundary_precision": 0.5738,
+      "boundary_recall": 0.8131,
+      "boundary_f1": 0.6728,
+      "entropy_mae_nats": 0.5679,
+      "entropy_pearson_r": 0.7209,
+      "kl_teacher_student_nats_per_byte": 0.8855,
+      "bits_per_byte_student": 2.3308,
+      "bits_per_byte_teacher": 1.3791
+    }
+  },
+  "untrained_baseline": {
+    "prose": {
+      "n_bytes": 1761,
+      "boundary_tp": 634,
+      "boundary_fp": 1123,
+      "boundary_fn": 0,
+      "boundary_precision": 0.3608,
+      "boundary_recall": 1.0,
+      "boundary_f1": 0.5303,
+      "entropy_mae_nats": 4.3368,
+      "entropy_pearson_r": 0.0851,
+      "kl_teacher_student_nats_per_byte": 4.597,
+      "bits_per_byte_student": 8.3217,
+      "bits_per_byte_teacher": 1.9104
+    },
+    "all": {
+      "n_bytes": 86631,
+      "boundary_tp": 25331,
+      "boundary_fp": 61121,
+      "boundary_fn": 0,
+      "boundary_precision": 0.293,
+      "boundary_recall": 1.0,
+      "boundary_f1": 0.4532,
+      "entropy_mae_nats": 4.6104,
+      "entropy_pearson_r": -0.0692,
+      "kl_teacher_student_nats_per_byte": 4.7918,
+      "bits_per_byte_student": 8.2092,
+      "bits_per_byte_teacher": 1.3899
+    },
+    "py": {
+      "n_bytes": 84870,
+      "boundary_tp": 24697,
+      "boundary_fp": 59998,
+      "boundary_fn": 0,
+      "boundary_precision": 0.2916,
+      "boundary_recall": 1.0,
+      "boundary_f1": 0.4515,
+      "entropy_mae_nats": 4.616,
+      "entropy_pearson_r": -0.067,
+      "kl_teacher_student_nats_per_byte": 4.7959,
+      "bits_per_byte_student": 8.2069,
+      "bits_per_byte_teacher": 1.3791
+    }
+  }
+}
