@@ -1,0 +1,1042 @@
+{
+  "config": {
+    "experiment": "student_cv1_golden_v1",
+    "teacher": {
+      "checkpoint": "itazap/blt-1b-hf",
+      "revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+      "backend": "stream_a.reference_lm (G3-verified re-implementation), float32 cpu",
+      "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d"
+    },
+    "student": {
+      "params": 14262144,
+      "steps": 6860,
+      "config": {
+        "vocab_size": 260,
+        "dim": 384,
+        "n_layers": 8,
+        "n_heads": 6,
+        "ffn_mult": 2.6666666666666665,
+        "ffn_multiple_of": 64,
+        "max_seq_len": 513,
+        "rope_theta": 10000.0,
+        "norm_eps": 1e-05,
+        "tie_embeddings": true
+      },
+      "student_pt_sha256": "aeef99da84fd0e97d499717e891b189f7f3ada883810ec9dddf99afbb560cf95"
+    },
+    "context_policy": {
+      "teacher_native": "swa512 banded mask over [BOS]+full file (native regime; no chunking needed, files << 8192 tokens)",
+      "teacher_512": "stride-1 fresh windows, <=512 preceding bytes per prediction (student's budget; CONTROL only; equals native for files <=512B)",
+      "student": "stride-1 fresh windows, <=512 preceding bytes, absolute RoPE 0..511 (its trained regime); no artificial 512-chunk resets"
+    },
+    "tau": 1.335442066192627,
+    "k": 0,
+    "k_source": "frozen calibration results/final/c-v1-2721954/calibration.json (k=0, all languages)",
+    "seed": 20260927,
+    "n_permutations": 10000,
+    "n_bootstrap": 2000,
+    "torch": "2.14.1+cpu",
+    "device": "cpu"
+  },
+  "domains": {
+    "py": {
+      "fid_order": [
+        "py_182f41b1a962",
+        "py_44f23ec7455e",
+        "py_61c03226d22f",
+        "py_a0132d6203e8",
+        "py_ca2ef22485b6",
+        "py_dd8332bfcc3f"
+      ],
+      "streams": {
+        "teacher_native": {
+          "tp": 57,
+          "fp": 656,
+          "fn": 14,
+          "precision": 0.07994389901823282,
+          "recall": 0.8028169014084507,
+          "f1": 0.14540816326530612,
+          "n_files": 6,
+          "per_file": [
+            [
+              3,
+              47,
+              0
+            ],
+            [
+              20,
+              229,
+              13
+            ],
+            [
+              13,
+              102,
+              0
+            ],
+            [
+              13,
+              162,
+              1
+            ],
+            [
+              5,
+              46,
+              0
+            ],
+            [
+              3,
+              70,
+              0
+            ]
+          ],
+          "f1_h0_mean": 0.03355,
+          "f1_margin": 0.11185816326530612,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.11928429423459244,
+          "f1_ci_high": 0.17280453257790368,
+          "strongest_baseline": "indent_change",
+          "f1_minus_best_baseline": -0.3316560569181801,
+          "f1_minus_best_baseline_ci": [
+            -0.3764955867930696,
+            -0.2560810810810811
+          ]
+        },
+        "teacher_512": {
+          "tp": 58,
+          "fp": 674,
+          "fn": 13,
+          "precision": 0.07923497267759563,
+          "recall": 0.8169014084507042,
+          "f1": 0.1444582814445828,
+          "n_files": 6,
+          "per_file": [
+            [
+              3,
+              47,
+              0
+            ],
+            [
+              21,
+              248,
+              12
+            ],
+            [
+              13,
+              102,
+              0
+            ],
+            [
+              13,
+              161,
+              1
+            ],
+            [
+              5,
+              46,
+              0
+            ],
+            [
+              3,
+              70,
+              0
+            ]
+          ],
+          "f1_h0_mean": 0.03363985056039851,
+          "f1_margin": 0.1108184308841843,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.1189358372456964,
+          "f1_ci_high": 0.17543859649122806,
+          "strongest_baseline": "indent_change",
+          "f1_minus_best_baseline": -0.33260593873890343,
+          "f1_minus_best_baseline_ci": [
+            -0.37666846849846525,
+            -0.25789036544850497
+          ]
+        },
+        "student": {
+          "tp": 56,
+          "fp": 726,
+          "fn": 15,
+          "precision": 0.07161125319693094,
+          "recall": 0.7887323943661971,
+          "f1": 0.13130128956623682,
+          "n_files": 6,
+          "per_file": [
+            [
+              3,
+              51,
+              0
+            ],
+            [
+              19,
+              262,
+              14
+            ],
+            [
+              12,
+              96,
+              1
+            ],
+            [
+              14,
+              175,
+              0
+            ],
+            [
+              5,
+              54,
+              0
+            ],
+            [
+              3,
+              88,
+              0
+            ]
+          ],
+          "f1_h0_mean": 0.030746072684642446,
+          "f1_margin": 0.10055521688159438,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.10232558139534884,
+          "f1_ci_high": 0.16265758109229228,
+          "strongest_baseline": "indent_change",
+          "f1_minus_best_baseline": -0.34576293061724944,
+          "f1_minus_best_baseline_ci": [
+            -0.39320915132328277,
+            -0.26433278633012947
+          ]
+        },
+        "baseline_newline": {
+          "tp": 0,
+          "fp": 116,
+          "fn": 71,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n_files": 6,
+          "per_file": [
+            [
+              0,
+              6,
+              3
+            ],
+            [
+              0,
+              53,
+              33
+            ],
+            [
+              0,
+              13,
+              13
+            ],
+            [
+              0,
+              27,
+              14
+            ],
+            [
+              0,
+              8,
+              5
+            ],
+            [
+              0,
+              9,
+              3
+            ]
+          ],
+          "f1_ci_low": 0.0,
+          "f1_ci_high": 0.0
+        },
+        "baseline_indent_change": {
+          "tp": 26,
+          "fp": 12,
+          "fn": 45,
+          "precision": 0.6842105263157895,
+          "recall": 0.36619718309859156,
+          "f1": 0.47706422018348627,
+          "n_files": 6,
+          "per_file": [
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              13,
+              3,
+              20
+            ],
+            [
+              5,
+              2,
+              8
+            ],
+            [
+              5,
+              5,
+              9
+            ],
+            [
+              1,
+              0,
+              4
+            ],
+            [
+              1,
+              1,
+              2
+            ]
+          ],
+          "f1_ci_low": 0.39215686274509803,
+          "f1_ci_high": 0.5155880149812733
+        },
+        "baseline_word_start": {
+          "tp": 64,
+          "fp": 438,
+          "fn": 7,
+          "precision": 0.12749003984063745,
+          "recall": 0.9014084507042254,
+          "f1": 0.22338568935427575,
+          "n_files": 6,
+          "per_file": [
+            [
+              2,
+              17,
+              1
+            ],
+            [
+              32,
+              209,
+              1
+            ],
+            [
+              12,
+              57,
+              1
+            ],
+            [
+              12,
+              78,
+              2
+            ],
+            [
+              4,
+              27,
+              1
+            ],
+            [
+              2,
+              50,
+              1
+            ]
+          ],
+          "f1_ci_low": 0.16298480219038927,
+          "f1_ci_high": 0.2553191489361702
+        }
+      },
+      "diagnostics": {
+        "teacher_native": {
+          "entropy_mean": 0.5652961730957031,
+          "entropy_median": 0.08560323715209961,
+          "entropy_max": 3.9719159603118896,
+          "frac_above_tau": 0.17196842860559675,
+          "bytes_within_1e-3_of_tau": 2,
+          "interior_entropy_boundaries": 713,
+          "boundary_density": 0.17053336522363072,
+          "bits_per_byte": null,
+          "runtime_s": 3.1364307403564453
+        },
+        "teacher_512": {
+          "entropy_mean": 0.576629638671875,
+          "entropy_median": 0.09093073010444641,
+          "entropy_max": 4.00731897354126,
+          "frac_above_tau": 0.17651279598182254,
+          "bytes_within_1e-3_of_tau": 2,
+          "interior_entropy_boundaries": 732,
+          "boundary_density": 0.17507773259985648,
+          "bits_per_byte": 0.9283176274535165,
+          "runtime_s": 880.6278984546661
+        },
+        "student": {
+          "entropy_mean": 0.6126967668533325,
+          "entropy_median": 0.10842735320329666,
+          "entropy_max": 3.921079397201538,
+          "frac_above_tau": 0.18847165749820616,
+          "bytes_within_1e-3_of_tau": 1,
+          "interior_entropy_boundaries": 782,
+          "boundary_density": 0.18703659411624013,
+          "bits_per_byte": 1.019892128320139,
+          "runtime_s": 155.09096813201904
+        }
+      },
+      "n_targets": 71
+    },
+    "cpp": {
+      "fid_order": [
+        "cpp_11562d1c691d",
+        "cpp_2b2c690055bf",
+        "cpp_34e849a078b1",
+        "cpp_aa3a0337370b",
+        "cpp_aa561f7c0078",
+        "cpp_d337aa88b1c3"
+      ],
+      "streams": {
+        "teacher_native": {
+          "tp": 48,
+          "fp": 289,
+          "fn": 7,
+          "precision": 0.142433234421365,
+          "recall": 0.8727272727272727,
+          "f1": 0.24489795918367346,
+          "n_files": 6,
+          "per_file": [
+            [
+              16,
+              18,
+              6
+            ],
+            [
+              16,
+              49,
+              0
+            ],
+            [
+              3,
+              65,
+              0
+            ],
+            [
+              3,
+              75,
+              0
+            ],
+            [
+              3,
+              45,
+              1
+            ],
+            [
+              7,
+              37,
+              0
+            ]
+          ],
+          "f1_h0_mean": 0.04678724489795918,
+          "f1_margin": 0.19811071428571428,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.1057628896882494,
+          "f1_ci_high": 0.39884587819204464,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.1419633546849397,
+          "f1_minus_best_baseline_ci": [
+            -0.18649601671672977,
+            -0.0839757785805053
+          ]
+        },
+        "teacher_512": {
+          "tp": 48,
+          "fp": 289,
+          "fn": 7,
+          "precision": 0.142433234421365,
+          "recall": 0.8727272727272727,
+          "f1": 0.24489795918367346,
+          "n_files": 6,
+          "per_file": [
+            [
+              16,
+              18,
+              6
+            ],
+            [
+              16,
+              49,
+              0
+            ],
+            [
+              3,
+              65,
+              0
+            ],
+            [
+              3,
+              75,
+              0
+            ],
+            [
+              3,
+              45,
+              1
+            ],
+            [
+              7,
+              37,
+              0
+            ]
+          ],
+          "f1_h0_mean": 0.04678724489795918,
+          "f1_margin": 0.19811071428571428,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.10551558752997602,
+          "f1_ci_high": 0.4037126572610281,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.1419633546849397,
+          "f1_minus_best_baseline_ci": [
+            -0.1873861293284795,
+            -0.0833085048754064
+          ]
+        },
+        "student": {
+          "tp": 46,
+          "fp": 318,
+          "fn": 9,
+          "precision": 0.12637362637362637,
+          "recall": 0.8363636363636363,
+          "f1": 0.21957040572792363,
+          "n_files": 6,
+          "per_file": [
+            [
+              15,
+              23,
+              7
+            ],
+            [
+              15,
+              60,
+              1
+            ],
+            [
+              3,
+              64,
+              0
+            ],
+            [
+              3,
+              82,
+              0
+            ],
+            [
+              4,
+              49,
+              0
+            ],
+            [
+              6,
+              40,
+              1
+            ]
+          ],
+          "f1_h0_mean": 0.04796610978520287,
+          "f1_margin": 0.17160429594272075,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.10525166628361296,
+          "f1_ci_high": 0.33980582524271846,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.16729090814068953,
+          "f1_minus_best_baseline_ci": [
+            -0.2074097670179537,
+            -0.09378897480668497
+          ]
+        },
+        "baseline_newline": {
+          "tp": 8,
+          "fp": 102,
+          "fn": 47,
+          "precision": 0.07272727272727272,
+          "recall": 0.14545454545454545,
+          "f1": 0.09696969696969697,
+          "n_files": 6,
+          "per_file": [
+            [
+              1,
+              22,
+              21
+            ],
+            [
+              2,
+              24,
+              14
+            ],
+            [
+              0,
+              27,
+              3
+            ],
+            [
+              0,
+              10,
+              3
+            ],
+            [
+              2,
+              7,
+              2
+            ],
+            [
+              3,
+              12,
+              4
+            ]
+          ],
+          "f1_ci_low": 0.03468208092485549,
+          "f1_ci_high": 0.19402985074626866
+        },
+        "baseline_indent_change": {
+          "tp": 10,
+          "fp": 18,
+          "fn": 45,
+          "precision": 0.35714285714285715,
+          "recall": 0.18181818181818182,
+          "f1": 0.24096385542168675,
+          "n_files": 6,
+          "per_file": [
+            [
+              1,
+              1,
+              21
+            ],
+            [
+              3,
+              3,
+              13
+            ],
+            [
+              2,
+              8,
+              1
+            ],
+            [
+              1,
+              3,
+              2
+            ],
+            [
+              1,
+              1,
+              3
+            ],
+            [
+              2,
+              2,
+              5
+            ]
+          ],
+          "f1_ci_low": 0.14949809622706817,
+          "f1_ci_high": 0.3283582089552239
+        },
+        "baseline_word_start": {
+          "tp": 53,
+          "fp": 166,
+          "fn": 2,
+          "precision": 0.2420091324200913,
+          "recall": 0.9636363636363636,
+          "f1": 0.38686131386861317,
+          "n_files": 6,
+          "per_file": [
+            [
+              20,
+              27,
+              2
+            ],
+            [
+              16,
+              32,
+              0
+            ],
+            [
+              3,
+              44,
+              0
+            ],
+            [
+              3,
+              24,
+              0
+            ],
+            [
+              4,
+              19,
+              0
+            ],
+            [
+              7,
+              20,
+              0
+            ]
+          ],
+          "f1_ci_low": 0.20967741935483872,
+          "f1_ci_high": 0.5076659928471465
+        }
+      },
+      "diagnostics": {
+        "teacher_native": {
+          "entropy_mean": 0.5615415573120117,
+          "entropy_median": 0.08969317376613617,
+          "entropy_max": 3.6421308517456055,
+          "frac_above_tau": 0.16634335596508246,
+          "bytes_within_1e-3_of_tau": 0,
+          "interior_entropy_boundaries": 337,
+          "boundary_density": 0.16343355965082446,
+          "bits_per_byte": null,
+          "runtime_s": 1.2836129665374756
+        },
+        "teacher_512": {
+          "entropy_mean": 0.5615415573120117,
+          "entropy_median": 0.08969317376613617,
+          "entropy_max": 3.6421308517456055,
+          "frac_above_tau": 0.16634335596508246,
+          "bytes_within_1e-3_of_tau": 0,
+          "interior_entropy_boundaries": 337,
+          "boundary_density": 0.16343355965082446,
+          "bits_per_byte": null,
+          "runtime_s": 0.0
+        },
+        "student": {
+          "entropy_mean": 0.5958949327468872,
+          "entropy_median": 0.09914971888065338,
+          "entropy_max": 3.743879795074463,
+          "frac_above_tau": 0.17943743937924345,
+          "bytes_within_1e-3_of_tau": 2,
+          "interior_entropy_boundaries": 364,
+          "boundary_density": 0.17652764306498545,
+          "bits_per_byte": 0.9336930950277084,
+          "runtime_s": 34.463292598724365
+        }
+      },
+      "n_targets": 55
+    },
+    "prose": {
+      "fid_order": [
+        "prose_dc4e423d093d",
+        "prose_e2e92c7ca331",
+        "prose_e8bc068f77d1",
+        "prose_ec3316e574b3",
+        "prose_f3f2891305fb",
+        "prose_f5c8c2c9ad96"
+      ],
+      "streams": {
+        "teacher_native": {
+          "tp": 200,
+          "fp": 429,
+          "fn": 17,
+          "precision": 0.3179650238473768,
+          "recall": 0.9216589861751152,
+          "f1": 0.4728132387706856,
+          "n_files": 6,
+          "per_file": [
+            [
+              34,
+              68,
+              2
+            ],
+            [
+              33,
+              59,
+              0
+            ],
+            [
+              21,
+              96,
+              1
+            ],
+            [
+              29,
+              69,
+              3
+            ],
+            [
+              39,
+              64,
+              6
+            ],
+            [
+              44,
+              73,
+              5
+            ]
+          ],
+          "f1_h0_mean": 0.14681749408983452,
+          "f1_margin": 0.3259957446808511,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.40095354523227383,
+          "f1_ci_high": 0.5230078563411896,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.2872568137687189,
+          "f1_minus_best_baseline_ci": [
+            -0.3165369190846897,
+            -0.26139537030626137
+          ]
+        },
+        "teacher_512": {
+          "tp": 200,
+          "fp": 429,
+          "fn": 17,
+          "precision": 0.3179650238473768,
+          "recall": 0.9216589861751152,
+          "f1": 0.4728132387706856,
+          "n_files": 6,
+          "per_file": [
+            [
+              34,
+              68,
+              2
+            ],
+            [
+              33,
+              59,
+              0
+            ],
+            [
+              21,
+              96,
+              1
+            ],
+            [
+              29,
+              69,
+              3
+            ],
+            [
+              39,
+              64,
+              6
+            ],
+            [
+              44,
+              73,
+              5
+            ]
+          ],
+          "f1_h0_mean": 0.14681749408983452,
+          "f1_margin": 0.3259957446808511,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.399529964747356,
+          "f1_ci_high": 0.5236523652365237,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.2872568137687189,
+          "f1_minus_best_baseline_ci": [
+            -0.3173885907678158,
+            -0.2620063605767746
+          ]
+        },
+        "student": {
+          "tp": 210,
+          "fp": 552,
+          "fn": 7,
+          "precision": 0.2755905511811024,
+          "recall": 0.967741935483871,
+          "f1": 0.4290091930541369,
+          "n_files": 6,
+          "per_file": [
+            [
+              35,
+              90,
+              1
+            ],
+            [
+              33,
+              88,
+              0
+            ],
+            [
+              21,
+              99,
+              1
+            ],
+            [
+              30,
+              91,
+              2
+            ],
+            [
+              43,
+              77,
+              2
+            ],
+            [
+              48,
+              107,
+              1
+            ]
+          ],
+          "f1_h0_mean": 0.15499284984678244,
+          "f1_margin": 0.27401634320735446,
+          "f1_permutation_p": 9.999000099990002e-05,
+          "f1_ci_low": 0.37139807897545357,
+          "f1_ci_high": 0.47719368131305473,
+          "strongest_baseline": "word_start",
+          "f1_minus_best_baseline": -0.33106085948526764,
+          "f1_minus_best_baseline_ci": [
+            -0.35056834565128314,
+            -0.3068599642819623
+          ]
+        },
+        "baseline_newline": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 217,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n_files": 6,
+          "per_file": [
+            [
+              0,
+              0,
+              36
+            ],
+            [
+              0,
+              0,
+              33
+            ],
+            [
+              0,
+              0,
+              22
+            ],
+            [
+              0,
+              0,
+              32
+            ],
+            [
+              0,
+              0,
+              45
+            ],
+            [
+              0,
+              0,
+              49
+            ]
+          ],
+          "f1_ci_low": 0.0,
+          "f1_ci_high": 0.0
+        },
+        "baseline_indent_change": {
+          "tp": 3,
+          "fp": 3,
+          "fn": 214,
+          "precision": 0.5,
+          "recall": 0.013824884792626729,
+          "f1": 0.026905829596412557,
+          "n_files": 6,
+          "per_file": [
+            [
+              0,
+              1,
+              36
+            ],
+            [
+              0,
+              1,
+              33
+            ],
+            [
+              1,
+              0,
+              21
+            ],
+            [
+              1,
+              0,
+              31
+            ],
+            [
+              1,
+              0,
+              44
+            ],
+            [
+              0,
+              1,
+              49
+            ]
+          ],
+          "f1_ci_low": 0.007488555971702039,
+          "f1_ci_high": 0.054945054945054944
+        },
+        "baseline_word_start": {
+          "tp": 217,
+          "fp": 137,
+          "fn": 0,
+          "precision": 0.6129943502824858,
+          "recall": 1.0,
+          "f1": 0.7600700525394045,
+          "n_files": 6,
+          "per_file": [
+            [
+              36,
+              22,
+              0
+            ],
+            [
+              33,
+              18,
+              0
+            ],
+            [
+              22,
+              25,
+              0
+            ],
+            [
+              32,
+              22,
+              0
+            ],
+            [
+              45,
+              23,
+              0
+            ],
+            [
+              49,
+              27,
+              0
+            ]
+          ],
+          "f1_ci_low": 0.71484375,
+          "f1_ci_high": 0.7859327217125383
+        }
+      },
+      "diagnostics": {
+        "teacher_native": {
+          "entropy_mean": 0.9342359304428101,
+          "entropy_median": 0.502788782119751,
+          "entropy_max": 3.8461995124816895,
+          "frac_above_tau": 0.29276164130935917,
+          "bytes_within_1e-3_of_tau": 0,
+          "interior_entropy_boundaries": 629,
+          "boundary_density": 0.28999538958045185,
+          "bits_per_byte": null,
+          "runtime_s": 1.496945858001709
+        },
+        "teacher_512": {
+          "entropy_mean": 0.9342359304428101,
+          "entropy_median": 0.502788782119751,
+          "entropy_max": 3.8461995124816895,
+          "frac_above_tau": 0.29276164130935917,
+          "bytes_within_1e-3_of_tau": 0,
+          "interior_entropy_boundaries": 629,
+          "boundary_density": 0.28999538958045185,
+          "bits_per_byte": null,
+          "runtime_s": 0.0
+        },
+        "student": {
+          "entropy_mean": 1.0927759408950806,
+          "entropy_median": 0.7305166125297546,
+          "entropy_max": 3.8235416412353516,
+          "frac_above_tau": 0.35408022130013833,
+          "bytes_within_1e-3_of_tau": 1,
+          "interior_entropy_boundaries": 762,
+          "boundary_density": 0.35131396957123096,
+          "bits_per_byte": 1.7845674115318353,
+          "runtime_s": 40.51546907424927
+        }
+      },
+      "n_targets": 217
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "experiment": "student_cv1_golden_v1",
+  "teacher": {
+    "checkpoint": "itazap/blt-1b-hf",
+    "revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+    "backend": "stream_a.reference_lm (G3-verified re-implementation), float32 cpu",
+    "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d"
+  },
+  "student": {
+    "params": 14262144,
+    "steps": 6860,
+    "config": {
+      "vocab_size": 260,
+      "dim": 384,
+      "n_layers": 8,
+      "n_heads": 6,
+      "ffn_mult": 2.6666666666666665,
+      "ffn_multiple_of": 64,
+      "max_seq_len": 513,
+      "rope_theta": 10000.0,
+      "norm_eps": 1e-05,
+      "tie_embeddings": true
+    },
+    "student_pt_sha256": "aeef99da84fd0e97d499717e891b189f7f3ada883810ec9dddf99afbb560cf95"
+  },
+  "context_policy": {
+    "teacher_native": "swa512 banded mask over [BOS]+full file (native regime; no chunking needed, files << 8192 tokens)",
+    "teacher_512": "stride-1 fresh windows, <=512 preceding bytes per prediction (student's budget; CONTROL only; equals native for files <=512B)",
+    "student": "stride-1 fresh windows, <=512 preceding bytes, absolute RoPE 0..511 (its trained regime); no artificial 512-chunk resets"
+  },
+  "tau": 1.335442066192627,
+  "k": 0,
+  "k_source": "frozen calibration results/final/c-v1-2721954/calibration.json (k=0, all languages)",
+  "seed": 20260927,
+  "n_permutations": 10000,
+  "n_bootstrap": 2000,
+  "torch": "2.14.1+cpu",
+  "device": "cpu"
+}
