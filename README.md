@@ -87,8 +87,6 @@ Entropy is a surface statistic, and none of these results is evidence of semanti
 
 The full protocol is in [`docs/SCORING_PROTOCOL.md`](docs/SCORING_PROTOCOL.md), and checkpoint fidelity (including the 512-token window the Hugging Face port omits) is in [`docs/STREAM_A_FIDELITY.md`](docs/STREAM_A_FIDELITY.md).
 
-**Models and data (Hugging Face).** Checkpoint: [`itazap/blt-1b-hf`](https://huggingface.co/itazap/blt-1b-hf) at revision `91aa6b8e` (only the 99.5M-parameter patcher is loaded). Corpora: [CodeSearchNet](https://huggingface.co/datasets/code_search_net) (Python), [`bigcode/the-stack-smol`](https://huggingface.co/datasets/bigcode/the-stack-smol) (C++, gated — accept the terms first), and [WikiText-103](https://huggingface.co/datasets/Salesforce/wikitext) (English prose). No model was trained or uploaded by this project; only the frozen revision above was consumed.
-
 ## Verify and reproduce
 
 **1. Check the retained results** (seconds):
@@ -123,8 +121,7 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 
 | Path                                            | Contents                                                                                       |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `reports/`                                    | **Submitted report**: named (`Trimax-Mid-Submission.pdf`) + anonymous (`-review.pdf`) PDFs |
-| `reports/mid_submission/`                     | Report build pipeline: LaTeX sources, ACL style files, evidence tables, build/check scripts (rebuilds the PDFs above) |
+| `reports/`                                    | **Project report**: `Trimax-Mid-Report.pdf` (ACL style, aclpubcheck-clean) |
 | `results/final/c-v1-2721954/`                 | **Real results**: calibration record, held-out scores, baselines, IoU, O4, O5, checksums |
 | `stream_a/`                                   | BLT patcher loading, sliding-window fix, fidelity gates, extraction (incl. O4)                 |
 | `stream_b/`                                   | Corpus restore, tree-sitter/benepar parsing, baselines, O4 noise builder, O5 regions           |

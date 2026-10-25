@@ -1,0 +1,8 @@
+# escape_distill: teacher-student distillation of the BLT entropy model.
+# Teacher backend 'transformers' needs these; 'reference' backend needs only torch+safetensors.
+torch>=2.2
+numpy
+pandas
+pyarrow
+safetensors
+transformers>=5.17,<6  # teacher 'transformers' backend only
