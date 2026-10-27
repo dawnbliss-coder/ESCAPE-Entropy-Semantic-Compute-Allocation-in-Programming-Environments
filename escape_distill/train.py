@@ -67,6 +67,10 @@ def main():
     ap.add_argument("--dim", type=int, default=256)
     ap.add_argument("--layers", type=int, default=6)
     ap.add_argument("--heads", type=int, default=4)
+    ap.add_argument("--init-from", default=None,
+                    help="checkpoint dir (patcher.safetensors + config.json): initialise the student "
+                         "from the teacher's weights (domain-adaptation arm). Use --dim 768 --layers 14 "
+                         "--heads 12 for the teacher architecture; tie_embeddings is disabled automatically.")
     ap.add_argument("--teacher-dtype", default="float32")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--seed", type=int, default=20260927)
@@ -87,7 +91,31 @@ def main():
     loader = WindowLoader(windows, args.batch_size, device, shuffle=True, seed=args.seed)
 
     cfg = StudentConfig(dim=args.dim, n_layers=args.layers, n_heads=args.heads)
+    if args.init_from:
+        cfg.tie_embeddings = False
     student = StudentBLT(cfg).to(device)
+    if args.init_from:
+        from escape_distill.teacher import _load_hf_state
+        state = _load_hf_state(Path(args.init_from), str(device), "float32")
+        top = {"embed_tokens.weight": "tok_emb.weight", "norm.weight": "final_norm.weight",
+               "lm_head.weight": "lm_head.weight"}
+        per_layer = {"self_attn.q_proj.weight": "attn.wq.weight", "self_attn.k_proj.weight": "attn.wk.weight",
+                     "self_attn.v_proj.weight": "attn.wv.weight", "self_attn.o_proj.weight": "attn.wo.weight",
+                     "mlp.gate_proj.weight": "ffn.gate.weight", "mlp.up_proj.weight": "ffn.up.weight",
+                     "mlp.down_proj.weight": "ffn.down.weight",
+                     "input_layernorm.weight": "attn_norm.weight",
+                     "post_attention_layernorm.weight": "ffn_norm.weight"}
+        sd = {}
+        for k, v in state.items():
+            if k in top:
+                sd[top[k]] = v
+            elif k.startswith("layers."):
+                _, idx, rest = k.split(".", 2)
+                sd[f"blocks.{idx}.{per_layer[rest]}"] = v
+        missing, unexpected = student.load_state_dict(sd, strict=False)
+        if missing:
+            raise SystemExit(f"--init-from: {len(missing)} missing keys, first {missing[:6]}")
+        print(f"[distill] initialised from teacher checkpoint ({len(sd)} keys; {len(unexpected)} unused)")
     teacher = load_teacher(args.ckpt_dir, device=str(device), dtype=args.teacher_dtype)
 
     total_steps = (args.max_steps if args.max_steps else len(loader) * args.epochs)

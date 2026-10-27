@@ -1,0 +1,617 @@
+{
+  "config": {
+    "experiment": "tau_sweep_golden_v1",
+    "streams": {
+      "teacher_native": "swa512 banded mask over [BOS]+file (reference backend, float32 cpu)",
+      "student": "stride-1 fresh windows <=512B (trained regime)"
+    },
+    "tau_grid": [
+      0.8,
+      1.0,
+      1.335442066192627,
+      1.7,
+      2.0,
+      2.5
+    ],
+    "k": 0,
+    "seed": 20260927,
+    "n_permutations": 10000,
+    "teacher": {
+      "checkpoint": "itazap/blt-1b-hf",
+      "revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+      "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d"
+    },
+    "student": {
+      "params": 14262144,
+      "steps": 6860,
+      "student_pt_sha256": "aeef99da84fd0e97d499717e891b189f7f3ada883810ec9dddf99afbb560cf95"
+    },
+    "torch": "2.14.1+cpu",
+    "device": "cpu",
+    "note": "golden-fixture variant; null recomputed per (stream, file, tau) with 10,000 fixed-EOF permutations"
+  },
+  "domains": {
+    "py": {
+      "tau_rows": [
+        {
+          "tau": 0.8,
+          "teacher_native": {
+            "tp": 63,
+            "fp": 1025,
+            "fn": 8,
+            "precision": 0.057904411764705885,
+            "recall": 0.8873239436619719,
+            "f1": 0.10871440897325281,
+            "f1_h0_mean": 0.033644693701466784,
+            "f1_margin": 0.07506971527178602,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 1088,
+            "boundary_density": 0.26022482659650803,
+            "f1_minus_best_baseline": -0.36834981121023347
+          },
+          "student": {
+            "tp": 66,
+            "fp": 1110,
+            "fn": 5,
+            "precision": 0.05612244897959184,
+            "recall": 0.9295774647887324,
+            "f1": 0.10585404971932638,
+            "f1_h0_mean": 0.032181074578989576,
+            "f1_margin": 0.0736729751403368,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 1176,
+            "boundary_density": 0.2812724228653432,
+            "f1_minus_best_baseline": -0.3712101704641599
+          }
+        },
+        {
+          "tau": 1.0,
+          "teacher_native": {
+            "tp": 59,
+            "fp": 876,
+            "fn": 12,
+            "precision": 0.06310160427807486,
+            "recall": 0.8309859154929577,
+            "f1": 0.1172962226640159,
+            "f1_h0_mean": 0.03369622266401591,
+            "f1_margin": 0.0836,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 935,
+            "boundary_density": 0.22363071035637408,
+            "f1_minus_best_baseline": -0.35976799751947036
+          },
+          "student": {
+            "tp": 62,
+            "fp": 955,
+            "fn": 9,
+            "precision": 0.06096361848574238,
+            "recall": 0.8732394366197183,
+            "f1": 0.11397058823529412,
+            "f1_h0_mean": 0.03167389705882353,
+            "f1_margin": 0.0822966911764706,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 1017,
+            "boundary_density": 0.24324324324324326,
+            "f1_minus_best_baseline": -0.36309363194819216
+          }
+        },
+        {
+          "tau": 1.335442066192627,
+          "teacher_native": {
+            "tp": 57,
+            "fp": 656,
+            "fn": 14,
+            "precision": 0.07994389901823282,
+            "recall": 0.8028169014084507,
+            "f1": 0.14540816326530612,
+            "f1_h0_mean": 0.033452806122448976,
+            "f1_margin": 0.11195535714285715,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 713,
+            "boundary_density": 0.17053336522363072,
+            "f1_minus_best_baseline": -0.3316560569181801
+          },
+          "student": {
+            "tp": 56,
+            "fp": 726,
+            "fn": 15,
+            "precision": 0.07161125319693094,
+            "recall": 0.7887323943661971,
+            "f1": 0.13130128956623682,
+            "f1_h0_mean": 0.03071277842907386,
+            "f1_margin": 0.10058851113716297,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 782,
+            "boundary_density": 0.18703659411624013,
+            "f1_minus_best_baseline": -0.34576293061724944
+          }
+        },
+        {
+          "tau": 1.7,
+          "teacher_native": {
+            "tp": 49,
+            "fp": 475,
+            "fn": 22,
+            "precision": 0.09351145038167939,
+            "recall": 0.6901408450704225,
+            "f1": 0.16470588235294117,
+            "f1_h0_mean": 0.029961680672268905,
+            "f1_margin": 0.13474420168067228,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 524,
+            "boundary_density": 0.12532886869170054,
+            "f1_minus_best_baseline": -0.3123583378305451
+          },
+          "student": {
+            "tp": 53,
+            "fp": 521,
+            "fn": 18,
+            "precision": 0.09233449477351917,
+            "recall": 0.7464788732394366,
+            "f1": 0.16434108527131783,
+            "f1_h0_mean": 0.02957829457364341,
+            "f1_margin": 0.1347627906976744,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 574,
+            "boundary_density": 0.13728773020808419,
+            "f1_minus_best_baseline": -0.3127231349121684
+          }
+        },
+        {
+          "tau": 2.0,
+          "teacher_native": {
+            "tp": 43,
+            "fp": 337,
+            "fn": 28,
+            "precision": 0.11315789473684211,
+            "recall": 0.6056338028169014,
+            "f1": 0.19068736141906872,
+            "f1_h0_mean": 0.03294279379157428,
+            "f1_margin": 0.15774456762749445,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 380,
+            "boundary_density": 0.09088734752451566,
+            "f1_minus_best_baseline": -0.28637685876441754
+          },
+          "student": {
+            "tp": 47,
+            "fp": 388,
+            "fn": 24,
+            "precision": 0.10804597701149425,
+            "recall": 0.6619718309859155,
+            "f1": 0.1857707509881423,
+            "f1_h0_mean": 0.03197430830039525,
+            "f1_margin": 0.15379644268774706,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 435,
+            "boundary_density": 0.10404209519253767,
+            "f1_minus_best_baseline": -0.29129346919534393
+          }
+        },
+        {
+          "tau": 2.5,
+          "teacher_native": {
+            "tp": 18,
+            "fp": 179,
+            "fn": 53,
+            "precision": 0.09137055837563451,
+            "recall": 0.2535211267605634,
+            "f1": 0.13432835820895522,
+            "f1_h0_mean": 0.0306865671641791,
+            "f1_margin": 0.10364179104477612,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 197,
+            "boundary_density": 0.04711791437455154,
+            "f1_minus_best_baseline": -0.34273586197453104
+          },
+          "student": {
+            "tp": 20,
+            "fp": 241,
+            "fn": 51,
+            "precision": 0.07662835249042145,
+            "recall": 0.28169014084507044,
+            "f1": 0.12048192771084337,
+            "f1_h0_mean": 0.025710843373493976,
+            "f1_margin": 0.0947710843373494,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 261,
+            "boundary_density": 0.0624252571155226,
+            "f1_minus_best_baseline": -0.3565822924726429
+          }
+        }
+      ],
+      "best_baseline": {
+        "name": "indent_change",
+        "f1": 0.47706422018348627
+      }
+    },
+    "cpp": {
+      "tau_rows": [
+        {
+          "tau": 0.8,
+          "teacher_native": {
+            "tp": 53,
+            "fp": 481,
+            "fn": 2,
+            "precision": 0.09925093632958802,
+            "recall": 0.9636363636363636,
+            "f1": 0.1799660441426146,
+            "f1_h0_mean": 0.04515483870967742,
+            "f1_margin": 0.13481120543293718,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 534,
+            "boundary_density": 0.25897187196896215,
+            "f1_minus_best_baseline": -0.20689526972599856
+          },
+          "student": {
+            "tp": 52,
+            "fp": 506,
+            "fn": 3,
+            "precision": 0.0931899641577061,
+            "recall": 0.9454545454545454,
+            "f1": 0.16965742251223492,
+            "f1_h0_mean": 0.04751484502446982,
+            "f1_margin": 0.12214257748776511,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 558,
+            "boundary_density": 0.27061105722599416,
+            "f1_minus_best_baseline": -0.21720389135637824
+          }
+        },
+        {
+          "tau": 1.0,
+          "teacher_native": {
+            "tp": 51,
+            "fp": 405,
+            "fn": 4,
+            "precision": 0.1118421052631579,
+            "recall": 0.9272727272727272,
+            "f1": 0.19960861056751467,
+            "f1_h0_mean": 0.043920547945205474,
+            "f1_margin": 0.1556880626223092,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 456,
+            "boundary_density": 0.22114451988360814,
+            "f1_minus_best_baseline": -0.1872527033010985
+          },
+          "student": {
+            "tp": 51,
+            "fp": 421,
+            "fn": 4,
+            "precision": 0.10805084745762712,
+            "recall": 0.9272727272727272,
+            "f1": 0.1935483870967742,
+            "f1_h0_mean": 0.04606034155597723,
+            "f1_margin": 0.14748804554079697,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 472,
+            "boundary_density": 0.2289039767216295,
+            "f1_minus_best_baseline": -0.19331292677183898
+          }
+        },
+        {
+          "tau": 1.335442066192627,
+          "teacher_native": {
+            "tp": 48,
+            "fp": 289,
+            "fn": 7,
+            "precision": 0.142433234421365,
+            "recall": 0.8727272727272727,
+            "f1": 0.24489795918367346,
+            "f1_h0_mean": 0.04678112244897959,
+            "f1_margin": 0.19811683673469388,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 337,
+            "boundary_density": 0.16343355965082446,
+            "f1_minus_best_baseline": -0.1419633546849397
+          },
+          "student": {
+            "tp": 46,
+            "fp": 318,
+            "fn": 9,
+            "precision": 0.12637362637362637,
+            "recall": 0.8363636363636363,
+            "f1": 0.21957040572792363,
+            "f1_h0_mean": 0.047854892601431984,
+            "f1_margin": 0.17171551312649164,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 364,
+            "boundary_density": 0.17652764306498545,
+            "f1_minus_best_baseline": -0.16729090814068953
+          }
+        },
+        {
+          "tau": 1.7,
+          "teacher_native": {
+            "tp": 37,
+            "fp": 204,
+            "fn": 18,
+            "precision": 0.15352697095435686,
+            "recall": 0.6727272727272727,
+            "f1": 0.25,
+            "f1_h0_mean": 0.05559391891891892,
+            "f1_margin": 0.1944060810810811,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 241,
+            "boundary_density": 0.11687681862269642,
+            "f1_minus_best_baseline": -0.13686131386861317
+          },
+          "student": {
+            "tp": 36,
+            "fp": 243,
+            "fn": 19,
+            "precision": 0.12903225806451613,
+            "recall": 0.6545454545454545,
+            "f1": 0.2155688622754491,
+            "f1_h0_mean": 0.04598203592814371,
+            "f1_margin": 0.1695868263473054,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 279,
+            "boundary_density": 0.13530552861299708,
+            "f1_minus_best_baseline": -0.17129245159316406
+          }
+        },
+        {
+          "tau": 2.0,
+          "teacher_native": {
+            "tp": 25,
+            "fp": 164,
+            "fn": 30,
+            "precision": 0.13227513227513227,
+            "recall": 0.45454545454545453,
+            "f1": 0.20491803278688525,
+            "f1_h0_mean": 0.049068852459016384,
+            "f1_margin": 0.15584918032786887,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 189,
+            "boundary_density": 0.09165858389912707,
+            "f1_minus_best_baseline": -0.18194328108172791
+          },
+          "student": {
+            "tp": 30,
+            "fp": 190,
+            "fn": 25,
+            "precision": 0.13636363636363635,
+            "recall": 0.5454545454545454,
+            "f1": 0.21818181818181817,
+            "f1_h0_mean": 0.049745454545454544,
+            "f1_margin": 0.16843636363636363,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 220,
+            "boundary_density": 0.1066925315227934,
+            "f1_minus_best_baseline": -0.168679495686795
+          }
+        },
+        {
+          "tau": 2.5,
+          "teacher_native": {
+            "tp": 5,
+            "fp": 91,
+            "fn": 50,
+            "precision": 0.052083333333333336,
+            "recall": 0.09090909090909091,
+            "f1": 0.06622516556291391,
+            "f1_h0_mean": 0.023422516556291396,
+            "f1_margin": 0.04280264900662252,
+            "f1_permutation_p": 0.029497050294970503,
+            "n_boundaries": 96,
+            "boundary_density": 0.04655674102812803,
+            "f1_minus_best_baseline": -0.32063614830569925
+          },
+          "student": {
+            "tp": 9,
+            "fp": 109,
+            "fn": 46,
+            "precision": 0.07627118644067797,
+            "recall": 0.16363636363636364,
+            "f1": 0.10404624277456648,
+            "f1_h0_mean": 0.05174913294797687,
+            "f1_margin": 0.05229710982658961,
+            "f1_permutation_p": 0.0100989901009899,
+            "n_boundaries": 118,
+            "boundary_density": 0.05722599418040737,
+            "f1_minus_best_baseline": -0.2828150710940467
+          }
+        }
+      ],
+      "best_baseline": {
+        "name": "word_start",
+        "f1": 0.38686131386861317
+      }
+    },
+    "prose": {
+      "tau_rows": [
+        {
+          "tau": 0.8,
+          "teacher_native": {
+            "tp": 208,
+            "fp": 684,
+            "fn": 9,
+            "precision": 0.23318385650224216,
+            "recall": 0.9585253456221198,
+            "f1": 0.3751127141568981,
+            "f1_h0_mean": 0.15912064923354374,
+            "f1_margin": 0.21599206492335438,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 892,
+            "boundary_density": 0.41124942369755646,
+            "f1_minus_best_baseline": -0.3849573383825064
+          },
+          "student": {
+            "tp": 213,
+            "fp": 833,
+            "fn": 4,
+            "precision": 0.20363288718929254,
+            "recall": 0.9815668202764977,
+            "f1": 0.33729216152019004,
+            "f1_h0_mean": 0.16454631828978622,
+            "f1_margin": 0.17274584323040382,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 1046,
+            "boundary_density": 0.4822498847395113,
+            "f1_minus_best_baseline": -0.4227778910192145
+          }
+        },
+        {
+          "tau": 1.0,
+          "teacher_native": {
+            "tp": 205,
+            "fp": 570,
+            "fn": 12,
+            "precision": 0.2645161290322581,
+            "recall": 0.9447004608294931,
+            "f1": 0.41330645161290325,
+            "f1_h0_mean": 0.1543858870967742,
+            "f1_margin": 0.25892056451612905,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 775,
+            "boundary_density": 0.35730751498386354,
+            "f1_minus_best_baseline": -0.34676360092650127
+          },
+          "student": {
+            "tp": 212,
+            "fp": 704,
+            "fn": 5,
+            "precision": 0.2314410480349345,
+            "recall": 0.9769585253456221,
+            "f1": 0.37422771403353927,
+            "f1_h0_mean": 0.1608234774933804,
+            "f1_margin": 0.21340423654015886,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 916,
+            "boundary_density": 0.4223144306131858,
+            "f1_minus_best_baseline": -0.38584233850586525
+          }
+        },
+        {
+          "tau": 1.335442066192627,
+          "teacher_native": {
+            "tp": 200,
+            "fp": 429,
+            "fn": 17,
+            "precision": 0.3179650238473768,
+            "recall": 0.9216589861751152,
+            "f1": 0.4728132387706856,
+            "f1_h0_mean": 0.1467373522458629,
+            "f1_margin": 0.32607588652482267,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 629,
+            "boundary_density": 0.28999538958045185,
+            "f1_minus_best_baseline": -0.2872568137687189
+          },
+          "student": {
+            "tp": 210,
+            "fp": 552,
+            "fn": 7,
+            "precision": 0.2755905511811024,
+            "recall": 0.967741935483871,
+            "f1": 0.4290091930541369,
+            "f1_h0_mean": 0.1550138917262513,
+            "f1_margin": 0.2739953013278856,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 762,
+            "boundary_density": 0.35131396957123096,
+            "f1_minus_best_baseline": -0.33106085948526764
+          }
+        },
+        {
+          "tau": 1.7,
+          "teacher_native": {
+            "tp": 185,
+            "fp": 316,
+            "fn": 32,
+            "precision": 0.36926147704590817,
+            "recall": 0.8525345622119815,
+            "f1": 0.5153203342618384,
+            "f1_h0_mean": 0.13965961002785515,
+            "f1_margin": 0.3756607242339833,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 501,
+            "boundary_density": 0.23098201936376211,
+            "f1_minus_best_baseline": -0.2447497182775661
+          },
+          "student": {
+            "tp": 202,
+            "fp": 387,
+            "fn": 15,
+            "precision": 0.34295415959252973,
+            "recall": 0.9308755760368663,
+            "f1": 0.5012406947890818,
+            "f1_h0_mean": 0.1449694789081886,
+            "f1_margin": 0.3562712158808933,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 589,
+            "boundary_density": 0.27155371138773626,
+            "f1_minus_best_baseline": -0.2588293577503227
+          }
+        },
+        {
+          "tau": 2.0,
+          "teacher_native": {
+            "tp": 168,
+            "fp": 233,
+            "fn": 49,
+            "precision": 0.41895261845386533,
+            "recall": 0.7741935483870968,
+            "f1": 0.5436893203883495,
+            "f1_h0_mean": 0.13074433656957932,
+            "f1_margin": 0.4129449838187702,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 401,
+            "boundary_density": 0.18487782388197327,
+            "f1_minus_best_baseline": -0.21638073215105502
+          },
+          "student": {
+            "tp": 194,
+            "fp": 303,
+            "fn": 23,
+            "precision": 0.3903420523138833,
+            "recall": 0.8940092165898618,
+            "f1": 0.5434173669467787,
+            "f1_h0_mean": 0.13822913165266104,
+            "f1_margin": 0.4051882352941176,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 497,
+            "boundary_density": 0.22913785154449054,
+            "f1_minus_best_baseline": -0.21665268559262585
+          }
+        },
+        {
+          "tau": 2.5,
+          "teacher_native": {
+            "tp": 119,
+            "fp": 150,
+            "fn": 98,
+            "precision": 0.4423791821561338,
+            "recall": 0.5483870967741935,
+            "f1": 0.4897119341563786,
+            "f1_h0_mean": 0.11298806584362142,
+            "f1_margin": 0.37672386831275717,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 269,
+            "boundary_density": 0.12402028584601199,
+            "f1_minus_best_baseline": -0.2703581183830259
+          },
+          "student": {
+            "tp": 157,
+            "fp": 187,
+            "fn": 60,
+            "precision": 0.4563953488372093,
+            "recall": 0.7235023041474654,
+            "f1": 0.5597147950089126,
+            "f1_h0_mean": 0.12323957219251337,
+            "f1_margin": 0.4364752228163993,
+            "f1_permutation_p": 9.999000099990002e-05,
+            "n_boundaries": 344,
+            "boundary_density": 0.1585984324573536,
+            "f1_minus_best_baseline": -0.20035525753049188
+          }
+        }
+      ],
+      "best_baseline": {
+        "name": "word_start",
+        "f1": 0.7600700525394045
+      }
+    }
+  }
+}

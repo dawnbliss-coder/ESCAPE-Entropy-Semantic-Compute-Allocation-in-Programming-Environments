@@ -38,6 +38,37 @@
     "torch_version": "2.12.1+cu130",
     "transformers_version": "5.17.0"
   },
+  "student-golden-gate": {
+    "add_bos": true,
+    "add_eos": false,
+    "attn_implementation": "sdpa",
+    "backend": "patcher",
+    "boundary_convention": "one row per patch; byte_offset = first byte of the patch (start-of-patch convention); trigger init = byte 0 (architecturally forced), entropy = entropies[byte_offset] > tau (strict, float64 comparison of the stored float32), length_cap = cut of a patch longer than max_patch_length",
+    "checkpoint": "escape_distill/student-bl-t-384-8-6",
+    "checkpoint_revision": "c4384eb81f7d801aab2746dc453b6b1679136f9a",
+    "chunk_len": null,
+    "code_sha256": "escape_distill/extract.py",
+    "context_mode": "fresh-512-stride1",
+    "created_by": "escape_distill/extract.py",
+    "date": "2026-10-27T19:39:10+00:00",
+    "dtype": "float32",
+    "entropy_definition": "entropies[i] = -sum_v p(v) ln p(v) over all 260 patcher logits of the prediction made at token position i of [BOS, b_0+4, ..., b_{n-1}+4], i.e. the distribution of byte i given BOS and bytes < i (nats)",
+    "invocations": [
+      {
+        "code_sha256": "escape_distill/extract.py",
+        "date": "2026-10-27T19:39:10+00:00"
+      }
+    ],
+    "max_patch_length": null,
+    "n_params": 14262144,
+    "python_version": "3.14.7",
+    "seed": null,
+    "seed_note": "deterministic inference (eval mode, float32)",
+    "sliding_window": null,
+    "student_pt_sha256": "aeef99da84fd0e97d499717e891b189f7f3ada883810ec9dddf99afbb560cf95",
+    "tau": 1.335442066192627,
+    "torch_version": "2.14.1+cpu"
+  },
   "swa512-float32-t1.3354-mplnone-91aa6b8e": {
     "add_bos": true,
     "add_eos": false,
