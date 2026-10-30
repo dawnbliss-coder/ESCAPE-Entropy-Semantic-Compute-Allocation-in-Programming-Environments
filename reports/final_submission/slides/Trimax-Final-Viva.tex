@@ -34,7 +34,7 @@
 \begin{frame}{The question}
 \begin{itemize}
 \item BLT starts a new patch when its byte-level entropy model is uncertain: $H_i>\tau$.
-\item \hl{Grammatical Branching Hypothesis:} uncertainty peaks where a constituent opens, so patches should start at AST / parse constituent starts.
+\item \hl{Grammatical Branching Hypothesis:} patches start at AST / parse constituent starts more often than inside constituents --- an average-case asymmetry, not a claim that starts are maximal-choice points.
 \item Tested on \nSamples{} files (Python, C++, English), held-out split \nTestAll{}, against
   \begin{itemize}
   \item a \hl{density-matched null}: each file's own patch lengths, shuffled, final patch fixed (\nPerm{} permutations);
@@ -58,6 +58,18 @@
 \column{.45\textwidth}
 \includegraphics[width=\linewidth]{../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heatmap_py_07fbe9f688ef.png}
 \end{columns}
+\end{frame}
+
+\section{Stream B: data and ground truth}
+\begin{frame}{Stream B: corpus, targets and controls}
+\begin{itemize}\small
+\item \nSamples{} hash-verified files: 8{,}000 Python functions (CodeSearchNet), 8{,}000 C++ files (The Stack; CodeSearchNet has no C++), 300 WikiText-103 paragraphs; calibration \nCalPy{}/\nCalCpp{}/\nCalEn{}, test \nTestAll{}.
+\item Targets: \hl{tree-sitter} constituent starts (Python, C++), \hl{benepar} parses (English); character offsets round-tripped to UTF-8 bytes; unique non-wrapper starts, outermost node wins.
+\item Structure-blind baselines from the same bytes: newline, indentation change, word start.
+\item O4 noise set: \OFourRate{} of lines or keywords, \OFourCaseRate{} of identifiers; rebuilt at 5--40\% for the rate sweep.
+\item O5 regions: tree-sitter queries for \texttt{*}, \texttt{\&}, \texttt{new}, \texttt{delete}; audit reproduced \xAuditRepro{} regions, an independent labeller agreed on \xAuditAgree{} statements.
+\item Extension data: a disjoint 29k-file distillation corpus (pinned revision) and the pre-registered English holdout (\xHoldFiles{} paragraphs from 120 unused articles).
+\end{itemize}
 \end{frame}
 
 \section{Stream C: statistics}
@@ -106,7 +118,7 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \item Start recall margin: forced openers \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) --- opposite of P4.
 \item Test: boundary rate at bytes \emph{after} $s$, same null draws (start rows \xPosCheck{} the frozen recalls).
 \item Rest of keyword: \xKwDetPy{} (Py), \xKwDetCpp{} (C++) vs.\ null.
-\item Byte after keyword: rate \xPostKwRateDetPy{} (Py), \xPostKwRateDetCpp{} (C++) vs.\ null $\approx$\xOffNullPy{}; open-ended stays at the null.
+\item Byte after keyword: rate \xPostKwRateDetPy{} (Py), \xPostKwRateDetCpp{} (C++) vs.\ null \xOffNullPy{} (Py) / \xOffNullCpp{} (C++); open-ended stays at the null.
 \item Boundary returns where choice reopens: Python condition start (rate \xNextRateDetPy{}); C++ after the forced \texttt{(} (rate \xOffDetCppIV{}).
 \item \hl{Forcing is real; the start byte is just before it.}
 \end{itemize}
@@ -158,7 +170,7 @@ English & \MarginEn{} & \xStuMarginEn{} & \xStuRetainEn{} & \xStuDiffEn{} \xStuD
 \begin{itemize}\small
 \item Online KD ($\alpha=0.1$, $T=2$) on a disjoint 29k-file corpus; val boundary F1 vs.\ teacher \xDistFone{}; no-teacher control ($\alpha=1$) \xAlphaFone{}.
 \item Full 16{,}300-file extraction + frozen C-v1 scoring with its own calibration ($k=0$).
-\item Teacher restricted to 512-byte windows loses only \xTfiveDiffPy{} (Py) / \xTfiveDiffCpp{} (C++) F1.
+\item Native teacher minus teacher on 512-byte windows: \xTfiveDiffPy{} (Py) / \xTfiveDiffCpp{} (C++) F1, so the window costs little.
 \item Cost: forward \xEffForward{}$\times$ faster than the teacher on a \xEffGpu{}.
 \end{itemize}
 \end{frame}
@@ -198,7 +210,7 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 
 \begin{frame}{Conclusions}
 \begin{itemize}
-\item Entropy boundaries track constituent starts \hl{4--5$\times$ above chance} --- held-out, holdout, and in a distilled student.
+\item Entropy boundaries track constituent starts \hl{3--5$\times$ above chance} --- held-out, holdout, and in a distilled student.
 \item They do \hl{not} beat indentation / word-start segmentation at any $\tau$ or $k$.
 \item Each failed prediction has a mechanical explanation:
   \begin{itemize}

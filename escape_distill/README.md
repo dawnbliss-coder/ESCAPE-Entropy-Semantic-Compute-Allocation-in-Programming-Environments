@@ -59,7 +59,9 @@ SKIP_MATERIALIZE=1 bash scripts/ada_distill/submit_all.sh   # reuse existing cor
 
 ## Scope
 
-This is an experiment (“does distillation of the entropy model work on a new dataset?”),
-not a new confirmatory result for the report. The student is trained purely on the teacher's
+This started as an experiment (“does distillation of the entropy model work on a new dataset?”).
+For the final submission the student was scored with the frozen C-v1 pipeline on the test split,
+swept for τ on calibration files with one confirmatory test run per τ*, and scored once on the
+pre-registered English holdout (report §5, `docs/FULL_RUN_RESULTS.md`). The student is trained purely on the teacher's
 outputs; no claim is made that either model understands syntax (the project's standing
 caveat: entropy is a surface statistic).

@@ -736,6 +736,7 @@ def p3_ratio():
     for lang, name, tag in LANGS:
         r = t[lang]
         macro(f"xRatio{tag}", f"{r['f1_ratio']:.1f}")
+        macro(f"xPredPerTarget{tag}", f"{r['recall'] / r['precision']:.1f}")  # recall/precision = #predictions/#targets
         rows.append(f"{name} & {num(r['f1'])} & {num(r['f1_h0_mean'])} & {signed(r['f1_margin'])} & "
                     f"{r['f1_ratio']:.2f} [{r['f1_ratio_ci_low']:.2f}, {r['f1_ratio_ci_high']:.2f}] \\\\")
     evidence["p3_ratio"] = {lang: {k: t[lang][k] for k in ("f1", "f1_h0_mean", "f1_margin", "f1_ratio",
@@ -846,7 +847,7 @@ def new_arms():
         " & & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{label}}}" for _, label in ARMS) + " \\\\",
         "Lang. & Files & " + " & ".join(["F1 & $\\Delta$"] * len(ARMS)) + " \\\\\\midrule",
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
-        "\\caption{Post-submission arms on the pre-registered subset (300 test files per code language, "
+        "\\caption{Follow-up arms on the pre-registered subset (300 test files per code language, "
         "600--2{,}000 bytes, as in Table~\\ref{tab:t512}) and the English test split, $k=0$, 10{,}000 permutations. "
         "All models except the native teacher see fresh 512-byte windows. The teacher-512 control was not extracted "
         "for English.}",

@@ -63,7 +63,7 @@ for C++/O5 and fails its check, by design.
 bash scripts/ada_final/fetch_from_ada.sh
 ```
 
-The mid-submission report's build pipeline is in the repo under `reports/mid_submission/` (`build_results.py`, `build.sh`, `check_report.py`; see its `README.md`): `python3 reports/mid_submission/build_results.py --run results/final/c-v1-2721954`, then `bash reports/mid_submission/build.sh`, then `python reports/mid_submission/check_report.py` (frozen results -> `generated/results.tex` macros -> pdfLaTeX/BibTeX -> `aclpubcheck`). A final-report builder is being added under `reports/final_submission/`.
+The mid-submission report's build pipeline is in the repo under `reports/mid_submission/` (`build_results.py`, `build.sh`, `check_report.py`; see its `README.md`): `python3 reports/mid_submission/build_results.py --run results/final/c-v1-2721954`, then `bash reports/mid_submission/build.sh`, then `python reports/mid_submission/check_report.py` (frozen results -> `generated/results.tex` macros -> pdfLaTeX/BibTeX -> `aclpubcheck`). The final report and slides are built by `reports/final_submission/` (`build.sh`, `build_slides.sh`, `check_final.py`; numbers from `build_final.py`).
 
 `build_results.py` writes every number and every data-dependent phrase
 (`generated/results.tex`, `evidence.json`, `depth_margin.pdf`). Its verdict rules are

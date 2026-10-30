@@ -72,3 +72,38 @@ Handoff steps are in `docs/ADA_FULL_RUN_SEQUENCE.md` and `docs/ADA_CLAUDE_HANDOF
 - [x] P1 [All] Decide whether AI-tool files (`AUDIT_REPORT*.md`, `.opencode/`) stay in the repo, and move or label them. **Done 2026-10-30 (user decision):** kept, moved with `PROJECT_CONTEXT_AND_REVIEW.md` and `CLAUDE_TEACHER_STUDENT_NEXT.md` to `docs/ai_assisted/`, labelled in its README as AI-generated working documents; `.opencode/` stays in place
 - [x] P1 [All] Pin dependency versions in `escape_distill/requirements.txt` (`torch>=2.2` is too loose for byte-identical reruns). **Status 2026-10-29:** versions from the Ada venv
 - [x] P2 [All] Label `results/distill/smoke_local/` as a smoke run so nobody reads it as the main result. **Status 2026-10-29:** README inside the folder
+
+## 6. Completeness audit (30 Oct, after the freeze)
+
+An independent read of the proposal, mid-report, plan and deliverables found these gaps. All are fixed unless marked.
+
+- [x] Report:
+  - mean BPP per language added (O2);
+  - an English-paragraph heatmap added (deliverable 4);
+  - predictions-per-target given per language instead of "ten to one";
+  - the C++ source and float32 deviations flagged;
+  - the patch-length-distribution check stated as not done;
+  - the Limitations sentence on later test-split scorings corrected;
+  - the abstract names the three failed predictions;
+  - "Post-submission" renamed "Follow-up".
+- [x] Slides:
+  - new Stream B slide;
+  - H1 stated as the proposal's average-case asymmetry;
+  - "3–5×" above chance;
+  - C++ post-keyword null shown;
+  - teacher-512 wording.
+- [x] Deliverable 1, boundary extraction for arbitrary files: `python -m stream_a.patch_files` (tests in `tests/test_stream_a_patch_files.py`).
+- [x] Unit tests for `escape_distill` (`tests/test_distill_units.py`; the suite is now 198 tests).
+- [x] Docs:
+  - `FULL_RUN_RESULTS.md` Step 9 text and title;
+  - README checksum note, reproduction scope, extension runbook link and contributions (from git history);
+  - `FINAL_RUN.md`;
+  - `SCORING_PROTOCOL.md` decisions marked resolved;
+  - `O5_LABEL_AUDIT.md` CI;
+  - `reports/ESCAPE_STUDENT_CV1_EVALUATION.md` labelled (kept in place as the holdout pre-registration);
+  - `reports/mid_submission/README.md`;
+  - `escape_distill/README.md`;
+  - `file_toimplement.md` status.
+- [x] Ada job logs, generated report inputs and the holdout manifest are now tracked in git.
+- [ ] More permutations (optional), running as a sensitivity check only: O4 rate sweep at 10,000 null permutations (job 48197) and span IoU at 1,000 resamples (job 48198), written to `results/final/analysis/`.
+- [ ] Still blocked: the reviewer amendments list and `AUDIT_TEACHER_STUDENT_FILES.md` (M7).

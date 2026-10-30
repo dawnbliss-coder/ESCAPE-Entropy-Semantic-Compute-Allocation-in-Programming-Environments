@@ -110,194 +110,55 @@ tm.cfg)
 c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
 359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-c
 mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
-(./paper-body.tex
-
-Package natbib Warning: Citation `pagnoni-etal-2025-byte' on page 1 undefined o
-n input line 9.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-
-LaTeX Warning: Reference `sec:ext' on page 1 undefined on input line 11.
-
-
-Package natbib Warning: Citation `pagnoni-etal-2025-byte' on page 1 undefined o
-n input line 16.
-
-
-Package natbib Warning: Citation `sennrich-etal-2016-neural' on page 1 undefine
-d on input line 16.
-
-
-Package natbib Warning: Citation `xue-etal-2022-byt5' on page 1 undefined on in
-put line 16.
-
-
-Package natbib Warning: Citation `clark-etal-2022-canine' on page 1 undefined o
-n input line 16.
-
-
-Package natbib Warning: Citation `hewitt-manning-2019-structural' on page 1 und
-efined on input line 16.
-
-
-Package natbib Warning: Citation `feng-etal-2020-codebert' on page 1 undefined 
-on input line 16.
-
-
-Package natbib Warning: Citation `brent1999segmentation' on page 1 undefined on
- input line 16.
-
-
-Package natbib Warning: Citation `goldwater2009word' on page 1 undefined on inp
-ut line 16.
-
-
-Package natbib Warning: Citation `kitaev-klein-2018-constituency' on page 1 und
-efined on input line 16.
-
-
-Package natbib Warning: Citation `hinton2015distilling' on page 1 undefined on 
-input line 16.
-
+(./paper-body.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
 vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
 ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
 usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Underfull \hbox (badness 1715) in paragraph at lines 20--21
+ []\T1/ptm/b/n/10.95 (+20) Data and check-point.[] \T1/ptm/m/n/10.95 (+20) The 
+frozen man-i-fest
 
-Package natbib Warning: Citation `husain2019codesearchnet' on page 2 undefined 
-on input line 20.
+Underfull \hbox (badness 1062) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) has 16,300 sam-ples: 8,000 Python func-tions
 
+Underfull \hbox (badness 1867) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) C++ files from The Stack ([][]Ko-cetkov et al.[][],
 
-Package natbib Warning: Citation `kocetkov2022stack' on page 2 undefined on inp
-ut line 20.
-
-
-Package natbib Warning: Citation `merity2017pointer' on page 2 undefined on inp
-ut line 20.
-
-
-LaTeX Warning: Reference `app:fidelity' on page 2 undefined on input line 20.
-
-
-LaTeX Warning: Reference `tab:main' on page 2 undefined on input line 26.
-
-
-LaTeX Warning: Reference `tab:baselines' on page 2 undefined on input line 26.
-
-
-LaTeX Warning: Reference `app:extra' on page 2 undefined on input line 31.
-
+Underfull \hbox (badness 1590) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) ([][]Mer-ity et al.[][], [][]2017[][]), all re-stored a
+nd hash-
 [2]
-
-LaTeX Warning: Reference `tab:types' on page 3 undefined on input line 34.
-
-
-LaTeX Warning: Reference `tab:p4pos' on page 3 undefined on input line 34.
-
-
-LaTeX Warning: Reference `fig:offsets' on page 3 undefined on input line 34.
-
-
-LaTeX Warning: Reference `fig:depth' on page 3 undefined on input line 43.
-
-[3]
-
-LaTeX Warning: Reference `tab:o4' on page 4 undefined on input line 45.
-
-
-LaTeX Warning: Reference `fig:o4' on page 4 undefined on input line 45.
-
-
-Underfull \vbox (badness 1478) has occurred while \output is active
-
-LaTeX Warning: Reference `tab:o5' on page 4 undefined on input line 53.
-
-
-LaTeX Warning: Reference `tab:robust' on page 4 undefined on input line 56.
-
-
-LaTeX Warning: Reference `tab:k' on page 4 undefined on input line 56.
-
-
+Underfull \vbox (badness 1210) has occurred while \output is active [3]
+Underfull \vbox (badness 1199) has occurred while \output is active
+Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
+ated/depth_normalised.pdf>]
 Underfull \hbox (badness 2027) in paragraph at lines 56--57
  []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
  (+20) The 8,000
 
-Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
-ated/depth_normalised.pdf>]
-
-LaTeX Warning: Reference `tab:alpha' on page 5 undefined on input line 60.
-
-
-LaTeX Warning: Reference `tab:student' on page 5 undefined on input line 62.
-
-
-LaTeX Warning: Reference `tab:t512' on page 5 undefined on input line 62.
-
-[5 <./generated/o4_sweep.pdf>]
-
-LaTeX Warning: Reference `fig:tau' on page 6 undefined on input line 65.
-
-
-LaTeX Warning: Reference `tab:tau' on page 6 undefined on input line 65.
-
-
-LaTeX Warning: Reference `tab:holdout' on page 6 undefined on input line 68.
-
-
+Underfull \vbox (badness 1178) has occurred while \output is active [5 <./gener
+ated/o4_sweep.pdf>]
 Underfull \hbox (badness 1365) in paragraph at lines 69--69
 \T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
 
-LaTeX Warning: Reference `tab:eff' on page 6 undefined on input line 71.
-
-
-LaTeX Warning: Reference `tab:t512' on page 6 undefined on input line 73.
-
-
-LaTeX Warning: Reference `tab:arms' on page 6 undefined on input line 73.
-
-
-LaTeX Warning: Reference `tab:arms' on page 6 undefined on input line 73.
-
-
-LaTeX Warning: Reference `sec:ext' on page 6 undefined on input line 79.
-
-[6] (build/Trimax-Final.bbl [7])
-
-LaTeX Warning: Reference `tab:t512' on page 8 undefined on input line 95.
-
-
-LaTeX Warning: Reference `tab:t512' on page 8 undefined on input line 95.
-
+Underfull \vbox (badness 10000) has occurred while \output is active [6]
+Underfull \vbox (badness 10000) has occurred while \output is active [7]
+(build/Trimax-Final.bbl)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
+[8 <./generated/p4_offsets.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 135--139
 \T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
-)
-
-Package natbib Warning: There were undefined citations.
-
-[8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10] [11 <../.
-./results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heat
-map_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float32-t1.3354
--mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results/figures/
-stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png> <../../
-results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch_length_d
-istribution.png>] (build/Trimax-Final.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
+) [9 <./generated/tau_sweep.pdf>] [10] [11 <../../results/figures/stream_a/swa5
+12-float32-t1.3354-mplnone-91aa6b8e/entropy_heatmap_py_07fbe9f688ef.png> <../..
+/results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heatm
+ap_cpp_11562d1c691d.png> <../../results/figures/stream_a/swa512-float32-t1.3354
+-mplnone-91aa6b8e/entropy_heatmap_prose_c902d442d456.png> <../../results/figure
+s/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png> <../.
+./results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch_length
+_distribution.png>] (build/Trimax-Final.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
@@ -315,7 +176,7 @@ e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 802364 bytes).
+Output written on build/Trimax-Final.pdf (11 pages, 990419 bytes).
 Transcript written on build/Trimax-Final.log.
 This is BibTeX, Version 0.99d (TeX Live 2023)
 The top-level auxiliary file: build/Trimax-Final.aux
@@ -437,34 +298,51 @@ mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
 vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
 ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
-usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] [3]
-Underfull \vbox (badness 1478) has occurred while \output is active
+usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Underfull \hbox (badness 1715) in paragraph at lines 20--21
+ []\T1/ptm/b/n/10.95 (+20) Data and check-point.[] \T1/ptm/m/n/10.95 (+20) The 
+frozen man-i-fest
+
+Underfull \hbox (badness 1062) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) has 16,300 sam-ples: 8,000 Python func-tions
+
+Underfull \hbox (badness 1867) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) C++ files from The Stack ([][]Ko-cetkov et al.[][],
+
+Underfull \hbox (badness 1590) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) ([][]Mer-ity et al.[][], [][]2017[][]), all re-stored a
+nd hash-
+[2]
+Underfull \vbox (badness 1210) has occurred while \output is active [3]
+Underfull \vbox (badness 1199) has occurred while \output is active
 Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
 ated/depth_normalised.pdf>]
 Underfull \hbox (badness 2027) in paragraph at lines 56--57
  []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
  (+20) The 8,000
 
-Underfull \vbox (badness 10000) has occurred while \output is active [5 <./gene
-rated/o4_sweep.pdf>]
+Underfull \vbox (badness 1178) has occurred while \output is active [5 <./gener
+ated/o4_sweep.pdf>]
 Underfull \hbox (badness 1365) in paragraph at lines 69--69
 \T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
 
-Underfull \vbox (badness 5288) has occurred while \output is active [6]
-(build/Trimax-Final.bbl [7])
+Underfull \vbox (badness 10000) has occurred while \output is active [6]
+Underfull \vbox (badness 10000) has occurred while \output is active [7]
+(build/Trimax-Final.bbl)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
+[8 <./generated/p4_offsets.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 135--139
 \T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
-) [8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10]
-[11 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/ent
-ropy_heatmap_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float3
-2-t1.3354-mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results
-/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png
-> <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch
-_length_distribution.png>] (build/Trimax-Final.aux) )
+) [9 <./generated/tau_sweep.pdf>] [10] [11 <../../results/figures/stream_a/swa5
+12-float32-t1.3354-mplnone-91aa6b8e/entropy_heatmap_py_07fbe9f688ef.png> <../..
+/results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heatm
+ap_cpp_11562d1c691d.png> <../../results/figures/stream_a/swa512-float32-t1.3354
+-mplnone-91aa6b8e/entropy_heatmap_prose_c902d442d456.png> <../../results/figure
+s/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png> <../.
+./results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch_length
+_distribution.png>] (build/Trimax-Final.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
@@ -482,7 +360,7 @@ e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 804879 bytes).
+Output written on build/Trimax-Final.pdf (11 pages, 990419 bytes).
 Transcript written on build/Trimax-Final.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -600,34 +478,51 @@ mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
 vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
 ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
-usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] [3]
-Underfull \vbox (badness 1478) has occurred while \output is active
+usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+Underfull \hbox (badness 1715) in paragraph at lines 20--21
+ []\T1/ptm/b/n/10.95 (+20) Data and check-point.[] \T1/ptm/m/n/10.95 (+20) The 
+frozen man-i-fest
+
+Underfull \hbox (badness 1062) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) has 16,300 sam-ples: 8,000 Python func-tions
+
+Underfull \hbox (badness 1867) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) C++ files from The Stack ([][]Ko-cetkov et al.[][],
+
+Underfull \hbox (badness 1590) in paragraph at lines 20--21
+\T1/ptm/m/n/10.95 (+20) ([][]Mer-ity et al.[][], [][]2017[][]), all re-stored a
+nd hash-
+[2]
+Underfull \vbox (badness 1210) has occurred while \output is active [3]
+Underfull \vbox (badness 1199) has occurred while \output is active
 Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
 ated/depth_normalised.pdf>]
 Underfull \hbox (badness 2027) in paragraph at lines 56--57
  []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
  (+20) The 8,000
 
-Underfull \vbox (badness 10000) has occurred while \output is active [5 <./gene
-rated/o4_sweep.pdf>]
+Underfull \vbox (badness 1178) has occurred while \output is active [5 <./gener
+ated/o4_sweep.pdf>]
 Underfull \hbox (badness 1365) in paragraph at lines 69--69
 \T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
 
-Underfull \vbox (badness 5288) has occurred while \output is active [6]
-(build/Trimax-Final.bbl [7])
+Underfull \vbox (badness 10000) has occurred while \output is active [6]
+Underfull \vbox (badness 10000) has occurred while \output is active [7]
+(build/Trimax-Final.bbl)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
+[8 <./generated/p4_offsets.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 135--139
 \T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
-) [8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10]
-[11 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/ent
-ropy_heatmap_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float3
-2-t1.3354-mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results
-/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png
-> <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch
-_length_distribution.png>] (build/Trimax-Final.aux) )
+) [9 <./generated/tau_sweep.pdf>] [10] [11 <../../results/figures/stream_a/swa5
+12-float32-t1.3354-mplnone-91aa6b8e/entropy_heatmap_py_07fbe9f688ef.png> <../..
+/results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heatm
+ap_cpp_11562d1c691d.png> <../../results/figures/stream_a/swa512-float32-t1.3354
+-mplnone-91aa6b8e/entropy_heatmap_prose_c902d442d456.png> <../../results/figure
+s/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png> <../.
+./results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch_length
+_distribution.png>] (build/Trimax-Final.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
@@ -645,5 +540,5 @@ e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 804879 bytes).
+Output written on build/Trimax-Final.pdf (11 pages, 990419 bytes).
 Transcript written on build/Trimax-Final.log.

@@ -164,6 +164,12 @@ limitation. The purpose is **confound isolation**, never semantic risk understan
 
 ## Remaining decisions / scope limits
 
+**Status 30 Oct 2026.** All four are now resolved; the items below are kept as written before the final run.
+(1) B supplied the O5 region labels and safe units; they were audited in `docs/O5_LABEL_AUDIT.md`.
+(2) The whitespace and word-start baselines, P3 and P4 are in the frozen run `results/final/c-v1-2721954/`, and the fidelity gates are signed off in `docs/STREAM_A_FIDELITY.md`.
+(3) Unexamined English data was acquired: the pre-registered holdout (`corpus_ext/holdout_manifest.parquet`) was scored once (job 46763).
+(4) Python repository grouping was recovered for 315 repositories, and a repository-clustered bootstrap is reported in the final report.
+
 - B's analysis-region sampling rule and identifier/unsafe annotations are needed
   for real O5. C cannot invent these labels or comparable safe units.
 - The proposal's full H1 claim also needs its whitespace/word controls, P3/P4 and

@@ -1,5 +1,16 @@
 # ESCAPE: Remaining Work and Implementation Handoff
 
+> **Status 30 Oct 2026 (evening).** Everything below that does not depend on missing material is done:
+> - P0 text corrections are in the report; the page count was measured with no filler added (11 pages, References on page 8, so the body is 7 pages). No course rule other than the mid-submission's "8 pages excluding references" was found.
+> - The optional arms are done: hf_full, the byte-balanced student, STEP 9 adaptation (verdict not met) and the decision not to build a parser teacher (`docs/PARSER_TEACHER_DECISION.md`). More permutations are running as a sensitivity check (jobs 48197 / 48198).
+> - The team decisions were made by the user on 30 Oct:
+>   - the AI files moved to `docs/ai_assisted/` and labelled;
+>   - the stale branch deleted;
+>   - the history rewrite declined;
+>   - Ada logs committed;
+>   - committed and tagged `v1.0-final` and pushed.
+> - Still blocked: the reviewer amendment list and `reports/AUDIT_TEACHER_STUDENT_FILES.md` (M7). See `plan.md` for the per-item record.
+
 **Purpose:** turn the open items in `plan.md` and the proposal/report comparison into concrete tasks. This file is a handoff for whoever implements or reviews the remaining work.
 
 **Status basis:** current repository notes, especially `plan.md`, plus the final report source under `reports/final_submission/`. The plan says the report, slides, and `Trimax-Final.zip` are built. Confirm the live Git status before changing files; do not assume the working tree is clean.
@@ -35,15 +46,15 @@ Rebuild and inspect the report PDF after editing.
 
 ### 3. Confirm the page-count rule
 
-The current report is noted as 11 pages total, with References starting on page 7. The repository checker allows up to 8 pages before References; that means six pages precede References in the current PDF. Find the course rubric or submission instructions and determine whether it requires a 7-page minimum for the body. If no such rule is available, report the measured page count to the team and do not add filler.
+The current report is noted as 11 pages total, with References starting on page 7 (page 8 after the 30 Oct additions). The repository checker allows up to 8 pages before References; that means six pages precede References in the current PDF. Find the course rubric or submission instructions and determine whether it requires a 7-page minimum for the body. If no such rule is available, report the measured page count to the team and do not add filler.
 
 ## Priority 0: package freeze
 
-- [ ] Confirm final report and slide sources/PDFs are present and included in the archive.
-- [ ] Rebuild report after approved edits: `bash reports/final_submission/build.sh`.
-- [ ] Inspect `scripts/package_final.sh`, then use its documented invocation to rebuild `Trimax-Final.zip`.
-- [ ] Run `python3 reports/final_submission/check_final.py` and an archive integrity check. Confirm the ZIP contains the updated report PDF and source.
-- [ ] Review `git status` and the exact staged file list with the team. Commit and tag only after the team approves the freeze. No history rewrite after tagging.
+- [x] Confirm final report and slide sources/PDFs are present and included in the archive.
+- [x] Rebuild report after approved edits: `bash reports/final_submission/build.sh`.
+- [x] Inspect `scripts/package_final.sh`, then use its documented invocation to rebuild `Trimax-Final.zip`.
+- [x] Run `python3 reports/final_submission/check_final.py` and an archive integrity check. Confirm the ZIP contains the updated report PDF and source.
+- [x] Review `git status` and the exact staged file list with the team. Commit and tag only after the team approves the freeze. No history rewrite after tagging.
 
 ## Blocked on missing material
 
@@ -53,7 +64,7 @@ The current report is noted as 11 pages total, with References starting on page 
 
 ### Teacher/student audit file and M7 corrections
 
-`reports/AUDIT_TEACHER_STUDENT_FILES.md` is reported missing locally and on Ada. Obtain it from its author/team. Use its M7 evidence to correct the two cited statements in `AUDIT_REPORT_2.md` and `reports/ESCAPE_STUDENT_CV1_EVALUATION.md`, then link the correction to the audit item. Do not guess what M7 says. The requested commit/share of that audit file is blocked until the file is recovered.
+`reports/AUDIT_TEACHER_STUDENT_FILES.md` is reported missing locally and on Ada. Obtain it from its author/team. Use its M7 evidence to correct the two cited statements in `docs/ai_assisted/AUDIT_REPORT_2.md` (moved 30 Oct) and `reports/ESCAPE_STUDENT_CV1_EVALUATION.md`, then link the correction to the audit item. Do not guess what M7 says. The requested commit/share of that audit file is blocked until the file is recovered.
 
 ## Team decisions / Git operations
 
@@ -77,11 +88,11 @@ These are not blockers for the current submission if the report accurately state
 
 ## Verification checklist after report edits
 
-- [ ] `bash reports/final_submission/build.sh` exits successfully.
-- [ ] `python3 reports/final_submission/check_final.py` passes.
-- [ ] Extracted PDF text contains the tokenizer limitation and corrected density wording; no unresolved `??` or `MISSING` markers.
-- [ ] Record total pages and References start page; compare them with the actual course rule.
-- [ ] Rebuild `Trimax-Final.zip`; verify archive integrity and confirm it contains the current PDFs and sources.
-- [ ] Review `git status` and diff; ensure no results, data, or unrelated files changed.
-- [ ] Run the project test suite if code changed. The latest audit reported 187 passing tests; report the actual command and result for any new run.
-- [ ] Commit/tag only after team review and confirmation of the blocked inputs and repository decisions.
+- [x] `bash reports/final_submission/build.sh` exits successfully.
+- [x] `python3 reports/final_submission/check_final.py` passes.
+- [x] Extracted PDF text contains the tokenizer limitation and corrected density wording; no unresolved `??` or `MISSING` markers.
+- [x] Record total pages and References start page; compare them with the actual course rule.
+- [x] Rebuild `Trimax-Final.zip`; verify archive integrity and confirm it contains the current PDFs and sources.
+- [x] Review `git status` and diff; ensure no results, data, or unrelated files changed.
+- [x] Run the project test suite if code changed. The latest audit reported 187 passing tests; report the actual command and result for any new run.
+- [x] Commit/tag only after team review and confirmation of the blocked inputs and repository decisions.

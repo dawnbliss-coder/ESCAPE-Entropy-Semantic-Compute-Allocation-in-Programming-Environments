@@ -123,7 +123,7 @@ The full protocol is in [`docs/SCORING_PROTOCOL.md`](docs/SCORING_PROTOCOL.md), 
 (cd results/final/c-v1-2721954 && sha256sum -c SHA256SUMS --ignore-missing)
 ```
 
-`--ignore-missing` skips the two O5 design matrices (77 MB each). They're excluded from git and regenerated with `python -m escape_scoring o5`.
+`--ignore-missing` skips three regenerable files that are excluded from git: the two O5 design matrices (77 MB each, `python -m escape_scoring o5`) and `bpp_summary.parquet` (`python -m stream_a.build_bpp_summary`). The other 17 checksums must pass.
 
 **2. Run the scorer tests** (seconds). These include an exact reproduction of a reference scoring run.
 
@@ -135,7 +135,7 @@ python3.12 -m venv .venv_c && .venv_c/bin/pip install -r escape_scoring/requirem
 .venv_c/bin/python -m pytest tests/scoring_v1 -q
 ```
 
-**3. Re-run everything from scratch** on IIIT-H Ada (SLURM; a few hours with 4 × RTX 2080 Ti):
+**3. Re-run the frozen teacher run from scratch** on IIIT-H Ada (SLURM; a few hours with 4 × RTX 2080 Ti):
 
 ```bash
 bash scripts/ada_final/sync_to_ada.sh                       # laptop → new Ada directory
@@ -143,7 +143,16 @@ ssh ada 'cd ~/escape-final-20260928 && bash scripts/ada_final/submit_all.sh'
 bash scripts/ada_final/fetch_from_ada.sh                    # results back to the laptop
 ```
 
-[`docs/FINAL_RUN.md`](docs/FINAL_RUN.md) walks through every job, including span IoU (`40_iou`) and O4 (`50–52_o4_*`). Restoring the C++ corpus needs a Hugging Face account that has accepted the [`bigcode/the-stack-smol`](https://huggingface.co/datasets/bigcode/the-stack-smol) terms. Raw corpora, model weights and per-byte arrays are regenerated, not stored in git.
+[`docs/FINAL_RUN.md`](docs/FINAL_RUN.md) walks through jobs `00`–`30`. Span IoU (`40_iou.sbatch`) and O4 (`50`–`52_o4_*.sbatch`) run afterwards with `RUN_DIR=results/final/c-v1-<job>` (see each script's header). The extension and the final-submission analyses (student extraction and scoring, τ sweeps, English holdout, follow-up arms) have their own runbook, [`docs/ADA_FULL_RUN_SEQUENCE.md`](docs/ADA_FULL_RUN_SEQUENCE.md), with scripts in `scripts/ada_distill/` and `scripts/final_analysis/`; every job id is in `results/final/logs/full_run_jobs.txt` and its log next to it. Restoring the C++ corpus needs a Hugging Face account that has accepted the [`bigcode/the-stack-smol`](https://huggingface.co/datasets/bigcode/the-stack-smol) terms. Raw corpora, model weights and per-byte arrays are regenerated, not stored in git.
+
+**4. Patch your own files** (proposal deliverable 1; CPU is fine for small files):
+
+```bash
+python -m stream_a.fetch_patcher                                  # once: download and verify the patcher
+python -m stream_a.patch_files path/to/file.py --out patches/ --show
+```
+
+It writes per-byte entropies, the boundary table and BPP/entropy statistics for each file, with the same settings as the frozen run (swa512, float32, τ = 1.3354), and `--show` prints the file with `|` at every patch start.
 
 ## Repository layout
 
@@ -171,9 +180,9 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 
 | Member           | Main work                                                                                                                                                                                                        |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Priyanka Agarwal | **Stream B:** data contract, corpus construction (CodeSearchNet, The Stack, WikiText-103), tree-sitter and benepar parsing with byte-offset validation, whitespace baselines, P4 taxonomy, golden fixtures |
-| Shashwat Mukadam | **Stream A:** BLT patcher pipeline, checkpoint-fidelity gates and the sliding-window fix, resumable extraction; first exploratory scorer                                                                   |
-| Divyansh Atri    | **Stream C:** frozen scoring protocol and scorer, calibration and null, baselines, IoU, O4/O5 analyses, the Ada pipeline, and the report build                                                             |
+| Priyanka Agarwal | **Stream B:** data contract, corpus construction (CodeSearchNet, The Stack, WikiText-103), tree-sitter and benepar parsing with byte-offset validation, whitespace baselines, P4 taxonomy, golden fixtures; **extension:** the disjoint distillation-corpus builder and manifest |
+| Shashwat Mukadam | **Stream A:** BLT patcher pipeline, checkpoint-fidelity gates and the sliding-window fix, resumable extraction; first exploratory scorer; **extension:** golden-fixture student evaluation and the Ada full-run tooling (student extractor, τ re-thresholder, k = 0 scorer) |
+| Divyansh Atri    | **Stream C:** frozen scoring protocol and scorer, calibration and null, baselines, IoU, O4/O5 analyses, the Ada pipeline, and the report build; **extension and final submission:** teacher-student distillation and its reproduction, the full Ada run (student scoring, τ sweeps, holdout, follow-up arms), the final analyses, report and slides |
 
 ## Limitations
 

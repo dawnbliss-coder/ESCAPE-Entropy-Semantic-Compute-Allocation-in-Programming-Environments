@@ -1,8 +1,6 @@
 # ACL mid-submission report
 
-Submit **Trimax-Mid-Submission.pdf**, the named Team Trimax report. It contains the completed real-data C-v1 analysis from `results/final/c-v1-2721954/`. The anonymous `-review.pdf` is an alternative for blind review only.
-
-`Trimax-Mid-Submission-source.zip` is a self-contained LaTeX/Overleaf package. Set `Trimax-Mid-Submission.tex` as the main document and select pdfLaTeX. The official ACL style and bibliography style are included.
+The submitted mid report is `reports/Trimax-Mid-Report.pdf` (8 pages, references on page 8). The named and anonymous build outputs (`Trimax-Mid-Submission.pdf`, `-review.pdf`) and the Overleaf source zip were retired from the repo in commit `bf7bbbd`; rebuild them from the sources here (`Trimax-Mid-Submission.tex`, `Trimax-Mid-Submission-review.tex`). The final report is in `reports/final_submission/`.
 
 ## Rebuild
 
@@ -28,7 +26,7 @@ The checker runs official ACL pubcheck on the named PDF without disabling defaul
 - `generated/results.tex`: report values and tables generated from real results.
 - `generated/evidence.json`: result provenance, input hashes, and missing-macro checks.
 - `generated/depth_margin.pdf`: depth analysis figure.
-- `evidence/acl-style-provenance.json` and `evidence/bibliography-provenance.json`: style and citation provenance.
+- `evidence/acl-style-provenance.json` and `evidence/bibliography-provenance.json`: style and citation provenance, written by `build_evidence.py` into `evidence/`, which is not kept in git.
 - `results/final/c-v1-2721954/SHA256SUMS` (repository root): checksums for retained experimental outputs.
 - `results/ada/` (repository root): earlier synthetic software validation, kept separate from the real results.
 
@@ -36,4 +34,4 @@ The result generator refuses synthetic input by default. All expected report mac
 
 ## Course requirements
 
-This is an ACL-formatted course report with a four-page body and five pages overall. The course-specific rubric was not supplied, so formatting validation does not establish compliance with its page limit or required sections.
+This is an ACL-formatted course report (the submitted version has a 7-page body and 8 pages overall). The course-specific rubric was not supplied, so formatting validation does not establish compliance with its page limit or required sections.
