@@ -1,4 +1,4 @@
-"""Full-run Steps 5-6 (docs/ADA_CLAUDE_HANDOFF.md): pick tau* from a calibration-split
+"""Full-run Steps 5-6 (docs/ADA_FULL_RUN_GATES.md): pick tau* from a calibration-split
 tau sweep written by escape_distill.score_a_runs.
 
 Pre-registered rule: per language, tau* = argmax over the grid of the median per-file

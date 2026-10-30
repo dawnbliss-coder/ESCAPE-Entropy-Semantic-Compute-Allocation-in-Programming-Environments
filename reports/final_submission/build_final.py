@@ -781,7 +781,7 @@ def _ci_digits(lo_hi):
 
 
 def new_arms():
-    """Byte-balanced student and adapted teacher (file_toimplement.md optional arms) on the
+    """Byte-balanced student and adapted teacher (Optional arms) on the
     pre-registered teacher-512 subset plus the English test split, k = 0, paired with the
     student. Adaptation verdict (STEP 9, applied on this subset): the adapted-minus-student
     paired margin difference exceeds the width of the student's own 95% F1 CI on the same

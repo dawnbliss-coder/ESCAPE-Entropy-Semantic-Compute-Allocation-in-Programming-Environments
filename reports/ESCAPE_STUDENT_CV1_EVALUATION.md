@@ -1,9 +1,9 @@
 # ESCAPE Student C-v1 Evaluation (Golden-Fixture Variant)
 
-> **Status 30 Oct 2026.** AI-generated (OpenCode), kept here because §8.6 is the pre-registered English holdout selection rule that `scripts/ada_distill/holdout_*.py` cite; the rule was used unchanged. The golden-fixture results below are superseded: the student was later scored on the full test split, swept for τ and scored on the holdout (`docs/FULL_RUN_RESULTS.md`, final report §5). Statements that the test split "could not be scored" describe 23 Oct.
+> **Status 30 Oct 2026.** Kept here because §8.6 is the pre-registered English holdout selection rule that `scripts/ada_distill/holdout_*.py` cite; the rule was used unchanged. The golden-fixture results below are superseded: the student was later scored on the full test split, swept for τ and scored on the holdout (`docs/FULL_RUN_RESULTS.md`, final report §5). Statements that the test split "could not be scored" describe 23 Oct.
 
 **Date:** 2026-10-23 · **Experiment:** `results/student_cv1_golden_v1/` (scores.json,
-config.json, run_golden_eval.py) · **Report authors:** OpenCode `escape-research` skill.
+config.json, run_golden_eval.py)
 No training was performed. No committed, frozen, or user-owned files were modified or
 overwritten; the experiment directory and this report are new, untracked files.
 

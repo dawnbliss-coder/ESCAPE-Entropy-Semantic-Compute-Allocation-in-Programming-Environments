@@ -1,5 +1,5 @@
 """Shared corpus-building logic for Stream B: pulling from the-stack-smol, dedup,
-license sanity-checking. Used by pull_and_check.py (report-only) and build_corpus.py
+license sanity-checking. Used by build_corpus.py
 (writes corpus/ + manifest.parquet).
 
 cpp-only: Python reverted to CodeSearchNet (matching proposal §6) - see
@@ -29,8 +29,8 @@ DATASET_REVISION = "4a6938ce94446f324c6629e7de00ac591710044b"
 POOL_SIZE_PER_DOMAIN = 10_000
 
 NEEDED_PER_DOMAIN = 8_000  # target corpus size per language (proposal-scale sample)
-# Empirically ~0% dropped to dedup/license at 900-sample scale (see pull_and_check.py's
-# original run), so a small buffer is enough — NOT the earlier 3x, which at N=8000 would
+# Empirically ~0% dropped to dedup/license at 900-sample scale (measured on an
+# initial 900-sample pull), so a small buffer is enough — NOT the earlier 3x, which at N=8000 would
 # ask for 24,000 and silently clamp to the entire 10,000-file pool, leaving no buffer at
 # all (the opposite of the intent).
 PULL_MULTIPLIER = 1.05

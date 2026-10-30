@@ -132,4 +132,3 @@ Trimax-Final.zip
 
 # Figures and job output referenced from the docs.
 !results/figures/*.pdf
-!results/distill/repro_39379/*.out

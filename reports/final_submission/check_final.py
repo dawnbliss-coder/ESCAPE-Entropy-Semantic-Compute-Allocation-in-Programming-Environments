@@ -26,7 +26,7 @@ def main() -> None:
     texts = [subprocess.check_output(["pdftotext", "-f", str(p), "-l", str(p), "-layout", str(PDF), "-"], text=True)
              for p in range(1, pages + 1)]
     # Two-column layout: the heading may share its line with the right column's first entry.
-    references_page = next(i + 1 for i, t in enumerate(texts) if re.search(r"^\s*References(\s{3,}|\s*$)", t, re.M))
+    references_page = next(i + 1 for i, t in enumerate(texts) if re.search(r"^\s*References(\s{3,}|\s*$)|\S\s{3,}References\s*$", t, re.M))
     body_pages = references_page - 1 + (0 if texts[references_page - 1].split("References")[0].strip() == "" else 1)
     assert references_page <= 9, f"References start on page {references_page}; the body exceeds 8 pages"
     text = "\n".join(texts)

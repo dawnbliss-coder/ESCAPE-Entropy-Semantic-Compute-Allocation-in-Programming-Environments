@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Steps 5/6, second half (docs/ADA_CLAUDE_HANDOFF.md): the ONE confirmatory
+# Full-run Steps 5/6, second half (docs/ADA_FULL_RUN_GATES.md): the ONE confirmatory
 # test-split run at the pre-registered tau*. tau* is read from the reviewed record
 # results/final/${MODEL}_tau_star.json (never typed by hand); the job refuses to run if
 # the two comparators disagree. Different tau* per language -> one run per language.

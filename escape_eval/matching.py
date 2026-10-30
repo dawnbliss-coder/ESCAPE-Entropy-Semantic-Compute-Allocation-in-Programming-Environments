@@ -25,7 +25,7 @@ per H0 resample, or a single row for BLT or whitespace). Each call returns
     per stratum with np.add.reduceat over targets grouped by stratum.
 
 The test-suite checks these counts exactly against the naive pure-Python
-reference in tests/test_eval_reference.py.
+reference in tests/test_eval_matching.py.
 """
 
 from __future__ import annotations

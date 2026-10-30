@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 7 (docs/ADA_CLAUDE_HANDOFF.md): English holdout bytes + benepar structure.
+# Full-run Step 7 (docs/ADA_FULL_RUN_GATES.md): English holdout bytes + benepar structure.
 # DATA ONLY: no boundary scores are computed. Needs .venv_b from 00_setup.
 #SBATCH --job-name=esc-holdout
 #SBATCH --account=research

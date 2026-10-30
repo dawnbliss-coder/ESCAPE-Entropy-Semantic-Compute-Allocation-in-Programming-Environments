@@ -1,4 +1,4 @@
-"""Student vs teacher efficiency table (plan.md section 3): GPU time, memory, tokens/s.
+"""Student vs teacher efficiency table: GPU time, memory, tokens/s.
 
 Two measurements on one GPU, same process, same inputs:
   forward   one forward pass over B x 513 tokens ([BOS] + 512 bytes, the training window)

@@ -1,6 +1,6 @@
-# Ada Handoff — Finish All ESCAPE Full Runs
+# Ada Full-Run Gates — Finish All ESCAPE Full Runs
 
-You are on the **IIIT-H Ada cluster**. Your job: execute the complete, pre-registered
+Run on the **IIIT-H Ada cluster**. Execute the complete, pre-registered
 ESCAPE full-run sequence (student C-v1 scoring, teacher-512 control, τ sweep +
 confirmatory, English holdout, O5 audit, optional domain adaptation), **in order, with
 every gate checked, and report every number back with its source file**. The scientific
@@ -37,7 +37,7 @@ The frozen teacher A-format artifacts `entropies/swa512-float32-t1.3354-mplnone-
 and `boundaries/swa512-float32-t1.3354-mplnone-91aa6b8e/` must exist for all 16,300 files —
 verify before Step 5 (τ sweep needs them).
 
-Tools you will use (all committed on main):
+Tools used (all committed on main):
 - `python -m escape_distill.extract` — student / teacher-512 extraction in Stream-A format
   (stride-1 rolling 512-byte windows; batch 64 on GPU; resumable: skips done files).
 - `python -m escape_distill.retau` — re-threshold saved entropy arrays into a new run_id (no model runs).
@@ -300,7 +300,7 @@ Pre-registered verdict: pursue adaptation only if its C-v1 margin over the null 
 student's by more than the bootstrap CI width in ≥2 domains. A negative result is reported
 as-is. Never overwrite the frozen checkpoint file.
 
-## 10. Report back (the deliverable)
+## 10. Report (the deliverable)
 
 Collect into the repo (commit them; do NOT touch `results/final/c-v1-2721954/`):
 `results/final/student-v1-eval/`, `student-v1-baselines.json`, `student-v1-calibration.json`,
@@ -319,5 +319,5 @@ Collect into the repo (commit them; do NOT touch `results/final/c-v1-2721954/`):
   `escape_scoring/`, `schemas/v1/`, or `runs.json` entries that already exist (new run_ids only).
 - Teacher's frozen k=0 is never applied to student data via the CLI (the scorer rejects it
   by design); the student gets its own calibration record.
-- No fabricated numbers: every reported value must come from a file you wrote.
+- No fabricated numbers: every reported value must come from a file the run wrote.
 - If a step fails a gate, STOP, fix, and re-run that step — do not continue.

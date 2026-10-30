@@ -1,4 +1,4 @@
-"""File ids for the post-submission arms (file_toimplement.md, optional extensions).
+"""File ids for the post-submission arms (optional extensions).
 
   subset   the pre-registered teacher-512 control subset (300 Python + 300 C++ test files,
            600-2,000 bytes; results/final/teacher512_subset_{python,cpp}.txt) plus every

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Steps 5/6 (docs/ADA_CLAUDE_HANDOFF.md), CALIBRATION split only: re-threshold
+# Full-run Steps 5/6 (docs/ADA_FULL_RUN_GATES.md), CALIBRATION split only: re-threshold
 # the saved entropies at each grid tau, score the six runs at k=0 with the fixed-EOF null
 # (10,000 permutations), and apply the pre-registered tau* rule. No test file is touched;
 # the single confirmatory test run is submitted separately once the tau* record is reviewed.

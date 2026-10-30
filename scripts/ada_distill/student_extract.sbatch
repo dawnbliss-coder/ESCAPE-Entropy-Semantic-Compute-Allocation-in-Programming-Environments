@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 2 (docs/ADA_CLAUDE_HANDOFF.md): student entropies + boundaries for every
+# Full-run Step 2 (docs/ADA_FULL_RUN_GATES.md): student entropies + boundaries for every
 # restored corpus file in Stream-A format, 4 byte-balanced shards. Resumable: rerun the
 # array if a shard dies. Resources differ from the handoff, never outputs: u22 charges
 # max(cpus, mem/3000M) CPUs and medium QoS caps a user at 40 CPUs, so 4 CPUs / 12000M

@@ -1,5 +1,5 @@
 #!/bin/bash
-# plan.md section 3 (P2): the alpha = 1 control. Same data, architecture, seed and schedule
+# The alpha = 1 control. Same data, architecture, seed and schedule
 # as the distilled student (run_all.sbatch), but the loss is hard-label CE only (no teacher
 # KL), so the comparison isolates what distillation adds. Both students are evaluated on
 # the SAME held-out val windows against the teacher in this job.

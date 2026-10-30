@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 8 (docs/ADA_CLAUDE_HANDOFF.md): O5 label audit (CPU, no training, no
+# Full-run Step 8 (docs/ADA_FULL_RUN_GATES.md): O5 label audit (CPU, no training, no
 # scoring). Needs the restored C++ corpus (10_data) and .venv_b (tree_sitter).
 #SBATCH --job-name=esc-o5-audit
 #SBATCH --account=research

@@ -1,5 +1,5 @@
 #!/bin/bash
-# file_toimplement.md (optional, P2): byte-balanced distillation. Same data, architecture, seed,
+# Optional: byte-balanced distillation. Same data, architecture, seed,
 # loss and schedule as the distilled student (results/distill/full, 6,860 steps), but windows are
 # drawn so every domain gets an equal expected byte share (C++ is 73% of the unbalanced bytes).
 # Then (1) both students on the same held-out val windows against the teacher, and (2) rolling

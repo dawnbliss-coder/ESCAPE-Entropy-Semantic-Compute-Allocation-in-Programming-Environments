@@ -1,5 +1,5 @@
 #!/bin/bash
-# Objective 4 rate sweep (plan.md section 2): the same 1,000 held-out files per code
+# Objective 4 rate sweep: the same 1,000 held-out files per code
 # language as the frozen O4 build, every noise type at several rates, scored with the
 # unchanged escape_scoring.o4 (1,000 null permutations, paired bootstrap vs clean).
 #   STAGE=build    CPU: stream_b/build_o4_perturbations.py --out o4_sweep

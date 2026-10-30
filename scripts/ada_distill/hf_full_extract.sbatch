@@ -1,5 +1,5 @@
 #!/bin/bash
-# file_toimplement.md (optional, P2): hf_full alignment sensitivity. Native HF full causal
+# Optional: hf_full alignment sensitivity. Native HF full causal
 # attention (docs/STREAM_A_FIDELITY.md: not faithful beyond 512 tokens, sensitivity only) on the
 # test-split files of scripts/ada_distill/newarm_ids.py hf_full (all Python and English, C++
 # under 8,192 bytes). Scored k=0 against the primary swa512 run by newarms_score.sbatch PART=hf_full.

@@ -21,7 +21,7 @@ RNG: every file has its own streams,
 file_key = int.from_bytes(sha256(file_id)[:8], "little"). Results are therefore
 independent of file processing order. Resample r of a file is identical however
 the R resamples are chunked: Generator.permuted and Generator.random consume
-their streams row by row (checked in tests/test_eval_baselines.py).
+their streams row by row (checked in tests/test_eval_targets_baselines.py).
 
 Whitespace baseline: W_f = unique byte_offset of kind == 'newline' rows
 (stream_b/whitespace_extractor.py) minus X_f. It is not density matched.

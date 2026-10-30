@@ -1,5 +1,5 @@
 #!/bin/bash
-# file_toimplement.md optional item "more permutations": re-score with 10x the null draws, as a
+# Optional item "more permutations": re-score with 10x the null draws, as a
 # sensitivity check only. Frozen outputs are not touched; results go to results/final/analysis/.
 #   PART=o4   escape_scoring.o4 on the O4 rate-sweep set (includes the frozen 20%/50% rates),
 #             10,000 null permutations instead of 1,000 -> o4_rate_sweep_perm10k.json

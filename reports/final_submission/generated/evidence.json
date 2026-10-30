@@ -195,22 +195,22 @@
   },
   "bpp": {
     "cpp": {
-      "mean_bpp": 7.859530916796882,
+      "mean_bpp": 7.859530916796851,
       "mean_within_file_bpp_variance": 527.8156793893581,
       "n_files": 6400,
-      "sd_file_mean_bpp": 3.1022461822599996
+      "sd_file_mean_bpp": 3.102246182259997
     },
     "english": {
-      "mean_bpp": 3.770150326380495,
-      "mean_within_file_bpp_variance": 10.326163892419059,
+      "mean_bpp": 3.7701503263804943,
+      "mean_within_file_bpp_variance": 10.32616389241906,
       "n_files": 240,
-      "sd_file_mean_bpp": 0.5172572867216263
+      "sd_file_mean_bpp": 0.5172572867216262
     },
     "python": {
-      "mean_bpp": 5.679301972062728,
-      "mean_within_file_bpp_variance": 69.43231676094196,
+      "mean_bpp": 5.679301972062732,
+      "mean_within_file_bpp_variance": 69.43231676094182,
       "n_files": 6400,
-      "sd_file_mean_bpp": 1.6051568589079395
+      "sd_file_mean_bpp": 1.6051568589079397
     }
   },
   "extraction_event_log": {
@@ -21849,8 +21849,8 @@
   "p4": {
     "cpp": {
       "mean_recall_margin": {
-        "deterministic_opener": 0.6905974764772341,
-        "open_ended": 0.45074476121306434
+        "deterministic_opener": 0.6905974764772342,
+        "open_ended": 0.4507447612130642
       },
       "n_types": {
         "deterministic_opener": 4,
@@ -21859,7 +21859,7 @@
     },
     "python": {
       "mean_recall_margin": {
-        "deterministic_opener": 0.7587260434459043,
+        "deterministic_opener": 0.7587260434459044,
         "open_ended": 0.6114130737393653
       },
       "n_types": {

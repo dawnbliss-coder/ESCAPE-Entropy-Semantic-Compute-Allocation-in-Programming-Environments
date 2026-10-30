@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 3 (docs/ADA_CLAUDE_HANDOFF.md): student C-v1 scoring with the student's
+# Full-run Step 3 (docs/ADA_FULL_RUN_GATES.md): student C-v1 scoring with the student's
 # own calibration record (never the teacher's frozen one). Starts with the Step 2
 # completion gate (zero missing files).
 #SBATCH --job-name=esc-student-score

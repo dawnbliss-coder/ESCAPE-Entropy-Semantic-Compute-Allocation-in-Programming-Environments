@@ -71,7 +71,7 @@ tau_confirm_student_cli_cpp_alt 47053
 tau_confirm_student_cli_cpp 47054
 # 2026-10-29 22:32:12 nodes > 060 had no room for a 66 GB CPU-only job; cancelled 47044/47053 (pending) and resubmitted on any healthy node, 8 workers / 118 GB, fresh convert
 # 2026-10-30 00:54:22 47054 COMPLETED on gnode027 (2:16:38, MaxRSS 114.5 GiB at 8 workers): student-tau-STAR-cpp scored once; all student tau* runs done
-# 2026-10-30 04:25:23 file_toimplement.md optional arms (user: use the higher-numbered GPU nodes for training): nodes > 060 only
+# 2026-10-30 04:25:23 Optional arms (user: use the higher-numbered GPU nodes for training): nodes > 060 only
 adapt_teacher 47445
 balanced_control 47446
 hf_full_extract 47447

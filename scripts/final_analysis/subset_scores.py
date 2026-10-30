@@ -7,7 +7,7 @@ Exact identities used (no model or null is re-run):
   the null F1 mean is 2*sum(E[T]) / sum(P+G) -- the same quantity the frozen scorer
   reports -- and the margin's file bootstrap is the frozen scorer's paired bootstrap.
 
-Analyses (plan.md section 2):
+Analyses:
   cpp_parse      C++ files with tree-sitter error recovery (parse_ok False) vs clean parses
   long_files     files over 8,191 bytes (chunk-reset positions with truncated context) vs the rest
   py_repo_boot   Python margin CI from a repository-clustered bootstrap (resample GitHub

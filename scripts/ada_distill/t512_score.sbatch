@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 4 (docs/ADA_CLAUDE_HANDOFF.md), scoring part: teacher native (swa512,
+# Full-run Step 4 (docs/ADA_FULL_RUN_GATES.md), scoring part: teacher native (swa512,
 # regenerated + verified) vs teacher-512 vs student on the pre-registered subset, k=0,
 # fixed-EOF null with 10,000 permutations.
 #SBATCH --job-name=esc-t512-score

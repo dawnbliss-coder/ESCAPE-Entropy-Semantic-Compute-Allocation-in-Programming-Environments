@@ -230,7 +230,7 @@ def main():
           "stride-1 extraction of the 99.5M model (about 400 GPU-hours) did not fit before 31 Oct. Results and the pre-registered "
           "verdict are under \"Follow-up arms\" below.", ""]
     # Final-submission analyses
-    L += ["## Final-submission analyses (plan.md §2)", ""]
+    L += ["## Final-submission analyses", ""]
     pos = j(AN / "positions_teacher.json")
     L += [f"### P4 post-keyword test and O3 depth normalisation ({job('positions_teacher')})", ""]
     if pos:
@@ -315,7 +315,7 @@ def main():
               "Sources: `results/distill/alpha1/eval_{alpha1,distilled}/distill_eval.json`.", ""]
     else:
         L += ["pending", ""]
-    # Follow-up arms (file_toimplement.md optional items), numbers from the builder's evidence
+    # Follow-up arms (Optional items), numbers from the builder's evidence
     arms, hfe = ev.get("new_arms"), ev.get("hf_full")
     L += ["## Follow-up arms (30 Oct): byte-balanced student, adapted teacher, hf_full", ""]
     if arms:
@@ -358,7 +358,7 @@ def main():
         L += ["", "Source: `results/final/analysis/hf_full_test_k0.json`.", ""]
     else:
         L += ["hf_full sensitivity: pending.", ""]
-    # More null draws (file_toimplement.md optional "more permutations"), sensitivity only
+    # More null draws (optional "more permutations"), sensitivity only
     L += ["## More null draws (sensitivity)", ""]
     o4k, o4m = j(FINAL / "analysis/o4_rate_sweep.json"), j(FINAL / "analysis/o4_rate_sweep_perm10k.json")
     iouf, ioum = j(FINAL / "c-v1-2721954/iou.json"), j(FINAL / "analysis/iou_resamples1000.json")

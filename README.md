@@ -172,7 +172,6 @@ It writes per-byte entropies, the boundary table and BPP/entropy statistics for 
 | `tests/`, `golden_fixtures/`, `examples/` | Regression tests and small fixtures                                                            |
 | `corpus/manifest.parquet`, `runs.json`      | Frozen corpus manifest (hashes, splits) and run registry                                       |
 | `docs/`                                       | Protocols, byte contract, fidelity notes, run guides, proposal, `FULL_RUN_RESULTS.md`, `O5_LABEL_AUDIT.md` |
-| `docs/ai_assisted/`                           | AI-generated audits, reviews and handoff notes (working documents, not results; see its README) |
 
 `results/ada/` holds earlier **synthetic** software-validation runs, and the `results/prose_kgrid_*` directory holds an earlier **exploratory** prose analysis. Neither contributes to the report's held-out results.
 

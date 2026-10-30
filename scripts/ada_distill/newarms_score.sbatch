@@ -1,5 +1,5 @@
 #!/bin/bash
-# file_toimplement.md optional arms, scoring (CPU): escape_distill.score_a_runs at the frozen
+# Optional arms, scoring (CPU): escape_distill.score_a_runs at the frozen
 # k = 0, fixed-EOF null with 10,000 permutations, 2,000 paired file bootstraps.
 #   PART=subset   teacher native / teacher-512 / student-v1 / byte-balanced student / adapted teacher
 #                 on the pre-registered 600-file code subset, and the same runs minus teacher-512

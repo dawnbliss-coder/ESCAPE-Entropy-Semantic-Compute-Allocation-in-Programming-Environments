@@ -1,4 +1,4 @@
-"""Full-run Step 8 (docs/ADA_CLAUDE_HANDOFF.md): audit the O5 memory-unsafe labels.
+"""Full-run Step 8 (docs/ADA_FULL_RUN_GATES.md): audit the O5 memory-unsafe labels.
 
 Reads corpus bytes and the frozen results/final/c-v1-2721954/o5/o5_regions.csv; never BLT
 outputs, never the scorer. Two parts:

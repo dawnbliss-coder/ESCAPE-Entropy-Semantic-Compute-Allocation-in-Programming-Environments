@@ -208,6 +208,27 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 \end{columns}
 \end{frame}
 
+\begin{frame}{Verdict on H1 and the proposal's deliverables}
+\begin{itemize}
+\item \textbf{Criteria from the proposal:} P1 beats both baselines, P2 holds, P3 dissociates code from prose, P4 stratification appears.
+\item \textbf{Outcome:} H1 is \hl{partly supported}.
+  \begin{itemize}
+  \item P1: beats the density-matched null everywhere, but not the whitespace and word-start baselines.
+  \item P2: holds (end margins negative).
+  \item P3: reversed in absolute margin; the ratio to the null still separates code from prose.
+  \item P4: reversed at the start byte; the mechanism holds at the bytes after the keyword.
+  \end{itemize}
+\item \textbf{Deliverables:} (1) extraction pipeline \texttt{stream\_a}; (2) tree-sitter / benepar mapping with memory-unsafe queries \texttt{stream\_b}; (3) harness with P1--P4, both baselines, permutation test, depth and type stratification \texttt{escape\_scoring}, \texttt{escape\_eval}; (4) entropy heatmaps and BPP profiles; (5) report and these slides.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limitations and future work}
+\begin{itemize}
+\item \textbf{Limitations:} third-party checkpoint with a restored window (no bitwise check against the gated original); English targets are predicted parses; O5 labels are syntactic; one student size, one seed; follow-up arms scored on a subset; no subword-tokenizer baseline for O4.
+\item \textbf{Future work:} parser-supervised teacher; subword baseline for O4; several student seeds; full-corpus scoring of the follow-up models; single-pass student kernel; bitwise comparison with the original checkpoint.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Conclusions}
 \begin{itemize}
 \item Entropy boundaries track constituent starts \hl{3--5$\times$ above chance} --- held-out, holdout, and in a distilled student.

@@ -124,7 +124,7 @@ The full model reproduces the frozen coefficient (True). The conditional effect 
 
 Trained on 30 Oct (job 47453) and scored on the pre-registered 600-file subset plus the English test split, because a full stride-1 extraction of the 99.5M model (about 400 GPU-hours) did not fit before 31 Oct. Results and the pre-registered verdict are under "Follow-up arms" below.
 
-## Final-submission analyses (plan.md §2)
+## Final-submission analyses
 
 ### P4 post-keyword test and O3 depth normalisation (job 46544)
 

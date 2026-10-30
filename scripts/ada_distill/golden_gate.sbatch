@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 1 (docs/ADA_CLAUDE_HANDOFF.md): golden gate for escape_distill.extract.
+# Full-run Step 1 (docs/ADA_FULL_RUN_GATES.md): golden gate for escape_distill.extract.
 # Exits non-zero unless the committed golden table is reproduced (F1/P/R within +-0.002),
 # so the full-corpus student extraction can be chained on it with afterok.
 #SBATCH --job-name=esc-golden-gate

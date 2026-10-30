@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Package Trimax-Final.zip (plan.md section 1): code, retained results and the final
+# Package Trimax-Final.zip: code, retained results and the final
 # report/slides. File list = tracked + untracked-not-ignored files of the working tree,
 # plus the report/slide sources, PDFs and Ada job logs that .gitignore excludes (*.tex,
 # *.pdf, *.log). Raw corpora, model checkpoints and per-byte arrays are not included;
@@ -22,7 +22,7 @@ git ls-files --cached --others --exclude-standard > "$LIST"
   find reports -maxdepth 1 -type f -name '*.pdf'
   find results/final/logs -type f
 } >> "$LIST"
-sort -u "$LIST" | grep -v -E '^(Trimax-Final\.zip|plan\.md|file_toimplement\.md)$' | while read -r f; do [[ -f "$f" ]] && echo "$f"; done > "$LIST.ok"
+sort -u "$LIST" | grep -v -E '^Trimax-Final\.zip$' | while read -r f; do [[ -f "$f" ]] && echo "$f"; done > "$LIST.ok"
 rm -f "$OUT"
 zip -q -X "$OUT" -@ < "$LIST.ok"
 rm -f "$LIST.ok"

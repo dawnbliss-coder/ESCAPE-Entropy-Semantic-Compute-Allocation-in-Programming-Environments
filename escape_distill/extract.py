@@ -7,7 +7,7 @@ Writes the same artifact layout as `stream_a/extract.py` under a new, honest run
                                           byte_offset = first byte of the patch)
 
 Context policies (pre-registered in docs/ADA_DISTILL_RUNBOOK.md; validated on the golden
-fixtures in results/student_cv1_golden_v1/ and results/tau_sweep_golden_v1/):
+fixtures in results/student_cv1_golden_v1/):
 
   rolling    (default, primary)  stride-1 fresh windows: byte i is predicted from
              [BOS] + (last min(i,512) bytes) with absolute RoPE positions 0..min(i,512).

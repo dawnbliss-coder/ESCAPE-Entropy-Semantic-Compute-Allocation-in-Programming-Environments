@@ -1,4 +1,4 @@
-"""Full-run Step 7 (docs/ADA_CLAUDE_HANDOFF.md): English holdout materialization.
+"""Full-run Step 7 (docs/ADA_FULL_RUN_GATES.md): English holdout materialization.
 
 DATA ONLY: nothing here computes or reads a boundary score. The holdout is not scored
 until team sign-off (pre-registration: reports/ESCAPE_STUDENT_CV1_EVALUATION.md 8.6).

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full-run Step 4 (docs/ADA_CLAUDE_HANDOFF.md), GPU part: teacher with fresh 512-byte
+# Full-run Step 4 (docs/ADA_FULL_RUN_GATES.md), GPU part: teacher with fresh 512-byte
 # stride-1 windows (run teacher-512-ctl) on the pre-registered 600-file subset
 # (results/final/teacher512_subset_{python,cpp}.txt, fixed before any scoring).
 #SBATCH --job-name=esc-t512-extract
