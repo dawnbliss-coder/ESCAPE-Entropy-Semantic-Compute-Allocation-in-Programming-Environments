@@ -358,6 +358,39 @@ def main():
         L += ["", "Source: `results/final/analysis/hf_full_test_k0.json`.", ""]
     else:
         L += ["hf_full sensitivity: pending.", ""]
+    # More null draws (file_toimplement.md optional "more permutations"), sensitivity only
+    L += ["## More null draws (sensitivity)", ""]
+    o4k, o4m = j(FINAL / "analysis/o4_rate_sweep.json"), j(FINAL / "analysis/o4_rate_sweep_perm10k.json")
+    iouf, ioum = j(FINAL / "c-v1-2721954/iou.json"), j(FINAL / "analysis/iou_resamples1000.json")
+    if o4k and o4m:
+        a = {(r["language"], r["condition"]): r for r in o4k["rows"]}
+        b = {(r["language"], r["condition"]): r for r in o4m["rows"]}
+        L += [f"O4 rate sweep (job {jobs.get('more_perms_o4', '?')}): {o4k['permutations']:,} vs {o4m['permutations']:,} null permutations, "
+              f"same files and conditions. The observed F1 does not depend on the null; only the null mean and hence the margin can move.", "",
+              "| Language | Conditions | Max abs change in margin | Clean margin (1k → 10k) | Smallest noised margin (1k → 10k) |",
+              "|---|---:|---:|---|---|"]
+        for lang in sorted({k[0] for k in a}):
+            keys = [k for k in a if k[0] == lang and k in b]
+            dm = max(abs(a[k]["f1_margin"] - b[k]["f1_margin"]) for k in keys)
+            noised = [k for k in keys if k[1] != "clean"]
+            lo_a = min(noised, key=lambda k: a[k]["f1_margin"])
+            lo_b = min(noised, key=lambda k: b[k]["f1_margin"])
+            L.append(f"| {lang} | {len(keys)} | {dm:.1e} | {s(a[(lang, 'clean')]['f1_margin'])} → {s(b[(lang, 'clean')]['f1_margin'])} | "
+                     f"{s(a[lo_a]['f1_margin'])} ({lo_a[1]}) → {s(b[lo_b]['f1_margin'])} ({lo_b[1]}) |")
+        L += ["", "Source: `results/final/analysis/o4_rate_sweep_perm10k.json`.", ""]
+    else:
+        L += ["O4 at 10,000 null permutations: pending.", ""]
+    if iouf and ioum:
+        a = {r["language"]: r for r in iouf["rows"]}
+        b = {r["language"]: r for r in ioum["rows"]}
+        L += [f"Span IoU (job {jobs.get('more_perms_iou', '?')}): {iouf['resamples']:,} vs {ioum['resamples']:,} null resamples on the frozen test split.", "",
+              "| Language | BLT − H0 IoU, frozen [95% CI] | BLT − H0 IoU, more resamples [95% CI] |", "|---|---|---|"]
+        for lang in [x for x, _, _ in LANGS if x in a and x in b]:
+            L.append(f"| {lang} | {s(a[lang]['blt_minus_h0'])} {c([a[lang]['blt_minus_h0_ci_low'], a[lang]['blt_minus_h0_ci_high']])} | "
+                     f"{s(b[lang]['blt_minus_h0'])} {c([b[lang]['blt_minus_h0_ci_low'], b[lang]['blt_minus_h0_ci_high']])} |")
+        L += ["", "Source: `results/final/analysis/iou_resamples1000.json`.", ""]
+    else:
+        L += ["Span IoU at 1,000 null resamples: pending.", ""]
     L += ["## Not done", "",
           "- The parser-supervised teacher (S2): not built; the teacher stays BLT (decision and design sketch in `docs/PARSER_TEACHER_DECISION.md`).",
           "- A subword-tokenizer baseline for O4: not run (disclosed in the report's Limitations).",

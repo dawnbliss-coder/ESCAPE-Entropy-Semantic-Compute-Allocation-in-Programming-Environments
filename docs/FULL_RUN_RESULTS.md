@@ -259,6 +259,27 @@ hf_full sensitivity (job 47455, scoring job 47458): test files (all Python and E
 
 Source: `results/final/analysis/hf_full_test_k0.json`.
 
+## More null draws (sensitivity)
+
+O4 rate sweep (job 48197): 1,000 vs 10,000 null permutations, same files and conditions. The observed F1 does not depend on the null; only the null mean and hence the margin can move.
+
+| Language | Conditions | Max abs change in margin | Clean margin (1k → 10k) | Smallest noised margin (1k → 10k) |
+|---|---:|---:|---|---|
+| cpp | 16 | 9.0e-06 | +0.1313 → +0.1313 | +0.1084 (indentation_r0.4) → +0.1085 (indentation_r0.4) |
+| python | 12 | 3.1e-05 | +0.1150 → +0.1150 | +0.0863 (indentation_r0.4) → +0.0863 (indentation_r0.4) |
+
+Source: `results/final/analysis/o4_rate_sweep_perm10k.json`.
+
+Span IoU (job 48198): 100 vs 1,000 null resamples on the frozen test split.
+
+| Language | BLT − H0 IoU, frozen [95% CI] | BLT − H0 IoU, more resamples [95% CI] |
+|---|---|---|
+| python | +0.0083 [+0.0068, +0.0099] | +0.0083 [+0.0067, +0.0098] |
+| cpp | +0.0158 [+0.0129, +0.0185] | +0.0158 [+0.0129, +0.0185] |
+| english | +0.0424 [+0.0401, +0.0448] | +0.0424 [+0.0400, +0.0447] |
+
+Source: `results/final/analysis/iou_resamples1000.json`.
+
 ## Not done
 
 - The parser-supervised teacher (S2): not built; the teacher stays BLT (decision and design sketch in `docs/PARSER_TEACHER_DECISION.md`).

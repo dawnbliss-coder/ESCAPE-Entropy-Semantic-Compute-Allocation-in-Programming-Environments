@@ -2,7 +2,7 @@
 
 > **Status 30 Oct 2026 (evening).** Everything below that does not depend on missing material is done:
 > - P0 text corrections are in the report; the page count was measured with no filler added (11 pages, References on page 8, so the body is 7 pages). No course rule other than the mid-submission's "8 pages excluding references" was found.
-> - The optional arms are done: hf_full, the byte-balanced student, STEP 9 adaptation (verdict not met) and the decision not to build a parser teacher (`docs/PARSER_TEACHER_DECISION.md`). More permutations are running as a sensitivity check (jobs 48197 / 48198).
+> - The optional arms are done: hf_full, the byte-balanced student, STEP 9 adaptation (verdict not met) and the decision not to build a parser teacher (`docs/PARSER_TEACHER_DECISION.md`). More permutations were run as a sensitivity check (jobs 48197 / 48198): no O4 margin moves by more than 4e-05, and the IoU intervals move only in the fourth decimal.
 > - The team decisions were made by the user on 30 Oct:
 >   - the AI files moved to `docs/ai_assisted/` and labelled;
 >   - the stale branch deleted;
