@@ -1,0 +1,38 @@
+No devices found.
+
+=== 2026-10-30 04:25:28  extract hf_full on 11024 test files ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home2/divyansh.atri/escape-final-20260928/stream_a/extract.py", line 490, in <module>
+    main()
+  File "/home2/divyansh.atri/escape-final-20260928/stream_a/extract.py", line 397, in main
+    backend = PatcherBackend(root, args.context_mode, args.dtype, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/escape-final-20260928/stream_a/extract.py", line 111, in __init__
+    self.model, blt_config = load_patcher(ckpt, device=self.device, dtype=dtype, attn_implementation=attn_implementation)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/escape-final-20260928/stream_a/patcher_model.py", line 49, in load_patcher
+    model = BltPatcher(patcher_config)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/transformers/models/blt/modeling_blt.py", line 860, in __init__
+    self.rotary_emb = BltRotaryEmbedding(config=self.config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 171, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/transformers/models/blt/modeling_blt.py", line 102, in __init__
+    inv_freq, self.attention_scaling = rope_init_fn(self.config, device)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 171, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/transformers/models/blt/modeling_blt.py", line 124, in compute_default_rope_parameters
+    inv_freq = 1.0 / (base ** (torch.arange(0, dim, 2, dtype=torch.float) / dim))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/torch/utils/_device.py", line 104, in __torch_function__
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/torch/cuda/__init__.py", line 319, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.

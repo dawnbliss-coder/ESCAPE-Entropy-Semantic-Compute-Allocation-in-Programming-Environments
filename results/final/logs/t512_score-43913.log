@@ -1,0 +1,17 @@
+[wrote] results/final/teacher512_subset_scores.json
+
+=== cpp (n=300, targets=7031) ===
+  baseline_newline   F1=0.0669 [0.0591,0.0746] P=0.0505 R=0.0994 tp=699
+  baseline_indent_change F1=0.2708 [0.2575,0.2847] P=0.4030 R=0.2040 tp=1434
+  baseline_word_start F1=0.2747 [0.2553,0.2948] P=0.1599 R=0.9751 tp=6856
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1616 [0.1502,0.1728] P=0.0911 R=0.7177 tp=5046 | margin=+0.1246 p=0.0001 | vs word_start=-0.1131
+  teacher-512-ctl    F1=0.1575 [0.1459,0.1690] P=0.0882 R=0.7346 tp=5165 | margin=+0.1208 p=0.0001 | vs word_start=-0.1171
+  student-v1-14326k  F1=0.1522 [0.1413,0.1631] P=0.0846 R=0.7528 tp=5293 | margin=+0.1155 p=0.0001 | vs word_start=-0.1225
+
+=== py (n=300, targets=4938) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.3816 [0.3637,0.3985] P=0.4914 R=0.3119 tp=1540
+  baseline_word_start F1=0.2329 [0.2200,0.2458] P=0.1338 R=0.8961 tp=4425
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1435 [0.1353,0.1525] P=0.0785 R=0.8366 tp=4131 | margin=+0.1139 p=0.0001 | vs indent_change=-0.2381
+  teacher-512-ctl    F1=0.1391 [0.1305,0.1472] P=0.0758 R=0.8467 tp=4181 | margin=+0.1099 p=0.0001 | vs indent_change=-0.2425
+  student-v1-14326k  F1=0.1320 [0.1235,0.1408] P=0.0714 R=0.8688 tp=4290 | margin=+0.1032 p=0.0001 | vs indent_change=-0.2496

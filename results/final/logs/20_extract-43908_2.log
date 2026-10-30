@@ -1,0 +1,40 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-d8952ef1-6924-0088-c4da-fb36bee57984)
+2.6.0+cu124 NVIDIA GeForce RTX 2080 Ti
+shard 2/4: 4075 files
+
+=== 2026-10-28 01:00:43  extract ===
+WARNING: torch_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '2.12.1+cu130' -> '2.6.0+cu124'
+WARNING: cuda_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '13.0' -> '12.4'
+WARNING: hardware changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: 'NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64' -> 'NVIDIA GeForce RTX 2080 Ti (10.6 GiB) / x86_64'
+run_id=swa512-float32-t1.3354-mplnone-91aa6b8e input=corpus domains=['py', 'cpp', 'prose'] split=all selected=4075 device=cuda dtype=float32
+[200/4075] done=200 skipped=0 failed=0 13.5 kB/s elapsed=6s
+[400/4075] done=400 skipped=0 failed=0 20.2 kB/s elapsed=13s
+[600/4075] done=600 skipped=0 failed=0 22.2 kB/s elapsed=27s
+[800/4075] done=800 skipped=0 failed=0 22.3 kB/s elapsed=48s
+[1000/4075] done=1000 skipped=0 failed=0 21.0 kB/s elapsed=83s
+[1200/4075] done=1200 skipped=0 failed=0 19.0 kB/s elapsed=142s
+[1400/4075] done=1400 skipped=0 failed=0 16.3 kB/s elapsed=252s
+[1600/4075] done=1600 skipped=0 failed=0 15.0 kB/s elapsed=422s
+[1800/4075] done=1800 skipped=0 failed=0 13.9 kB/s elapsed=744s
+[2000/4075] done=2000 skipped=0 failed=0 12.8 kB/s elapsed=1904s
+[2200/4075] done=2200 skipped=0 failed=0 12.7 kB/s elapsed=2249s
+[2400/4075] done=2400 skipped=0 failed=0 12.7 kB/s elapsed=2253s
+[2600/4075] done=2600 skipped=0 failed=0 12.7 kB/s elapsed=2258s
+[2800/4075] done=2800 skipped=0 failed=0 12.7 kB/s elapsed=2262s
+[3000/4075] done=3000 skipped=0 failed=0 12.7 kB/s elapsed=2267s
+[3200/4075] done=3200 skipped=0 failed=0 12.7 kB/s elapsed=2272s
+[3400/4075] done=3400 skipped=0 failed=0 12.8 kB/s elapsed=2279s
+[3600/4075] done=3600 skipped=0 failed=0 12.8 kB/s elapsed=2287s
+[3800/4075] done=3800 skipped=0 failed=0 12.9 kB/s elapsed=2298s
+[4000/4075] done=4000 skipped=0 failed=0 12.9 kB/s elapsed=2318s
+[4075/4075] done=4075 skipped=0 failed=0 13.0 kB/s elapsed=2346s
+finished: processed=4075 skipped_already_done=0 failed=0 bytes=30395877 elapsed=2346s status_snapshot={'success': 9522, 'pending': 898, 'interrupted': 277, 'succe': 1, 'runninss': 1}
+
+=== 2026-10-28 01:40:06  retry failures once ===
+WARNING: torch_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '2.12.1+cu130' -> '2.6.0+cu124'
+WARNING: cuda_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '13.0' -> '12.4'
+WARNING: hardware changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: 'NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64' -> 'NVIDIA GeForce RTX 2080 Ti (10.6 GiB) / x86_64'
+run_id=swa512-float32-t1.3354-mplnone-91aa6b8e input=corpus domains=['py', 'cpp', 'prose'] split=all selected=0 device=cuda dtype=float32
+finished: processed=0 skipped_already_done=0 failed=0 bytes=0 elapsed=0s status_snapshot={'success': 9521, 'pending': 899, 'interrupted': 278, 'succe': 1, 'runninss': 1}
+
+=== 2026-10-28 01:40:17  EXTRACT SHARD 2 DONE ===

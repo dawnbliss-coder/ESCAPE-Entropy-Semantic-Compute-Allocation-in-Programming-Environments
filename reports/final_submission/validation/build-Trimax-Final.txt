@@ -1,0 +1,649 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Trimax-Final.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (vendor/acl.sty
+Conference Style for ACL
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))
+(./paper-preamble.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.sty (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype-pdftex.def)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.cfg)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adju
+stbox.sty (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjc
+alc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trim
+clip.sty
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/collectbox/col
+lectbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-p
+dftex.def)) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
+(./generated/results.tex) (./generated/final.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(build/Trimax-Final.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(build/Trimax-Final.out) (build/Trimax-Final.out)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-p
+tm.cfg)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-c
+mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(./paper-body.tex
+
+Package natbib Warning: Citation `pagnoni-etal-2025-byte' on page 1 undefined o
+n input line 9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+
+LaTeX Warning: Reference `sec:ext' on page 1 undefined on input line 11.
+
+
+Package natbib Warning: Citation `pagnoni-etal-2025-byte' on page 1 undefined o
+n input line 16.
+
+
+Package natbib Warning: Citation `sennrich-etal-2016-neural' on page 1 undefine
+d on input line 16.
+
+
+Package natbib Warning: Citation `xue-etal-2022-byt5' on page 1 undefined on in
+put line 16.
+
+
+Package natbib Warning: Citation `clark-etal-2022-canine' on page 1 undefined o
+n input line 16.
+
+
+Package natbib Warning: Citation `hewitt-manning-2019-structural' on page 1 und
+efined on input line 16.
+
+
+Package natbib Warning: Citation `feng-etal-2020-codebert' on page 1 undefined 
+on input line 16.
+
+
+Package natbib Warning: Citation `brent1999segmentation' on page 1 undefined on
+ input line 16.
+
+
+Package natbib Warning: Citation `goldwater2009word' on page 1 undefined on inp
+ut line 16.
+
+
+Package natbib Warning: Citation `kitaev-klein-2018-constituency' on page 1 und
+efined on input line 16.
+
+
+Package natbib Warning: Citation `hinton2015distilling' on page 1 undefined on 
+input line 16.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
+vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
+ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
+usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `husain2019codesearchnet' on page 2 undefined 
+on input line 20.
+
+
+Package natbib Warning: Citation `kocetkov2022stack' on page 2 undefined on inp
+ut line 20.
+
+
+Package natbib Warning: Citation `merity2017pointer' on page 2 undefined on inp
+ut line 20.
+
+
+LaTeX Warning: Reference `app:fidelity' on page 2 undefined on input line 20.
+
+
+LaTeX Warning: Reference `tab:main' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Reference `tab:baselines' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Reference `app:extra' on page 2 undefined on input line 31.
+
+[2]
+
+LaTeX Warning: Reference `tab:types' on page 3 undefined on input line 34.
+
+
+LaTeX Warning: Reference `tab:p4pos' on page 3 undefined on input line 34.
+
+
+LaTeX Warning: Reference `fig:offsets' on page 3 undefined on input line 34.
+
+
+LaTeX Warning: Reference `fig:depth' on page 3 undefined on input line 43.
+
+[3]
+
+LaTeX Warning: Reference `tab:o4' on page 4 undefined on input line 45.
+
+
+LaTeX Warning: Reference `fig:o4' on page 4 undefined on input line 45.
+
+
+Underfull \vbox (badness 1478) has occurred while \output is active
+
+LaTeX Warning: Reference `tab:o5' on page 4 undefined on input line 53.
+
+
+LaTeX Warning: Reference `tab:robust' on page 4 undefined on input line 56.
+
+
+LaTeX Warning: Reference `tab:k' on page 4 undefined on input line 56.
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 56--57
+ []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
+ (+20) The 8,000
+
+Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
+ated/depth_normalised.pdf>]
+
+LaTeX Warning: Reference `tab:alpha' on page 5 undefined on input line 60.
+
+
+LaTeX Warning: Reference `tab:student' on page 5 undefined on input line 62.
+
+
+LaTeX Warning: Reference `tab:t512' on page 5 undefined on input line 62.
+
+[5 <./generated/o4_sweep.pdf>]
+
+LaTeX Warning: Reference `fig:tau' on page 6 undefined on input line 65.
+
+
+LaTeX Warning: Reference `tab:tau' on page 6 undefined on input line 65.
+
+
+LaTeX Warning: Reference `tab:holdout' on page 6 undefined on input line 68.
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 69--69
+\T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
+
+LaTeX Warning: Reference `tab:eff' on page 6 undefined on input line 71.
+
+
+LaTeX Warning: Reference `tab:t512' on page 6 undefined on input line 73.
+
+
+LaTeX Warning: Reference `tab:arms' on page 6 undefined on input line 73.
+
+
+LaTeX Warning: Reference `tab:arms' on page 6 undefined on input line 73.
+
+
+LaTeX Warning: Reference `sec:ext' on page 6 undefined on input line 79.
+
+[6] (build/Trimax-Final.bbl [7])
+
+LaTeX Warning: Reference `tab:t512' on page 8 undefined on input line 95.
+
+
+LaTeX Warning: Reference `tab:t512' on page 8 undefined on input line 95.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--139
+\T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10] [11 <../.
+./results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heat
+map_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float32-t1.3354
+-mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results/figures/
+stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png> <../../
+results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch_length_d
+istribution.png>] (build/Trimax-Final.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/Trimax-Final.pdf (11 pages, 802364 bytes).
+Transcript written on build/Trimax-Final.log.
+This is BibTeX, Version 0.99d (TeX Live 2023)
+The top-level auxiliary file: build/Trimax-Final.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Trimax-Final.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (vendor/acl.sty
+Conference Style for ACL
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))
+(./paper-preamble.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.sty (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype-pdftex.def)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.cfg)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adju
+stbox.sty (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjc
+alc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trim
+clip.sty
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/collectbox/col
+lectbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-p
+dftex.def)) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
+(./generated/results.tex) (./generated/final.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(build/Trimax-Final.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(build/Trimax-Final.out) (build/Trimax-Final.out)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-p
+tm.cfg)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-c
+mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(./paper-body.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
+vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
+ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
+usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] [3]
+Underfull \vbox (badness 1478) has occurred while \output is active
+Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
+ated/depth_normalised.pdf>]
+Underfull \hbox (badness 2027) in paragraph at lines 56--57
+ []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
+ (+20) The 8,000
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5 <./gene
+rated/o4_sweep.pdf>]
+Underfull \hbox (badness 1365) in paragraph at lines 69--69
+\T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
+
+Underfull \vbox (badness 5288) has occurred while \output is active [6]
+(build/Trimax-Final.bbl [7])
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--139
+\T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
+) [8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10]
+[11 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/ent
+ropy_heatmap_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float3
+2-t1.3354-mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results
+/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png
+> <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch
+_length_distribution.png>] (build/Trimax-Final.aux) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/Trimax-Final.pdf (11 pages, 804879 bytes).
+Transcript written on build/Trimax-Final.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Trimax-Final.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (vendor/acl.sty
+Conference Style for ACL
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))
+(./paper-preamble.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.sty (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype-pdftex.def)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/micr
+otype.cfg)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adju
+stbox.sty (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjc
+alc.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trim
+clip.sty
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/collectbox/col
+lectbox.sty)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-p
+dftex.def)) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
+(./generated/results.tex) (./generated/final.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(build/Trimax-Final.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(build/Trimax-Final.out) (build/Trimax-Final.out)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-p
+tm.cfg)
+(/tmp/claude-1000/-home-divyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semanti
+c-Compute-Allocation-in-Programming-Environments/c3ff8ce2-389b-462b-be05-36e93e
+359402/scratchpad/texroot/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-c
+mr.cfg) (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(./paper-body.tex (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/tmp/claude-1000/-home-di
+vyansh-Semester-5-ANLP-project-ESCAPE-Entropy-Semantic-Compute-Allocation-in-Pr
+ogramming-Environments/c3ff8ce2-389b-462b-be05-36e93e359402/scratchpad/texroot/
+usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] [3]
+Underfull \vbox (badness 1478) has occurred while \output is active
+Underfull \vbox (badness 1478) has occurred while \output is active [4 <./gener
+ated/depth_normalised.pdf>]
+Underfull \hbox (badness 2027) in paragraph at lines 56--57
+ []\T1/ptm/b/n/10.95 (+20) Are the in-ter-vals too nar-row?[] \T1/ptm/m/n/10.95
+ (+20) The 8,000
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5 <./gene
+rated/o4_sweep.pdf>]
+Underfull \hbox (badness 1365) in paragraph at lines 69--69
+\T1/ptm/m/n/10 (+20) registered hold-out of 4,107 para-graphs from 120
+
+Underfull \vbox (badness 5288) has occurred while \output is active [6]
+(build/Trimax-Final.bbl [7])
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--139
+\T1/pcr/m/n/9 |return |fibonacci(n |- 1) |+
+) [8 <./generated/p4_offsets.pdf>] [9 <./generated/tau_sweep.pdf>] [10]
+[11 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/ent
+ropy_heatmap_py_07fbe9f688ef.png> <../../results/figures/stream_a/swa512-float3
+2-t1.3354-mplnone-91aa6b8e/entropy_heatmap_cpp_11562d1c691d.png> <../../results
+/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bpp_distributions.png
+> <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/patch
+_length_distribution.png>] (build/Trimax-Final.aux) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/Trimax-Final.pdf (11 pages, 804879 bytes).
+Transcript written on build/Trimax-Final.log.

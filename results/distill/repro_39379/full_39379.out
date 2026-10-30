@@ -1,0 +1,162 @@
+
+=== 2026-10-25 23:47:51  materialize into scratch: /scratch/divyansh.atri/escape-39379/corpus_ext  (py=15000 prose=8000 cpp=6000) ===
+Generating train split:   0%|          | 0/412178 [00:00<?, ? examples/s]Generating train split:   0%|          | 1000/412178 [00:00<00:41, 9826.68 examples/s]Generating train split:   2%|▏         | 9000/412178 [00:00<00:08, 47356.33 examples/s]Generating train split:   4%|▍         | 17000/412178 [00:00<00:06, 57266.18 examples/s]Generating train split:   6%|▌         | 25000/412178 [00:00<00:06, 62074.06 examples/s]Generating train split:   8%|▊         | 33000/412178 [00:00<00:05, 66027.61 examples/s]Generating train split:  11%|█         | 45000/412178 [00:00<00:04, 79795.55 examples/s]Generating train split:  13%|█▎        | 55000/412178 [00:00<00:04, 81714.23 examples/s]Generating train split:  16%|█▌        | 66000/412178 [00:00<00:04, 85966.73 examples/s]Generating train split:  19%|█▊        | 77000/412178 [00:01<00:03, 90472.20 examples/s]Generating train split:  21%|██▏       | 88000/412178 [00:01<00:03, 86792.96 examples/s]Generating train split:  24%|██▎       | 97000/412178 [00:01<00:03, 86339.46 examples/s]Generating train split:  26%|██▌       | 107000/412178 [00:01<00:03, 80953.68 examples/s]Generating train split:  28%|██▊       | 116000/412178 [00:01<00:03, 82208.00 examples/s]Generating train split:  30%|███       | 125000/412178 [00:01<00:03, 83774.81 examples/s]Generating train split:  33%|███▎      | 138000/412178 [00:01<00:03, 80781.83 examples/s]Generating train split:  36%|███▌      | 148000/412178 [00:01<00:03, 84045.10 examples/s]Generating train split:  38%|███▊      | 157000/412178 [00:02<00:03, 79920.69 examples/s]Generating train split:  41%|████      | 167000/412178 [00:02<00:02, 82725.10 examples/s]Generating train split:  43%|████▎     | 179000/412178 [00:02<00:02, 90405.04 examples/s]Generating train split:  47%|████▋     | 192000/412178 [00:02<00:02, 84277.57 examples/s]Generating train split:  49%|████▉     | 202000/412178 [00:02<00:02, 86466.83 examples/s]Generating train split:  51%|█████     | 211000/412178 [00:02<00:02, 81645.96 examples/s]Generating train split:  54%|█████▍    | 222000/412178 [00:02<00:02, 86630.22 examples/s]Generating train split:  57%|█████▋    | 233000/412178 [00:02<00:01, 90116.18 examples/s]Generating train split:  59%|█████▉    | 243000/412178 [00:02<00:01, 85602.44 examples/s]Generating train split:  62%|██████▏   | 254000/412178 [00:03<00:01, 89990.15 examples/s]Generating train split:  64%|██████▍   | 265000/412178 [00:03<00:01, 85793.43 examples/s]Generating train split:  67%|██████▋   | 277000/412178 [00:03<00:01, 91213.45 examples/s]Generating train split:  70%|██████▉   | 287000/412178 [00:03<00:01, 91109.82 examples/s]Generating train split:  73%|███████▎  | 299000/412178 [00:03<00:01, 87473.89 examples/s]Generating train split:  75%|███████▌  | 311000/412178 [00:03<00:01, 93314.90 examples/s]Generating train split:  78%|███████▊  | 321000/412178 [00:03<00:01, 89463.35 examples/s]Generating train split:  82%|████████▏ | 336000/412178 [00:04<00:00, 91547.32 examples/s]Generating train split:  84%|████████▍ | 346000/412178 [00:04<00:00, 91836.79 examples/s]Generating train split:  87%|████████▋ | 358000/412178 [00:04<00:00, 83170.66 examples/s]Generating train split:  89%|████████▉ | 368000/412178 [00:04<00:00, 85736.84 examples/s]Generating train split:  92%|█████████▏| 381000/412178 [00:04<00:00, 80228.27 examples/s]Generating train split:  95%|█████████▌| 392000/412178 [00:04<00:00, 85038.29 examples/s]Generating train split:  98%|█████████▊| 402000/412178 [00:04<00:00, 78492.14 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:04<00:00, 77274.97 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:04<00:00, 82802.88 examples/s]
+Generating test split:   0%|          | 0/22176 [00:00<?, ? examples/s]Generating test split:  32%|███▏      | 7000/22176 [00:00<00:00, 59964.40 examples/s]Generating test split:  81%|████████  | 18000/22176 [00:00<00:00, 82707.35 examples/s]Generating test split: 100%|██████████| 22176/22176 [00:00<00:00, 85039.96 examples/s]
+Generating validation split:   0%|          | 0/23107 [00:00<?, ? examples/s]Generating validation split:  30%|███       | 7000/23107 [00:00<00:00, 62601.55 examples/s]Generating validation split:  78%|███████▊  | 18000/23107 [00:00<00:00, 78633.65 examples/s]Generating validation split: 100%|██████████| 23107/23107 [00:00<00:00, 82695.69 examples/s]
+{
+  "domain": "py",
+  "files": 15000,
+  "bytes": 15932154,
+  "by_split": {
+    "train": 13975,
+    "val": 1025
+  },
+  "by_source": {
+    "code_search_net": 15000
+  },
+  "groups": 4765,
+  "dropped": {
+    "duplicate_hash": 8000,
+    "evaluation_repo": 106
+  },
+  "limit": 15000,
+  "evaluation_repos": 317,
+  "pool_after_filters": null
+}
+wrote 15000 files to /scratch/divyansh.atri/escape-39379/corpus_ext/py
+{
+  "domain": "prose",
+  "files": 8000,
+  "bytes": 6144905,
+  "by_split": {
+    "train": 7470,
+    "val": 530
+  },
+  "by_source": {
+    "wikitext-103": 8000
+  },
+  "groups": 374,
+  "dropped": {
+    "evaluation_article": 313,
+    "length_or_bytes": 2646
+  },
+  "limit": 8000,
+  "evaluation_articles": 18
+}
+wrote 8000 files to /scratch/divyansh.atri/escape-39379/corpus_ext/prose
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1500 examples [00:00, 10987.33 examples/s]Generating train split: 2841 examples [00:00, 12038.79 examples/s]Generating train split: 4268 examples [00:00, 12724.62 examples/s]Generating train split: 5647 examples [00:00, 12629.58 examples/s]Generating train split: 7601 examples [00:00, 12721.49 examples/s]Generating train split: 9594 examples [00:00, 12563.17 examples/s]Generating train split: 10000 examples [00:00, 12548.18 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1313 examples [00:00, 10649.27 examples/s]Generating train split: 2532 examples [00:00, 10899.60 examples/s]Generating train split: 3957 examples [00:00, 11793.35 examples/s]Generating train split: 5180 examples [00:00, 11596.99 examples/s]Generating train split: 6519 examples [00:00, 11619.25 examples/s]Generating train split: 7802 examples [00:00, 11689.19 examples/s]Generating train split: 9195 examples [00:00, 12029.69 examples/s]Generating train split: 10000 examples [00:00, 11559.26 examples/s]
+{
+  "domain": "cpp",
+  "files": 6000,
+  "bytes": 59585583,
+  "by_split": {
+    "train": 5708,
+    "val": 292
+  },
+  "by_source": {
+    "the-stack-smol-xl": 4590,
+    "the-stack-smol": 1410
+  },
+  "groups": 5375,
+  "dropped": {
+    "evaluation_repo": 1185,
+    "too_large": 144
+  },
+  "limit": 6000,
+  "candidates": 12000,
+  "evaluation_repos": 6551
+}
+wrote 6000 files to /scratch/divyansh.atri/escape-39379/corpus_ext/cpp
+
+=== 2026-10-25 23:54:00  distill: domains=cpp,prose,py  (bigger student 384/8/6, 2 epochs, T=2, alpha=0.1) ===
+[distill] files=27153 windows=164627 steps=6860 student_params=14,262,144 device=cuda
+  step     0/6860  loss 12.9861  KL 13.8085  CE 5.585 nats  lr 2.50e-06
+  step   100/6860  loss 5.5582  KL 5.8555  CE 2.883 nats  lr 2.53e-04
+  step   200/6860  loss 2.9998  KL 3.0805  CE 2.274 nats  lr 5.00e-04
+  step   300/6860  loss 2.2176  KL 2.2736  CE 1.714 nats  lr 5.00e-04
+  step   400/6860  loss 1.6675  KL 1.6829  CE 1.529 nats  lr 4.99e-04
+  step   500/6860  loss 1.2455  KL 1.2265  CE 1.416 nats  lr 4.98e-04
+  step   600/6860  loss 0.9196  KL 0.8937  CE 1.153 nats  lr 4.96e-04
+  step   700/6860  loss 0.7284  KL 0.6932  CE 1.045 nats  lr 4.93e-04
+  step   800/6860  loss 0.7888  KL 0.7531  CE 1.110 nats  lr 4.90e-04
+  step   900/6860  loss 0.6884  KL 0.6495  CE 1.039 nats  lr 4.86e-04
+  step  1000/6860  loss 0.6527  KL 0.6065  CE 1.069 nats  lr 4.82e-04
+  step  1100/6860  loss 0.6269  KL 0.5819  CE 1.032 nats  lr 4.78e-04
+  step  1200/6860  loss 0.5534  KL 0.5114  CE 0.931 nats  lr 4.73e-04
+  step  1300/6860  loss 0.6283  KL 0.5800  CE 1.063 nats  lr 4.67e-04
+  step  1400/6860  loss 0.5269  KL 0.4824  CE 0.927 nats  lr 4.61e-04
+  step  1500/6860  loss 0.5645  KL 0.5195  CE 0.969 nats  lr 4.54e-04
+  step  1600/6860  loss 0.5200  KL 0.4756  CE 0.920 nats  lr 4.47e-04
+  step  1700/6860  loss 0.5584  KL 0.5067  CE 1.023 nats  lr 4.40e-04
+  step  1800/6860  loss 0.5004  KL 0.4533  CE 0.925 nats  lr 4.32e-04
+  step  1900/6860  loss 0.4895  KL 0.4425  CE 0.913 nats  lr 4.24e-04
+  step  2000/6860  loss 0.4837  KL 0.4341  CE 0.930 nats  lr 4.15e-04
+  step  2100/6860  loss 0.4702  KL 0.4231  CE 0.894 nats  lr 4.06e-04
+  step  2200/6860  loss 0.4613  KL 0.4126  CE 0.900 nats  lr 3.97e-04
+  step  2300/6860  loss 0.4723  KL 0.4248  CE 0.900 nats  lr 3.87e-04
+  step  2400/6860  loss 0.4158  KL 0.3669  CE 0.855 nats  lr 3.77e-04
+  step  2500/6860  loss 0.4479  KL 0.3978  CE 0.899 nats  lr 3.67e-04
+  step  2600/6860  loss 0.3900  KL 0.3415  CE 0.827 nats  lr 3.56e-04
+  step  2700/6860  loss 0.4392  KL 0.3883  CE 0.897 nats  lr 3.45e-04
+  step  2800/6860  loss 0.3744  KL 0.3208  CE 0.857 nats  lr 3.34e-04
+  step  2900/6860  loss 0.3865  KL 0.3328  CE 0.870 nats  lr 3.23e-04
+  step  3000/6860  loss 0.3952  KL 0.3424  CE 0.870 nats  lr 3.12e-04
+  step  3100/6860  loss 0.4303  KL 0.3776  CE 0.905 nats  lr 3.00e-04
+  step  3200/6860  loss 0.4046  KL 0.3514  CE 0.883 nats  lr 2.89e-04
+  step  3300/6860  loss 0.3742  KL 0.3214  CE 0.850 nats  lr 2.77e-04
+  step  3400/6860  loss 0.3643  KL 0.3137  CE 0.820 nats  lr 2.65e-04
+  step  3500/6860  loss 0.3518  KL 0.2974  CE 0.841 nats  lr 2.54e-04
+  step  3600/6860  loss 0.3583  KL 0.3014  CE 0.870 nats  lr 2.42e-04
+  step  3700/6860  loss 0.3627  KL 0.3043  CE 0.888 nats  lr 2.30e-04
+  step  3800/6860  loss 0.4311  KL 0.3692  CE 0.987 nats  lr 2.18e-04
+  step  3900/6860  loss 0.3554  KL 0.3037  CE 0.821 nats  lr 2.07e-04
+  step  4000/6860  loss 0.3625  KL 0.3048  CE 0.882 nats  lr 1.95e-04
+  step  4100/6860  loss 0.3391  KL 0.2833  CE 0.842 nats  lr 1.84e-04
+  step  4200/6860  loss 0.3502  KL 0.2925  CE 0.870 nats  lr 1.72e-04
+  step  4300/6860  loss 0.3291  KL 0.2674  CE 0.885 nats  lr 1.61e-04
+  step  4400/6860  loss 0.3466  KL 0.2809  CE 0.938 nats  lr 1.50e-04
+  step  4500/6860  loss 0.3300  KL 0.2723  CE 0.849 nats  lr 1.40e-04
+  step  4600/6860  loss 0.3271  KL 0.2730  CE 0.814 nats  lr 1.29e-04
+  step  4700/6860  loss 0.3227  KL 0.2673  CE 0.821 nats  lr 1.19e-04
+  step  4800/6860  loss 0.3332  KL 0.2771  CE 0.838 nats  lr 1.09e-04
+  step  4900/6860  loss 0.3213  KL 0.2655  CE 0.823 nats  lr 9.95e-05
+  step  5000/6860  loss 0.3002  KL 0.2431  CE 0.815 nats  lr 9.02e-05
+  step  5100/6860  loss 0.2977  KL 0.2381  CE 0.833 nats  lr 8.13e-05
+  step  5200/6860  loss 0.3026  KL 0.2467  CE 0.806 nats  lr 7.28e-05
+  step  5300/6860  loss 0.3069  KL 0.2502  CE 0.817 nats  lr 6.47e-05
+  step  5400/6860  loss 0.3220  KL 0.2621  CE 0.861 nats  lr 5.70e-05
+  step  5500/6860  loss 0.2883  KL 0.2298  CE 0.815 nats  lr 4.97e-05
+  step  5600/6860  loss 0.2853  KL 0.2300  CE 0.783 nats  lr 4.29e-05
+  step  5700/6860  loss 0.2889  KL 0.2250  CE 0.864 nats  lr 3.65e-05
+  step  5800/6860  loss 0.3020  KL 0.2441  CE 0.823 nats  lr 3.06e-05
+  step  5900/6860  loss 0.2941  KL 0.2372  CE 0.807 nats  lr 2.52e-05
+  step  6000/6860  loss 0.2946  KL 0.2375  CE 0.808 nats  lr 2.03e-05
+  step  6100/6860  loss 0.2927  KL 0.2383  CE 0.782 nats  lr 1.59e-05
+  step  6200/6860  loss 0.2991  KL 0.2401  CE 0.830 nats  lr 1.20e-05
+  step  6300/6860  loss 0.3291  KL 0.2730  CE 0.833 nats  lr 8.67e-06
+  step  6400/6860  loss 0.3253  KL 0.2695  CE 0.827 nats  lr 5.86e-06
+  step  6500/6860  loss 0.2837  KL 0.2251  CE 0.811 nats  lr 3.60e-06
+  step  6600/6860  loss 0.2966  KL 0.2391  CE 0.814 nats  lr 1.88e-06
+  step  6700/6860  loss 0.2771  KL 0.2221  CE 0.772 nats  lr 7.12e-07
+  step  6800/6860  loss 0.2716  KL 0.2124  CE 0.805 nats  lr 1.00e-07
+  step  6859/6860  loss 0.2966  KL 0.2364  CE 0.838 nats  lr 2.78e-11
+[distill] saved student to results/distill/full/student/student.pt  (6860 steps, 6832.9s)
+
+=== 2026-10-26 01:48:19  evaluate on held-out val ===
+[eval] files=1847 windows=8887
+
+=== Student vs teacher (overall) ===
+  boundary F1        trained 0.872   untrained 0.386
+  entropy Pearson r  trained 0.947   untrained 0.052
+  entropy MAE (nats) trained 0.172   untrained 4.719
+  KL(teacher||stud)  trained 0.135   untrained 4.773
+  bits/byte  student 1.235  vs teacher 1.136
+[eval] wrote results/distill/full/eval/distill_eval.json
+
+=== 2026-10-26 01:55:48  DONE -> results/distill/full/eval/distill_eval.json ===
+=== FULL RUN RESULT (overall) ===
+  boundary F1       trained 0.872  untrained 0.386
+  entropy Pearson r trained 0.947  untrained 0.052
+  KL(teacher||stud) trained 0.135  untrained 4.773
+  bits/byte student 1.235 vs teacher 1.136

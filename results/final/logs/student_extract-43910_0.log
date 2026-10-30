@@ -1,0 +1,54 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-b1a93427-89f1-4a91-7bee-10ca5f883f4f)
+shard 0/4: 4075 files
+
+=== 2026-10-28 07:09:34  extract ===
+[extract] 4075 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] 100 done / 0 skipped / 0 failed; last cpp_27c88ac8510e 385B in 0.4s
+[extract] 200 done / 0 skipped / 0 failed; last cpp_63e95f38c01a 607B in 1.0s
+[extract] 300 done / 0 skipped / 0 failed; last cpp_079fb825780e 883B in 1.7s
+[extract] 400 done / 0 skipped / 0 failed; last cpp_5483f15b6e3b 1178B in 2.4s
+[extract] 500 done / 0 skipped / 0 failed; last cpp_3c4abd426751 1503B in 3.2s
+[extract] 600 done / 0 skipped / 0 failed; last cpp_1c2dce4467f4 1869B in 4.2s
+[extract] 700 done / 0 skipped / 0 failed; last cpp_fb3ba51c4f5c 2271B in 5.2s
+[extract] 800 done / 0 skipped / 0 failed; last cpp_c3846e9ce778 2689B in 6.2s
+[extract] 900 done / 0 skipped / 0 failed; last cpp_febd42249fbf 3294B in 7.8s
+[extract] 1000 done / 0 skipped / 0 failed; last cpp_4689ad59ce4f 3990B in 9.6s
+[extract] 1100 done / 0 skipped / 0 failed; last cpp_fdd3d67be671 4680B in 11.3s
+[extract] 1200 done / 0 skipped / 0 failed; last cpp_c71409fd3e81 5697B in 13.9s
+[extract] 1300 done / 0 skipped / 0 failed; last cpp_b32d4a5e3afc 6989B in 17.3s
+[extract] 1400 done / 0 skipped / 0 failed; last cpp_03fff3df38b1 8526B in 21.0s
+[extract] 1500 done / 0 skipped / 0 failed; last cpp_e2f8f7bf45bd 10756B in 26.7s
+[extract] 1600 done / 0 skipped / 0 failed; last cpp_9637c6ebe566 14064B in 35.1s
+[extract] 1700 done / 0 skipped / 0 failed; last cpp_5dc1aceb8b23 19190B in 48.0s
+[extract] 1800 done / 0 skipped / 0 failed; last cpp_06419d62e0a5 28053B in 70.4s
+[extract] 1900 done / 0 skipped / 0 failed; last cpp_bc47664c3f04 48594B in 122.8s
+[extract] 2000 done / 0 skipped / 0 failed; last cpp_9e3aa288461c 266831B in 671.5s
+[extract] 2100 done / 0 skipped / 0 failed; last py_ec5f22d4eb7a 158B in 0.1s
+[extract] 2200 done / 0 skipped / 0 failed; last py_70bd05d2d5c5 220B in 0.2s
+[extract] 2300 done / 0 skipped / 0 failed; last py_2b57e502120b 259B in 0.2s
+[extract] 2400 done / 0 skipped / 0 failed; last py_56774cb58183 300B in 0.3s
+[extract] 2500 done / 0 skipped / 0 failed; last py_082a08de1665 342B in 0.4s
+[extract] 2600 done / 0 skipped / 0 failed; last py_e56f643c5450 380B in 0.4s
+[extract] 2700 done / 0 skipped / 0 failed; last py_8f766543c042 425B in 0.5s
+[extract] 2800 done / 0 skipped / 0 failed; last py_15c048b1c699 471B in 0.6s
+[extract] 2900 done / 0 skipped / 0 failed; last py_f41298a2e6d5 520B in 0.8s
+[extract] 3000 done / 0 skipped / 0 failed; last py_62f28641c3cd 580B in 0.9s
+[extract] 3100 done / 0 skipped / 0 failed; last py_aa1783f190d0 643B in 1.1s
+[extract] 3200 done / 0 skipped / 0 failed; last py_9af27c2b4af9 717B in 1.3s
+[extract] 3300 done / 0 skipped / 0 failed; last py_f430bc089d84 805B in 1.5s
+[extract] 3400 done / 0 skipped / 0 failed; last py_39befce2671d 904B in 1.7s
+[extract] 3500 done / 0 skipped / 0 failed; last py_162c8c5c2763 1022B in 2.0s
+[extract] 3600 done / 0 skipped / 0 failed; last py_f00bd7b5d8af 1171B in 2.4s
+[extract] 3700 done / 0 skipped / 0 failed; last py_3a7f93aa1938 1378B in 2.9s
+[extract] 3800 done / 0 skipped / 0 failed; last py_c5e4817241ea 1624B in 3.5s
+[extract] 3900 done / 0 skipped / 0 failed; last py_0cdee406f5a5 2143B in 4.9s
+[extract] 4000 done / 0 skipped / 0 failed; last py_3bada0d21ab4 3343B in 7.9s
+[extract] DONE run_id=student-v1-14326k shard=None: 4075 done, 0 skipped, 0 failed
+
+=== 2026-10-29 03:55:30  retry failures ===
+[extract] 4075 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] DONE run_id=student-v1-14326k shard=None: 0 done, 4075 skipped, 0 failed
+
+=== 2026-10-29 03:55:55  STUDENT EXTRACT SHARD 0 DONE ===

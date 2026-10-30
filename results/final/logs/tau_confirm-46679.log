@@ -1,0 +1,15 @@
+MODEL=student SRC=student-v1-14326k PART=retau
+cpp 2.0 student-tau-STAR-cpp
+english 2.5 student-tau-STAR-english
+python 2.0 student-tau-STAR-python
+
+=== 2026-10-29 17:41:07  retau student-tau-STAR-cpp at tau*=2.0 ===
+[retau] DONE dst_run=student-tau-STAR-cpp tau=2.0 shard=None: 8000 done, 0 failed
+
+=== 2026-10-29 17:42:29  retau student-tau-STAR-english at tau*=2.5 ===
+[retau] DONE dst_run=student-tau-STAR-english tau=2.5 shard=None: 300 done, 0 failed
+
+=== 2026-10-29 17:42:33  retau student-tau-STAR-python at tau*=2.0 ===
+[retau] DONE dst_run=student-tau-STAR-python tau=2.0 shard=None: 8000 done, 0 failed
+
+=== 2026-10-29 17:44:09  TAU CONFIRM student retau DONE ===

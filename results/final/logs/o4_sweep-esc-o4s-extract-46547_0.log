@@ -1,0 +1,20 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-bf89e450-7dac-6425-5f66-3ce63f009c27)
+
+=== 2026-10-29 11:28:30  O4 sweep extract shard 0/4 ===
+[500/6501] done=500 skipped=0
+[1000/6501] done=1000 skipped=0
+[1500/6501] done=1500 skipped=0
+[2000/6501] done=2000 skipped=0
+[2500/6501] done=2500 skipped=0
+[3000/6501] done=3000 skipped=0
+[3500/6501] done=3500 skipped=0
+[4000/6501] done=4000 skipped=0
+[4500/6501] done=4500 skipped=0
+[5000/6501] done=5000 skipped=0
+[5500/6501] done=5500 skipped=0
+[6000/6501] done=6000 skipped=0
+[6500/6501] done=6500 skipped=0
+[6501/6501] done=6501 skipped=0
+shard 0/4: 6501 files, done=6501, skipped=0
+
+=== 2026-10-29 12:36:41  O4 SWEEP extract DONE ===

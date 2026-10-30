@@ -1,0 +1,199 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-d45f650e-243b-1329-8030-96c92ee8986d)
+cuda: NVIDIA GeForce RTX 2080 Ti
+
+=== 2026-10-30 04:28:23  materialize ext corpus (same limits as run_all.sbatch) ===
+Generating train split:   0%|          | 0/412178 [00:00<?, ? examples/s]Generating train split:   1%|▏         | 6000/412178 [00:00<00:10, 39778.87 examples/s]Generating train split:   3%|▎         | 14000/412178 [00:00<00:07, 55657.86 examples/s]Generating train split:   6%|▌         | 23000/412178 [00:00<00:05, 67657.64 examples/s]Generating train split:   8%|▊         | 32000/412178 [00:00<00:06, 62031.26 examples/s]Generating train split:  10%|█         | 43000/412178 [00:00<00:05, 73657.40 examples/s]Generating train split:  13%|█▎        | 54000/412178 [00:00<00:04, 82621.50 examples/s]Generating train split:  16%|█▌        | 66000/412178 [00:00<00:04, 76714.36 examples/s]Generating train split:  18%|█▊        | 76000/412178 [00:01<00:04, 81243.08 examples/s]Generating train split:  21%|██▏       | 88000/412178 [00:01<00:04, 77368.71 examples/s]Generating train split:  25%|██▍       | 101000/412178 [00:01<00:03, 78958.55 examples/s]Generating train split:  27%|██▋       | 113000/412178 [00:01<00:03, 74976.03 examples/s]Generating train split:  29%|██▉       | 121000/412178 [00:01<00:03, 74451.91 examples/s]Generating train split:  32%|███▏      | 131000/412178 [00:01<00:03, 71343.31 examples/s]Generating train split:  34%|███▍      | 140000/412178 [00:01<00:03, 74922.82 examples/s]Generating train split:  36%|███▋      | 150000/412178 [00:02<00:03, 77904.24 examples/s]Generating train split:  39%|███▉      | 162000/412178 [00:02<00:03, 74321.53 examples/s]Generating train split:  42%|████▏     | 172000/412178 [00:02<00:03, 79308.78 examples/s]Generating train split:  45%|████▍     | 184000/412178 [00:02<00:02, 86093.36 examples/s]Generating train split:  47%|████▋     | 194000/412178 [00:02<00:02, 76324.31 examples/s]Generating train split:  49%|████▉     | 204000/412178 [00:02<00:02, 80936.74 examples/s]Generating train split:  53%|█████▎    | 217000/412178 [00:02<00:02, 78419.13 examples/s]Generating train split:  55%|█████▌    | 227000/412178 [00:02<00:02, 81687.80 examples/s]Generating train split:  57%|█████▋    | 237000/412178 [00:03<00:02, 76538.96 examples/s]Generating train split:  60%|██████    | 248000/412178 [00:03<00:02, 82008.18 examples/s]Generating train split:  63%|██████▎   | 258000/412178 [00:03<00:01, 84750.50 examples/s]Generating train split:  66%|██████▌   | 272000/412178 [00:03<00:01, 83248.12 examples/s]Generating train split:  68%|██████▊   | 282000/412178 [00:03<00:01, 84379.34 examples/s]Generating train split:  71%|███████   | 292000/412178 [00:03<00:01, 85991.81 examples/s]Generating train split:  74%|███████▍  | 305000/412178 [00:03<00:01, 84428.43 examples/s]Generating train split:  77%|███████▋  | 316000/412178 [00:04<00:01, 88543.86 examples/s]Generating train split:  79%|███████▉  | 326000/412178 [00:04<00:01, 82099.08 examples/s]Generating train split:  81%|████████▏ | 335000/412178 [00:04<00:00, 82671.70 examples/s]Generating train split:  84%|████████▎ | 345000/412178 [00:04<00:00, 84690.03 examples/s]Generating train split:  87%|████████▋ | 357000/412178 [00:04<00:00, 76398.22 examples/s]Generating train split:  89%|████████▉ | 367000/412178 [00:04<00:00, 79458.87 examples/s]Generating train split:  91%|█████████▏| 377000/412178 [00:04<00:00, 73410.95 examples/s]Generating train split:  94%|█████████▍| 387000/412178 [00:04<00:00, 78986.92 examples/s]Generating train split:  96%|█████████▋| 397000/412178 [00:05<00:00, 82985.60 examples/s]Generating train split:  99%|█████████▉| 409000/412178 [00:05<00:00, 76377.84 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:05<00:00, 77649.63 examples/s]
+Generating test split:   0%|          | 0/22176 [00:00<?, ? examples/s]Generating test split:  27%|██▋       | 6000/22176 [00:00<00:00, 55152.05 examples/s]Generating test split:  72%|███████▏  | 16000/22176 [00:00<00:00, 76687.08 examples/s]Generating test split: 100%|██████████| 22176/22176 [00:00<00:00, 81883.23 examples/s]
+Generating validation split:   0%|          | 0/23107 [00:00<?, ? examples/s]Generating validation split:  30%|███       | 7000/23107 [00:00<00:00, 59569.24 examples/s]Generating validation split:  78%|███████▊  | 18000/23107 [00:00<00:00, 74430.35 examples/s]Generating validation split: 100%|██████████| 23107/23107 [00:00<00:00, 78454.85 examples/s]
+{
+  "domain": "py",
+  "files": 15000,
+  "bytes": 15932154,
+  "by_split": {
+    "train": 13975,
+    "val": 1025
+  },
+  "by_source": {
+    "code_search_net": 15000
+  },
+  "groups": 4765,
+  "dropped": {
+    "duplicate_hash": 8000,
+    "evaluation_repo": 106
+  },
+  "limit": 15000,
+  "evaluation_repos": 317,
+  "pool_after_filters": null
+}
+wrote 15000 files to /scratch/divyansh.atri/escape-47454/corpus_ext/py
+'[Errno 9] Bad file descriptor' thrown while requesting GET https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-103-raw-v1/train-00000-of-00002.parquet
+Retrying in 1s [Retry 1/5].
+{
+  "domain": "prose",
+  "files": 8000,
+  "bytes": 6144905,
+  "by_split": {
+    "train": 7470,
+    "val": 530
+  },
+  "by_source": {
+    "wikitext-103": 8000
+  },
+  "groups": 374,
+  "dropped": {
+    "evaluation_article": 313,
+    "length_or_bytes": 2646
+  },
+  "limit": 8000,
+  "evaluation_articles": 18
+}
+wrote 8000 files to /scratch/divyansh.atri/escape-47454/corpus_ext/prose
+Fatal Python error: PyGILState_Release: auto-releasing thread-state, but no thread-state for this thread
+Python runtime state: finalizing (tstate=0x000055d080ef69b8)
+
+scripts/ada_final/env.sh: line 20: 1174901 Aborted                 (core dumped) PYTHONPATH="$PWD" "$ESCAPE_BASE_PYTHON" "$@"
+prose output complete: 8000 manifest rows, all .bin present
+WARN: prose materialize exited rc=134 at interpreter exit; output verified complete, continuing
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1500 examples [00:00, 9007.46 examples/s]Generating train split: 2841 examples [00:00, 9704.07 examples/s]Generating train split: 4268 examples [00:00, 10514.38 examples/s]Generating train split: 5647 examples [00:00, 10932.16 examples/s]Generating train split: 6904 examples [00:00, 11116.22 examples/s]Generating train split: 8315 examples [00:00, 11687.69 examples/s]Generating train split: 9594 examples [00:00, 11444.28 examples/s]Generating train split: 10000 examples [00:00, 11078.64 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1313 examples [00:00, 10754.16 examples/s]Generating train split: 2532 examples [00:00, 11000.15 examples/s]Generating train split: 3957 examples [00:00, 11759.52 examples/s]Generating train split: 5180 examples [00:00, 11487.20 examples/s]Generating train split: 6519 examples [00:00, 11349.37 examples/s]Generating train split: 7802 examples [00:00, 11286.87 examples/s]Generating train split: 9195 examples [00:00, 11160.13 examples/s]Generating train split: 10000 examples [00:00, 11099.35 examples/s]
+{
+  "domain": "cpp",
+  "files": 6000,
+  "bytes": 59585583,
+  "by_split": {
+    "train": 5708,
+    "val": 292
+  },
+  "by_source": {
+    "the-stack-smol-xl": 4590,
+    "the-stack-smol": 1410
+  },
+  "groups": 5375,
+  "dropped": {
+    "evaluation_repo": 1185,
+    "too_large": 144
+  },
+  "limit": 6000,
+  "candidates": 12000,
+  "evaluation_repos": 6551
+}
+wrote 6000 files to /scratch/divyansh.atri/escape-47454/corpus_ext/cpp
+
+=== 2026-10-30 04:30:09  data identity vs the distilled student's manifest ===
+manifest identical to results/distill/full: True 29000 29000
+
+=== 2026-10-30 04:30:10  train byte-balanced student (otherwise identical to the distilled student) ===
+[distill] byte-balanced sampling: {"domains": {"cpp": {"bytes": 56921312, "share_unbalanced": 0.7338611227169172, "share_balanced": 0.3333333333333333}, "prose": {"bytes": 5755361, "share_unbalanced": 0.07420130592037581, "share_balanced": 0.3333333333333333}, "py": {"bytes": 14887474, "share_unbalanced": 0.19193757136270706, "share_balanced": 0.3333333333333333}}, "bytes_per_epoch_unbalanced": 77564147, "expected_bytes_per_epoch_balanced": 70694344.45608097}
+[distill] files=27153 windows=164627 steps=6860 student_params=14,262,144 device=cuda
+  step     0/6860  loss 12.8740  KL 13.6819  CE 5.602 nats  lr 2.50e-06
+  step   100/6860  loss 4.7809  KL 4.9988  CE 2.820 nats  lr 2.53e-04
+  step   200/6860  loss 2.9747  KL 3.0641  CE 2.171 nats  lr 5.00e-04
+  step   300/6860  loss 2.0357  KL 2.0646  CE 1.776 nats  lr 5.00e-04
+  step   400/6860  loss 1.7225  KL 1.7252  CE 1.698 nats  lr 4.99e-04
+  step   500/6860  loss 1.3925  KL 1.3831  CE 1.478 nats  lr 4.98e-04
+  step   600/6860  loss 1.1992  KL 1.1822  CE 1.351 nats  lr 4.96e-04
+  step   700/6860  loss 1.0819  KL 1.0568  CE 1.308 nats  lr 4.93e-04
+  step   800/6860  loss 0.8965  KL 0.8622  CE 1.205 nats  lr 4.90e-04
+  step   900/6860  loss 0.8949  KL 0.8526  CE 1.276 nats  lr 4.86e-04
+  step  1000/6860  loss 0.7854  KL 0.7492  CE 1.111 nats  lr 4.82e-04
+  step  1100/6860  loss 0.7755  KL 0.7401  CE 1.094 nats  lr 4.78e-04
+  step  1200/6860  loss 0.7441  KL 0.7079  CE 1.070 nats  lr 4.73e-04
+  step  1300/6860  loss 0.6522  KL 0.6120  CE 1.014 nats  lr 4.67e-04
+  step  1400/6860  loss 0.7155  KL 0.6756  CE 1.075 nats  lr 4.61e-04
+  step  1500/6860  loss 0.6121  KL 0.5696  CE 0.994 nats  lr 4.54e-04
+  step  1600/6860  loss 0.6473  KL 0.6015  CE 1.060 nats  lr 4.47e-04
+  step  1700/6860  loss 0.7009  KL 0.6571  CE 1.094 nats  lr 4.40e-04
+  step  1800/6860  loss 0.6516  KL 0.6069  CE 1.054 nats  lr 4.32e-04
+  step  1900/6860  loss 0.5725  KL 0.5241  CE 1.008 nats  lr 4.24e-04
+  step  2000/6860  loss 0.5637  KL 0.5143  CE 1.008 nats  lr 4.15e-04
+  step  2100/6860  loss 0.5687  KL 0.5150  CE 1.052 nats  lr 4.06e-04
+  step  2200/6860  loss 0.5935  KL 0.5461  CE 1.020 nats  lr 3.97e-04
+  step  2300/6860  loss 0.4877  KL 0.4408  CE 0.910 nats  lr 3.87e-04
+  step  2400/6860  loss 0.5802  KL 0.5312  CE 1.022 nats  lr 3.77e-04
+  step  2500/6860  loss 0.4900  KL 0.4381  CE 0.957 nats  lr 3.67e-04
+  step  2600/6860  loss 0.5701  KL 0.5185  CE 1.035 nats  lr 3.56e-04
+  step  2700/6860  loss 0.5371  KL 0.4895  CE 0.966 nats  lr 3.45e-04
+  step  2800/6860  loss 0.5301  KL 0.4760  CE 1.017 nats  lr 3.34e-04
+  step  2900/6860  loss 0.5172  KL 0.4652  CE 0.985 nats  lr 3.23e-04
+  step  3000/6860  loss 0.4693  KL 0.4169  CE 0.941 nats  lr 3.12e-04
+  step  3100/6860  loss 0.4713  KL 0.4231  CE 0.905 nats  lr 3.00e-04
+  step  3200/6860  loss 0.5417  KL 0.4880  CE 1.025 nats  lr 2.89e-04
+  step  3300/6860  loss 0.4666  KL 0.4175  CE 0.909 nats  lr 2.77e-04
+  step  3400/6860  loss 0.5410  KL 0.4823  CE 1.069 nats  lr 2.65e-04
+  step  3500/6860  loss 0.4823  KL 0.4292  CE 0.960 nats  lr 2.54e-04
+  step  3600/6860  loss 0.4761  KL 0.4220  CE 0.964 nats  lr 2.42e-04
+  step  3700/6860  loss 0.4758  KL 0.4172  CE 1.003 nats  lr 2.30e-04
+  step  3800/6860  loss 0.4356  KL 0.3848  CE 0.892 nats  lr 2.18e-04
+  step  3900/6860  loss 0.4464  KL 0.3926  CE 0.931 nats  lr 2.07e-04
+  step  4000/6860  loss 0.4071  KL 0.3513  CE 0.909 nats  lr 1.95e-04
+  step  4100/6860  loss 0.4376  KL 0.3837  CE 0.923 nats  lr 1.84e-04
+  step  4200/6860  loss 0.4386  KL 0.3840  CE 0.930 nats  lr 1.72e-04
+  step  4300/6860  loss 0.4019  KL 0.3456  CE 0.908 nats  lr 1.61e-04
+  step  4400/6860  loss 0.4028  KL 0.3462  CE 0.913 nats  lr 1.50e-04
+  step  4500/6860  loss 0.3817  KL 0.3281  CE 0.864 nats  lr 1.40e-04
+  step  4600/6860  loss 0.4410  KL 0.3888  CE 0.911 nats  lr 1.29e-04
+  step  4700/6860  loss 0.3974  KL 0.3451  CE 0.868 nats  lr 1.19e-04
+  step  4800/6860  loss 0.4517  KL 0.3956  CE 0.956 nats  lr 1.09e-04
+  step  4900/6860  loss 0.3959  KL 0.3364  CE 0.931 nats  lr 9.95e-05
+  step  5000/6860  loss 0.4139  KL 0.3578  CE 0.919 nats  lr 9.02e-05
+  step  5100/6860  loss 0.3648  KL 0.3084  CE 0.872 nats  lr 8.13e-05
+  step  5200/6860  loss 0.3497  KL 0.2947  CE 0.845 nats  lr 7.28e-05
+  step  5300/6860  loss 0.3804  KL 0.3232  CE 0.895 nats  lr 6.47e-05
+  step  5400/6860  loss 0.3782  KL 0.3226  CE 0.879 nats  lr 5.70e-05
+  step  5500/6860  loss 0.3799  KL 0.3214  CE 0.906 nats  lr 4.97e-05
+  step  5600/6860  loss 0.3653  KL 0.3064  CE 0.895 nats  lr 4.29e-05
+  step  5700/6860  loss 0.3766  KL 0.3161  CE 0.922 nats  lr 3.65e-05
+  step  5800/6860  loss 0.3742  KL 0.3166  CE 0.893 nats  lr 3.06e-05
+  step  5900/6860  loss 0.3694  KL 0.3150  CE 0.859 nats  lr 2.52e-05
+  step  6000/6860  loss 0.3606  KL 0.3077  CE 0.837 nats  lr 2.03e-05
+  step  6100/6860  loss 0.3455  KL 0.2903  CE 0.843 nats  lr 1.59e-05
+  step  6200/6860  loss 0.3689  KL 0.3123  CE 0.878 nats  lr 1.20e-05
+  step  6300/6860  loss 0.3563  KL 0.2957  CE 0.902 nats  lr 8.67e-06
+  step  6400/6860  loss 0.3707  KL 0.3127  CE 0.893 nats  lr 5.86e-06
+  step  6500/6860  loss 0.3758  KL 0.3222  CE 0.858 nats  lr 3.60e-06
+  step  6600/6860  loss 0.3556  KL 0.2963  CE 0.890 nats  lr 1.88e-06
+  step  6700/6860  loss 0.3584  KL 0.3008  CE 0.877 nats  lr 7.12e-07
+  step  6800/6860  loss 0.3335  KL 0.2772  CE 0.840 nats  lr 1.00e-07
+  step  6859/6860  loss 0.3522  KL 0.2891  CE 0.920 nats  lr 2.78e-11
+[distill] saved student to results/distill/balanced/student/student.pt  (6860 steps, 6812.7s)
+[distill] peak GPU memory 6.76 GiB
+
+=== 2026-10-30 06:24:01  evaluate balanced on held-out val (same windows) ===
+[eval] files=1847 windows=8887
+
+=== Student vs teacher (overall) ===
+  boundary F1        trained 0.860   untrained 0.386
+  entropy Pearson r  trained 0.938   untrained -0.037
+  entropy MAE (nats) trained 0.188   untrained 4.723
+  KL(teacher||stud)  trained 0.154   untrained 4.821
+  bits/byte  student 1.266  vs teacher 1.136
+[eval] wrote results/distill/balanced/eval_balanced/distill_eval.json
+
+=== 2026-10-30 06:31:26  evaluate distilled on held-out val (same windows) ===
+[eval] files=1847 windows=8887
+
+=== Student vs teacher (overall) ===
+  boundary F1        trained 0.871   untrained 0.386
+  entropy Pearson r  trained 0.946   untrained -0.037
+  entropy MAE (nats) trained 0.172   untrained 4.723
+  KL(teacher||stud)  trained 0.135   untrained 4.821
+  bits/byte  student 1.235  vs teacher 1.136
+[eval] wrote results/distill/balanced/eval_distilled/distill_eval.json
+
+=== 2026-10-30 06:38:57  rolling extraction student-bal-v1 on 840 subset + English test files ===
+[extract] 840 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] 100 done / 0 skipped / 0 failed; last cpp_25a05c109d2c 1008B in 1.9s
+[extract] 200 done / 0 skipped / 0 failed; last cpp_fc3922c76c4a 1484B in 3.1s
+[extract] 300 done / 0 skipped / 0 failed; last cpp_ece4e62afd0c 1991B in 4.3s
+[extract] 400 done / 0 skipped / 0 failed; last prose_6d326eae41b5 688B in 1.2s
+[extract] 500 done / 0 skipped / 0 failed; last prose_213f40e819bc 1177B in 2.4s
+[extract] 600 done / 0 skipped / 0 failed; last py_2d4198bf5b9e 726B in 1.3s
+[extract] 700 done / 0 skipped / 0 failed; last py_f8f8d8fc3791 998B in 1.9s
+[extract] 800 done / 0 skipped / 0 failed; last py_5006ff0b51e4 1490B in 3.1s
+[extract] DONE run_id=student-bal-v1 shard=None: 840 done, 0 skipped, 0 failed
+[extract] 840 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] DONE run_id=student-bal-v1 shard=None: 0 done, 840 skipped, 0 failed
+
+=== 2026-10-30 07:07:47  BALANCED CONTROL DONE ===
