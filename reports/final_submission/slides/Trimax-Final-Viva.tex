@@ -73,6 +73,20 @@
 \end{frame}
 
 \section{Stream C: statistics}
+\begin{frame}{Ground truth from parsers: interactive tree views}
+\begin{itemize}
+\item \textbf{Code:} tree-sitter gives an exact grammar tree; the highlighted nodes are the constituents we keep as targets (statement- and expression-level) with their start and end bytes.
+\item \textbf{English:} benepar gives a predicted phrase tree (NP, VP, PP); targets are phrase starts.
+\item Each viewer shows the full parse tree next to the source, as a self-contained HTML page (no server, no network).
+\end{itemize}
+\vspace{2mm}
+\textbf{Open a view} (links work when the PDF is opened from the repository):\\[1mm]
+\href{../../../stream_b/tree_views/py_a1567fe2419b.html}{Python} \quad
+\href{../../../stream_b/tree_views/cpp_362b99d47547.html}{C++} \quad
+\href{../../../stream_b/tree_views/prose_504f378c8948.html}{English}\\[1mm]
+{\footnotesize Viewers: \texttt{stream\_b/tree\_viewer.py}, \texttt{stream\_b/prose\_tree\_viewer.py}; examples in \texttt{stream\_b/tree\_views/}.}
+\end{frame}
+
 \begin{frame}{Stream C: frozen protocol}
 \begin{itemize}
 \item One-to-one matching within $k$ bytes; $k\in\{0,1,2,4,8\}$ chosen on the \hl{calibration split only} $\rightarrow$ $k=0$ everywhere.

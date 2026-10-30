@@ -165,7 +165,7 @@ It writes per-byte entropies, the boundary table and BPP/entropy statistics for 
 | `escape_distill/`                             | Extension: student model, distillation training/eval, stride-1 extractor, re-thresholder, k = 0 scorer |
 | `scripts/final_analysis/`                     | Final-submission analyses (P4 post-keyword, O3 depth, O4 sweep, O5 confound, subsets, efficiency) |
 | `stream_a/`                                   | BLT patcher loading, sliding-window fix, fidelity gates, extraction (incl. O4)                 |
-| `stream_b/`                                   | Corpus restore, tree-sitter/benepar parsing, baselines, O4 noise builder, O5 regions           |
+| `stream_b/`                                   | Corpus restore, tree-sitter/benepar parsing, baselines, O4 noise builder, O5 regions, interactive HTML tree viewers (`tree_viewer.py`, `prose_tree_viewer.py`, examples in `tree_views/`) |
 | `escape_scoring/`, `schemas/v1/`            | Frozen C-v1 scorer: matching, null, calibration, baselines, IoU, O4, O5                        |
 | `escape_common/`, `escape_eval/`            | Shared I/O and offsets; earlier exploratory scorer (superseded)                                |
 | `scripts/ada_final/`                          | SLURM pipeline for the full run on Ada                                                         |
