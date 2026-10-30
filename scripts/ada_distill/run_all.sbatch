@@ -23,7 +23,28 @@ CPP_LIMIT="${CPP_LIMIT:-6000}"
 
 stamp "materialize into scratch: $CORPUS  (py=$PY_LIMIT prose=$PROSE_LIMIT cpp=$CPP_LIMIT)"
 a_py -m stream_b.build_ext_corpus py    --limit "$PY_LIMIT"    --out "$CORPUS"
-a_py -m stream_b.build_ext_corpus prose --limit "$PROSE_LIMIT" --out "$CORPUS"
+# The prose step (streaming WikiText) can abort at interpreter exit: job 39365 died with
+# "Fatal Python error: PyGILState_Release" (SIGABRT, rc 134) right AFTER "wrote 8000 files",
+# i.e. after the .bin files, manifest_ext.parquet and DATA_NOTE.json were all written (that is
+# why the repro run used a materialize_noexit.py wrapper). Accept a non-zero exit only if the
+# output is complete: prose rows in the manifest, every prose .bin present, and DATA_NOTE.json
+# (written last) recording the same prose file count.
+a_py -m stream_b.build_ext_corpus prose --limit "$PROSE_LIMIT" --out "$CORPUS" || {
+  rc=$?
+  a_py - "$CORPUS" <<'PY' || { echo "ERROR: prose materialize failed (rc=$rc) and its output is incomplete"; exit "$rc"; }
+import json, sys
+from pathlib import Path
+import pandas as pd
+out = Path(sys.argv[1])
+m = pd.read_parquet(out / "manifest_ext.parquet")
+ids = m.loc[m["domain"] == "prose", "file_id"]
+missing = [f for f in ids if not (out / "prose" / f"{f}.bin").exists()]
+note = json.loads((out / "DATA_NOTE.json").read_text())
+assert len(ids) > 0 and not missing and note["prose"]["files"] == len(ids), (len(ids), len(missing))
+print(f"prose output complete: {len(ids)} manifest rows, all .bin present")
+PY
+  echo "WARN: prose materialize exited rc=$rc at interpreter exit; output verified complete, continuing"
+}
 a_py -m stream_b.build_ext_corpus cpp   --limit "$CPP_LIMIT"   --out "$CORPUS" || \
   echo "WARN: cpp materialize failed (The Stack terms?); continuing with py+prose"
 cp "$CORPUS/manifest_ext.parquet" "$CORPUS/DATA_NOTE.json" results/distill/full/ 2>/dev/null || true

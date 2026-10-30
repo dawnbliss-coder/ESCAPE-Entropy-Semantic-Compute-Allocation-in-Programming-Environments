@@ -25,7 +25,8 @@ import torch
 import torch.nn.functional as F
 
 from escape_distill.student_blt import StudentBLT, StudentConfig
-from escape_distill.data import load_samples, build_windows, WindowLoader
+from escape_distill.data import (load_samples, build_windows, WindowLoader, byte_balanced_weights,
+                                  window_domains)
 from escape_distill.teacher import load_teacher, teacher_logits
 
 
@@ -71,6 +72,8 @@ def main():
                     help="checkpoint dir (patcher.safetensors + config.json): initialise the student "
                          "from the teacher's weights (domain-adaptation arm). Use --dim 768 --layers 14 "
                          "--heads 12 for the teacher architecture; tie_embeddings is disabled automatically.")
+    ap.add_argument("--balance", choices=("none", "bytes"), default="none",
+                    help="bytes: draw windows so every domain gets an equal expected byte share")
     ap.add_argument("--teacher-dtype", default="float32")
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--seed", type=int, default=20260927)
@@ -88,7 +91,11 @@ def main():
     windows = build_windows(samples)
     if not windows:
         raise SystemExit("no training windows found")
-    loader = WindowLoader(windows, args.batch_size, device, shuffle=True, seed=args.seed)
+    weights, balance = None, None
+    if args.balance == "bytes":
+        weights, balance = byte_balanced_weights(windows, window_domains(samples))
+        print(f"[distill] byte-balanced sampling: {json.dumps(balance)}")
+    loader = WindowLoader(windows, args.batch_size, device, shuffle=True, seed=args.seed, weights=weights)
 
     cfg = StudentConfig(dim=args.dim, n_layers=args.layers, n_heads=args.heads)
     if args.init_from:
@@ -168,8 +175,11 @@ def main():
     torch.save(ckpt, out / "student.pt")
     (out / "train_log.json").write_text(json.dumps(
         {"args": vars(args), "student_params": student.num_parameters(),
-         "n_files": len(samples), "n_windows": len(windows), "steps": step, "log": log}, indent=2))
+         "n_files": len(samples), "n_windows": len(windows), "steps": step, "balance": balance,
+         "log": log}, indent=2))
     print(f"[distill] saved student to {out/'student.pt'}  ({step} steps, {time.time()-t0:.1f}s)")
+    if device.type == "cuda":
+        print(f"[distill] peak GPU memory {torch.cuda.max_memory_allocated() / 2**30:.2f} GiB")
 
 
 if __name__ == "__main__":

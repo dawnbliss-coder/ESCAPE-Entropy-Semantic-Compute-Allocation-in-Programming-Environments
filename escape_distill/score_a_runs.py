@@ -14,7 +14,8 @@ and computes, per domain and pooled:
   - paired file percentile bootstrap CIs (B) and BLT-minus-best-baseline intervals
 
 No k selection happens here: test files must never select k. Use the frozen k=0
-(results/final/c-v1-2721954/calibration.json). Primary student numbers go through the
+(results/final/c-v1-2721954/calibration.json); --k 1/2 exist only for the test-split
+sensitivity rows of the k sweep, never to choose k. Primary student numbers go through the
 frozen `escape_scoring` CLI; this harness serves the teacher-512 subset control, the
 tau-sweep curves and the golden gates.
 
@@ -36,7 +37,9 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from escape_scoring.baselines import indent_change, newline, word_start  # noqa: E402
 from escape_scoring.contract import WRAPPERS  # noqa: E402
-from escape_scoring.metrics import match, metrics, rng_for, shuffled_boundaries  # noqa: E402
+from escape_scoring.fast import FixedEofNull, as_sorted, counts_fast  # noqa: E402
+from escape_scoring.metrics import match, metrics, rng_for  # noqa: E402
+from escape_scoring.parallel import ordered_map  # noqa: E402
 
 SEED = 20260927
 TAU = 1.335442066192627
@@ -79,6 +82,25 @@ def targets_from_parquet(path: Path, n_bytes: int) -> list:
     return sorted(out)
 
 
+def file_null_counts(_dataset, patches, n_bytes, targets, seed, fid, run_id, perms, k=0):
+    """[perms, 3] tp/fp/fn of one file's fixed-EOF null. The file's own PCG64 stream is
+    drawn in permutation order, exactly as a pooled perm-major loop consumes it, so the
+    pooled null (an integer sum over files) is the same for any number of workers.
+    FixedEofNull / counts_fast are the array forms of shuffled_boundaries(fixed_eof) /
+    match (same generator calls, same counts; tests/scoring_v1/test_fast.py)."""
+    rng = rng_for(seed, fid, f"score_a_runs_{run_id}")
+    sampler = FixedEofNull(patches, n_bytes)
+    t = as_sorted(targets)
+    out = np.empty((perms, 3), dtype=np.int64)
+    for r in range(perms):
+        out[r] = counts_fast(sampler.draw(rng), t, k)
+    return out
+
+
+def f1_of(c):
+    return 2 * c[..., 0] / np.maximum(1e-12, 2 * c[..., 0] + c[..., 1] + c[..., 2])
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--root", default=str(REPO_ROOT))
@@ -89,9 +111,12 @@ def main(argv=None):
     ap.add_argument("--perms", type=int, default=10000)
     ap.add_argument("--boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=SEED)
+    ap.add_argument("--k", type=int, default=0,
+                    help="matching tolerance; 0 is frozen, 1/2 only for test-split sensitivity rows")
     ap.add_argument("--out", default=None)
     ap.add_argument("--golden", action="store_true",
                     help="score the golden fixtures (golden_fixtures/{domain}/ paths)")
+    ap.add_argument("--workers", type=int, default=1, help="worker processes; results do not depend on it")
     args = ap.parse_args(argv)
     root = Path(args.root).resolve()
 
@@ -122,7 +147,7 @@ def main(argv=None):
             return root / "structure" / manifest.loc[fid, "domain"] / f"{fid}.parquet"
 
     results = {"run_ids": args.run_ids, "seed": args.seed, "perms": args.perms,
-               "boot": args.boot, "k": 0, "tau": TAU, "n_files": len(file_ids),
+               "boot": args.boot, "k": args.k, "tau": TAU, "n_files": len(file_ids),
                "calibration_record": args.calibration, "golden": args.golden, "domains": {}}
     for d in domains:
         fids = [f for f in file_ids if (dom_of[f] if args.golden else manifest.loc[f, "domain"]) == d]
@@ -141,7 +166,7 @@ def main(argv=None):
         for b in base:
             per = []
             for fid in fids:
-                tp = len(match(base[b][fid], tgt[fid], 0))
+                tp = len(match(base[b][fid], tgt[fid], args.k))
                 per.append([tp, len(base[b][fid]) - tp, len(tgt[fid]) - tp])
             arr = np.asarray(per, dtype=float)
             m = metrics(arr.sum(axis=0))
@@ -159,29 +184,27 @@ def main(argv=None):
                 b = pd.read_parquet(bpath)
                 n = n_bytes_of[fid]
                 pred = interior_starts_from_a(b, n)
-                tp = len(match(pred, tgt[fid], 0))
+                tp = len(match(pred, tgt[fid], args.k))
                 per.append([tp, len(pred) - tp, len(tgt[fid]) - tp])
                 patches_by_fid[fid] = c_v1_patches_from_a(b, n)
             arr = np.asarray(per, dtype=float)
             m = metrics(arr.sum(axis=0))
             obs_f1 = float(m["f1"])
-            rngs = {fid: rng_for(args.seed, fid, f"score_a_runs_{run_id}") for fid in fids}
-            null_f1 = np.empty(args.perms)
-            for r in range(args.perms):
-                t_all = f_all = n_all = 0
-                for fid in fids:
-                    nb = shuffled_boundaries(patches_by_fid[fid], n_bytes_of[fid],
-                                             rngs[fid], eof_policy="fixed_eof")
-                    t = len(match(nb, tgt[fid], 0))
-                    t_all += t; f_all += len(nb) - t; n_all += len(tgt[fid]) - t
-                null_f1[r] = 2 * t_all / max(1e-12, 2 * t_all + f_all + n_all)
+            jobs = [(patches_by_fid[fid], n_bytes_of[fid], tgt[fid], args.seed, fid, run_id, args.perms, args.k)
+                    for fid in fids]
+            pooled = np.zeros((args.perms, 3), dtype=np.int64)
+            per_file_h0 = []  # per-file mean null F1: the frozen k-criterion's comparator
+            for c in ordered_map(file_null_counts, jobs, None, args.workers):
+                pooled += c
+                per_file_h0.append(float(f1_of(c).mean()))
+            null_f1 = f1_of(pooled)
             rows[run_id] = {"tp": int(arr[:, 0].sum()), "fp": int(arr[:, 1].sum()),
                             "fn": int(arr[:, 2].sum()), "f1": obs_f1,
                             "precision": float(m["precision"]), "recall": float(m["recall"]),
                             "f1_h0_mean": float(null_f1.mean()),
                             "f1_margin": float(obs_f1 - null_f1.mean()),
                             "f1_permutation_p": float((1 + np.sum(null_f1 >= obs_f1)) / (args.perms + 1)),
-                            "per_file": per}
+                            "per_file": per, "per_file_f1_h0_mean": per_file_h0}
         rng_b = rng_for(args.seed, f"{d}\0score_a_runs", "file_bootstrap")
         for name in rows:
             arr = np.asarray(rows[name]["per_file"], dtype=float)

@@ -1,0 +1,9 @@
+model,domain,n_bytes,boundary_f1,boundary_precision,boundary_recall,entropy_mae_nats,entropy_pearson_r,kl_teacher_student_nats_per_byte,bits_per_byte_student,bits_per_byte_teacher
+trained,all,4098495,0.9547,0.953,0.9564,0.0592,0.9924,0.0164,1.0895,1.1356
+trained,cpp,2664271,0.9577,0.9581,0.9574,0.0545,0.9939,0.0126,1.0826,1.1359
+trained,prose,389544,0.9372,0.9221,0.9528,0.1078,0.981,0.0527,1.3516,1.3702
+trained,py,1044680,0.9554,0.9553,0.9556,0.053,0.9936,0.0127,1.0092,1.0474
+untrained,all,4098495,0.3856,0.2388,1.0,4.6597,-0.0357,4.8091,8.0349,1.1356
+untrained,cpp,2664271,0.382,0.2361,1.0,4.6682,-0.0352,4.8255,8.0454,1.1359
+untrained,prose,389544,0.4633,0.3015,1.0,4.4722,-0.017,4.6205,8.0417,1.3702
+untrained,py,1044680,0.3641,0.2225,1.0,4.7077,-0.0775,4.8379,8.0058,1.0474

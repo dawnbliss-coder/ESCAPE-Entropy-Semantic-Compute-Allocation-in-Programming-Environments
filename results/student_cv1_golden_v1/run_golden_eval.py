@@ -33,8 +33,8 @@ from pathlib import Path
 import numpy as np
 import torch
 
-REPO = Path("/home/shashwat-11/ESCAPE/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments")
 HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[1]  # this file lives at <repo>/results/student_cv1_golden_v1/
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(HERE))
 
@@ -53,6 +53,11 @@ MAX_CTX = 512
 BATCH_WINDOWS = 4
 CKPT_DIR = REPO / "checkpoints/itazap__blt-1b-hf/91aa6b8e168046ad91e517d2191e1e974f50cc01"
 GOLDEN = REPO / "golden_fixtures"
+# The original run read a copy of student.pt next to this script (sha256 aeef99da..., recorded
+# in config.json); in the repo the same file is results/distill/full/student/student.pt.
+STUDENT_PT = HERE / "student.pt"
+if not STUDENT_PT.exists():
+    STUDENT_PT = REPO / "results/distill/full/student/student.pt"
 
 
 def load_teacher():
@@ -153,7 +158,7 @@ def main():
     print(f"[setup] teacher: {pc['num_hidden_layers']}x{pc['hidden_size']} "
           f"{pc['num_attention_heads']} heads (reference backend, float32 cpu)", flush=True)
 
-    ckpt = torch.load(HERE / "student.pt", map_location="cpu", weights_only=False)
+    ckpt = torch.load(STUDENT_PT, map_location="cpu", weights_only=False)
     student = StudentBLT(StudentConfig(**ckpt["config"]))
     student.load_state_dict(ckpt["model_state"])
     student.eval()
@@ -170,7 +175,7 @@ def main():
                     "patcher_weights_sha256": hashlib.sha256((CKPT_DIR / "patcher.safetensors").read_bytes()).hexdigest()},
         "student": {"params": student.num_parameters(), "steps": ckpt["steps"],
                     "config": ckpt["config"],
-                    "student_pt_sha256": hashlib.sha256((HERE / "student.pt").read_bytes()).hexdigest()},
+                    "student_pt_sha256": hashlib.sha256(STUDENT_PT.read_bytes()).hexdigest()},
         "context_policy": {
             "teacher_native": "swa512 banded mask over [BOS]+full file (native regime; no chunking needed, files << 8192 tokens)",
             "teacher_512": "stride-1 fresh windows, <=512 preceding bytes per prediction (student's budget; CONTROL only; equals native for files <=512B)",
@@ -321,7 +326,8 @@ def main():
 
     (OUT / "scores.json").write_text(json.dumps(out, indent=2))
     (OUT / "config.json").write_text(json.dumps(config, indent=2))
-    shutil.copyfile(__file__, OUT / "run_golden_eval.py")
+    if (OUT / "run_golden_eval.py").resolve() != Path(__file__).resolve():  # default --out is HERE
+        shutil.copyfile(__file__, OUT / "run_golden_eval.py")
     print(f"\n[wrote] {OUT / 'scores.json'}")
     for d in domains:
         dres = out["domains"][d]

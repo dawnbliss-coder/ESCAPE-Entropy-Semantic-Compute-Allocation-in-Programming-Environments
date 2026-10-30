@@ -68,7 +68,7 @@ def load_student(pt: Path, device: str):
     ckpt = torch.load(pt, map_location=device, weights_only=False)
     model = StudentBLT(StudentConfig(**ckpt["config"]))
     model.load_state_dict(ckpt["model_state"])
-    model.eval()
+    model.to(device).eval()  # load_state_dict copies into the CPU-built params; move them
     return model, ckpt
 
 
@@ -235,7 +235,8 @@ def main(argv=None):
     if args.model == "student":
         model, ckpt = load_student(Path(args.student_pt), device)
         params = model.num_parameters()
-        model_identity = {"checkpoint": "escape_distill/student-bl-t-384-8-6",
+        c = ckpt["config"]
+        model_identity = {"checkpoint": f"escape_distill/student-bl-t-{c['dim']}-{c['n_layers']}-{c['n_heads']}",
                           "checkpoint_revision": "c4384eb81f7d801aab2746dc453b6b1679136f9a",
                           "student_pt_sha256": hashlib.sha256(Path(args.student_pt).read_bytes()).hexdigest(),
                           "n_params": params}

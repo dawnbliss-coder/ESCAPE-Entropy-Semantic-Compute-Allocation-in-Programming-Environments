@@ -35,6 +35,10 @@ EVAL_MANIFEST = ROOT / "corpus" / "manifest.parquet"
 OUT = ROOT / "corpus_ext"
 
 SMOL_REV = "4a6938ce94446f324c6629e7de00ac591710044b"
+# the-stack-smol-xl was loaded UNPINNED (HEAD) by the distillation run (Ada job 34241,
+# 2026-10-22). This is its HEAD as checked on 2026-10-29 via the HF API; the API reported
+# lastModified 2023-02-10T17:22:38Z, i.e. before that run, so it should be the same commit.
+SMOL_XL_REV = "e782ebf35c7e4cafccb08ca680b0a76706533067"
 CSN_REV = "bd0cf261e357a3eb5c8fba490d23ec1a1cd59555"
 WIKI_REV = "b08601e04326c79dfdd32d625aee71d232d685c3"
 
@@ -81,7 +85,7 @@ def collect_cpp(limit):
         if smol_hash[i] in ev_hashes:
             continue
         cands.append(("the-stack-smol", i, s_content[i], s_repo[i], s_path[i], s_lic[i] or []))
-    xl = load_dataset("bigcode/the-stack-smol-xl", data_dir="data/c++", split="train")
+    xl = load_dataset("bigcode/the-stack-smol-xl", data_dir="data/c++", split="train", revision=SMOL_XL_REV)
     x_content, x_repo = xl["content"], xl["max_stars_repo_name"]
     x_path, x_lic = xl["max_stars_repo_path"], xl["max_stars_repo_licenses"]
     for i in range(len(x_content)):
@@ -240,7 +244,8 @@ def main(argv=None):
     npath = out / "DATA_NOTE.json"
     note = json.loads(npath.read_text()) if npath.exists() else {}
     note[args.domain] = summary
-    note["revisions"] = {"the-stack-smol": SMOL_REV, "code_search_net": CSN_REV, "wikitext-103": WIKI_REV}
+    note["revisions"] = {"the-stack-smol": SMOL_REV, "the-stack-smol-xl": SMOL_XL_REV,
+                         "code_search_net": CSN_REV, "wikitext-103": WIKI_REV}
     npath.write_text(json.dumps(note, indent=2) + "\n")
     print(f"wrote {len(kept)} files to {out / args.domain}")
     return 0

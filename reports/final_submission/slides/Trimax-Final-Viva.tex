@@ -1,0 +1,212 @@
+% Final viva deck. Every number is a macro from ../generated/{results,final}.tex, built by
+% ../build_final.py from results/final/, so the slides cannot drift from the report.
+% Build: bash ../build_slides.sh  (pdflatex + beamer)
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{default}
+\usecolortheme{dove}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\IfFileExists{adjustbox.sty}{\usepackage{adjustbox}}{%
+  \newsavebox{\escapebox}%
+  \newenvironment{adjustbox}[1]{\begin{lrbox}{\escapebox}}%
+    {\end{lrbox}\ifdim\wd\escapebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\escapebox}}\else\usebox{\escapebox}\fi}}
+\graphicspath{{../}{../../../}}
+\input{../generated/results}
+\input{../generated/final}
+\definecolor{acc}{HTML}{234F7D}
+\setbeamercolor{frametitle}{fg=acc}
+\setbeamercolor{title}{fg=acc}
+\newcommand{\hl}[1]{\textcolor{acc}{\textbf{#1}}}
+
+\title{Project ESCAPE: Does Entropy-Based Patching Find Syntax?}
+\subtitle{Final viva --- Team Trimax}
+\author{Priyanka Agarwal \and Shashwat Mukadam \and Divyansh Atri}
+\date{ANLP, October 2026}
+
+\begin{document}
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{The question}
+\begin{itemize}
+\item BLT starts a new patch when its byte-level entropy model is uncertain: $H_i>\tau$.
+\item \hl{Grammatical Branching Hypothesis:} uncertainty peaks where a constituent opens, so patches should start at AST / parse constituent starts.
+\item Tested on \nSamples{} files (Python, C++, English), held-out split \nTestAll{}, against
+  \begin{itemize}
+  \item a \hl{density-matched null}: each file's own patch lengths, shuffled, final patch fixed (\nPerm{} permutations);
+  \item \hl{structure-blind baselines}: newline, indentation change, word start.
+  \end{itemize}
+\item Five objectives (O1--O5), four predictions (P1--P4), plus an extension (a distilled patcher).
+\end{itemize}
+\end{frame}
+
+\section{Stream A: patcher and extraction}
+\begin{frame}{Stream A: a faithful patcher, then a distilled one}
+\begin{columns}[T]
+\column{.55\textwidth}\small
+\begin{itemize}
+\item HF port \texttt{itazap/blt-1b-hf} omits BLT's 512-token sliding window; \hl{we restored it} (8{,}192-token chunks), float32, $\tau=1.3354$.
+\item Without it (HF full attention) the test margin collapses: \xHfMarginPy{} vs.\ \xHfSwaMarginPy{} (Py), \xHfMarginCpp{} vs.\ \xHfSwaMarginCpp{} (C++ $<$8\,KB).
+\item 8 fidelity gates; logits match an independent reimplementation to $1.05\times10^{-4}$; amended gate set \FidelityAda{} on Ada.
+\item Ada artefacts regenerated; \hl{per-file, score and diagnostic CSVs byte-identical} to the frozen run.
+\item Extension: 14.3M student distilled from the 99.5M patcher; golden gate reproduced within \xGateMaxDev{} F1 on GPU.
+\end{itemize}
+\column{.45\textwidth}
+\includegraphics[width=\linewidth]{../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/entropy_heatmap_py_07fbe9f688ef.png}
+\end{columns}
+\end{frame}
+
+\section{Stream C: statistics}
+\begin{frame}{Stream C: frozen protocol}
+\begin{itemize}
+\item One-to-one matching within $k$ bytes; $k\in\{0,1,2,4,8\}$ chosen on the \hl{calibration split only} $\rightarrow$ $k=0$ everywhere.
+\item Fixed-EOF null keeps patch-length multiset and boundary count; paired file bootstrap (\nBoot{}).
+\item Test split scored once; every later analysis reuses the frozen per-file counts or the \hl{same seeded null draws}.
+\item New checks: repository-clustered bootstrap (Python, \xRepoN{} repos) widens the CI \xRepoWiden{}$\times$ to \xRepoCI{}; parser error recovery (\xErrShare{} of C++) changes the margin by \xErrDiff{} \xErrDiffCI{}; files $>$8{,}191 bytes by \xLongDiff{} \xLongDiffCI{}.
+\end{itemize}
+\end{frame}
+
+\section{Results}
+\begin{frame}{P1: real alignment, but not beyond line/word segmentation}
+\centering\small
+\begin{tabular}{lrrrrl}
+\toprule
+& F1 & $H_0$ F1 & $\Delta$ [95\% CI] & F1/$H_0$ & vs.\ best baseline \\
+\midrule
+Python & \FonePy{} & \FoneNullPy{} & \MarginPy{} \MarginCIPy{} & \xRatioPy{}$\times$ & \VsBasePy{} (\StrongestPy{}) \\
+C++ & \FoneCpp{} & \FoneNullCpp{} & \MarginCpp{} \MarginCICpp{} & \xRatioCpp{}$\times$ & \VsBaseCpp{} (\StrongestCpp{}) \\
+English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\times$ & \VsBaseEn{} (\StrongestEn{}) \\
+\bottomrule
+\end{tabular}
+\vspace{1em}
+\begin{itemize}
+\item P1 \hl{supported} against the null ($p\le10^{-4}$ everywhere); against the best structure-blind baseline BLT \RTwoAll{}.
+\item Precision $\ll$ recall: every boundary has $\ge e^{\tau}\approx3.8$ live continuations; identifier interiors are flat but not syntactic.
+\item P2 \hl{supported}: end margins \EndMarginPy{}, \EndMarginCpp{}, \EndMarginEn{}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{P3 reversed --- because margins scale with target density}
+\begin{itemize}
+\item Predicted: prose near chance. Observed: prose margin \MarginProse{} $>$ code \MarginCode{}.
+\item Benepar constituents begin at words; the word-start rule alone gets \StrongestFoneEn{} F1 in English.
+\item On the scale-free ratio to the null, \hl{code aligns more strongly}: \xRatioPy{}$\times$ (Py), \xRatioCpp{}$\times$ (C++) vs.\ \xRatioEn{}$\times$ (En).
+\item BPP variance half of P3 holds: within-file variance \BppVarCpp{} (C++), \BppVarPy{} (Py) vs.\ \BppVarEn{} (En).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{P4 reversed at the start byte --- confirmed at the forced bytes}
+\begin{columns}[T]
+\column{.52\textwidth}\small
+\begin{itemize}
+\item Start recall margin: forced openers \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) --- opposite of P4.
+\item Test: boundary rate at bytes \emph{after} $s$, same null draws (start rows \xPosCheck{} the frozen recalls).
+\item Rest of keyword: \xKwDetPy{} (Py), \xKwDetCpp{} (C++) vs.\ null.
+\item Byte after keyword: rate \xPostKwRateDetPy{} (Py), \xPostKwRateDetCpp{} (C++) vs.\ null $\approx$\xOffNullPy{}; open-ended stays at the null.
+\item Boundary returns where choice reopens: Python condition start (rate \xNextRateDetPy{}); C++ after the forced \texttt{(} (rate \xOffDetCppIV{}).
+\item \hl{Forcing is real; the start byte is just before it.}
+\end{itemize}
+\column{.48\textwidth}
+\includegraphics[width=\linewidth]{generated/p4_offsets.pdf}
+\end{columns}
+\end{frame}
+
+\begin{frame}{O3: depth on a common scale}
+\centering
+\includegraphics[width=.95\textwidth]{generated/depth_normalised.pdf}
+\begin{itemize}\small
+\item Raw tree-sitter depth counts language-specific scaffolding $\rightarrow$ count enclosing \emph{constituents} instead, and normalise within file.
+\item Largest at the outermost constituents; 1 $\rightarrow$ 7 enclosing constituents: Py \xDepthOnePy{} $\rightarrow$ \xDepthSevenPy{}, C++ \xDepthOneCpp{} $\rightarrow$ \xDepthSevenCpp{}, En \xDepthOneEn{} $\rightarrow$ \xDepthSevenEn{}. Python $>$ C++ at every depth.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{O4: noise, now as a rate sweep}
+\centering
+\includegraphics[width=.95\textwidth]{generated/o4_sweep.pdf}
+\begin{itemize}\small
+\item Same \xOFourSweepFiles{} held-out files per language, each noise type at 5--40\% (case 25--100\%).
+\item Only indentation damage grows with rate (Py \xOFourIndentLoPy{} $\rightarrow$ \xOFourIndentHiPy{}, C++ \xOFourIndentLoCpp{} $\rightarrow$ \xOFourIndentHiCpp{}); typos cut BPP (\xOFourTypoBppPy{} / \xOFourTypoBppCpp{} at 40\%) but not alignment; renaming is flat. Every margin $\ge$ \xOFourSweepMinMargin{}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{O5: no semantic residual near memory-unsafe code}
+\begin{itemize}
+\item Label audit: \xAuditRepro{} regions reproduced; independent lexical labeller agrees on \xAuditAgree{} statements.
+\item Frozen coefficient \OFiveUnsafe{} \OFiveUnsafeCI{} boundaries/byte --- but:
+\item File FE only: \hl{\xOFiveRaw{} \xOFiveRawCI{}} --- unsafe statements get \emph{fewer} boundaries (more predictable identifiers).
+\item Positive only after conditioning on identifier entropy; size \xOFiveRel{} of the mean, \xOFiveVsIdent{} of a 1-SD identifier-entropy effect.
+\item Reading: a small conditional \emph{surface} effect (the \texttt{*}, \texttt{\&}, \texttt{new} bytes), not risk awareness.
+\end{itemize}
+\end{frame}
+
+\section{Extension}
+\begin{frame}{Beyond the proposal: a 7$\times$ smaller distilled patcher}
+\centering\small
+\begin{tabular}{lrrrl}
+\toprule
+& Teacher $\Delta$ & Student $\Delta$ & kept & Student$-$teacher [95\% CI] \\
+\midrule
+Python & \MarginPy{} & \xStuMarginPy{} & \xStuRetainPy{} & \xStuDiffPy{} \xStuDiffCIPy{} \\
+C++ & \MarginCpp{} & \xStuMarginCpp{} & \xStuRetainCpp{} & \xStuDiffCpp{} \xStuDiffCICpp{} \\
+English & \MarginEn{} & \xStuMarginEn{} & \xStuRetainEn{} & \xStuDiffEn{} \xStuDiffCIEn{} \\
+\bottomrule
+\end{tabular}
+\begin{itemize}\small
+\item Online KD ($\alpha=0.1$, $T=2$) on a disjoint 29k-file corpus; val boundary F1 vs.\ teacher \xDistFone{}; no-teacher control ($\alpha=1$) \xAlphaFone{}.
+\item Full 16{,}300-file extraction + frozen C-v1 scoring with its own calibration ($k=0$).
+\item Teacher restricted to 512-byte windows loses only \xTfiveDiffPy{} (Py) / \xTfiveDiffCpp{} (C++) F1.
+\item Cost: forward \xEffForward{}$\times$ faster than the teacher on a \xEffGpu{}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Follow-ups: byte-balanced student, adapted teacher}
+\centering\small
+\begin{tabular}{lll r}
+\toprule
+& Balanced$-$student [95\% CI] & Adapted$-$student [95\% CI] & bar \\
+\midrule
+Python & \xBalDiffPy{} \xBalDiffCIPy{} & \xAdaptDiffPy{} \xAdaptDiffCIPy{} & \xAdaptWidthPy{} \\
+C++ & \xBalDiffCpp{} \xBalDiffCICpp{} & \xAdaptDiffCpp{} \xAdaptDiffCICpp{} & \xAdaptWidthCpp{} \\
+English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \xAdaptWidthEn{} \\
+\bottomrule
+\end{tabular}
+\begin{itemize}\small
+\item Paired $\Delta$ differences, $k=0$, on the pre-registered 600-file code subset and the \xArmsNEn{} English test files (exploratory: full-corpus extraction did not fit).
+\item Byte-balanced sampling trades code for prose: English up, code slightly down; window F1 vs.\ teacher \xBalWinFone{} (distilled \xBalRefWinFone{}).
+\item Adapted teacher (99.5M, same loss and data): window F1 \xAdaptWinFone{}; pre-registered verdict \hl{\xAdaptVerdict{}} (\xAdaptWins{} of 3 domains beat the student's CI width).
+\item In code it matches the unadapted teacher read through the same windows: it recovers the teacher rather than improving on it.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Threshold sweep and the confirmatory English holdout}
+\begin{columns}[T]
+\column{.55\textwidth}
+\includegraphics[width=\linewidth]{generated/tau_sweep.pdf}
+\column{.45\textwidth}\small
+\begin{itemize}
+\item Pre-registered $\tau^*$ on calibration: teacher \xTauStarTeacherPy{}; student \xTauStarStudentPy{}/\xTauStarStudentCpp{}/\xTauStarStudentEn{}.
+\item One test run at $\tau^*$: teacher $\Delta$ \xTauConfTeacherPy{} (Py), \xTauConfTeacherCpp{} (C++), \xTauConfTeacherEn{} (En) --- still below baselines (\xTauConfVsBaseTeacherPy{}).
+\item Student at its own $\tau^*$: $\Delta$ \xTauConfStudentPy{}, \xTauConfStudentCpp{}, \xTauConfStudentEn{} --- also below baselines.
+\item English holdout (\xHoldFiles{} unseen paragraphs, scored once): teacher \xHoldTeaMargin{}, student \xHoldStuMargin{}; vs.\ word starts \xHoldTeaVsWord{}.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conclusions}
+\begin{itemize}
+\item Entropy boundaries track constituent starts \hl{4--5$\times$ above chance} --- held-out, holdout, and in a distilled student.
+\item They do \hl{not} beat indentation / word-start segmentation at any $\tau$ or $k$.
+\item Each failed prediction has a mechanical explanation:
+  \begin{itemize}
+  \item P3: margin scales with target density;
+  \item P4: forcing acts after the opener, not at its start;
+  \item O5: the ``residual'' is conditional, surface-level, unconditionally negative.
+  \end{itemize}
+\item Entropy is a genuine but shallow structural signal --- syntax shapes it without being what it measures.
+\end{itemize}
+\end{frame}
+\end{document}

@@ -21,6 +21,11 @@ calibration record (never calibration files), by seeded SHA256 rank.
 
 Writes o4/manifest.parquet and o4/{condition}/{text,structure}/{sample_id}.* .
 Reads only corpus bytes, structure/ and the calibration record; never BLT outputs.
+
+Rate sweep (final submission): --rates / --case-rates build every noise type at each
+listed rate into --out, with conditions named {type}_r{rate} (e.g. indentation_r0.05).
+The defaults (one rate per type, conditions named by type, out o4/) reproduce the
+frozen O4 build exactly.
 """
 
 import argparse
@@ -83,7 +88,7 @@ def invert_case(name: str):
     return None
 
 
-def edits_for(condition, language, content: bytes, sid):
+def edits_for(condition, language, content: bytes, sid, rate=RATE, case_rate=CASE_RATE):
     """Non-overlapping (start, end, replacement) byte edits for one condition."""
     rng = rng_for("o4-edit", condition, sid)
     tree = PARSERS[language].parse(content)
@@ -91,12 +96,12 @@ def edits_for(condition, language, content: bytes, sid):
     if condition == "missing_semicolon":
         sites = sorted(n.start_byte for n, p in walk(tree)
                        if n.type == ";" and p is not None and p.type in STATEMENT_PARENTS)
-        edits = [(s, s + 1, b"") for s in sites if rng.random() < RATE]
+        edits = [(s, s + 1, b"") for s in sites if rng.random() < rate]
     elif condition == "keyword_typo":
         sites = sorted((n.start_byte, n.end_byte) for n, _ in walk(tree)
                        if not n.is_named and n.type in KEYWORDS[language] and n.end_byte - n.start_byte >= 2)
         for a, b in sites:
-            if rng.random() >= RATE:
+            if rng.random() >= rate:
                 continue
             word = content[a:b]
             j = rng.randrange(len(word) - 1)
@@ -111,14 +116,14 @@ def edits_for(condition, language, content: bytes, sid):
                     (n.start_byte, n.end_byte))
         for name in sorted(occurrences):
             new = invert_case(name)
-            if new and rng.random() < CASE_RATE:
+            if new and rng.random() < case_rate:
                 edits.extend((a, b, new.encode()) for a, b in occurrences[name])
     elif condition == "indentation":
         pos = 0
         for line in content.split(b"\n"):
             body = line.lstrip(b" \t")
             indent = len(line) - len(body)
-            if body.strip() and rng.random() < RATE:
+            if body.strip() and rng.random() < rate:
                 if indent > 0 and rng.random() < 0.5:
                     edits.append((pos, pos + 1, b""))           # remove one leading whitespace byte
                 else:
@@ -163,12 +168,27 @@ def main(argv=None):
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--calibration", required=True, help="frozen C-v1 calibration.json (for the test split)")
     ap.add_argument("--files-per-language", type=int, default=FILES_PER_LANGUAGE)
+    ap.add_argument("--out", default="o4", help="output directory under --root")
+    ap.add_argument("--rates", type=float, nargs="+", default=None,
+                    help="sweep: rates for missing_semicolon / indentation / keyword_typo")
+    ap.add_argument("--case-rates", type=float, nargs="+", default=None, help="sweep: rates for case_inversion")
     args = ap.parse_args(argv)
     root = Path(args.root)
     record = json.loads(Path(args.calibration).read_text())
-    out = root / "o4"
+    out = root / args.out
     if (out / "manifest.parquet").exists():
-        raise SystemExit("o4/manifest.parquet exists; refusing to overwrite")
+        raise SystemExit(f"{args.out}/manifest.parquet exists; refusing to overwrite")
+    sweep = args.rates is not None or args.case_rates is not None
+    rates = args.rates or [RATE]
+    case_rates = args.case_rates or [CASE_RATE]
+
+    def variants(language):
+        # (condition name, noise type, rate, case rate); names carry the rate only in a sweep.
+        yield "clean", "clean", RATE, CASE_RATE
+        for kind in CONDITIONS[language]:
+            for r in (case_rates if kind == "case_inversion" else rates):
+                name = f"{kind}_r{r:g}" if sweep else kind
+                yield (name, kind, r, CASE_RATE) if kind != "case_inversion" else (name, kind, RATE, r)
     rows = []
     for language, domain in DOMAIN.items():
         tests = sorted((m["sample_id"] for m in record["split_manifest"]
@@ -177,8 +197,8 @@ def main(argv=None):
         for sid in chosen:
             content = (root / f"corpus/{domain}/{sid}.bin").read_bytes()
             nodes = pd.read_parquet(root / f"structure/{domain}/{sid}.parquet")
-            for condition in ("clean", *CONDITIONS[language]):
-                edits = [] if condition == "clean" else edits_for(condition, language, content, sid)
+            for condition, kind, rate, case_rate in variants(language):
+                edits = [] if kind == "clean" else edits_for(kind, language, content, sid, rate, case_rate)
                 new = apply(content, edits)
                 f = mapper(edits)
                 mapped = nodes.copy()
@@ -192,6 +212,8 @@ def main(argv=None):
                 (out / condition / "text" / f"{sid}.bin").write_bytes(new)
                 mapped.to_parquet(out / condition / "structure" / f"{sid}.parquet", index=False)
                 rows.append({"sample_id": sid, "language": language, "condition": condition,
+                             **({"noise_type": kind, "rate": case_rate if kind == "case_inversion" else rate}
+                                if sweep else {}),
                              "n_bytes": len(new), "sha256": hashlib.sha256(new).hexdigest(),
                              "clean_n_bytes": len(content), "n_edits": len(edits),
                              "n_nodes": int(len(nodes)), "n_nodes_dropped": int(len(nodes) - len(mapped))})
@@ -201,6 +223,7 @@ def main(argv=None):
                     nodes=("n_nodes", "sum")).reset_index())
     (out / "build_summary.json").write_text(json.dumps({
         "seed": SEED, "rate": RATE, "case_rate": CASE_RATE, "files_per_language": args.files_per_language,
+        **({"sweep_rates": rates, "sweep_case_rates": case_rates} if sweep else {}),
         "calibration_record_sha256": record["record_sha256"], "summary": summary.to_dict("records")}, indent=2) + "\n")
     print(summary.to_string(index=False))
     return 0

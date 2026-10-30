@@ -11,6 +11,10 @@ Metrics, per domain and overall:
   * boundary F1         -- derive patch-start offsets from each model's entropy with the
                            frozen tau and stream_a.patching.compute_patches, then score the
                            student's interior boundaries against the teacher's (k=0).
+  * word-start F1       -- a structure-blind comparator: every word start in the window
+                           (escape_scoring.baselines.word_start) scored against the
+                           teacher's boundaries the same way, so the student's agreement
+                           can be read against what plain word segmentation already gets.
 
 An untrained student (same architecture, random init) is evaluated the same way as a
 baseline, so the result shows how much the distillation actually moved.
@@ -28,7 +32,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from escape_distill.student_blt import StudentBLT, StudentConfig, entropy_nats
+from escape_distill.student_blt import BYTE_TOKEN_OFFSET, StudentBLT, StudentConfig, entropy_nats
+from escape_scoring.baselines import word_start
 from escape_distill.data import load_samples, build_windows, collate
 from escape_distill.teacher import load_teacher, teacher_logits
 from stream_a.patching import compute_patches
@@ -58,7 +63,7 @@ def logits_for_window(model, ids: np.ndarray, device, is_teacher: bool):
 
 
 def eval_model_vs_teacher(student, teacher, windows, meta, device, tau=TAU):
-    agg = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0,
+    agg = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0, "ws_tp": 0, "ws_fp": 0, "ws_fn": 0,
                                "ent_abs": 0.0, "ent_n": 0,
                                "kl_sum": 0.0, "bpb_student": 0.0, "bpb_teacher": 0.0,
                                "t_ent": [], "s_ent": []})
@@ -79,10 +84,13 @@ def eval_model_vs_teacher(student, teacher, windows, meta, device, tau=TAU):
         t_starts = interior_starts(t_ent, tau)
         s_starts = interior_starts(s_ent, tau)
         tp, fp, fn = prf(s_starts, t_starts)
+        content = (ids[1:k + 1] - BYTE_TOKEN_OFFSET).astype(np.uint8).tobytes()
+        ws_tp, ws_fp, ws_fn = prf({o for o in word_start(content) if 0 < o < k}, t_starts)
 
         for key in (dom, "all"):
             a = agg[key]
             a["tp"] += tp; a["fp"] += fp; a["fn"] += fn
+            a["ws_tp"] += ws_tp; a["ws_fp"] += ws_fp; a["ws_fn"] += ws_fn
             a["ent_abs"] += float(np.abs(t_ent - s_ent).sum()); a["ent_n"] += k
             a["kl_sum"] += float(kl.sum().item())
             a["bpb_student"] += bpb_s; a["bpb_teacher"] += bpb_t
@@ -101,6 +109,7 @@ def eval_model_vs_teacher(student, teacher, windows, meta, device, tau=TAU):
             "n_bytes": n, "boundary_tp": tp, "boundary_fp": fp, "boundary_fn": fn,
             "boundary_precision": round(prec, 4), "boundary_recall": round(rec, 4),
             "boundary_f1": round(f1, 4),
+            "word_start_vs_teacher_f1": round(2 * a["ws_tp"] / max(1, 2 * a["ws_tp"] + a["ws_fp"] + a["ws_fn"]), 4),
             "entropy_mae_nats": round(a["ent_abs"] / n, 4),
             "entropy_pearson_r": round(pear, 4),
             "kl_teacher_student_nats_per_byte": round(a["kl_sum"] / n, 4),
@@ -138,6 +147,7 @@ def main():
     ckpt = torch.load(args.student, map_location=device, weights_only=False)
     cfg = StudentConfig(**ckpt["config"])
     student = StudentBLT(cfg).to(device); student.load_state_dict(ckpt["model_state"]); student.eval()
+    torch.manual_seed(args.seed)  # reproducible untrained baseline (was unseeded before 2026-10-29)
     untrained = StudentBLT(cfg).to(device); untrained.eval()
     teacher = load_teacher(args.ckpt_dir, device=str(device), dtype=args.teacher_dtype)
 

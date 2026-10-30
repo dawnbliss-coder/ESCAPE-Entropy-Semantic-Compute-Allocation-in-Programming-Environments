@@ -1,6 +1,6 @@
 # Project ESCAPE: Entropy and Semantic Compute Allocation in Programming Environments
 
-**Team Trimax · CS7.501 Advanced NLP · IIIT Hyderabad · Mid-submission**
+**Team Trimax · CS7.501 Advanced NLP · IIIT Hyderabad · Final submission**
 
 | Author           | Roll number |
 | ---------------- | ----------- |
@@ -38,6 +38,7 @@ with 2,000 replicates.
 | BLT − best baseline F1 [95% CI]                               | −0.242 [−0.247, −0.237] | −0.173 [−0.181, −0.167] | −0.274 [−0.280, −0.268] |
 | **P2** end-boundary margin (starts: rows above)          | −0.017                    | −0.035                    | −0.079                    |
 | **P3** mean bytes per patch                              | 5.68                       | 7.86                       | 3.77                       |
+| **P3** F1 / null F1 (scale-free; margins grow with target density) | 4.7×                 | 4.6×                       | 3.4×                       |
 | **P4** recall margin, forced-opener vs. open-ended types | +0.759 vs. +0.611          | +0.691 vs. +0.451          | —                         |
 | Span IoU (secondary): BLT / null / line segmentation           | 0.351 / 0.342 / 0.546      | 0.372 / 0.356 / 0.606      | 0.377 / 0.334 / 0.049      |
 | **O4** margin on clean code → worst noise (indentation) | +0.115 → +0.099           | +0.131 → +0.118           | —                         |
@@ -49,10 +50,11 @@ with 2,000 replicates.
 | **P1:** boundaries align with starts beyond the null                   | Supported in all three languages (margins far outside the null)                                                                                               |
 | **Structure-blind baselines**                                          | Not supported: BLT is *beaten* by indentation or word-start splitting in every language, so most of the alignment is line and word segmentation, not grammar |
 | **P2:** starts align better than ends                                  | Supported; end margins are negative                                                                                                                           |
-| **P3:** alignment stronger in code than prose                          | Not supported; prose has the largest margin                                                                                                                   |
-| **P4:** weaker for forced-opener constructs (`if`, `for`, `def`) | Reversed; forced openers align more strongly                                                                                                                  |
+| **P3:** alignment stronger in code than prose                          | Reversed on the F1 margin, which grows with target density; on the scale-free F1/null ratio code (4.6–4.7×) beats prose (3.4×). Prose "alignment" is mostly word onsets |
+| **P4:** weaker for forced-opener constructs (`if`, `for`, `def`) | Reversed at the start byte, confirmed at the forced bytes: the byte after the keyword is a boundary at rate 0.000 (Python) / 0.035 (C++) vs a null ≈ 0.15, and the boundary returns where choice reopens (`scripts/final_analysis/position_scores.py`) |
 | **Precision > recall** (entropy bounds branching)                      | Not supported: precision is far below recall; BLT proposes many more boundaries than there are targets                                                        |
-| **O4:** robustness to code noise                                       | Supported: degrades gracefully; the worst drop is −0.016, and keyword typos lower BPP most (−0.23 / −0.34)                                                 |
+| **O4:** robustness to code noise                                       | Supported: degrades gracefully. In a 5–40% rate sweep only indentation noise grows with rate (−0.005 → −0.029 Python, −0.004 → −0.023 C++); keyword typos lower BPP (−0.43 / −0.60 at 40%) but barely move alignment; every noised margin ≥ +0.086 |
+| **O5:** compute near memory-unsafe code beyond the identifier confound | No semantic residual. With file fixed effects only, unsafe statements get *fewer* boundaries (−0.0083 [−0.0127, −0.0039]); the frozen +0.0069 [0.0043, 0.0095] appears only after conditioning on identifier entropy and is 4% of the mean density. Labels audited: `docs/O5_LABEL_AUDIT.md` |
 
 Entropy is a surface statistic, and none of these results is evidence of semantic understanding.
 
@@ -62,9 +64,35 @@ Entropy is a surface statistic, and none of these results is evidence of semanti
 | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | O1 Syntactic alignment (P1, P2, P4)               | Done, with null, baselines, per-type and per-depth analysis                              |
 | O2 Compute-allocation ratio (BPP, code vs. prose) | Done (P3)                                                                                |
-| O3 Python vs. C++                                 | Done: reported side by side in every table                                               |
-| O4 Robustness to code noise                       | Done, with the four noise types of the proposal, 1,000 held-out files per language       |
-| O5 Memory-unsafe compute vs. identifier confound  | Pending: computed (`results/final/c-v1-2721954/o5*/`), reviewed for the end submission |
+| O3 Python vs. C++                                 | Done: side by side everywhere, plus scaffold-free (constituent) depth normalisation       |
+| O4 Robustness to code noise                       | Done: four noise types on 1,000 held-out files per language, and a rate sweep (5–40%)    |
+| O5 Memory-unsafe compute vs. identifier confound  | Done: label audit + nested confound decomposition (`results/final/analysis/o5_confound.json`) |
+
+## Beyond the proposal: a distilled patcher
+
+A 14.3M-parameter byte transformer distilled online from the 99.5M patcher (`escape_distill/`, α = 0.1, T = 2, on a
+disjoint 29k-file extension corpus) was extracted on all 16,300 files and scored by the same frozen pipeline with its
+own calibration record (k = 0 everywhere). Sources: `results/final/student-v1-*`, `docs/FULL_RUN_RESULTS.md`.
+
+|                                                    | Python                  | C++                     | English                 |
+| -------------------------------------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Student start F1 / margin over null                | 0.140 / +0.109          | 0.155 / +0.119          | 0.459 / +0.304          |
+| Share of the teacher's margin kept                 | 91%                     | 92%                     | 87%                     |
+| Student − teacher margin [95% CI, paired]          | −0.011 [−0.011, −0.010] | −0.011 [−0.012, −0.009] | −0.044 [−0.048, −0.040] |
+| Student − best structure-blind baseline            | −0.253                  | −0.183                  | −0.310                  |
+| Teacher τ\* / student τ\* (pre-registered sweep, calibration only) | 2.0 / 2.0         | 2.0 / 2.0               | 2.0 / 2.5               |
+| Teacher margin at τ\* (one confirmatory test run)  | +0.153 (gain +0.033)    | +0.158 (gain +0.029)    | +0.426 (gain +0.078)    |
+| Teacher at τ\* − best baseline                      | −0.210                  | −0.148                  | −0.215                  |
+| Student margin at τ\* (one confirmatory test run per language) | +0.147 (gain +0.038) | +0.156 (gain +0.037) | +0.460 (gain +0.157) |
+| Student at τ\* − best baseline                      | −0.216                  | −0.149                  | −0.186                  |
+| **English holdout** (4,107 unseen paragraphs, scored once): margin teacher / student | — | — | +0.350 / +0.305 (eval set: +0.348 / +0.304) |
+
+- Restricting the teacher to the student's 512-byte windows costs 0.004 F1 on 300 test files per code language, about 40% of the student's deficit there.
+- Against the teacher's own boundaries on held-out windows: distilled student F1 0.871, no-teacher (α = 1) student 0.789, word starts 0.475. The α = 1 student compresses better (1.17 vs 1.24 bits/byte; teacher 1.14).
+- Cost on an RTX 2080 Ti: the student's forward pass is 5.0× faster than the teacher's, and its rolling extraction 4.8× faster.
+- Follow-ups on the same 600-file code subset plus the 240 English test files (exploratory; full-corpus extraction did not fit): a byte-balanced student trades code for prose (margin −0.002 Python, −0.002 C++, +0.010 English vs the distilled student), and the pre-registered teacher-adaptation verdict is not met (+0.006 / +0.005 / +0.029; only English clears the student's CI width). Scoring the teacher with HF's native full attention instead of the restored 512-token window cuts the test margin to +0.023 (Python) and +0.008 (C++ under 8 KB), against +0.120 and +0.131.
+
+All numbers, sources and job ids: [`docs/FULL_RUN_RESULTS.md`](docs/FULL_RUN_RESULTS.md).
 
 ## Method in one screen
 
@@ -121,8 +149,12 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 
 | Path                                            | Contents                                                                                       |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `reports/`                                    | **Project report**: `Trimax-Mid-Report.pdf` (ACL style, aclpubcheck-clean) |
-| `results/final/c-v1-2721954/`                 | **Real results**: calibration record, held-out scores, baselines, IoU, O4, O5, checksums |
+| `reports/final_submission/`                   | **Final report and viva slides**: LaTeX sources, `build_final.py` (every number from `results/final/`), `build.sh`, `check_final.py` |
+| `reports/`                                    | Mid-submission report `Trimax-Mid-Report.pdf` and its build (`reports/mid_submission/`) |
+| `results/final/c-v1-2721954/`                 | **Real results** (frozen teacher run): calibration record, held-out scores, baselines, IoU, O4, O5, checksums |
+| `results/final/` (other entries)              | Final-submission runs: student scoring, teacher-512 control, τ sweeps and confirmatory runs, holdout, `analysis/` (P4, O3, O4 sweep, O5, subsets, k, efficiency), Ada job logs |
+| `escape_distill/`                             | Extension: student model, distillation training/eval, stride-1 extractor, re-thresholder, k = 0 scorer |
+| `scripts/final_analysis/`                     | Final-submission analyses (P4 post-keyword, O3 depth, O4 sweep, O5 confound, subsets, efficiency) |
 | `stream_a/`                                   | BLT patcher loading, sliding-window fix, fidelity gates, extraction (incl. O4)                 |
 | `stream_b/`                                   | Corpus restore, tree-sitter/benepar parsing, baselines, O4 noise builder, O5 regions           |
 | `escape_scoring/`, `schemas/v1/`            | Frozen C-v1 scorer: matching, null, calibration, baselines, IoU, O4, O5                        |
@@ -130,7 +162,8 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 | `scripts/ada_final/`                          | SLURM pipeline for the full run on Ada                                                         |
 | `tests/`, `golden_fixtures/`, `examples/` | Regression tests and small fixtures                                                            |
 | `corpus/manifest.parquet`, `runs.json`      | Frozen corpus manifest (hashes, splits) and run registry                                       |
-| `docs/`                                       | Protocols, byte contract, fidelity notes, run guides, proposal                                 |
+| `docs/`                                       | Protocols, byte contract, fidelity notes, run guides, proposal, `FULL_RUN_RESULTS.md`, `O5_LABEL_AUDIT.md` |
+| `docs/ai_assisted/`                           | AI-generated audits, reviews and handoff notes (working documents, not results; see its README) |
 
 `results/ada/` holds earlier **synthetic** software-validation runs, and the `results/prose_kgrid_*` directory holds an earlier **exploratory** prose analysis. Neither contributes to the report's held-out results.
 
@@ -144,4 +177,4 @@ bash scripts/ada_final/fetch_from_ada.sh                    # results back to th
 
 ## Limitations
 
-The checkpoint is a third-party conversion, and we restored its sliding window ourselves. English targets come from predicted parses, and about 28% of C++ files trigger parser error recovery. Python samples are functions that may share repositories, so file bootstraps need not generalize across projects. O4 uses one noise rate per type. The report's Limitations section has the full list.
+The checkpoint is a third-party conversion, and we restored its sliding window ourselves. English targets come from predicted parses; the 300 evaluation paragraphs were seen during exploration, so the pre-registered holdout is the confirmatory English result. About 28% of C++ files trigger parser error recovery; their margin does not differ from clean parses (+0.004 [−0.005, 0.015]). The 8,000 Python functions come from 315 repositories; a repository-clustered bootstrap widens the Python interval 3.7× to [0.112, 0.127]. O5 labels are syntactic. The report's Limitations section has the full list.

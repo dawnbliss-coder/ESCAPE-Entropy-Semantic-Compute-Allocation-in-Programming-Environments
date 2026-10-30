@@ -18,10 +18,13 @@ from pathlib import Path
 import numpy as np
 import torch
 
-REPO = Path("/home/shashwat-11/ESCAPE/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments")
 HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(REPO / "results/student_cv1_golden_v1"))  # run_golden_eval.py lives there
+# The original run read a student.pt copy next to this script; the repo keeps one copy.
+STUDENT_PT = HERE / "student.pt" if (HERE / "student.pt").exists() else REPO / "results/distill/full/student/student.pt"
 
 from escape_distill.student_blt import StudentBLT, StudentConfig  # noqa: E402
 from escape_scoring.baselines import indent_change, newline, word_start  # noqa: E402
@@ -49,7 +52,7 @@ def main():
     torch.set_num_threads(4)
     OUT.mkdir(parents=True, exist_ok=True)
     teacher, pc = load_teacher()
-    ckpt = torch.load(HERE / "student.pt", map_location="cpu", weights_only=False)
+    ckpt = torch.load(STUDENT_PT, map_location="cpu", weights_only=False)
     student = StudentBLT(StudentConfig(**ckpt["config"]))
     student.load_state_dict(ckpt["model_state"])
     student.eval()
@@ -68,7 +71,7 @@ def main():
                         (REPO / "checkpoints/itazap__blt-1b-hf/91aa6b8e168046ad91e517d2191e1e974f50cc01"
                          / "patcher.safetensors").read_bytes()).hexdigest()},
         "student": {"params": student.num_parameters(), "steps": ckpt["steps"],
-                    "student_pt_sha256": hashlib.sha256((HERE / "student.pt").read_bytes()).hexdigest()},
+                    "student_pt_sha256": hashlib.sha256(STUDENT_PT.read_bytes()).hexdigest()},
         "torch": torch.__version__, "device": "cpu",
         "note": "golden-fixture variant; null recomputed per (stream, file, tau) with 10,000 fixed-EOF permutations",
     }

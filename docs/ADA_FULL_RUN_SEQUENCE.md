@@ -13,12 +13,14 @@ committed; `git pull` first). Companion docs: `docs/ADA_DISTILL_RUNBOOK.md` (det
 
 ---
 
-## STEP 0 — Sync, LFS, and identity hashes (10 min)
+## STEP 0 — Sync and identity hashes (10 min)
 
 ```bash
 cd ~/escape-final-20260928          # the project root on Ada (adapt if different)
 git pull --rebase origin main
-git lfs install && git lfs pull      # REQUIRED now that student.pt is LFS-tracked
+# No `git lfs pull` needed: main has no .gitattributes and student.pt is a plain git blob
+# (57,076,600 bytes). Only the old `distill-repro-39379` branch tracks *.pt with LFS.
+git ls-tree main --name-only | grep -i gitatt || echo "no .gitattributes on main (correct; .pt files are plain blobs, no LFS)"
 source scripts/ada_final/env.sh
 CK=$PWD/checkpoints/itazap__blt-1b-hf/91aa6b8e168046ad91e517d2191e1e974f50cc01
 sha256sum results/distill/full/student/student.pt "$CK/patcher.safetensors"
@@ -26,7 +28,9 @@ sha256sum results/distill/full/student/student.pt "$CK/patcher.safetensors"
 # patcher.safetensors -> 888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d
 # ALSO verify corpus/ and structure/ are restored (job 10_data of docs/FINAL_RUN.md); if not, restore them FIRST.
 ```
-Gate: hashes match exactly. If LFS did not resolve `student.pt`, stop and fix LFS before anything else.
+Gate: hashes match exactly. If `student.pt` is a 133-byte LFS pointer (a leftover from the
+`distill-repro-39379` branch) or its hash differs, stop and run
+`git checkout main -- results/distill/full/student/student.pt` before anything else.
 
 ## STEP 1 — Golden gate for the new extractor on Ada (15 min, MUST PASS)
 
@@ -266,7 +270,7 @@ frozen `c-v1-2721954` directory.
 ---
 
 ## Do-not-skip checklist
-- [ ] STEP 0 hashes match; LFS resolved the checkpoint
+- [ ] STEP 0 hashes match; `student.pt` is the real 57 MB checkpoint (plain blob, not an LFS pointer)
 - [ ] STEP 1 golden gate reproduces the committed golden table
 - [ ] STEP 2 all 16,300 files have complete artifacts (checked before scoring)
 - [ ] STEP 3 validate passes; student calibration record frozen

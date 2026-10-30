@@ -1,8 +1,15 @@
 # escape_distill: teacher-student distillation of the BLT entropy model.
 # Teacher backend 'transformers' needs these; 'reference' backend needs only torch+safetensors.
-torch>=2.2
-numpy
-pandas
-pyarrow
-safetensors
-transformers>=5.17,<6  # teacher 'transformers' backend only
+# Exact versions for byte-identical reruns: copied from the dist-info directories of the Ada venv
+# the runs used (~/anlp_a2/venv, Python 3.12.4 via `module load u22/python/3.12.4`; A_PY in
+# scripts/ada_final/env.sh), checked 2026-10-29.
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+numpy==2.5.3
+pandas==2.3.3
+pyarrow==25.0.1
+safetensors==0.8.0
+transformers==5.17.0  # teacher 'transformers' backend only
+tokenizers==0.23.2
+huggingface_hub==1.31.0
+datasets==4.8.5  # stream_b.build_ext_corpus (materializes corpus_ext in run_all.sbatch)

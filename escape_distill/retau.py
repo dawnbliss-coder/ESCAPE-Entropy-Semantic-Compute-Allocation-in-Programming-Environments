@@ -11,6 +11,7 @@ Usage:
       --dst-run teacher-tau2000 --tau 2.0 --file-ids ... --shard i --n-shards k
 """
 import argparse
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -73,9 +74,18 @@ def main(argv=None):
     if args.shard is not None and args.n_shards:
         ids = ids[args.shard:: args.n_shards]
 
+    # Inherit the source run's model identity (checkpoint, revision, context, entropy
+    # definition) so escape_scoring convert-legacy accepts the re-thresholded run; only
+    # tau and the provenance fields change.
+    src_entry = json.loads((root / RUNS_JSON_PATH).read_text()).get(args.src_run, {})
+    inherited = {k: v for k, v in src_entry.items()
+                 if k not in ("invocations", "created_by", "date", "tau", "boundary_convention",
+                              "commit", "commit_dirty", "code_sha256", "source_run")}
     register_run(root, args.dst_run, {
+        **inherited,
         "backend": "patcher", "created_by": "escape_distill/retau.py",
-        "entropy_definition": "global_next_byte_shannon (arrays copied verbatim from the source run)",
+        "entropy_definition": src_entry.get(
+            "entropy_definition", "global_next_byte_shannon (arrays copied verbatim from the source run)"),
         "boundary_convention": "one row per patch; byte_offset = first byte of the patch; "
                                "trigger entropy = entropies[byte_offset] > tau (strict, float64 comparison)",
         "tau": args.tau, "max_patch_length": None, "source_run": args.src_run,

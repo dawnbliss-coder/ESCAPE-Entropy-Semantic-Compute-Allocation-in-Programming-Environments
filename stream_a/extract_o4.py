@@ -6,6 +6,7 @@ conditions differ only in their bytes. The clean condition reuses the primary ru
 artifacts and is not recomputed. Outputs, per noised condition C:
   entropies/<primary run id>__o4-C/<sample_id>.npy, boundaries/<...>/<sample_id>.parquet
 Resumable: files whose artifacts are complete are skipped. Sharded by --shard i/n.
+--o4-dir points at another build (e.g. the final-submission rate sweep, o4_sweep/).
 """
 import argparse
 import hashlib
@@ -31,9 +32,10 @@ def main(argv=None):
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--n-shards", type=int, default=1)
     ap.add_argument("--device", default="cuda")
+    ap.add_argument("--o4-dir", default="o4", help="O4 build directory under --root")
     args = ap.parse_args(argv)
     root = Path(args.root)
-    m = pd.read_parquet(root / "o4/manifest.parquet")
+    m = pd.read_parquet(root / args.o4_dir / "manifest.parquet")
     m = m[m["condition"] != "clean"].sort_values(["n_bytes", "sample_id", "condition"], ascending=[False, True, True])
     # Longest-processing-time assignment by bytes, deterministic.
     load, mine = [0] * args.n_shards, []
@@ -51,9 +53,9 @@ def main(argv=None):
         if artifacts_done(root, run_id, row.sample_id, int(row.n_bytes)):
             skipped += 1
             continue
-        content = (root / f"o4/{row.condition}/text/{row.sample_id}.bin").read_bytes()
+        content = (root / f"{args.o4_dir}/{row.condition}/text/{row.sample_id}.bin").read_bytes()
         if len(content) != row.n_bytes or hashlib.sha256(content).hexdigest() != row.sha256:
-            raise SystemExit(f"{row.condition}/{row.sample_id}: bytes differ from o4/manifest.parquet")
+            raise SystemExit(f"{row.condition}/{row.sample_id}: bytes differ from {args.o4_dir}/manifest.parquet")
         process_file(root, run_id, backend, row.sample_id, content, backend.tau, None)
         done += 1
         if i % 500 == 0 or i == len(mine):

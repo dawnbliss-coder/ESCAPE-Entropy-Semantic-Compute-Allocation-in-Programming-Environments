@@ -63,7 +63,7 @@ for C++/O5 and fails its check, by design.
 bash scripts/ada_final/fetch_from_ada.sh
 ```
 
-The mid-submission report's build pipeline (`build_results.py`, `build.sh`, `check_report.py`) was removed from the repo after submission; `reports/` now holds only the submitted PDFs. To rebuild from scratch, reconstruct that pipeline from `results/final/c-v1-*/` using the same evidence-generation approach (frozen results -> `generated/results.tex` macros -> pdfLaTeX/BibTeX -> `aclpubcheck`).
+The mid-submission report's build pipeline is in the repo under `reports/mid_submission/` (`build_results.py`, `build.sh`, `check_report.py`; see its `README.md`): `python3 reports/mid_submission/build_results.py --run results/final/c-v1-2721954`, then `bash reports/mid_submission/build.sh`, then `python reports/mid_submission/check_report.py` (frozen results -> `generated/results.tex` macros -> pdfLaTeX/BibTeX -> `aclpubcheck`). A final-report builder is being added under `reports/final_submission/`.
 
 `build_results.py` writes every number and every data-dependent phrase
 (`generated/results.tex`, `evidence.json`, `depth_margin.pdf`). Its verdict rules are
@@ -71,7 +71,7 @@ fixed in code and do not depend on the results: a difference counts as positive 
 negative only when its 95% bootstrap interval excludes 0. It refuses synthetic inputs
 and anything other than the frozen 10,000/2,000 protocol. `check_report.py` fails on
 MISSING-RESULT, synthetic watermarks, unresolved references, non-A4 pages, unembedded
-fonts, a body longer than 4 pages, or any pubcheck finding.
+fonts, a body (excluding references) outside 7-8 pages, or any pubcheck finding.
 
 Read the generated sentences against the tables before submitting. The Discussion is
 written to hold whatever the direction of the results, but the authors are responsible
