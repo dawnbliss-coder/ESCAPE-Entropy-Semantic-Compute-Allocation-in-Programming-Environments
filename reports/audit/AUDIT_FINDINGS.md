@@ -2,6 +2,45 @@
 
 State audited: `main` at `d9ffc6b` (in sync with GitHub). This includes Priyanka's three commits from the night of 30–31 Oct and the exploratory τ test grid.
 
+## Resolution (31 Oct, after the audit)
+
+The findings below are kept as found. This table records what was done about each one; the fixes are in the commit after the audit commit (tagged `v1.2-final`). After the fixes the report builds with 0 missing values, `check_final.py` passes with the stricter 8-page rule, the slides build with 0 overfull boxes, and 198 tests pass.
+
+| # | Status | What changed |
+|---|---|---|
+| C1 | Fixed | The body, Limitations included, now ends on p.8 and References start at the top of p.9. To make room: the BPP and patch-length distributions moved to a new appendix figure (Fig. 4; Fig. 1 keeps the heatmaps), the per-type table (Table 7) and the O5 regression table (Table 8) moved to the appendix, the Cost paragraph moved into the Table 16 caption, and Limitations and Future Work were tightened. `check_final.py` now fails when the body runs past p.8. |
+| C2 | Added; **confirm wording** | One sentence at the end of Ethical Considerations says AI assistants were used for parts of the implementation, the analysis scripts and the drafting, under the course's disclosure rules. The team should check it against the course policy. |
+| C3 | Fixed | The ratio claim is gone from the abstract, the P3 paragraph, the verdict, the conclusion, the slides and the README. They now say the ratio is capped at 1/R0 (5.8 / 7.1 / 3.8), and they report chance-corrected recall (0.784 / 0.588 / 0.856), which ranks English first. Table 10 has both new columns and a corrected caption. |
+| M1 | Fixed | The P1 paragraph states the F1 cap (0.184 / 0.256 / 0.554) and the word-start precision-and-recall comparison, and cites span IoU. The τ sentence now says higher τ raises precision and the margin. Slides and README updated. |
+| M2 | Fixed | "H1 is not supported: only P2 holds as stated" (report, slides, README). |
+| M3 | Fixed | The mid-report is now quoted correctly (it raised the reading and set it aside for formatting consistency), and the report says the formatting-conditioned test was not run. |
+| M4 | Fixed | The precision-above-recall failure is in the abstract, the verdict, the conclusion and the slides. |
+| M5 | Fixed (wording) | The operator-byte explanation is labelled an untested conjecture, and the null inverse-BPP estimate (−0.0024 [−0.0066, 0.0017]) is reported. The masking refit was not run. |
+| M6 | Fixed | The slide and the protocol list now say the frozen run was scored once and list the later runs, including the τ test grid. |
+| M7 | Fixed | Report, slides and README: indentation does by far the most damage; the other noise types also grow but cost at most 0.007. New macro for the semicolon rate. |
+| M8 | Fixed | "a genuine but shallow signal that follows word and line onsets more than syntax" (abstract, conclusion slide). |
+| m1 | Fixed | "The 6,400 Python test functions come from 315 repositories" (report, README). |
+| m2 | Fixed | `\|if n \|< \|2:` |
+| m3 | Fixed | The conclusion gives the teacher's 3.4–4.7× and says the student keeps about 90% of the margin. |
+| m4 | Fixed | The slide gives the 38% / 43% share of the student's deficit. |
+| m5 | Fixed | `tab:ratio` and `tab:iou` are now cited. `tab:startend` is not placed in the final report (P2 numbers are in the text), so there is nothing to cite. |
+| m6 | Fixed | The O4 table and figure captions say 1,000 held-out test files per language. |
+| m7 | Fixed | The shared formatter adds a decimal when a non-zero value rounds to zero; the mid-report O5 table uses scientific notation for its tiny intervals. |
+| m8 | Fixed | The slide uses +0.0069. |
+| m9 | Fixed | The window is "512-byte" everywhere, the Fig. 1 caption is capitalised, and C-v1 is defined in §3. |
+| m10 | Fixed | The slide and the README say the P4 margins are unweighted means over types. |
+| m11 | Fixed | The text gives both intervals, and the Table 11 caption explains that its bootstrap draws differ from Table 1's. |
+| m12 | Not changed | 4th-decimal differences between documents come from re-run null draws; each document is internally consistent. |
+| m13 | Fixed | O3 adds C++ at depth 8+ (+0.151). |
+| m14, m15 | Fixed | Both added to Limitations (report and slides). |
+| m16 | Fixed | The Table 2 caption explains the zero newline baseline. |
+| m17 | Fixed | Related work cites Nawrot et al. (2023), who learned boundaries from entropy spikes in small models; the entry was checked against the ACL Anthology. |
+| Style | Mostly fixed | README and `docs/O5_LABEL_AUDIT.md` say 4.2%; the results doc says 83 GPU-hours. The 3- vs 4-decimal intervals are deliberate (an extra decimal keeps the sign visible). Figure and table order is unchanged. |
+| h1 | Not fixable here | GitHub's contributor cache. |
+| h2 | Fixed | `v1.2-final` tags the audit-fix commit. |
+| h3 | Fixed | See C1. |
+| h4, h5 | Left for you | Deleting files on Ada or the local backup branches needs an explicit go-ahead. |
+
 ## How the audit was done
 
 Three passes, all read-only.

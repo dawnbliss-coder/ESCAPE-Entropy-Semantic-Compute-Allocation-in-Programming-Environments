@@ -49,7 +49,7 @@
 \begin{columns}[T]
 \column{.55\textwidth}\small
 \begin{itemize}
-\item HF port \texttt{itazap/blt-1b-hf} omits BLT's 512-token sliding window; \hl{we restored it} (8{,}192-token chunks), float32, $\tau=1.3354$.
+\item HF port \texttt{itazap/blt-1b-hf} omits BLT's 512-byte sliding window; \hl{we restored it} (8{,}192-token chunks), float32, $\tau=1.3354$.
 \item Without it (HF full attention) the test margin collapses: \xHfMarginPy{} vs.\ \xHfSwaMarginPy{} (Py), \xHfMarginCpp{} vs.\ \xHfSwaMarginCpp{} (C++ $<$8\,KB).
 \item 8 fidelity gates; logits match an independent reimplementation to $1.05\times10^{-4}$; amended gate set \FidelityAda{} on Ada.
 \item Ada artefacts regenerated; \hl{per-file, score and diagnostic CSVs byte-identical} to the frozen run.
@@ -91,7 +91,7 @@
 \begin{itemize}
 \item One-to-one matching within $k$ bytes; $k\in\{0,1,2,4,8\}$ chosen on the \hl{calibration split only} $\rightarrow$ $k=0$ everywhere.
 \item Fixed-EOF null keeps patch-length multiset and boundary count; paired file bootstrap (\nBoot{}).
-\item Test split scored once; every later analysis reuses the frozen per-file counts or the \hl{same seeded null draws}.
+\item Frozen teacher run scored once; later test-file runs (student, $\tau^*$, $k=1,2$, O4 sweep, HF full attention, $\tau$ grid) \hl{selected nothing}.
 \item New checks: repository-clustered bootstrap (Python, \xRepoN{} repos) widens the CI \xRepoWiden{}$\times$ to \xRepoCI{}; parser error recovery (\xErrShare{} of C++) changes the margin by \xErrDiff{} \xErrDiffCI{}; files $>$8{,}191 bytes by \xLongDiff{} \xLongDiffCI{}.
 \end{itemize}
 \end{frame}
@@ -111,16 +111,18 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \vspace{1em}
 \begin{itemize}
 \item P1 \hl{supported} against the null ($p\le10^{-4}$ everywhere); against the best structure-blind baseline BLT \RTwoAll{}.
-\item Precision $\ll$ recall: every boundary has $\ge e^{\tau}\approx3.8$ live continuations; identifier interiors are flat but not syntactic.
+\item At BLT's density F1 is capped at $2/(r{+}1)$ = \xFoneCapPy{} / \xFoneCapCpp{} / \xFoneCapEn{}; density-free check: word starts beat BLT on \hl{both} precision and recall (Py \xWordPPy{}/\xWordRPy{} vs.\ \PrecPy{}/\RecPy{}).
+\item Precision $\ll$ recall (proposal predicted the reverse): every boundary has $\ge e^{\tau}\approx3.8$ live continuations; identifier interiors are flat but not syntactic.
 \item P2 \hl{supported}: end margins \EndMarginPy{}, \EndMarginCpp{}, \EndMarginEn{}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{P3 reversed --- because margins scale with target density}
+\begin{frame}{P3 reversed --- prose constituents start at words}
 \begin{itemize}
 \item Predicted: prose near chance. Observed: prose margin \MarginProse{} $>$ code \MarginCode{}.
 \item Benepar constituents begin at words; the word-start rule alone gets \StrongestFoneEn{} F1 in English.
-\item On the scale-free ratio to the null, \hl{code aligns more strongly}: \xRatioPy{}$\times$ (Py), \xRatioCpp{}$\times$ (C++) vs.\ \xRatioEn{}$\times$ (En).
+\item F1/$H_0$ = $R/R_0$ is capped at $1/R_0$ $\approx$ mean patch length (\xRatioCapPy{} / \xRatioCapCpp{} / \xRatioCapEn{}), so its \xRatioPy{}$\times$ / \xRatioCpp{}$\times$ / \xRatioEn{}$\times$ favours code mechanically.
+\item Chance-corrected recall $(R-R_0)/(1-R_0)$ ranks \hl{English first}: \xKappaEn{} vs.\ \xKappaPy{} (Py), \xKappaCpp{} (C++).
 \item BPP variance half of P3 holds: within-file variance \BppVarCpp{} (C++), \BppVarPy{} (Py) vs.\ \BppVarEn{} (En).
 \end{itemize}
 \end{frame}
@@ -129,7 +131,7 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \begin{columns}[T]
 \column{.52\textwidth}\small
 \begin{itemize}
-\item Start recall margin: forced openers \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) --- opposite of P4.
+\item Per-type mean start margin: forced \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) --- opposite of P4.
 \item Test: boundary rate at bytes \emph{after} $s$, same null draws (start rows \xPosCheck{} the frozen recalls).
 \item Rest of keyword: \xKwDetPy{} (Py), \xKwDetCpp{} (C++) vs.\ null.
 \item Byte after keyword: rate \xPostKwRateDetPy{} (Py), \xPostKwRateDetCpp{} (C++) vs.\ null \xOffNullPy{} (Py) / \xOffNullCpp{} (C++); open-ended stays at the null.
@@ -155,17 +157,18 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \includegraphics[width=.95\textwidth]{generated/o4_sweep.pdf}
 \begin{itemize}\small
 \item Same \xOFourSweepFiles{} held-out files per language, each noise type at 5--40\% (case 25--100\%).
-\item Only indentation damage grows with rate (Py \xOFourIndentLoPy{} $\rightarrow$ \xOFourIndentHiPy{}, C++ \xOFourIndentLoCpp{} $\rightarrow$ \xOFourIndentHiCpp{}); typos cut BPP (\xOFourTypoBppPy{} / \xOFourTypoBppCpp{} at 40\%) but not alignment; renaming is flat. Every margin $\ge$ \xOFourSweepMinMargin{}.
+\item Indentation does by far the most damage (Py \xOFourIndentLoPy{} $\rightarrow$ \xOFourIndentHiPy{}, C++ \xOFourIndentLoCpp{} $\rightarrow$ \xOFourIndentHiCpp{}); the others also grow with rate but stay small (typos \xOFourTypoHiPy{} / \xOFourTypoHiCpp{}, semicolons \xOFourSemiHiCpp{} at 40\%). Typos cut BPP (\xOFourTypoBppPy{} / \xOFourTypoBppCpp{}). Every margin $\ge$ \xOFourSweepMinMargin{}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{O5: no semantic residual near memory-unsafe code}
+\begin{frame}{O5: no evidence of risk-aware compute near memory-unsafe code}
 \begin{itemize}
 \item Label audit: \xAuditRepro{} regions reproduced; independent lexical labeller agrees on \xAuditAgree{} statements.
-\item Frozen coefficient \OFiveUnsafe{} \OFiveUnsafeCI{} boundaries/byte --- but:
+\item Frozen coefficient \xOFiveFull{} \xOFiveFullCI{} boundaries/byte --- but:
 \item File FE only: \hl{\xOFiveRaw{} \xOFiveRawCI{}} --- unsafe statements get \emph{fewer} boundaries (more predictable identifiers).
 \item Positive only after conditioning on identifier entropy; size \xOFiveRel{} of the mean, \xOFiveVsIdent{} of a 1-SD identifier-entropy effect.
-\item Reading: a small conditional \emph{surface} effect (the \texttt{*}, \texttt{\&}, \texttt{new} bytes), not risk awareness.
+\item Inverse BPP with file FE only: \xOFiveRawBpp{} \xOFiveRawBppCI{} (null).
+\item Reading: a small conditional effect, not risk awareness; that it sits on the \texttt{*}, \texttt{\&}, \texttt{new} bytes is an untested conjecture.
 \end{itemize}
 \end{frame}
 
@@ -184,7 +187,7 @@ English & \MarginEn{} & \xStuMarginEn{} & \xStuRetainEn{} & \xStuDiffEn{} \xStuD
 \begin{itemize}\small
 \item Online KD ($\alpha=0.1$, $T=2$) on a disjoint 29k-file corpus; val boundary F1 vs.\ teacher \xDistFone{}; no-teacher control ($\alpha=1$) \xAlphaFone{}.
 \item Full 16{,}300-file extraction + frozen C-v1 scoring with its own calibration ($k=0$).
-\item Native teacher minus teacher on 512-byte windows: \xTfiveDiffPy{} (Py) / \xTfiveDiffCpp{} (C++) F1, so the window costs little.
+\item Native teacher minus teacher on 512-byte windows: \xTfiveDiffPy{} (Py) / \xTfiveDiffCpp{} (C++) F1, \xTfiveSharePy{} / \xTfiveShareCpp{} of the student's deficit; capacity explains the rest.
 \item Cost: forward \xEffForward{}$\times$ faster than the teacher on a \xEffGpu{}.
 \end{itemize}
 \end{frame}
@@ -226,12 +229,13 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 \begin{frame}{Verdict on H1 and the proposal's deliverables}
 \begin{itemize}
 \item \textbf{Criteria from the proposal:} P1 beats both baselines, P2 holds, P3 dissociates code from prose, P4 stratification appears.
-\item \textbf{Outcome:} H1 is \hl{partly supported}.
+\item \textbf{Outcome:} H1 is \hl{not supported} under this criterion: only P2 holds as stated.
   \begin{itemize}
   \item P1: beats the density-matched null everywhere, but not the whitespace and word-start baselines.
   \item P2: holds (end margins negative).
-  \item P3: reversed in absolute margin; the ratio to the null still separates code from prose.
+  \item P3: reversed, also under chance-corrected recall.
   \item P4: reversed at the start byte; the mechanism holds at the bytes after the keyword.
+  \item Precision $>$ recall (proposal's mechanism): fails.
   \end{itemize}
 \item \textbf{Deliverables:} (1) extraction pipeline \texttt{stream\_a}; (2) tree-sitter / benepar mapping with memory-unsafe queries \texttt{stream\_b}; (3) harness with P1--P4, both baselines, permutation test, depth and type stratification \texttt{escape\_scoring}, \texttt{escape\_eval}; (4) entropy heatmaps and BPP profiles; (5) report and these slides.
 \end{itemize}
@@ -239,22 +243,23 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 
 \begin{frame}{Limitations and future work}
 \begin{itemize}
-\item \textbf{Limitations:} third-party checkpoint with a restored window (no bitwise check against the gated original); English targets are predicted parses; O5 labels are syntactic; one student size, one seed; follow-up arms scored on a subset; no subword-tokenizer baseline for O4.
+\item \textbf{Limitations:} third-party checkpoint with a restored window (no bitwise check against the gated original); English targets are predicted parses; O5 labels are syntactic; one student size, one seed; follow-up arms scored on a subset; no subword-tokenizer baseline for O4; no multiple-comparison correction; English intervals resample paragraphs, not articles.
 \item \textbf{Future work:} parser-supervised teacher; subword baseline for O4; several student seeds; full-corpus scoring of the follow-up models; single-pass student kernel; bitwise comparison with the original checkpoint.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Conclusions}
 \begin{itemize}
-\item Entropy boundaries track constituent starts \hl{3--5$\times$ above chance} --- held-out, holdout, and in a distilled student.
+\item Entropy boundaries track constituent starts \hl{\xRatioEn{}--\xRatioPy{}$\times$ above chance} --- held-out and on the English holdout; a 7$\times$ smaller student keeps $\approx$90\% of the margin.
 \item They do \hl{not} beat indentation / word-start segmentation at any $\tau$ or $k$.
 \item Each failed prediction has a mechanical explanation:
   \begin{itemize}
-  \item P3: margin scales with target density;
+  \item precision $<$ recall: several boundaries per target;
+  \item P3: prose constituents begin at words, where the patcher fires;
   \item P4: forcing acts after the opener, not at its start;
-  \item O5: the ``residual'' is conditional, surface-level, unconditionally negative.
+  \item O5: the ``residual'' appears only after an identifier-entropy control.
   \end{itemize}
-\item Entropy is a genuine but shallow structural signal --- syntax shapes it without being what it measures.
+\item Entropy is a genuine but shallow signal of word and line onsets --- syntax shapes it without being what it measures.
 \end{itemize}
 \end{frame}
 \end{document}

@@ -50,6 +50,9 @@
 \newcommand{\xBalWinFoneCpp}{0.860}
 \newcommand{\xBalWinFoneProse}{0.853}
 \newcommand{\xBalWinFonePy}{0.864}
+\newcommand{\xDepthEightCpp}{+0.151}
+\newcommand{\xDepthEightEn}{+0.602}
+\newcommand{\xDepthEightPy}{+0.496}
 \newcommand{\xDepthOneCpp}{+0.553}
 \newcommand{\xDepthOneEn}{+0.714}
 \newcommand{\xDepthOnePy}{+0.707}
@@ -69,6 +72,9 @@
 \newcommand{\xErrDiffCI}{[-0.005, 0.015]}
 \newcommand{\xErrShare}{28.0\%}
 \newcommand{\xFileCI}{[0.118, 0.122]}
+\newcommand{\xFoneCapCpp}{0.256}
+\newcommand{\xFoneCapEn}{0.554}
+\newcommand{\xFoneCapPy}{0.184}
 \newcommand{\xGateMaxDev}{0.0000}
 \newcommand{\xHfDiffCICpp}{[-0.126, -0.121]}
 \newcommand{\xHfDiffCIEn}{[-0.211, -0.183]}
@@ -99,6 +105,9 @@
 \newcommand{\xHoldTeaVsWord}{-0.273}
 \newcommand{\xHoldTeaVsWordCI}{[-0.275, -0.272]}
 \newcommand{\xHoldWord}{0.774}
+\newcommand{\xKappaCpp}{0.588}
+\newcommand{\xKappaEn}{0.856}
+\newcommand{\xKappaPy}{0.784}
 \newcommand{\xKwDetCICpp}{[-0.092, -0.085]}
 \newcommand{\xKwDetCIPy}{[-0.133, -0.127]}
 \newcommand{\xKwDetCpp}{-0.088}
@@ -133,6 +142,8 @@
 \newcommand{\xOFiveFull}{+0.0069}
 \newcommand{\xOFiveFullCI}{[0.0043, 0.0095]}
 \newcommand{\xOFiveRaw}{-0.0083}
+\newcommand{\xOFiveRawBpp}{-0.0024}
+\newcommand{\xOFiveRawBppCI}{[-0.0066, 0.0017]}
 \newcommand{\xOFiveRawCI}{[-0.0127, -0.0039]}
 \newcommand{\xOFiveRel}{4.2\%}
 \newcommand{\xOFiveRelBpp}{7.5\%}
@@ -145,6 +156,7 @@
 \newcommand{\xOFourIndentHiPy}{-0.029}
 \newcommand{\xOFourIndentLoCpp}{-0.004}
 \newcommand{\xOFourIndentLoPy}{-0.005}
+\newcommand{\xOFourSemiHiCpp}{-0.003}
 \newcommand{\xOFourSweepFiles}{1,000}
 \newcommand{\xOFourSweepMinMargin}{+0.086}
 \newcommand{\xOFourSweepWorst}{indentation at rate 0.4 in Python (-0.029)}
@@ -172,7 +184,7 @@
 \newcommand{\xPostKwOpenCpp}{-0.001}
 \newcommand{\xPostKwOpenPy}{-0.014}
 \newcommand{\xPostKwRateDetCpp}{0.035}
-\newcommand{\xPostKwRateDetPy}{0.000}
+\newcommand{\xPostKwRateDetPy}{0.0002}
 \newcommand{\xPostKwRateOpenCpp}{0.139}
 \newcommand{\xPostKwRateOpenPy}{0.156}
 \newcommand{\xPostKwReturnCpp}{-0.139}
@@ -180,6 +192,9 @@
 \newcommand{\xPredPerTargetCpp}{6.8}
 \newcommand{\xPredPerTargetEn}{2.6}
 \newcommand{\xPredPerTargetPy}{9.8}
+\newcommand{\xRatioCapCpp}{7.1}
+\newcommand{\xRatioCapEn}{3.8}
+\newcommand{\xRatioCapPy}{5.8}
 \newcommand{\xRatioCpp}{4.6}
 \newcommand{\xRatioEn}{3.4}
 \newcommand{\xRatioPy}{4.7}
@@ -317,6 +332,12 @@
 \newcommand{\xTfiveSharePy}{38\%}
 \newcommand{\xTfiveStuGapCpp}{+0.009}
 \newcommand{\xTfiveStuGapPy}{+0.011}
+\newcommand{\xWordPCpp}{0.205}
+\newcommand{\xWordPEn}{0.627}
+\newcommand{\xWordPPy}{0.142}
+\newcommand{\xWordRCpp}{0.967}
+\newcommand{\xWordREn}{0.994}
+\newcommand{\xWordRPy}{0.892}
 \newcommand{\xWordVsTeacherFone}{0.475}
 \newcommand{\xTableAlpha}{%
 \begin{table}[t]\centering\small
@@ -349,7 +370,7 @@ Teacher & 99.5M & 44,356 & 1,219 & 106 & 1,235 \\
 Student & 14.3M & 222,549 & 714 & 506 & 1,011 \\
 Teacher, native single pass & & 13,246 & 1,364 & -- & -- \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Inference cost on one RTX 2080 Ti, float32. Rolling extraction (one fresh 512-byte window per byte) is how both student runs were extracted; the native teacher processes a file in one sliding-window pass, which the student architecture does not implement.}
+\caption{Inference cost on one RTX 2080 Ti, float32. Rolling extraction (one fresh 512-byte window per byte) is how both student runs were extracted; the native teacher processes a file in one sliding-window pass, which the student architecture does not implement. That is why the student's full-corpus extraction took about 20 GPU-hours per shard, and why a deployment-grade student would need the same single-pass kernel.}
 \label{tab:eff}\end{table}}
 \newcommand{\xTableFour}{%
 \begin{table}[t]\centering\small
@@ -358,7 +379,7 @@ Teacher, native single pass & & 13,246 & 1,364 & -- & -- \\
 Lang. & Position & rate & $\Delta$ [95\% CI] & rate & $\Delta$ [95\% CI] \\\midrule
 Python & start $s$ & 0.910 & +0.751 [0.744, 0.757] & 0.809 & +0.633 [0.625, 0.640] \\
  & rest of first token & 0.029 & -0.130 [-0.133, -0.127] & 0.094 & -0.065 [-0.068, -0.063] \\
- & byte after token & 0.000 & -0.159 [-0.161, -0.157] & 0.156 & -0.014 [-0.017, -0.010] \\
+ & byte after token & 0.0002 & -0.159 [-0.161, -0.157] & 0.156 & -0.014 [-0.017, -0.010] \\
  & next non-space byte & 0.895 & +0.736 [0.728, 0.743] & 0.178 & -0.001 [-0.004, 0.002] \\
 \midrule
 C++ & start $s$ & 0.789 & +0.649 [0.637, 0.659] & 0.623 & +0.483 [0.453, 0.505] \\
@@ -403,13 +424,13 @@ full (frozen) & +0.0069 [0.0043, 0.0095] & +0.0112 [0.0087, 0.0137] \\
 \label{tab:o5}\end{table}}
 \newcommand{\xTableRatio}{%
 \begin{table}[t]\centering\small
-\begin{adjustbox}{max width=\columnwidth}\begin{tabular}{lrrrl}\toprule
-Lang. & F1 & $H_0$ F1 & $\Delta$ & F1 / $H_0$ [95\% CI] \\\midrule
-Python & 0.152 & 0.032 & +0.120 & 4.73 [4.69, 4.78] \\
-C++ & 0.165 & 0.036 & +0.129 & 4.61 [4.39, 4.76] \\
-English & 0.495 & 0.147 & +0.348 & 3.36 [3.31, 3.42] \\
+\begin{adjustbox}{max width=\columnwidth}\begin{tabular}{lrrrlrr}\toprule
+Lang. & F1 & $H_0$ F1 & $\Delta$ & F1 / $H_0$ [95\% CI] & $1/R_0$ & $\frac{R-R_0}{1-R_0}$ \\\midrule
+Python & 0.152 & 0.032 & +0.120 & 4.73 [4.69, 4.78] & 5.76 & 0.784 \\
+C++ & 0.165 & 0.036 & +0.129 & 4.61 [4.39, 4.76] & 7.13 & 0.588 \\
+English & 0.495 & 0.147 & +0.348 & 3.36 [3.31, 3.42] & 3.76 & 0.856 \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{P3 on a scale-free axis. The difference $\Delta$ grows with target density, the ratio does not: code aligns more strongly than prose relative to its own null. Frozen held-out run; paired file bootstrap.}
+\caption{P3 normalised two ways. The null keeps BLT's boundary count, so F1 / $H_0$ F1 equals $R/R_0$ and cannot exceed $1/R_0$, which is close to the mean patch length; it favours code because code patches are longer. Chance-corrected recall (last column) has no such ceiling and ranks English first. Frozen held-out run; paired file bootstrap for the ratio.}
 \label{tab:ratio}\end{table}}
 \newcommand{\xTableRobust}{%
 \begin{table}[t]\centering\small
@@ -429,7 +450,7 @@ Student & C++ clean parse (4,611) & +0.120 [0.112, 0.125] \\
  & Python, file bootstrap & +0.109 [0.107, 0.111] \\
  & Python, repo-cluster bootstrap (315 repos) & +0.109 [0.101, 0.117] \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Held-out start margin on subsets, recomputed exactly from the frozen per-file counts (the null mean is linear in each file's expected matches). File-level 95\% bootstrap intervals except where stated.}
+\caption{Held-out start margin on subsets, recomputed exactly from the frozen per-file counts (the null mean is linear in each file's expected matches). File-level 95\% bootstrap intervals except where stated; these draws differ from Table~\ref{tab:main}'s, so a file interval can differ from it in the last digit.}
 \label{tab:robust}\end{table}}
 \newcommand{\xTableStudent}{%
 \begin{table*}[t]\centering\small

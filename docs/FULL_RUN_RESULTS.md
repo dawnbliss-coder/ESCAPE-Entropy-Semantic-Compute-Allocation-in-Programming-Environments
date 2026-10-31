@@ -263,7 +263,7 @@ Word starts vs the teacher's boundaries on the same windows: F1 0.4750. Sources:
 
 ## Follow-up arms (30 Oct): byte-balanced student, adapted teacher, hf_full
 
-Jobs: job 47454 (byte-balanced student), job 47453 (STEP 9 adaptation), job 47548 (scoring). Rolling 512-byte extraction of the pre-registered teacher-512 subset (300 Python + 300 C++ test files) plus the English test split; k = 0, 10,000 permutations, paired file bootstrap. Full C-v1 scoring of every file did not fit before the deadline (about 84 GPU-hours for a student-size model and about 400 for the adapted 99.5M model), so this is a documented deviation from STEP 9.
+Jobs: job 47454 (byte-balanced student), job 47453 (STEP 9 adaptation), job 47548 (scoring). Rolling 512-byte extraction of the pre-registered teacher-512 subset (300 Python + 300 C++ test files) plus the English test split; k = 0, 10,000 permutations, paired file bootstrap. Full C-v1 scoring of every file did not fit before the deadline (about 83 GPU-hours for a student-size model, as the distilled student's full extraction took, and about 400 for the adapted 99.5M model), so this is a documented deviation from STEP 9.
 
 | Language | Files | Δ teacher native | Δ teacher-512 | Δ student | Δ byte-balanced | Δ adapted | balanced − student [95% CI] | adapted − student [95% CI] |
 |---|---:|---:|---:|---:|---:|---:|---|---|

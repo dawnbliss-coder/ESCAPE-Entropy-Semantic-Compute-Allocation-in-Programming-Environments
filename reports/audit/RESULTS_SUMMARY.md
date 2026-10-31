@@ -35,14 +35,14 @@ How to read it: BLT clearly beats random placement, since the intervals are far 
 |---|---|---|
 | **P1**: boundaries align with constituent starts | Beats chance everywhere (+0.120 / +0.129 / +0.348); loses to the simple rules everywhere | Half met: yes vs. chance, no vs. baselines |
 | **P2**: starts align better than ends | End margins are −0.017 / −0.035 / −0.079 | **Met** |
-| **P3**: alignment stronger in code than prose | Reversed: English has the largest margin. The report's "scale-free ratio" rescue doesn't hold (see audit C3) | Not met |
+| **P3**: alignment stronger in code than prose | Reversed: English has the largest margin and the highest chance-corrected recall (0.856 vs 0.784 Python, 0.588 C++). The raw F1/null ratio favours code only because it is capped near the mean patch length (audit C3, now fixed in the report) | Not met |
 | **P4**: weaker for forced openers (`if`, `for`, `def`) | Reversed at the start byte (forced +0.759 vs open +0.611 in Python). At the bytes *after* the keyword, the boundary rate drops to 0.000 (Python) / 0.035 (C++) against about 0.15 by chance, so the forcing mechanism is real, just not where P4 measured it | Not met as stated; mechanism confirmed |
 | **Precision > recall** | Opposite: precision 0.08–0.34, recall 0.65–0.89. BLT proposes 2.6–9.8 boundaries per target | Not met |
 | **O3**: Python vs C++ by depth | Python aligns better than C++ at every shared tree depth | Descriptive, done |
 | **O4**: robust to code noise | Margins stay ≥ +0.086 under every noise type. Indentation noise hurts most (−0.029 at 40% in Python); typos and missing semicolons hurt a little and also grow with rate | **Met** (degrades gracefully) |
 | **O5**: more compute near memory-unsafe C++ beyond identifier effects | With file effects only, unsafe statements get *fewer* boundaries (−0.0083). A small positive effect (+0.0069) appears only after controlling for identifier entropy, about 4% of the mean | No semantic effect found |
 
-By the proposal's own rule (H1 needs P1–P4 all to hold), **H1 is not supported**. The report says "partly supported", which the audit flags as too soft (M2).
+By the proposal's own rule (H1 needs P1–P4 all to hold), **H1 is not supported**, and the report now says so (it said "partly supported" before the audit; M2).
 
 ## The threshold τ
 
@@ -56,7 +56,7 @@ The checkpoint's default τ = 1.335 was tuned for compression, not alignment. A 
 | Teacher at best τ minus best simple rule | −0.210 | −0.148 | −0.215 |
 
 - **Exploratory check (30 Oct).** The whole grid was also scored on the test files, after the confirmatory runs, to see whether the calibration choice holds. It does: the best τ on test equals the calibration choice in **6 of 6** model/language pairs. At **no** τ does either model get within **0.148 F1** of the best simple rule.
-- **Caveat.** At τ = 1.335, BLT places so many boundaries that its F1 is mathematically capped below the baselines (0.18 / 0.26 / 0.55 at best). The precision-and-recall comparison is the fairer argument that the simple rules win (audit M1).
+- **Caveat.** At τ = 1.335, BLT places so many boundaries that its F1 is mathematically capped below the baselines (0.18 / 0.26 / 0.55 at best). The precision-and-recall comparison is the fairer argument that the simple rules win; the report now makes both points (audit M1).
 
 ## Beyond the proposal: a distilled patcher
 
@@ -97,7 +97,7 @@ The public HuggingFace port of the checkpoint drops BLT's 512-token attention wi
   - The negative result against the baselines: it holds at every τ and on precision and recall separately.
   - P2.
   - The O4 robustness.
-- **Solid but reworded in the audit**
+- **Solid, and reworded in the report after the audit**
   - O4 (other noise types also grow with rate, just much less);
   - O5 (the "operator bytes" explanation is a guess);
   - P3 (the ratio argument is wrong);
@@ -107,4 +107,4 @@ The public HuggingFace port of the checkpoint drops BLT's 512-token attention wi
   - Follow-up arms: scored only on subsets.
   - Multiple comparisons across the many strata: never corrected.
 
-**Bottom line:** the measurements are careful and reproducible, and the conclusions follow from them once the four wording fixes in the audit are made. As a research finding, the answer is clear and honest: BLT's entropy boundaries track the surface of text and code (word and line starts) far more than its grammar.
+**Bottom line:** the measurements are careful and reproducible, and the conclusions follow from them now that the audit's wording fixes are in the report. As a research finding, the answer is clear and honest: BLT's entropy boundaries track the surface of text and code (word and line starts) far more than its grammar.

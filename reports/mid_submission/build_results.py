@@ -40,16 +40,24 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _digits(d, *xs):
+    """One more decimal when a non-zero value rounds to zero, so no cell prints as -0.000."""
+    return d + 1 if any(x and round(x, d) == 0 for x in xs) else d
+
+
 def num(x, d=3):
-    return "--" if x is None or (isinstance(x, float) and math.isnan(x)) else f"{x:.{d}f}"
+    return "--" if x is None or (isinstance(x, float) and math.isnan(x)) else f"{x:.{_digits(d, x)}f}"
 
 
 def signed(x, d=3):
-    return "--" if x is None else f"{x:+.{d}f}"
+    return "--" if x is None else f"{x:+.{_digits(d, x)}f}"
 
 
 def ci(lo, hi, d=3):
-    return "--" if lo is None or hi is None else f"[{lo:.{d}f}, {hi:.{d}f}]"
+    if lo is None or hi is None:
+        return "--"
+    d = _digits(d, lo, hi)
+    return f"[{lo:.{d}f}, {hi:.{d}f}]"
 
 
 def pval(p, permutations):
@@ -257,7 +265,8 @@ def main(argv=None):
                 c = res["coefficients"][term]
                 lo, hi = (res.get("confidence_intervals", {}).get(term) or [None, None])
                 p = res.get("pvalues", {}).get(term)
-                t5.append(f"{label} & {pretty} & {c:+.2e} & {ci(lo, hi, 4) if lo is not None else '--'} & "
+                t5.append(f"{label} & {pretty} & {c:+.2e} & "
+                          f"{'--' if lo is None else ci(lo, hi, 4) if abs(c) >= 1e-3 else f'[{lo:.2e}, {hi:.2e}]'} & "
                           f"{'--' if p is None else f'{p:.3f}'} \\\\")
         lo, hi = (o5.get("confidence_intervals", {}).get("is_memory_unsafe") or [None, None])
         macro("OFiveUnsafe", f"{o5['coefficients']['is_memory_unsafe']:+.2e}")
@@ -443,7 +452,9 @@ def main(argv=None):
               "Lang. & BLT & NL & Indent & Word & BLT$-$best [95\\% CI] \\\\\\midrule",
               *t2, "\\bottomrule\\end{tabular}\\end{adjustbox}",
               "\\caption{Start F1 of structure-blind baselines under the same targets, $k$ and matching: boundary after every newline (NL), "
-              "at indentation changes, and at every word start. The last column compares BLT with the strongest baseline for that language.}",
+              "at indentation changes, and at every word start. The last column compares BLT with the strongest baseline for that language. "
+              "Newline scores 0 in Python because the byte after a newline is indentation, never a start at $k=0$; "
+              "English paragraphs contain no newline.}",
               "\\label{tab:baselines}\\end{table}}",
               "\\newcommand{\\TableStartEnd}{", "\\begin{table}[t]\\centering\\small", mark,
               "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrrrrl}\\toprule",
@@ -472,7 +483,8 @@ def main(argv=None):
               "\\begin{adjustbox}{max width=\\textwidth}\\begin{tabular}{llrrlrl}\\toprule",
               "Lang. & Noise & Edits & $\\Delta$F1 vs.\\ $H_0$ & Change vs.\\ clean [95\\% CI] & BPP & Change vs.\\ clean [95\\% CI] \\\\\\midrule",
               *t7, "\\bottomrule\\end{tabular}\\end{adjustbox}",
-              "\\caption{Objective 4: robustness to code noise on the same held-out files per language. Each noise type is applied alone; "
+              "\\caption{Objective 4: robustness to code noise on " + macros.get("OFourFiles", "--") + " held-out test files per language "
+              "(so the clean margin differs slightly from Table~\\ref{tab:main}). Each noise type is applied alone; "
               "targets are the clean constituents mapped to noised offsets; $k$ is the frozen value. "
               "The null uses " + macros.get("OFourPerm", "--") + " fixed-EOF permutations per file; intervals are paired file bootstraps of noised minus clean.}",
               "\\label{tab:o4}\\end{table*}}",

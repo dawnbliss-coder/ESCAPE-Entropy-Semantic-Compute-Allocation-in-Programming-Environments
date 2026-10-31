@@ -28,7 +28,7 @@ def main() -> None:
     # Two-column layout: the heading may share its line with the right column's first entry.
     references_page = next(i + 1 for i, t in enumerate(texts) if re.search(r"^\s*References(\s{3,}|\s*$)|\S\s{3,}References\s*$", t, re.M))
     body_pages = references_page - 1 + (0 if texts[references_page - 1].split("References")[0].strip() == "" else 1)
-    assert references_page <= 9, f"References start on page {references_page}; the body exceeds 8 pages"
+    assert body_pages <= 8, f"References start on page {references_page}; the body runs onto page {body_pages}"
     text = "\n".join(texts)
     compact = re.sub(r"\s+", "", text)
     assert "MISSING" not in compact, "A result macro had no data; see generated/final_evidence.json"

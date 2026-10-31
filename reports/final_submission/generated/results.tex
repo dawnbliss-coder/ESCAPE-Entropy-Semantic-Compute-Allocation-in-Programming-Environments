@@ -64,7 +64,7 @@
 \newcommand{\OFourDbppCppSemi}{-0.06}
 \newcommand{\OFourDbppCppTypo}{-0.34}
 \newcommand{\OFourDbppPyCase}{-0.05}
-\newcommand{\OFourDbppPyIndent}{+0.00}
+\newcommand{\OFourDbppPyIndent}{+0.004}
 \newcommand{\OFourDbppPyTypo}{-0.23}
 \newcommand{\OFourFiles}{1,000}
 \newcommand{\OFourMinMarginCpp}{+0.118}
@@ -156,7 +156,7 @@ Python & 0.152 & 0.000 & 0.394 & 0.245 & -0.242 [-0.247, -0.237] \\
 C++ & 0.165 & 0.041 & 0.281 & 0.339 & -0.173 [-0.181, -0.167] \\
 English & 0.495 & 0.000 & 0.008 & 0.769 & -0.274 [-0.280, -0.268] \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Start F1 of structure-blind baselines under the same targets, $k$ and matching: boundary after every newline (NL), at indentation changes, and at every word start. The last column compares BLT with the strongest baseline for that language.}
+\caption{Start F1 of structure-blind baselines under the same targets, $k$ and matching: boundary after every newline (NL), at indentation changes, and at every word start. The last column compares BLT with the strongest baseline for that language. Newline scores 0 in Python because the byte after a newline is indentation, never a start at $k=0$; English paragraphs contain no newline.}
 \label{tab:baselines}\end{table}}
 \newcommand{\TableStartEnd}{
 \begin{table}[t]\centering\small
@@ -215,15 +215,15 @@ English & 240 & 0.377 & 0.334 & 0.049 & 0.397 & +0.042 [0.040, 0.045] \\
 Lang. & Noise & Edits & $\Delta$F1 vs.\ $H_0$ & Change vs.\ clean [95\% CI] & BPP & Change vs.\ clean [95\% CI] \\\midrule
 Python & clean & 0 & +0.115 & -- & 5.61 & -- \\
 Python & camel$\leftrightarrow$snake & 4,601 & +0.114 & -0.001 [-0.002, -0.001] & 5.56 & -0.05 [-0.06, -0.04] \\
-Python & indentation & 4,416 & +0.099 & -0.016 [-0.018, -0.015] & 5.61 & +0.00 [-0.00, 0.01] \\
+Python & indentation & 4,416 & +0.099 & -0.016 [-0.018, -0.015] & 5.61 & +0.004 [-0.003, 0.010] \\
 Python & keyword typo & 1,626 & +0.112 & -0.003 [-0.004, -0.003] & 5.38 & -0.23 [-0.25, -0.21] \\
 C++ & clean & 0 & +0.131 & -- & 7.88 & -- \\
 C++ & camel$\leftrightarrow$snake & 83,037 & +0.129 & -0.002 [-0.003, -0.002] & 7.78 & -0.10 [-0.11, -0.09] \\
 C++ & indentation & 68,746 & +0.118 & -0.013 [-0.015, -0.012] & 7.75 & -0.13 [-0.14, -0.12] \\
-C++ & keyword typo & 17,884 & +0.131 & -0.000 [-0.001, 0.000] & 7.54 & -0.34 [-0.36, -0.31] \\
+C++ & keyword typo & 17,884 & +0.131 & -0.0004 [-0.0010, 0.0001] & 7.54 & -0.34 [-0.36, -0.31] \\
 C++ & missing \texttt{;} & 25,972 & +0.129 & -0.002 [-0.002, -0.002] & 7.82 & -0.06 [-0.06, -0.05] \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Objective 4: robustness to code noise on the same held-out files per language. Each noise type is applied alone; targets are the clean constituents mapped to noised offsets; $k$ is the frozen value. The null uses 1,000 fixed-EOF permutations per file; intervals are paired file bootstraps of noised minus clean.}
+\caption{Objective 4: robustness to code noise on 1,000 held-out test files per language (so the clean margin differs slightly from Table~\ref{tab:main}). Each noise type is applied alone; targets are the clean constituents mapped to noised offsets; $k$ is the frozen value. The null uses 1,000 fixed-EOF permutations per file; intervals are paired file bootstraps of noised minus clean.}
 \label{tab:o4}\end{table*}}
 \newcommand{\TableOFive}{
 \begin{table}[t]\centering\small
@@ -233,11 +233,11 @@ Outcome & Term & Coef. & 95\% CI & $p$ \\\midrule
 boundary density & memory-unsafe & +6.93e-03 & [0.0043, 0.0095] & 0.000 \\
 boundary density & identifier entropy (nats) & +2.51e-01 & [0.2422, 0.2590] & 0.000 \\
 boundary density & identifier byte share & +8.77e-03 & [-0.0021, 0.0196] & 0.114 \\
-boundary density & region length (bytes) & -2.40e-05 & [-0.0000, -0.0000] & 0.020 \\
+boundary density & region length (bytes) & -2.40e-05 & [-4.42e-05, -3.82e-06] & 0.020 \\
 inverse BPP & memory-unsafe & +1.12e-02 & [0.0087, 0.0137] & 0.000 \\
 inverse BPP & identifier entropy (nats) & +2.31e-01 & [0.2227, 0.2402] & 0.000 \\
 inverse BPP & identifier byte share & +2.45e-02 & [0.0142, 0.0347] & 0.000 \\
-inverse BPP & region length (bytes) & -7.70e-06 & [-0.0000, -0.0000] & 0.048 \\
+inverse BPP & region length (bytes) & -7.70e-06 & [-1.54e-05, -5.25e-08] & 0.048 \\
 \bottomrule\end{tabular}\end{adjustbox}
 \caption{O5 region regressions with file fixed effects and statement-type controls; file-clustered intervals.}
 \label{tab:o5}\end{table}}

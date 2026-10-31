@@ -38,8 +38,9 @@ with 2,000 replicates.
 | BLT − best baseline F1 [95% CI]                               | −0.242 [−0.247, −0.237] | −0.173 [−0.181, −0.167] | −0.274 [−0.280, −0.268] |
 | **P2** end-boundary margin (starts: rows above)          | −0.017                    | −0.035                    | −0.079                    |
 | **P3** mean bytes per patch                              | 5.68                       | 7.86                       | 3.77                       |
-| **P3** F1 / null F1 (scale-free; margins grow with target density) | 4.7×                 | 4.6×                       | 3.4×                       |
-| **P4** recall margin, forced-opener vs. open-ended types | +0.759 vs. +0.611          | +0.691 vs. +0.451          | —                         |
+| **P3** F1 / null F1 (= R / null R, capped at 1 / null R: 5.8 / 7.1 / 3.8) | 4.7×           | 4.6×                       | 3.4×                       |
+| **P3** chance-corrected recall (R − R0) / (1 − R0)              | 0.784                      | 0.588                      | 0.856                      |
+| **P4** recall margin, forced-opener vs. open-ended types (unweighted mean over types) | +0.759 vs. +0.611          | +0.691 vs. +0.451          | —                         |
 | Span IoU (secondary): BLT / null / line segmentation           | 0.351 / 0.342 / 0.546      | 0.372 / 0.356 / 0.606      | 0.377 / 0.334 / 0.049      |
 | **O4** margin on clean code → worst noise (indentation) | +0.115 → +0.099           | +0.131 → +0.118           | —                         |
 
@@ -48,13 +49,15 @@ with 2,000 replicates.
 | Prediction                                                                   | Verdict                                                                                                                                                       |
 | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **P1:** boundaries align with starts beyond the null                   | Supported in all three languages (margins far outside the null)                                                                                               |
-| **Structure-blind baselines**                                          | Not supported: BLT is *beaten* by indentation or word-start splitting in every language, so most of the alignment is line and word segmentation, not grammar |
+| **Structure-blind baselines**                                          | Not supported: BLT is *beaten* by indentation or word-start splitting in every language. Word-start splitting places fewer boundaries yet beats BLT on precision *and* recall (Python 0.142 / 0.892 vs 0.083 / 0.822), so most of the alignment is line and word segmentation, not grammar |
 | **P2:** starts align better than ends                                  | Supported; end margins are negative                                                                                                                           |
-| **P3:** alignment stronger in code than prose                          | Reversed on the F1 margin, which grows with target density; on the scale-free F1/null ratio code (4.6–4.7×) beats prose (3.4×). Prose "alignment" is mostly word onsets |
+| **P3:** alignment stronger in code than prose                          | Reversed: prose has the largest margin and the highest chance-corrected recall. The raw F1/null ratio favours code (4.6–4.7× vs 3.4×) only because it is capped near the mean patch length. Prose "alignment" is mostly word onsets |
 | **P4:** weaker for forced-opener constructs (`if`, `for`, `def`) | Reversed at the start byte, confirmed at the forced bytes: the byte after the keyword is a boundary at rate 0.000 (Python) / 0.035 (C++) vs a null ≈ 0.15, and the boundary returns where choice reopens (`scripts/final_analysis/position_scores.py`) |
 | **Precision > recall** (entropy bounds branching)                      | Not supported: precision is far below recall; BLT proposes many more boundaries than there are targets                                                        |
-| **O4:** robustness to code noise                                       | Supported: degrades gracefully. In a 5–40% rate sweep only indentation noise grows with rate (−0.005 → −0.029 Python, −0.004 → −0.023 C++); keyword typos lower BPP (−0.43 / −0.60 at 40%) but barely move alignment; every noised margin ≥ +0.086 |
-| **O5:** compute near memory-unsafe code beyond the identifier confound | No semantic residual. With file fixed effects only, unsafe statements get *fewer* boundaries (−0.0083 [−0.0127, −0.0039]); the frozen +0.0069 [0.0043, 0.0095] appears only after conditioning on identifier entropy and is 4% of the mean density. Labels audited: `docs/O5_LABEL_AUDIT.md` |
+| **O4:** robustness to code noise                                       | Supported: degrades gracefully. In a 5–40% rate sweep indentation noise does by far the most damage (−0.005 → −0.029 Python, −0.004 → −0.023 C++); keyword typos and missing semicolons also grow with rate but cost at most 0.007; typos lower BPP (−0.43 / −0.60 at 40%); every noised margin ≥ +0.086 |
+| **O5:** compute near memory-unsafe code beyond the identifier confound | No evidence of risk-aware compute. With file fixed effects only, unsafe statements get *fewer* boundaries (−0.0083 [−0.0127, −0.0039]) and no change in inverse BPP (−0.0024 [−0.0066, 0.0017]); the frozen +0.0069 [0.0043, 0.0095] appears only after conditioning on identifier entropy and is 4.2% of the mean density. Labels audited: `docs/O5_LABEL_AUDIT.md` |
+
+**H1 overall:** not supported under the proposal's own criterion, which needs P1 to clear both baselines and P2, P3 and P4 all to hold; only P2 holds as stated.
 
 Entropy is a surface statistic, and none of these results is evidence of semantic understanding.
 
@@ -186,4 +189,4 @@ It writes per-byte entropies, the boundary table and BPP/entropy statistics for 
 
 ## Limitations
 
-The checkpoint is a third-party conversion, and we restored its sliding window ourselves. English targets come from predicted parses; the 300 evaluation paragraphs were seen during exploration, so the pre-registered holdout is the confirmatory English result. About 28% of C++ files trigger parser error recovery; their margin does not differ from clean parses (+0.004 [−0.005, 0.015]). The 8,000 Python functions come from 315 repositories; a repository-clustered bootstrap widens the Python interval 3.7× to [0.112, 0.127]. O5 labels are syntactic. The report's Limitations section has the full list.
+The checkpoint is a third-party conversion, and we restored its sliding window ourselves. English targets come from predicted parses; the 300 evaluation paragraphs were seen during exploration, so the pre-registered holdout is the confirmatory English result. About 28% of C++ files trigger parser error recovery; their margin does not differ from clean parses (+0.004 [−0.005, 0.015]). The 6,400 Python test functions come from 315 repositories; a repository-clustered bootstrap widens the Python interval 3.7× to [0.112, 0.127]. O5 labels are syntactic. The report's Limitations section has the full list.

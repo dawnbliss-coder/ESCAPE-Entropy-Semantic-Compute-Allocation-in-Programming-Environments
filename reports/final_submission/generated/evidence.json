@@ -378,7 +378,7 @@
     "OFourDbppCppSemi": "-0.06",
     "OFourDbppCppTypo": "-0.34",
     "OFourDbppPyCase": "-0.05",
-    "OFourDbppPyIndent": "+0.00",
+    "OFourDbppPyIndent": "+0.004",
     "OFourDbppPyTypo": "-0.23",
     "OFourFiles": "1,000",
     "OFourMinMarginCpp": "+0.118",

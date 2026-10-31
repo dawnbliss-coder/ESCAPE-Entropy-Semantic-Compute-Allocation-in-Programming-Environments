@@ -1,7 +1,7 @@
 """Generate every number, table and figure of the final report from results/final/.
 
 Two stages, both reading only retained result files (no model, corpus or null is re-run):
-  1. reports/mid_submission/build_results.py, unchanged, on the frozen C-v1 run
+  1. reports/mid_submission/build_results.py (shared with the mid report) on the frozen C-v1 run
      (results/final/c-v1-2721954) -> generated/results.tex: the P1-P4, IoU, O4 and O5
      macros/tables of the frozen held-out evaluation.
   2. this file -> generated/final.tex (macros named \\x..., tables \\xTable...) and
@@ -420,7 +420,9 @@ def efficiency():
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
         f"\\caption{{Inference cost on one {texescape(e['gpu'].replace('NVIDIA GeForce ', ''))}, float32. Rolling extraction "
         "(one fresh 512-byte window per byte) is how both student runs were extracted; the native teacher processes a file "
-        "in one sliding-window pass, which the student architecture does not implement.}",
+        "in one sliding-window pass, which the student architecture does not implement. That is why the student's "
+        "full-corpus extraction took about 20 GPU-hours per shard, and why a deployment-grade student would need the same "
+        "single-pass kernel.}",
         "\\label{tab:eff}\\end{table}"])
 
 
@@ -607,6 +609,7 @@ def o3_depth():
         c = ev.get("cdepth", {}).get(lang, {})
         macro(f"xDepthOne{tag}", signed(c[1]["margin"]) if 1 in c else None)
         macro(f"xDepthSeven{tag}", signed(c[7]["margin"]) if 7 in c else None)
+        macro(f"xDepthEight{tag}", signed(c[8]["margin"]) if 8 in c else None)
 
 
 def o4_sweep():
@@ -657,6 +660,9 @@ def o4_sweep():
     for lang, tag in (("python", "Py"), ("cpp", "Cpp")):
         e = ev.get(lang, {})
         ind, typo, case = e.get("indentation", {}), e.get("keyword_typo", {}), e.get("case_inversion", {})
+        if lang == "cpp":
+            semi = e.get("missing_semicolon", {})
+            macro("xOFourSemiHiCpp", signed(semi[max(semi)]["delta_margin"]) if semi else None)
         macro(f"xOFourIndentLo{tag}", signed(ind[min(ind)]["delta_margin"]) if ind else None)
         macro(f"xOFourIndentHi{tag}", signed(ind[max(ind)]["delta_margin"]) if ind else None)
         macro(f"xOFourTypoHi{tag}", signed(typo[max(typo)]["delta_margin"]) if typo else None)
@@ -680,6 +686,8 @@ def o5_confound():
     oi = d["outcomes"]["inverse_bpp_compute_density"]
     macro("xOFiveRaw", f"{o['models']['A_unsafe_fileFE']['is_memory_unsafe']['coef']:+.4f}")
     macro("xOFiveRawCI", ci(*o["models"]["A_unsafe_fileFE"]["is_memory_unsafe"]["ci"], 4))
+    macro("xOFiveRawBpp", f"{oi['models']['A_unsafe_fileFE']['is_memory_unsafe']['coef']:+.4f}")
+    macro("xOFiveRawBppCI", ci(*oi["models"]["A_unsafe_fileFE"]["is_memory_unsafe"]["ci"], 4))
     macro("xOFiveFull", f"{o['models']['C_frozen_full']['is_memory_unsafe']['coef']:+.4f}")
     macro("xOFiveFullCI", ci(*o["models"]["C_frozen_full"]["is_memory_unsafe"]["ci"], 4))
     macro("xOFiveRel", pct(o["C_unsafe_relative_to_safe_mean"], 1))
@@ -745,29 +753,42 @@ def robustness():
         "Model & Subset (files) & $\\Delta$ F1 vs.\\ $H_0$ [95\\% CI] \\\\\\midrule", *rows,
         "\\bottomrule\\end{tabular}\\end{adjustbox}",
         "\\caption{Held-out start margin on subsets, recomputed exactly from the frozen per-file counts (the null mean is "
-        "linear in each file's expected matches). File-level 95\\% bootstrap intervals except where stated.}",
+        "linear in each file's expected matches). File-level 95\\% bootstrap intervals except where stated; these "
+        "draws differ from Table~\\ref{tab:main}'s, so a file interval can differ from it in the last digit.}",
         "\\label{tab:robust}\\end{table}"])
 
 
 def p3_ratio():
-    """P3 on a scale-free axis: observed F1 / mean H0 F1, with the frozen file-bootstrap interval."""
+    """P3 normalised two ways. The null keeps BLT's boundary count, so F1/H0 F1 = R/R0, which is capped at 1/R0
+    (about the mean patch length); chance-corrected recall (R - R0)/(1 - R0) has no such cap."""
     t = language_rows(FROZEN / "evaluation/scores.csv")
+    base = baseline_rows(FROZEN / "baselines.json")
     rows = []
     for lang, name, tag in LANGS:
         r = t[lang]
+        r0, ratio = r["recall_h0_mean"], r["recall"] / r["precision"]  # recall/precision = #predictions/#targets
+        kappa = (r["recall"] - r0) / (1 - r0)
         macro(f"xRatio{tag}", f"{r['f1_ratio']:.1f}")
-        macro(f"xPredPerTarget{tag}", f"{r['recall'] / r['precision']:.1f}")  # recall/precision = #predictions/#targets
+        macro(f"xPredPerTarget{tag}", f"{ratio:.1f}")
+        macro(f"xRatioCap{tag}", f"{1 / r0:.1f}")
+        macro(f"xKappa{tag}", num(kappa))
+        macro(f"xFoneCap{tag}", num(2 / (ratio + 1)))  # P <= #targets/#predictions and R <= 1
+        w = base[(lang, "word_start")]
+        macro(f"xWordP{tag}", num(w["precision"]))
+        macro(f"xWordR{tag}", num(w["recall"]))
         rows.append(f"{name} & {num(r['f1'])} & {num(r['f1_h0_mean'])} & {signed(r['f1_margin'])} & "
-                    f"{r['f1_ratio']:.2f} [{r['f1_ratio_ci_low']:.2f}, {r['f1_ratio_ci_high']:.2f}] \\\\")
+                    f"{r['f1_ratio']:.2f} [{r['f1_ratio_ci_low']:.2f}, {r['f1_ratio_ci_high']:.2f}] & {1 / r0:.2f} & {num(kappa)} \\\\")
     evidence["p3_ratio"] = {lang: {k: t[lang][k] for k in ("f1", "f1_h0_mean", "f1_margin", "f1_ratio",
                                                            "f1_ratio_ci_low", "f1_ratio_ci_high")} for lang, _, _ in LANGS}
     tables["xTableRatio"] = "\n".join([
         "\\begin{table}[t]\\centering\\small",
-        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrrl}\\toprule",
-        "Lang. & F1 & $H_0$ F1 & $\\Delta$ & F1 / $H_0$ [95\\% CI] \\\\\\midrule", *rows,
+        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrrlrr}\\toprule",
+        "Lang. & F1 & $H_0$ F1 & $\\Delta$ & F1 / $H_0$ [95\\% CI] & $1/R_0$ & $\\frac{R-R_0}{1-R_0}$ \\\\\\midrule", *rows,
         "\\bottomrule\\end{tabular}\\end{adjustbox}",
-        "\\caption{P3 on a scale-free axis. The difference $\\Delta$ grows with target density, the ratio does not: "
-        "code aligns more strongly than prose relative to its own null. Frozen held-out run; paired file bootstrap.}",
+        "\\caption{P3 normalised two ways. The null keeps BLT's boundary count, so F1 / $H_0$ F1 equals $R/R_0$ and cannot "
+        "exceed $1/R_0$, which is close to the mean patch length; it favours code because code patches are longer. "
+        "Chance-corrected recall (last column) has no such ceiling and ranks English first. Frozen held-out run; "
+        "paired file bootstrap for the ratio.}",
         "\\label{tab:ratio}\\end{table}"])
 
 
