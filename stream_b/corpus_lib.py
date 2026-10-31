@@ -30,14 +30,14 @@ POOL_SIZE_PER_DOMAIN = 10_000
 
 NEEDED_PER_DOMAIN = 8_000  # target corpus size per language (proposal-scale sample)
 # Empirically ~0% dropped to dedup/license at 900-sample scale (measured on an
-# initial 900-sample pull), so a small buffer is enough — NOT the earlier 3x, which at N=8000 would
+# initial 900-sample pull), so a small buffer is enough - NOT the earlier 3x, which at N=8000 would
 # ask for 24,000 and silently clamp to the entire 10,000-file pool, leaving no buffer at
 # all (the opposite of the intent).
 PULL_MULTIPLIER = 1.05
 
 # NOTE on growth-safety: `records` below preserves the dataset's own row order (never
 # shuffled). That means the first K entries of `records` are IDENTICAL no matter how
-# large n_needed grows later — pulling more only appends further down the list. This is
+# large n_needed grows later - pulling more only appends further down the list. This is
 # what lets build_corpus.py assign calib/main as fixed-position prefixes that never
 # change when N increases (see build_corpus.py's module docstring).
 

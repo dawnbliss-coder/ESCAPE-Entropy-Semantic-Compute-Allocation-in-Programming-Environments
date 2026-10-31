@@ -20,12 +20,13 @@
 \input{../generated/final}
 \definecolor{acc}{HTML}{234F7D}
 \setbeamercolor{frametitle}{fg=acc}
+\hypersetup{colorlinks=true,urlcolor=blue!70!black,linkcolor=blue!70!black}
 \setbeamercolor{title}{fg=acc}
 \newcommand{\hl}[1]{\textcolor{acc}{\textbf{#1}}}
 
 \title{Project ESCAPE: Does Entropy-Based Patching Find Syntax?}
-\subtitle{Final viva --- Team Trimax}
-\author{Priyanka Agarwal \and Shashwat Mukadam \and Divyansh Atri}
+\subtitle{Final viva - Team Trimax}
+\author{Priyanka Agarwal (2024101016)\\ Shashwat Mukadam (2024102008)\\ Divyansh Atri (2024113001)}
 \date{ANLP, October 2026}
 
 \begin{document}
@@ -34,7 +35,7 @@
 \begin{frame}{The question}
 \begin{itemize}
 \item BLT starts a new patch when its byte-level entropy model is uncertain: $H_i>\tau$.
-\item \hl{Grammatical Branching Hypothesis:} patches start at AST / parse constituent starts more often than inside constituents --- an average-case asymmetry, not a claim that starts are maximal-choice points.
+\item \hl{Grammatical Branching Hypothesis:} patches start at AST / parse constituent starts more often than inside constituents - an average-case asymmetry, not a claim that starts are maximal-choice points.
 \item Tested on \nSamples{} files (Python, C++, English), held-out split \nTestAll{}, against
   \begin{itemize}
   \item a \hl{density-matched null}: each file's own patch lengths, shuffled, final patch fixed (\nPerm{} permutations);
@@ -75,16 +76,14 @@
 \section{Stream C: statistics}
 \begin{frame}{Ground truth from parsers: interactive tree views}
 \begin{itemize}
-\item \textbf{Code:} tree-sitter gives an exact grammar tree; the highlighted nodes are the constituents we keep as targets (statement- and expression-level) with their start and end bytes.
+\item \textbf{Code:} tree-sitter gives an exact parse tree; the highlighted nodes are the constituents we keep as targets (statement- and expression-level) with their start and end bytes.
 \item \textbf{English:} benepar gives a predicted phrase tree (NP, VP, PP); targets are phrase starts.
-\item Each viewer shows the full parse tree next to the source, as a self-contained HTML page (no server, no network).
+\item Each view shows the full parse tree next to the source, as a self-contained HTML page. Open a view (links open in the browser):
 \end{itemize}
-\vspace{2mm}
-\textbf{Open a view} (links work when the PDF is opened from the repository):\\[1mm]
-\href{../../../stream_b/tree_views/py_a1567fe2419b.html}{Python} \quad
-\href{../../../stream_b/tree_views/cpp_362b99d47547.html}{C++} \quad
-\href{../../../stream_b/tree_views/prose_504f378c8948.html}{English}\\[1mm]
-{\footnotesize Viewers: \texttt{stream\_b/tree\_viewer.py}, \texttt{stream\_b/prose\_tree\_viewer.py}; examples in \texttt{stream\_b/tree\_views/}.}
+\begin{center}
+Python: \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/py_a1567fe2419b.html}{view 1}, \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/py_759ab0d95fd8.html}{view 2} \quad C++: \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/cpp_b91a1e2f74f9.html}{view 1}, \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/cpp_362b99d47547.html}{view 2} \quad English: \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/prose_504f378c8948.html}{view 1}, \href{https://htmlpreview.github.io/?https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/blob/main/stream_b/tree_views/prose_66faa3d56bc3.html}{view 2}
+\end{center}
+{\footnotesize All views and the scripts that build them: \href{https://github.com/dawnbliss-coder/ESCAPE-Entropy-Semantic-Compute-Allocation-in-Programming-Environments/tree/main/stream_b/tree_views}{\texttt{stream\_b/tree\_views/}} (\texttt{tree\_viewer.py}, \texttt{prose\_tree\_viewer.py}).}
 \end{frame}
 
 \begin{frame}{Stream C: frozen protocol}
@@ -114,10 +113,11 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \item At BLT's density F1 is capped at $2/(r{+}1)$ = \xFoneCapPy{} / \xFoneCapCpp{} / \xFoneCapEn{}; density-free check: word starts beat BLT on \hl{both} precision and recall (Py \xWordPPy{}/\xWordRPy{} vs.\ \PrecPy{}/\RecPy{}).
 \item Precision $\ll$ recall (proposal predicted the reverse): every boundary has $\ge e^{\tau}\approx3.8$ live continuations; identifier interiors are flat but not syntactic.
 \item P2 \hl{supported}: end margins \EndMarginPy{}, \EndMarginCpp{}, \EndMarginEn{}.
+\item Span IoU (proposal's secondary metric) agrees: BLT \IouBltPy{} / \IouBltCpp{} / \IouBltEn{} vs.\ null \IouNullPy{} / \IouNullCpp{} / \IouNullEn{}, line segmentation \IouLinePy{} / \IouLineCpp{} / \IouLineEn{} (Py / C++ / En).
 \end{itemize}
 \end{frame}
 
-\begin{frame}{P3 reversed --- prose constituents start at words}
+\begin{frame}{P3 reversed - prose constituents start at words}
 \begin{itemize}
 \item Predicted: prose near chance. Observed: prose margin \MarginProse{} $>$ code \MarginCode{}.
 \item Benepar constituents begin at words; the word-start rule alone gets \StrongestFoneEn{} F1 in English.
@@ -127,11 +127,11 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \end{itemize}
 \end{frame}
 
-\begin{frame}{P4 reversed at the start byte --- confirmed at the forced bytes}
+\begin{frame}{P4 reversed at the start byte - confirmed at the forced bytes}
 \begin{columns}[T]
 \column{.52\textwidth}\small
 \begin{itemize}
-\item Per-type mean start margin: forced \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) --- opposite of P4.
+\item Per-type mean start margin: forced \DetMarginPy{} vs.\ open \OpenMarginPy{} (Py) - opposite of P4.
 \item Test: boundary rate at bytes \emph{after} $s$, same null draws (start rows \xPosCheck{} the frozen recalls).
 \item Rest of keyword: \xKwDetPy{} (Py), \xKwDetCpp{} (C++) vs.\ null.
 \item Byte after keyword: rate \xPostKwRateDetPy{} (Py), \xPostKwRateDetCpp{} (C++) vs.\ null \xOffNullPy{} (Py) / \xOffNullCpp{} (C++); open-ended stays at the null.
@@ -164,8 +164,8 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \begin{frame}{O5: no evidence of risk-aware compute near memory-unsafe code}
 \begin{itemize}
 \item Label audit: \xAuditRepro{} regions reproduced; independent lexical labeller agrees on \xAuditAgree{} statements.
-\item Frozen coefficient \xOFiveFull{} \xOFiveFullCI{} boundaries/byte --- but:
-\item File FE only: \hl{\xOFiveRaw{} \xOFiveRawCI{}} --- unsafe statements get \emph{fewer} boundaries (more predictable identifiers).
+\item Frozen coefficient \xOFiveFull{} \xOFiveFullCI{} boundaries/byte - but:
+\item File FE only: \hl{\xOFiveRaw{} \xOFiveRawCI{}} - unsafe statements get \emph{fewer} boundaries (more predictable identifiers).
 \item Positive only after conditioning on identifier entropy; size \xOFiveRel{} of the mean, \xOFiveVsIdent{} of a 1-SD identifier-entropy effect.
 \item Inverse BPP with file FE only: \xOFiveRawBpp{} \xOFiveRawBppCI{} (null).
 \item Reading: a small conditional effect, not risk awareness.
@@ -216,8 +216,8 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 \footnotesize
 \begin{itemize}
 \item Pre-registered $\tau^*$ on calibration: teacher \xTauStarTeacherPy{}; student \xTauStarStudentPy{}/\xTauStarStudentCpp{}/\xTauStarStudentEn{}.
-\item One test run at $\tau^*$: teacher $\Delta$ \xTauConfTeacherPy{} (Py), \xTauConfTeacherCpp{} (C++), \xTauConfTeacherEn{} (En) --- still below baselines (\xTauConfVsBaseTeacherPy{}).
-\item Student at its own $\tau^*$: $\Delta$ \xTauConfStudentPy{}, \xTauConfStudentCpp{}, \xTauConfStudentEn{} --- also below baselines.
+\item One test run at $\tau^*$: teacher $\Delta$ \xTauConfTeacherPy{} (Py), \xTauConfTeacherCpp{} (C++), \xTauConfTeacherEn{} (En) - still below baselines (\xTauConfVsBaseTeacherPy{}).
+\item Student at its own $\tau^*$: $\Delta$ \xTauConfStudentPy{}, \xTauConfStudentCpp{}, \xTauConfStudentEn{} - also below baselines.
 \item Later, exploratory: grid on test (dashed) peaks at the same $\tau^*$ (\xTauTestAgreeTeacher{}/3, \xTauTestAgreeStudent{}/3); every $\tau$ trails the best baseline by $\ge$\xTauTestMinGap{} F1.
 \item English holdout (\xHoldFiles{} unseen paragraphs, scored once): teacher \xHoldTeaMargin{}, student \xHoldStuMargin{}; vs.\ word starts \xHoldTeaVsWord{}.
 \end{itemize}
@@ -248,7 +248,7 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 
 \begin{frame}{Conclusions}
 \begin{itemize}
-\item Entropy boundaries track constituent starts \hl{\xRatioEn{}--\xRatioPy{}$\times$ above chance} --- held-out and on the English holdout; a 7$\times$ smaller student keeps $\approx$90\% of the margin.
+\item Entropy boundaries track constituent starts \hl{\xRatioEn{}--\xRatioPy{}$\times$ above chance} - held-out and on the English holdout; a 7$\times$ smaller student keeps $\approx$90\% of the margin.
 \item They do \hl{not} beat indentation / word-start segmentation at any $\tau$ or $k$.
 \item Each failed prediction has a mechanical explanation:
   \begin{itemize}
@@ -257,7 +257,7 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
   \item P4: forcing acts after the opener, not at its start;
   \item O5: the ``residual'' appears only after an identifier-entropy control.
   \end{itemize}
-\item Entropy is a genuine but shallow signal of word and line onsets --- syntax shapes it without being what it measures.
+\item Entropy is a genuine but shallow signal of word and line onsets - syntax shapes it without being what it measures.
 \end{itemize}
 \end{frame}
 \end{document}

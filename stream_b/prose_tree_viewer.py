@@ -79,7 +79,7 @@ HTML_TEMPLATE = """<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Prose parse tree — {file_id}</title>
+<title>Prose parse tree - {file_id}</title>
 <style>
   :root {{
     color-scheme: light dark;
@@ -116,7 +116,7 @@ HTML_TEMPLATE = """<!doctype html>
 <body>
 <div class="layout">
   <div class="panel src">
-    <h2>source — {file_id}</h2>
+    <h2>source - {file_id}</h2>
     <pre class="src-text" id="src"></pre>
   </div>
   <div class="panel tree">

@@ -127,17 +127,31 @@ Underfull \hbox (badness 1852) in paragraph at lines 101--102
 
 [6]
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
+[][][][][]$\T1/pcr/m/n/9 https : / / github . com / dawnbliss -[] coder /
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
+\T1/pcr/m/n/9 ESCAPE -[] Entropy -[] Semantic -[] Compute -[]
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
 [][][][][]$\T1/pcr/m/n/9 https : / / forge . coreweave . com / wandb /
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
-\T1/pcr/m/n/9 kanhadivyansh123-[]iiit-[]hyderabad /
+\T1/pcr/m/n/9 kanhadivyansh123 -[] iiit -[] hyderabad / escape -[]
 
 Underfull \hbox (badness 1043) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) both base-lines with non-overlapping in-ter-vals,
 
-Underfull \hbox (badness 1194) in paragraph at lines 104--105
-\T1/ptm/m/n/10.95 (+20) ev-ery num-ber ship in \T1/pcr/m/n/10.95 Trimax-Final.z
-ip\T1/ptm/m/n/10.95 (+20) ;
+Underfull \hbox (badness 1953) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) the whites-pace and word-start base-lines; P3
+
+Underfull \hbox (badness 1077) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-port and the pre-sen-ta-tion, cov-er-ing O1--O5.
+
+Underfull \hbox (badness 1231) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-gen-er-ates ev-ery num-ber are in our GitHub
+
+Underfull \hbox (badness 1253) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) three dis-tilled stu-dents are on Hug-ging Face
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) ([][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / 
@@ -192,30 +206,26 @@ ne-91aa6b8e/patch_length_distribution.png>] (build/Trimax-Final.aux)
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
-(see the transcript file for additional information)
-pdfTeX warning (dest): name{figure.caption.31} has been referenced but does not
- exist, replaced by a fixed one
-
-</usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.
-pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi9.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr6.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025basic/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025basic/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy9.pfb></Users/priyankaagarwal/Library/texmf/
-fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fon
-ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (9 pages, 905929 bytes).
+(see the transcript file for additional information)</usr/local/texlive/2025bas
+ic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/202
+5basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive
+/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texl
+ive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/t
+exlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/lo
+cal/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
+usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6
+.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy9.pfb></Users/priyankaagarwal/Library/texmf/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmb8a.p
+fb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
+usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/Trimax-Final.pdf (9 pages, 907655 bytes).
 Transcript written on build/Trimax-Final.log.
 This is BibTeX, Version 0.99d (TeX Live 2025)
 The top-level auxiliary file: build/Trimax-Final.aux
@@ -350,17 +360,31 @@ Underfull \hbox (badness 1852) in paragraph at lines 101--102
 
 [6]
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
+[][][][][]$\T1/pcr/m/n/9 https : / / github . com / dawnbliss -[] coder /
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
+\T1/pcr/m/n/9 ESCAPE -[] Entropy -[] Semantic -[] Compute -[]
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
 [][][][][]$\T1/pcr/m/n/9 https : / / forge . coreweave . com / wandb /
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
-\T1/pcr/m/n/9 kanhadivyansh123-[]iiit-[]hyderabad /
+\T1/pcr/m/n/9 kanhadivyansh123 -[] iiit -[] hyderabad / escape -[]
 
 Underfull \hbox (badness 1043) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) both base-lines with non-overlapping in-ter-vals,
 
-Underfull \hbox (badness 1194) in paragraph at lines 104--105
-\T1/ptm/m/n/10.95 (+20) ev-ery num-ber ship in \T1/pcr/m/n/10.95 Trimax-Final.z
-ip\T1/ptm/m/n/10.95 (+20) ;
+Underfull \hbox (badness 1953) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) the whites-pace and word-start base-lines; P3
+
+Underfull \hbox (badness 1077) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-port and the pre-sen-ta-tion, cov-er-ing O1--O5.
+
+Underfull \hbox (badness 1231) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-gen-er-ates ev-ery num-ber are in our GitHub
+
+Underfull \hbox (badness 1253) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) three dis-tilled stu-dents are on Hug-ging Face
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) ([][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / 
@@ -430,7 +454,7 @@ sy7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm
 r8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmb8a.p
 fb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
 usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (9 pages, 905931 bytes).
+Output written on build/Trimax-Final.pdf (9 pages, 907655 bytes).
 Transcript written on build/Trimax-Final.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -561,17 +585,31 @@ Underfull \hbox (badness 1852) in paragraph at lines 101--102
 
 [6]
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
+[][][][][]$\T1/pcr/m/n/9 https : / / github . com / dawnbliss -[] coder /
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
+\T1/pcr/m/n/9 ESCAPE -[] Entropy -[] Semantic -[] Compute -[]
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
 [][][][][]$\T1/pcr/m/n/9 https : / / forge . coreweave . com / wandb /
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--104
-\T1/pcr/m/n/9 kanhadivyansh123-[]iiit-[]hyderabad /
+\T1/pcr/m/n/9 kanhadivyansh123 -[] iiit -[] hyderabad / escape -[]
 
 Underfull \hbox (badness 1043) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) both base-lines with non-overlapping in-ter-vals,
 
-Underfull \hbox (badness 1194) in paragraph at lines 104--105
-\T1/ptm/m/n/10.95 (+20) ev-ery num-ber ship in \T1/pcr/m/n/10.95 Trimax-Final.z
-ip\T1/ptm/m/n/10.95 (+20) ;
+Underfull \hbox (badness 1953) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) the whites-pace and word-start base-lines; P3
+
+Underfull \hbox (badness 1077) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-port and the pre-sen-ta-tion, cov-er-ing O1--O5.
+
+Underfull \hbox (badness 1231) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) re-gen-er-ates ev-ery num-ber are in our GitHub
+
+Underfull \hbox (badness 1253) in paragraph at lines 104--105
+\T1/ptm/m/n/10.95 (+20) three dis-tilled stu-dents are on Hug-ging Face
 
 Underfull \hbox (badness 10000) in paragraph at lines 104--105
 \T1/ptm/m/n/10.95 (+20) ([][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / 
@@ -641,5 +679,5 @@ sy7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm
 r8a.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmb8a.p
 fb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
 usr/local/texlive/2025basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (9 pages, 905931 bytes).
+Output written on build/Trimax-Final.pdf (9 pages, 907655 bytes).
 Transcript written on build/Trimax-Final.log.

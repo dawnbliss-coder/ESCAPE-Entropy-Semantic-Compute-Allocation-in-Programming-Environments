@@ -1,4 +1,4 @@
-# ADA FULL-RUN SEQUENCE — Student C-v1, τ sweep, Teacher-512 control, English holdout, Domain adaptation
+# ADA FULL-RUN SEQUENCE - Student C-v1, τ sweep, Teacher-512 control, English holdout, Domain adaptation
 
 > **Status: EXECUTED** (Ada, 28–31 Oct 2026). Every step below was run and gated;
 > results, numbers and job ids are in [`docs/FULL_RUN_RESULTS.md`](FULL_RUN_RESULTS.md),
@@ -17,7 +17,7 @@ committed; `git pull` first). Companion docs: `docs/ADA_DISTILL_RUNBOOK.md` (det
 
 ---
 
-## STEP 0 — Sync and identity hashes (10 min)
+## STEP 0 - Sync and identity hashes (10 min)
 
 ```bash
 cd ~/escape-final-20260928          # the project root on Ada (adapt if different)
@@ -36,7 +36,7 @@ Gate: hashes match exactly. If `student.pt` is a 133-byte LFS pointer (a leftove
 `distill-repro-39379` branch) or its hash differs, stop and run
 `git checkout main -- results/distill/full/student/student.pt` before anything else.
 
-## STEP 1 — Golden gate for the new extractor on Ada (15 min, MUST PASS)
+## STEP 1 - Golden gate for the new extractor on Ada (15 min, MUST PASS)
 
 ```bash
 a_py -m escape_distill.extract --input golden --domains py cpp prose \
@@ -45,10 +45,10 @@ a_py -m escape_distill.score_a_runs --run-ids student-golden-gate --out results/
 ```
 Gate: per-domain F1/P/R must reproduce the committed golden table
 (`results/student_cv1_golden_v1/scores.json`): py F1 0.1313 (P 0.072/R 0.789), cpp 0.2196
-(0.126/0.836), prose 0.4290 (0.276/0.968). Tolerance: ±0.002. If it fails, **stop** — do not
+(0.126/0.836), prose 0.4290 (0.276/0.968). Tolerance: ±0.002. If it fails, **stop** - do not
 extract 16,300 files with a broken extractor.
 
-## STEP 2 — Student extraction, full corpus (PRIMARY; ~12–15 h on 4×2080 Ti)
+## STEP 2 - Student extraction, full corpus (PRIMARY; ~12–15 h on 4×2080 Ti)
 
 ```bash
 cat > scripts/ada_distill/student_extract.sbatch <<'EOF'
@@ -91,9 +91,9 @@ print("missing:", len(missing), missing[:5])
 PY
 ```
 **Record** in the job log: wall-clock and `tokens/s` per file-size bucket (needed for the
-efficiency table). If a shard dies, rerun the same array job — it resumes (skips done files).
+efficiency table). If a shard dies, rerun the same array job - it resumes (skips done files).
 
-## STEP 3 — C-v1 conversion, validation, calibration, scoring (student)
+## STEP 3 - C-v1 conversion, validation, calibration, scoring (student)
 
 ```bash
 DATA="$SCR/c-v1-student"
@@ -108,10 +108,10 @@ c_py -m escape_scoring baselines --data "$DATA" --calibration results/final/stud
 cp "$DATA"/*.jsonl results/final/student-v1-inputs.jsonl.bak 2>/dev/null || true
 ```
 Gate: `validate` passes for all 16,300 samples; `calibrate` writes a record (record the
-selected k per language — expect k=0); `score` writes evaluation/{scores,per_file,diagnostics}.csv+json.
+selected k per language - expect k=0); `score` writes evaluation/{scores,per_file,diagnostics}.csv+json.
 Keep `student-v1-calibration.json` untouched once written (it is the student's frozen record).
 
-## STEP 4 — Teacher-512 control (subset; ~2–3 GPU-hours)
+## STEP 4 - Teacher-512 control (subset; ~2–3 GPU-hours)
 
 The stride-1 teacher control is infeasible on the full corpus, so it runs on a
 **pre-registered subset** (this selection rule is fixed before any scoring):
@@ -143,7 +143,7 @@ This scores the frozen teacher run, the teacher-512 control, and the student on 
 subset at k=0 with the fixed-EOF null and baselines. Gate: teacher_native ≈ teacher_512
 within bootstrap CI (expected from the golden result); record the deltas.
 
-## STEP 5 — τ sweep on the CALIBRATION split (teacher; minutes, no model runs)
+## STEP 5 - τ sweep on the CALIBRATION split (teacher; minutes, no model runs)
 
 Pre-registered rule (fixed before looking at any number): grid
 τ ∈ {0.8, 1.0, 1.335442066192627, 1.7, 2.0, 2.5}; per language choose
@@ -179,7 +179,7 @@ co-frozen under τ*): `convert-legacy --run-id teacher-tau-STAR` → `validate` 
 `calibrate` → `score` → `baselines` (exactly as Step 3). Gate: record k* and τ*; never
 rescan the test split at another τ afterwards.
 
-## STEP 6 — τ sweep + confirmatory for the STUDENT (same rule, same order)
+## STEP 6 - τ sweep + confirmatory for the STUDENT (same rule, same order)
 
 ```bash
 for TAU in 0.8 1.0 1.7 2.0 2.5; do
@@ -194,7 +194,7 @@ c_py -m escape_distill.score_a_runs \
 Expected (from the golden sweep): student τ* above the teacher's τ*; margins stay positive at
 every τ; neither model beats the strongest baseline at any τ.
 
-## STEP 7 — English holdout materialization (data only, NO scoring)
+## STEP 7 - English holdout materialization (data only, NO scoring)
 
 ```bash
 a_py - <<'PY'
@@ -234,7 +234,7 @@ mkdir -p corpus_ext/holdout/structure
 **Do not compute any boundary scores for holdout files** until the team signs off the
 selection (recorded in `reports/ESCAPE_STUDENT_CV1_EVALUATION.md` §8.6).
 
-## STEP 8 — O5 label audit (CPU, no training)
+## STEP 8 - O5 label audit (CPU, no training)
 
 Re-run the tree-sitter queries behind `stream_b/build_o5_regions.py` against the frozen
 `results/final/c-v1-2721954/o5/o5_regions.csv` labels: check every unsafe mask
@@ -243,7 +243,7 @@ Re-run the tree-sitter queries behind `stream_b/build_o5_regions.py` against the
 (`docs/O5_LABEL_AUDIT.md`). Do not change the scorer or re-run O5 until the team reviews
 the audit.
 
-## STEP 9 — Domain adaptation of the teacher (ONLY if queue allows; ~1 day)
+## STEP 9 - Domain adaptation of the teacher (ONLY if queue allows; ~1 day)
 
 ```bash
 MANIFEST="$SCR/corpus_ext/manifest_ext.parquet"      # materialized in runbook Part 1
@@ -262,7 +262,7 @@ Then extract + C-v1-score the adapted model exactly as Steps 2–3 (new run_id
 margin over the null beats the student's by more than the bootstrap CI width in ≥2 domains.
 A negative result is reported as-is.
 
-## STEP 10 — Collect everything for the report
+## STEP 10 - Collect everything for the report
 
 Copy back to the laptop (or commit): `results/final/student-v1-eval/`,
 `student-v1-baselines.json`, `student-v1-calibration.json`, `teacher512_subset_scores.json`,

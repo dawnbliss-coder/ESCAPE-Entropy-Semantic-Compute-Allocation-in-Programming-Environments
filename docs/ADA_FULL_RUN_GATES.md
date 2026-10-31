@@ -1,13 +1,13 @@
-# Ada Full-Run Gates — Finish All ESCAPE Full Runs
+# Ada Full-Run Gates - Finish All ESCAPE Full Runs
 
 Run on the **IIIT-H Ada cluster**. Execute the complete, pre-registered
 ESCAPE full-run sequence (student C-v1 scoring, teacher-512 control, τ sweep +
 confirmatory, English holdout, O5 audit, optional domain adaptation), **in order, with
 every gate checked, and report every number back with its source file**. The scientific
-protocols, tools, and selection rules below are already decided and committed — do not
+protocols, tools, and selection rules below are already decided and committed - do not
 invent new procedures, do not tune anything on test data, do not skip a gate.
 
-Project: ESCAPE — does the BLT patcher's entropy-triggered patch boundary segmentation
+Project: ESCAPE - does the BLT patcher's entropy-triggered patch boundary segmentation
 align with syntactic constituent starts? The frozen C-v1 held-out results live in
 `results/final/c-v1-2721954/` (untouchable). A 14.3M-param **student** was distilled from
 the 99.5M-param BLT **teacher** (`itazap/blt-1b-hf` @ `91aa6b8e…`, swa512, float32,
@@ -34,17 +34,17 @@ sha256sum results/distill/full/student/student.pt "$CK/patcher.safetensors"
 Gate 0: hashes match; repo at 9c993b8; working tree clean. Also confirm `corpus/` (16,300
 files) and `structure/` + `whitespace/` are restored (job 10_data of `docs/FINAL_RUN.md`).
 The frozen teacher A-format artifacts `entropies/swa512-float32-t1.3354-mplnone-91aa6b8e/`
-and `boundaries/swa512-float32-t1.3354-mplnone-91aa6b8e/` must exist for all 16,300 files —
+and `boundaries/swa512-float32-t1.3354-mplnone-91aa6b8e/` must exist for all 16,300 files -
 verify before Step 5 (τ sweep needs them).
 
 Tools used (all committed on main):
-- `python -m escape_distill.extract` — student / teacher-512 extraction in Stream-A format
+- `python -m escape_distill.extract` - student / teacher-512 extraction in Stream-A format
   (stride-1 rolling 512-byte windows; batch 64 on GPU; resumable: skips done files).
-- `python -m escape_distill.retau` — re-threshold saved entropy arrays into a new run_id (no model runs).
-- `python -m escape_distill.score_a_runs` — frozen k=0 scoring of any run_id(s) vs structure
+- `python -m escape_distill.retau` - re-threshold saved entropy arrays into a new run_id (no model runs).
+- `python -m escape_distill.score_a_runs` - frozen k=0 scoring of any run_id(s) vs structure
   targets with the fixed-EOF null + baselines + bootstrap (for subsets, τ curves, gates).
-- `python -m escape_scoring {convert-legacy,validate,calibrate,score,baselines}` — the frozen C-v1 CLI.
-- `python -m escape_distill.train --init-from` — domain-adaptation arm (Step 9 only).
+- `python -m escape_scoring {convert-legacy,validate,calibrate,score,baselines}` - the frozen C-v1 CLI.
+- `python -m escape_distill.train --init-from` - domain-adaptation arm (Step 9 only).
 
 ## 1. Golden gate for the new extractor (15 min; MUST pass before anything else)
 
@@ -56,7 +56,7 @@ a_py -m escape_distill.score_a_runs --run-ids student-golden-gate --golden --out
 Gate 1: reproduce the committed golden table exactly (F1 within ±0.002):
 py 0.1313 (P 0.0716, R 0.7887) · cpp 0.2196 (P 0.1264, R 0.8364) · prose 0.4290 (P 0.2756, R 0.9677);
 baselines: py indent_change 0.4771, cpp word_start 0.3869, prose word_start 0.7601.
-If this fails, STOP and debug the extractor — never extract the full corpus with a broken tool.
+If this fails, STOP and debug the extractor - never extract the full corpus with a broken tool.
 
 ## 2. Student extraction over the full corpus (~12–15 h on the 4×2080 Ti array)
 
@@ -115,11 +115,11 @@ c_py -m escape_scoring baselines --data "$DATA" --calibration results/final/stud
     --output results/final/student-v1-baselines.json --workers 32
 ```
 Gate 3: `validate` passes for all 16,300 samples; calibration record written (record the
-student's selected k per language — expected k=0); scores written to
+student's selected k per language - expected k=0); scores written to
 `results/final/student-v1-eval/evaluation/`. Do not modify `student-v1-calibration.json`
-afterwards — it is the student's frozen record. Do NOT touch the teacher's frozen record
+afterwards - it is the student's frozen record. Do NOT touch the teacher's frozen record
 `results/final/c-v1-2721954/calibration.json` (the C-v1 scorer will correctly REJECT the
-student data against it — the model signature differs; that is by design).
+student data against it - the model signature differs; that is by design).
 
 ## 4. Teacher-512 control on the pre-registered subset (~2–3 GPU-hours)
 
@@ -146,7 +146,7 @@ a_py -m escape_distill.score_a_runs \
   --file-ids $IDS_T512 --out results/final/teacher512_subset_scores.json --perms 10000
 ```
 Gate 4: teacher_native ≈ teacher_512 within bootstrap CI on this subset (the golden result
-already showed the context-length effect is tiny — this confirms it at scale). Record the
+already showed the context-length effect is tiny - this confirms it at scale). Record the
 three-way F1/margin table from `teacher512_subset_scores.json`.
 
 ## 5. τ sweep on the CALIBRATION split, then ONE confirmatory test run (teacher)
@@ -235,7 +235,7 @@ c_py -m escape_distill.score_a_runs \
 Expected: student τ* above the teacher's τ* (the student's entropy is systematically
 higher). Record everything in `results/final/student-tau-STAR-*`.
 
-## 7. English holdout materialization (data only — NO scoring, ever, until team sign-off)
+## 7. English holdout materialization (data only - NO scoring, ever, until team sign-off)
 
 ```bash
 a_py - <<'PY'
@@ -320,4 +320,4 @@ Collect into the repo (commit them; do NOT touch `results/final/c-v1-2721954/`):
 - Teacher's frozen k=0 is never applied to student data via the CLI (the scorer rejects it
   by design); the student gets its own calibration record.
 - No fabricated numbers: every reported value must come from a file the run wrote.
-- If a step fails a gate, STOP, fix, and re-run that step — do not continue.
+- If a step fails a gate, STOP, fix, and re-run that step - do not continue.

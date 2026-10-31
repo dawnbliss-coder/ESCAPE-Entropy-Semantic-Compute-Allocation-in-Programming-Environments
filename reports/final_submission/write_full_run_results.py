@@ -353,7 +353,7 @@ def main():
         for lang, name, _ in LANGS:
             r = arms[lang]
             R = r["rows"]
-            cell = lambda run: s(R[run]["f1_margin"]) if run in R else "—"  # noqa: E731
+            cell = lambda run: s(R[run]["f1_margin"]) if run in R else "-"  # noqa: E731
             L.append(f"| {name} | {r['n_files']} | {cell('swa512-float32-t1.3354-mplnone-91aa6b8e')} | {cell('teacher-512-ctl')} | "
                      f"{cell('student-v1-14326k')} | {cell('student-bal-v1')} | {cell('teacher-adapt-v1')} | "
                      f"{s(r['bal_minus_student'])} {c(r['bal_ci'])} | {s(r['adapt_minus_student'])} {c(r['adapt_ci'])} |")

@@ -1,6 +1,6 @@
 """Day 3, part 1 driver: run ast_walker over every file in corpus/manifest.parquet,
 write structure/{domain}/{file_id}.parquet (schema: file_id, node_type, parent_type,
-depth, start_byte, end_byte). Reads corpus/{domain}/{file_id}.bin directly — never
+depth, start_byte, end_byte). Reads corpus/{domain}/{file_id}.bin directly - never
 re-decodes or re-encodes B's frozen bytes.
 """
 
@@ -55,7 +55,7 @@ def main():
             f"{n_errors / len(group) * 100:.1f}%)"
         )
 
-    # Record parse_ok on the manifest itself — not a separate report — so anyone
+    # Record parse_ok on the manifest itself - not a separate report - so anyone
     # reading corpus/manifest.parquet sees it without joining another file. Files
     # with recovery triggered are kept, not dropped: tree-sitter's error recovery
     # only affects the region right around the issue

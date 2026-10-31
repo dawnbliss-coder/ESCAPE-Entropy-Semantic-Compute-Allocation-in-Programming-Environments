@@ -1,6 +1,4 @@
-> **Status: EXECUTED** (Ada, 28–31 Oct 2026). Results, numbers and job ids: [`docs/FULL_RUN_RESULTS.md`](FULL_RUN_RESULTS.md). The document is retained as the pre-registration/plan record.
-
-# ADA Runbook — Distilled Student: Training, C-v1 Scoring, and Next Experiments
+# ADA Runbook - Distilled Student: Training, C-v1 Scoring, and Next Experiments
 
 **For:** Divyansh · **Repo:** ESCAPE (main @ `c4384eb`) · **Last updated:** 2026-10-23
 **Context:** this runbook turns the audit + golden-fixture evaluation
@@ -35,7 +33,7 @@ for Part 2. Do **not** regenerate or rewrite `corpus/manifest.parquet`.
 
 ---
 
-## Part 1 — Reproduce the existing distillation (sanity, ~3 GPU-hours)
+## Part 1 - Reproduce the existing distillation (sanity, ~3 GPU-hours)
 
 This reproduces the committed run exactly (same seed, same limits, same flags):
 
@@ -75,7 +73,7 @@ anything downstream.**
 
 ---
 
-## Part 2 — The missing experiment: student under the frozen C-v1 protocol on the REAL test split
+## Part 2 - The missing experiment: student under the frozen C-v1 protocol on the REAL test split
 
 This is the highest-value run (Option A in the evaluation report). It needs no training.
 
@@ -88,11 +86,11 @@ batch extractor `escape_distill/extract.py` (new file, do NOT touch `stream_a/ex
 - **Context policy (do not change):** per-byte predictions from fresh windows of the
   last ≤512 bytes (`[BOS] + ctx`, absolute RoPE positions 0..511). Stride 1, i.e. every
   byte is predicted with the student's full context budget. **Never** use non-overlapping
-  512-byte chunks — that would insert artificial boundary resets. Batch windows
+  512-byte chunks - that would insert artificial boundary resets. Batch windows
   (batch 256 on GPU), right-pad with `PAD_ID=0`, causal attention.
 - **Output format (identical to Stream A):**
-  - `entropies/{run_id}/{file_id}.npy` — float32, shape `(n_bytes,)`, nats
-  - `boundaries/{run_id}/{file_id}.parquet` — columns exactly
+  - `entropies/{run_id}/{file_id}.npy` - float32, shape `(n_bytes,)`, nats
+  - `boundaries/{run_id}/{file_id}.parquet` - columns exactly
     `file_id, byte_offset, trigger, entropy, patch_index, patch_length`
     (one row per patch; `byte_offset` = first byte of patch; triggers from
     `compute_patches(ent, tau)`; tau = 1.335442066192627, strict float64 comparison)
@@ -122,7 +120,7 @@ c_py -m escape_scoring convert-legacy --root . --run-id student-v1-14326k --outp
 c_py -m escape_scoring validate --data "$DATA" --workers 32
 ```
 
-**Threshold policy — do both, keep them separate:**
+**Threshold policy - do both, keep them separate:**
 1. **Student-specific calibration (protocol-faithful):** freeze k for the student on
    the SAME 20% calibration files with the frozen criterion:
    ```bash
@@ -132,8 +130,8 @@ c_py -m escape_scoring validate --data "$DATA" --workers 32
    c_py -m escape_scoring baselines --data "$DATA" --calibration results/final/student-v1-calibration.json \
        --output results/final/student-v1-baselines.json --workers 32
    ```
-   (Expected: the criterion selects k=0 again — the teacher's calibration margins are
-   strictly monotone in k — but whatever it selects, that is the student's frozen k.)
+   (Expected: the criterion selects k=0 again - the teacher's calibration margins are
+   strictly monotone in k - but whatever it selects, that is the student's frozen k.)
 2. **Fixed-threshold k=0 compatibility row** (comparability with the teacher's frozen
    k=0): if the student calibration selects k=0, the row above IS the fixed-k row.
    Otherwise compute it with the standalone scorer in
@@ -141,7 +139,7 @@ c_py -m escape_scoring validate --data "$DATA" --workers 32
    implements k=0 matching + fixed-EOF null + baselines + bootstrap).
 
 **Never** score the student against the teacher's frozen
-`results/final/c-v1-2721954/calibration.json` — the scorer's model-signature check
+`results/final/c-v1-2721954/calibration.json` - the scorer's model-signature check
 rejects it by design (correctly). The teacher record stays untouched.
 
 ### 2c. Teacher-512 control (same protocol, one more run_id)
@@ -157,11 +155,11 @@ For each stream (teacher_native frozen values, teacher-512, student): P/R/F1, ma
 over the null with CI and p, margin vs the strongest structure-blind baseline with CI,
 entropy/boundary-density diagnostics, BPP, and wall-clock/VRAM per stream. Use the
 existing `reports/mid_submission/build_results.py` conventions for phrasing; write the
-student numbers into a NEW report section — do not edit the submitted PDFs.
+student numbers into a NEW report section - do not edit the submitted PDFs.
 
 ---
 
-## Part 3 — Efficiency measurement (falls out of 2a, no extra run)
+## Part 3 - Efficiency measurement (falls out of 2a, no extra run)
 
 While extracting, record per-GPU: tokens/s, wall-clock per file-size bucket, peak VRAM,
 and parameter count (student: 14,262,144 vs teacher patcher: 99,512,064). Compare
@@ -171,7 +169,7 @@ raw speed: the student is 7× smaller but loses a few F1 points (golden evidence
 
 ---
 
-## Part 4 — Domain adaptation comparison (ONLY after Part 2; requires new training)
+## Part 4 - Domain adaptation comparison (ONLY after Part 2; requires new training)
 
 Question: is the student's gap a distillation artifact or an architecture limit?
 Plan (do not start before Part 2 results are in):
@@ -179,7 +177,7 @@ Plan (do not start before Part 2 results are in):
 1. Add `--init-from <checkpoint_dir>` to `escape_distill/train.py` so the teacher
    architecture (dim 768, 14 layers, 12 heads) is initialized from the frozen patcher
    and trained on the SAME extension train split with the SAME budget (6,860 steps ≈
-   2.8 GPU-hours) — this is the "domain adaptation" arm. Use the same seed/optimizer
+   2.8 GPU-hours) - this is the "domain adaptation" arm. Use the same seed/optimizer
    schedule. Never overwrite the frozen checkpoint file: save to
    `results/adapt/<run>/teacher.pt`.
 2. Evaluate with the exact `escape_distill/evaluate.py` harness, then score under C-v1
@@ -190,7 +188,7 @@ Plan (do not start before Part 2 results are in):
 
 ---
 
-## Part 5 — Pre-registered English holdout (data task, no scoring yet)
+## Part 5 - Pre-registered English holdout (data task, no scoring yet)
 
 The evaluation report pre-registered this rule (deterministic, before any outcomes):
 

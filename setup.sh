@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Stream B setup: venv, deps, models, env var, full corpus + extraction pipeline.
 #
-# Precondition (manual, can't be scripted — do these first, see README.md):
+# Precondition (manual, can't be scripted - do these first, see README.md):
 #   1. Create a token at huggingface.co/settings/tokens
 #   2. `hf auth login --force`, paste the token
 #   3. Visit huggingface.co/datasets/bigcode/the-stack-smol, click "Agree and
-#      access repository" (same account as the token) — needed for C++ only
+#      access repository" (same account as the token) - needed for C++ only
 #
 # Optional: `STREAM_A=1 bash setup.sh` also sets up the Stream A/C venv
 # (.venv_a, BLT patcher weights, pytest). Stream A needs a separate venv because

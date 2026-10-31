@@ -16,7 +16,7 @@ data/raw/*.jsonl
 .vscode/
 .DS_Store
 
-# Personal drafts / course docs — not shared project code
+# Personal drafts / course docs - not shared project code
 *.pdf
 *.tex
 *.rtf
@@ -38,9 +38,9 @@ docs/MID_HANDOFF.md
 docs/MID_SUBMISSION_C.md
 docs/RUN_SCORER.md
 
-# Stream B: frozen corpus & derived artifacts are large/regenerable — do not commit.
+# Stream B: frozen corpus & derived artifacts are large/regenerable - do not commit.
 # corpus/ uses `corpus/*` (not `corpus/`) so the manifest exception below actually
-# works — git can't apply a `!` exception to a file inside a directory that's ignored
+# works - git can't apply a `!` exception to a file inside a directory that's ignored
 # as a whole, it has to be the directory's *contents* that are ignored instead.
 corpus/*
 !corpus/manifest.parquet
@@ -52,7 +52,7 @@ identifiers/
 !golden_fixtures/
 
 # Stream A / Stream C: venv, fetched model weights, bulk per-file outputs and logs are
-# large/regenerable — do not commit. Small metadata (runs.json, per-run status manifests,
+# large/regenerable - do not commit. Small metadata (runs.json, per-run status manifests,
 # results/ tables and manifests) stays committed.
 .venv_a/
 checkpoints/

@@ -1,8 +1,8 @@
-# escape_distill — teacher→student distillation of the BLT entropy model
+# escape_distill - teacher→student distillation of the BLT entropy model
 
 An experiment extending Project ESCAPE: can a **small, from-scratch BLT entropy model
 (the student)** be taught to reproduce the **frozen 100M-parameter BLT patcher (the
-teacher)** — its next-byte distribution and, through that, where patch boundaries fall — on
+teacher)** - its next-byte distribution and, through that, where patch boundaries fall - on
 a new dataset the teacher never produced labels for?
 
 The teacher is the exact checkpoint used for every number in the report
@@ -13,8 +13,8 @@ the evaluation set (repo-level dedup, 0 overlap with the test split).
 ## Design (faithful to the project)
 
 - **Student** (`student_blt.py`): a from-scratch byte transformer with the BLT patcher's
-  ingredients — vocab 260, pre-norm blocks, RMSNorm, interleaved RoPE, SwiGLU FFN,
-  head-dim⁻¹ᐟ² attention scaling — but small (default dim 256 / 6 layers / 4 heads ≈ 4.9M
+  ingredients - vocab 260, pre-norm blocks, RMSNorm, interleaved RoPE, SwiGLU FFN,
+  head-dim⁻¹ᐟ² attention scaling - but small (default dim 256 / 6 layers / 4 heads ≈ 4.9M
   params; the Ada run uses 384 / 8 / 6). It is *not* a copy of the checkpoint; the question
   is how much of the teacher a small student can absorb.
 - **Windows ≤ 512 bytes.** On ≤512-token windows the teacher's 512-token sliding window is
@@ -49,7 +49,7 @@ PYTHONPATH=. python -m escape_distill.train   --ckpt-dir $CK --data <dir-of-.bin
 PYTHONPATH=. python -m escape_distill.evaluate --ckpt-dir $CK --data <dir-of-.bin> --student /tmp/stu/student.pt --out /tmp/stu
 ```
 
-**Full run on Ada** (materialize the ext corpus, distill, evaluate — SLURM, dependency-chained):
+**Full run on Ada** (materialize the ext corpus, distill, evaluate - SLURM, dependency-chained):
 
 ```bash
 bash scripts/ada_distill/submit_all.sh                 # full

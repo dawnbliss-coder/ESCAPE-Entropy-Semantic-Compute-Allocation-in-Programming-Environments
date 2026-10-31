@@ -7,7 +7,7 @@ DMLROY+CMSY10                        Type 1            Builtin          yes yes 
 MAPNIL+CMR10                         Type 1            Builtin          yes yes yes     69  0
 PJCEBU+CMSY7                         Type 1            Builtin          yes yes yes     70  0
 TZRQYI+CMR7                          Type 1            Builtin          yes yes yes     71  0
-RIISWJ+NimbusMonL-Regu               Type 1            Custom           yes yes yes     72  0
+FTRHWR+NimbusMonL-Regu               Type 1            Custom           yes yes yes     72  0
 XYBSMX+CMSY8                         Type 1            Builtin          yes yes yes     99  0
 ZZHHTJ+CMR8                          Type 1            Builtin          yes yes yes    100  0
 DYRAQD+CMMI8                         Type 1            Builtin          yes yes yes    102  0
@@ -24,6 +24,6 @@ BXGEVL+DejaVuSerif                   CID TrueType      Identity-H       yes yes 
 BMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes    233  0
 BXGEVL+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes    234  0
 GUOWTK+CMSY6                         Type 1            Builtin          yes yes yes    263  0
-GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    288  0
-BMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes    289  0
-BXGEVL+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes    290  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    325  0
+BMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes    326  0
+BXGEVL+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes    327  0

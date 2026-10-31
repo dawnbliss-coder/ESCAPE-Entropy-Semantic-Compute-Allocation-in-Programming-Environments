@@ -226,7 +226,7 @@ def battery_inputs() -> dict:
         "repetitive_abc": b"abc" * 200,
         "repetitive_line": b"total = total + 1\n" * 40,
         "random_bytes": rng.integers(0, 256, size=600, dtype=np.uint8).tobytes(),
-        "utf8_multibyte": ("Café naïve — 東京 ✓ Ελληνικά\n" * 3
+        "utf8_multibyte": ("Café naïve - 東京 ✓ Ελληνικά\n" * 3
                            + 'greeting = "こんにちは"\nprint(greeting)\n').encode("utf-8"),
     }
 

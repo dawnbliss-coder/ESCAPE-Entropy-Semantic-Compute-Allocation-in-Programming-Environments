@@ -13,9 +13,9 @@ overwritten; the experiment directory and this report are new, untracked files.
 
 This evaluates Divyansh's **already-trained distilled student** (`c4384eb`,
 `results/distill/full/student/student.pt`, 14,262,144 params, 6,860 steps) under the
-**frozen C-v1 scoring rules** — one-to-one matching at the frozen k = 0, the frozen
+**frozen C-v1 scoring rules** - one-to-one matching at the frozen k = 0, the frozen
 τ = 1.335442066192627 nats, the fixed-EOF density-matched null, and the structure-blind
-baselines — on the **18 hand-verified golden fixtures** (6 Python, 6 C++, 6 English).
+baselines - on the **18 hand-verified golden fixtures** (6 Python, 6 C++, 6 English).
 
 It is a **golden-fixture variant experiment, not a held-out result.** The real C-v1 test
 split could not be scored locally: the corpus bytes and the A/B boundary/entropy
@@ -45,14 +45,14 @@ no new evidence contradicts it.
   (True = attend for `0 ≤ i−j < 512`), float32, entropy in nats. Files are ≪ 8,192
   tokens, so no chunking is needed; for sequences ≤ 512 tokens this equals causal
   attention (fidelity gate G3). This is the checkpoint's own regime.
-- **teacher_512 (control):** the *same weights* with the student's context budget —
+- **teacher_512 (control):** the *same weights* with the student's context budget -
   per-byte predictions from fresh windows of ≤ 512 preceding bytes (stride 1). For
   files ≤ 512 B this is **bit-identical** to teacher_native (same input per byte), so
   it is copied, not recomputed; it was computed only for the 3 longer Python files.
   It isolates the context-length effect. It is a control, not a replacement for
   teacher_native.
 - **student:** per-byte predictions from fresh windows of ≤ 512 preceding bytes
-  (stride 1), absolute RoPE positions 0..511 — its trained regime. **No non-overlapping
+  (stride 1), absolute RoPE positions 0..511 - its trained regime. **No non-overlapping
   512-byte chunking is used anywhere**: every byte is predicted with the model's own
   full context budget, so no artificial boundary resets are introduced.
 
@@ -94,14 +94,14 @@ domain lie within 1e-3 nats of τ (recorded per stream in scores.json diagnostic
 
 | Domain | Stream | entropy mean/median | frac > τ | boundaries (density) | bits/byte | runtime |
 |---|---|---|---|---|---|---|
-| py | teacher_native | 0.565 / 0.086 | 0.172 | 713 (0.171) | — | 3.1 s |
+| py | teacher_native | 0.565 / 0.086 | 0.172 | 713 (0.171) | - | 3.1 s |
 | | teacher_512 | 0.577 / 0.091 | 0.177 | 732 (0.175) | 0.93 | 880.6 s (CPU) |
 | | student | 0.613 / 0.108 | 0.188 | 782 (0.187) | 1.02 | 155.1 s (CPU) |
-| cpp | teacher_native | 0.562 / 0.090 | 0.166 | 337 (0.163) | — | 1.3 s |
-| | teacher_512 | == native (all files ≤512 B) | | | — | 0 |
+| cpp | teacher_native | 0.562 / 0.090 | 0.166 | 337 (0.163) | - | 1.3 s |
+| | teacher_512 | == native (all files ≤512 B) | | | - | 0 |
 | | student | 0.596 / 0.099 | 0.179 | 364 (0.177) | 0.93 | 34.5 s |
-| prose | teacher_native | 0.934 / 0.503 | 0.293 | 629 (0.290) | — | 1.5 s |
-| | teacher_512 | == native (all files ≤512 B) | | | — | 0 |
+| prose | teacher_native | 0.934 / 0.503 | 0.293 | 629 (0.290) | - | 1.5 s |
+| | teacher_512 | == native (all files ≤512 B) | | | - | 0 |
 | | student | 1.093 / 0.731 | 0.354 | 762 (0.351) | 1.78 | 40.5 s |
 
 Commands used (reproduced, not estimated): `run_golden_eval.py` (copy saved in the
@@ -119,7 +119,7 @@ CPU-only laptop.
    restored corpus.
 2. **n = 6 per domain.** All stream-vs-stream differences (student vs teacher, teacher
    vs teacher_512) are smaller than the bootstrap width; only the null comparisons are
-   decisive at this scale. Golden fixtures are 211–1,932 B — mostly ≤ 512 B, so the
+   decisive at this scale. Golden fixtures are 211–1,932 B - mostly ≤ 512 B, so the
    context-length control only exercises 3 Python files.
 3. The teacher is the reference re-implementation on CPU float32 (see §3 caveat;
    flip-risk quantified ≤ 2 bytes/domain).
@@ -130,14 +130,14 @@ CPU-only laptop.
 ## 7. Distinctions this report keeps separate
 
 - **Teacher imitation** (window-level, prior audit): boundary F1 0.871 vs teacher,
-  entropy r = 0.946 — measured on fresh ≤512-B windows, says nothing about syntax.
+  entropy r = 0.946 - measured on fresh ≤512-B windows, says nothing about syntax.
 - **Predictive quality:** student bits/byte is *worse* than the teacher's on golden
-  data (py 1.02 vs 0.93; prose 1.78 vs teacher_512-level ≈ 1.2–1.4) — the student is a
+  data (py 1.02 vs 0.93; prose 1.78 vs teacher_512-level ≈ 1.2–1.4) - the student is a
   lossy approximation, and its entropy is systematically higher (mean entropy +0.03–0.16
   nats; boundary density +7–21%).
 - **Syntactic alignment (this run):** the student **retains** a positive margin over
   the density-matched null in all three domains and **loses to the strongest
-  structure-blind baseline in all three** — exactly the original project's qualitative
+  structure-blind baseline in all three** - exactly the original project's qualitative
   pattern, at golden scale. None of this is evidence of semantic understanding.
 
 ## 8. Answers to the Phase-5 questions
@@ -148,13 +148,13 @@ CPU-only laptop.
    Differences are within bootstrap noise at n = 6.
 2. *Positive margin over the null?* **Yes, all three domains** (+0.101 / +0.172 /
    +0.274 vs the teacher's +0.112 / +0.198 / +0.326).
-3. *Outperforms the strongest structure-blind baseline?* **No**, in any domain —
+3. *Outperforms the strongest structure-blind baseline?* **No**, in any domain -
    indent (py) and word (cpp, prose) beat it by 0.33–0.35 F1. Same verdict as the
    original report.
 4. *How much is context length?* **Almost none at this scale**: teacher_512 ≈
    teacher_native everywhere (Δ ≤ 0.001 on the only files that differ). The student's
    shortfall is therefore attributable to its **distillation/predictive gap**, not its
-   512-byte context — an informative negative result for the context-length
+   512-byte context - an informative negative result for the context-length
    explanation.
 5. *Efficiency justified?* Not measured here (CPU timings only); a proper answer needs
    GPU FLOPs/latency. The student is 7× smaller (14.3M vs 99.5M) and its boundary

@@ -3,7 +3,7 @@ splits, freeze raw bytes to corpus/{domain}/{file_id}.bin, and write
 corpus/manifest.parquet. py now comes from build_py_corpus.py (CodeSearchNet, per
 proposal §6) instead of this script's the-stack-smol path.
 
-file_id convention: "{domain}_{sha256[:12]}" — content-addressed, stable across reruns,
+file_id convention: "{domain}_{sha256[:12]}" - content-addressed, stable across reruns,
 unique across domains. Once written, corpus/*.bin are never re-encoded downstream.
 
 GROWTH-SAFETY: calib/main are assigned as fixed-position PREFIXES of corpus_lib's
@@ -12,7 +12,7 @@ never a reshuffle. `the-stack-smol` is already a random per-language sample, so 
 nothing to gain from reshuffling and real cost to it: a shuffle's permutation depends on
 the list's length, so reshuffling after pulling a bigger pool would silently move files
 between calib and main. With a fixed prefix split, raising CALIB_PER_DOMAIN/MAIN_PER_DOMAIN
-later and re-running this script only APPENDS new files — every file_id already assigned
+later and re-running this script only APPENDS new files - every file_id already assigned
 to calib or main (and anything Stream A/C built on top of it) stays exactly as it was.
 """
 

@@ -1,6 +1,6 @@
 """Dev tool: render an interactive HTML view of one corpus file's full tree-sitter
 parse tree, with the nodes ast_walker.py actually extracts highlighted, next to the
-source. Local, self-contained (no server, no network) — just open the output file.
+source. Local, self-contained (no server, no network) - just open the output file.
 
 Usage:
     python stream_b/tree_viewer.py <file_id>
@@ -83,7 +83,7 @@ HTML_TEMPLATE = """<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>AST tree — {file_id}</title>
+<title>AST tree - {file_id}</title>
 <style>
   :root {{
     color-scheme: light dark;
@@ -123,7 +123,7 @@ HTML_TEMPLATE = """<!doctype html>
 <body>
 <div class="layout">
   <div class="panel src">
-    <h2>source — {file_id}</h2>
+    <h2>source - {file_id}</h2>
     <pre class="src-text" id="src"></pre>
   </div>
   <div class="panel tree">

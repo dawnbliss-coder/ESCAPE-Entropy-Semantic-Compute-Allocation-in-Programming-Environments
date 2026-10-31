@@ -51,9 +51,9 @@ with 2,000 replicates.
 | **P3** mean bytes per patch                              | 5.68                       | 7.86                       | 3.77                       |
 | **P3** F1 / null F1 (= R / null R, capped at 1 / null R: 5.8 / 7.1 / 3.8) | 4.7×           | 4.6×                       | 3.4×                       |
 | **P3** chance-corrected recall (R − R0) / (1 − R0)              | 0.784                      | 0.588                      | 0.856                      |
-| **P4** recall margin, forced-opener vs. open-ended types (unweighted mean over types) | +0.759 vs. +0.611          | +0.691 vs. +0.451          | —                         |
+| **P4** recall margin, forced-opener vs. open-ended types (unweighted mean over types) | +0.759 vs. +0.611          | +0.691 vs. +0.451          | -                         |
 | Span IoU (secondary): BLT / null / line segmentation           | 0.351 / 0.342 / 0.546      | 0.372 / 0.356 / 0.606      | 0.377 / 0.334 / 0.049      |
-| **O4** margin on clean code → worst noise (indentation) | +0.115 → +0.099           | +0.131 → +0.118           | —                         |
+| **O4** margin on clean code → worst noise (indentation) | +0.115 → +0.099           | +0.131 → +0.118           | -                         |
 
 **In short:**
 
@@ -99,7 +99,7 @@ own calibration record (k = 0 everywhere). Sources: `results/final/student-v1-*`
 | Teacher at τ\* − best baseline                      | −0.210                  | −0.148                  | −0.215                  |
 | Student margin at τ\* (one confirmatory test run per language) | +0.147 (gain +0.038) | +0.156 (gain +0.037) | +0.460 (gain +0.157) |
 | Student at τ\* − best baseline                      | −0.216                  | −0.149                  | −0.186                  |
-| **English holdout** (4,107 unseen paragraphs, scored once): margin teacher / student | — | — | +0.350 / +0.305 (eval set: +0.348 / +0.304) |
+| **English holdout** (4,107 unseen paragraphs, scored once): margin teacher / student | - | - | +0.350 / +0.305 (eval set: +0.348 / +0.304) |
 
 - Afterwards, as an exploratory check that selects nothing, the whole τ grid was also scored on the test files (1,000 null permutations; jobs 49126/49127, `docs/FULL_RUN_RESULTS.md`): the test maximum is the calibration τ\* for both models in all three languages, and at no τ does either model come within 0.148 F1 of the best baseline.
 - Restricting the teacher to the student's 512-byte windows costs 0.004 F1 on 300 test files per code language, about 40% of the student's deficit there.

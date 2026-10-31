@@ -65,7 +65,7 @@ def walk_file(domain: str, content: bytes):
     """Returns (rows, parsed_ok). rows is a list of dicts matching structure/'s
     schema (minus file_id, added by the caller). parsed_ok is False if tree-sitter's
     error-recovery kicked in anywhere in the tree (still returns whatever rows it
-    found — tree-sitter is error-tolerant, but the caller should track/report this
+    found - tree-sitter is error-tolerant, but the caller should track/report this
     rather than silently trust a possibly-corrupted tree).
     """
     parser = _parser(domain)
