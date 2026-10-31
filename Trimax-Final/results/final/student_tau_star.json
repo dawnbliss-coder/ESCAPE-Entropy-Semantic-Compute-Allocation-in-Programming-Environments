@@ -1,0 +1,192 @@
+{
+  "sweep": "results/final/student_tau_sweep_calib.json",
+  "k": 0,
+  "tie_tolerance": 1e-12,
+  "rule": "per language: argmax over tau of median per-file (F1_observed - mean_F1_H0), calibration files only, k=0; ties -> smaller tau",
+  "languages": {
+    "python": {
+      "tau_star_snippet": 2.0,
+      "tau_star_frozen": 2.0,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "student-tau08",
+          "n_files": 1600,
+          "median_margin_snippet": 0.08032146083358885,
+          "median_margin_frozen": 0.07594928996353867,
+          "pooled_f1": 0.1039013765146025,
+          "pooled_margin": 0.07186328678639359
+        },
+        {
+          "tau": 1.0,
+          "run_id": "student-tau10",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09433603086769952,
+          "median_margin_frozen": 0.08957369371506907,
+          "pooled_f1": 0.11569527316746248,
+          "pooled_margin": 0.08385187016342044
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "student-v1-14326k",
+          "n_files": 1600,
+          "median_margin_snippet": 0.11934835467606299,
+          "median_margin_frozen": 0.11560367393510726,
+          "pooled_f1": 0.1384620352187301,
+          "pooled_margin": 0.106866993668378
+        },
+        {
+          "tau": 1.7,
+          "run_id": "student-tau17",
+          "n_files": 1600,
+          "median_margin_snippet": 0.14827242795627757,
+          "median_margin_frozen": 0.14505813308062004,
+          "pooled_f1": 0.16198028404089518,
+          "pooled_margin": 0.13076553250999326
+        },
+        {
+          "tau": 2.0,
+          "run_id": "student-tau20",
+          "n_files": 1600,
+          "median_margin_snippet": 0.16316613116349485,
+          "median_margin_frozen": 0.1594247927031509,
+          "pooled_f1": 0.17424424551826867,
+          "pooled_margin": 0.1436212577602421
+        },
+        {
+          "tau": 2.5,
+          "run_id": "student-tau25",
+          "n_files": 1600,
+          "median_margin_snippet": 0.1093180521999888,
+          "median_margin_frozen": 0.10871571969696969,
+          "pooled_f1": 0.13810969153666972,
+          "pooled_margin": 0.1094967092538999
+        }
+      ]
+    },
+    "cpp": {
+      "tau_star_snippet": 2.0,
+      "tau_star_frozen": 2.0,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "student-tau08",
+          "n_files": 1600,
+          "median_margin_snippet": 0.08246986264082265,
+          "median_margin_frozen": 0.08263812370121763,
+          "pooled_f1": 0.11713596885805112,
+          "pooled_margin": 0.0808667496519912
+        },
+        {
+          "tau": 1.0,
+          "run_id": "student-tau10",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09521356626445879,
+          "median_margin_frozen": 0.09538419825402028,
+          "pooled_f1": 0.12833372092033954,
+          "pooled_margin": 0.0924291040855452
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "student-v1-14326k",
+          "n_files": 1600,
+          "median_margin_snippet": 0.11951797912400368,
+          "median_margin_frozen": 0.11888149015911517,
+          "pooled_f1": 0.14845611706610787,
+          "pooled_margin": 0.11324700396927495
+        },
+        {
+          "tau": 1.7,
+          "run_id": "student-tau17",
+          "n_files": 1600,
+          "median_margin_snippet": 0.1399351239027749,
+          "median_margin_frozen": 0.14001029985007496,
+          "pooled_f1": 0.16897818622752522,
+          "pooled_margin": 0.13478219990040824
+        },
+        {
+          "tau": 2.0,
+          "run_id": "student-tau20",
+          "n_files": 1600,
+          "median_margin_snippet": 0.15176832652884817,
+          "median_margin_frozen": 0.15121332510891336,
+          "pooled_f1": 0.17986936570549225,
+          "pooled_margin": 0.1468012382427224
+        },
+        {
+          "tau": 2.5,
+          "run_id": "student-tau25",
+          "n_files": 1600,
+          "median_margin_snippet": 0.12391663037963443,
+          "median_margin_frozen": 0.12261614313998581,
+          "pooled_f1": 0.16868871971799684,
+          "pooled_margin": 0.13875919625147742
+        }
+      ]
+    },
+    "english": {
+      "tau_star_snippet": 2.5,
+      "tau_star_frozen": 2.5,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "student-tau08",
+          "n_files": 60,
+          "median_margin_snippet": 0.19078478375940894,
+          "median_margin_frozen": 0.19260760291995588,
+          "pooled_f1": 0.3643915660530114,
+          "pooled_margin": 0.19351646309268192
+        },
+        {
+          "tau": 1.0,
+          "run_id": "student-tau10",
+          "n_files": 60,
+          "median_margin_snippet": 0.2355119916299082,
+          "median_margin_frozen": 0.23783786088413997,
+          "pooled_f1": 0.4036099666470473,
+          "pooled_margin": 0.23715127329801847
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "student-v1-14326k",
+          "n_files": 60,
+          "median_margin_snippet": 0.3080971159841719,
+          "median_margin_frozen": 0.3099155301810025,
+          "pooled_f1": 0.467364362434591,
+          "pooled_margin": 0.30836191131919577
+        },
+        {
+          "tau": 1.7,
+          "run_id": "student-tau17",
+          "n_files": 60,
+          "median_margin_snippet": 0.3968357099980639,
+          "median_margin_frozen": 0.4015503176980507,
+          "pooled_f1": 0.5482859186705552,
+          "pooled_margin": 0.39930198646343473
+        },
+        {
+          "tau": 2.0,
+          "run_id": "student-tau20",
+          "n_files": 60,
+          "median_margin_snippet": 0.4480784880920108,
+          "median_margin_frozen": 0.44575323055773763,
+          "pooled_f1": 0.5948730680901247,
+          "pooled_margin": 0.4536102911054559
+        },
+        {
+          "tau": 2.5,
+          "run_id": "student-tau25",
+          "n_files": 60,
+          "median_margin_snippet": 0.45912580696078775,
+          "median_margin_frozen": 0.46245516382304097,
+          "pooled_f1": 0.5937064021082002,
+          "pooled_margin": 0.4681516354053635
+        }
+      ]
+    }
+  },
+  "all_agree": true
+}

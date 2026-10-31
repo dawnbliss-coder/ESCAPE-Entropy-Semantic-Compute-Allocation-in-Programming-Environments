@@ -1,0 +1,436 @@
+sample_id,start_byte,end_byte,statement_type,is_memory_unsafe,tree_sitter,lexical,agree,text
+cpp_07d883c43a0b,2293,2327,expression_statement,0,,,True,toggleCanceled = isToggleCanceled;
+cpp_07d883c43a0b,2588,2619,declaration,0,,,True,bool wasPressed = getPressed();
+cpp_07d883c43a0b,2628,2665,declaration,0,,,True,bool newPressedValue = !getPressed();
+cpp_07d883c43a0b,2725,2782,expression_statement,0,,,True,setToggleCanceled(event.getType() == ClickEvent::CANCEL);
+cpp_07d883c43a0b,2954,2982,expression_statement,0,,,True,setPressed(newPressedValue);
+cpp_07d883c43a0b,3179,3202,expression_statement,1,*,*,True,action->execute(*this);
+cpp_0c9ad6a33e48,1140,1154,return_statement,0,,,True,return output;
+cpp_0c9ad6a33e48,1435,1463,expression_statement,1,&,&,True,"s->insert(pos, &replace, 1);"
+cpp_0c9ad6a33e48,1873,1912,expression_statement,1,& call,& call,True,"sscanf(toBeReplaced.c_str(), ""%x"", &p);"
+cpp_0c9ad6a33e48,2169,2209,expression_statement,1,& call,& call,True,"sscanf(toBeReplaced.c_str(), ""%4x"", &p);"
+cpp_0c9ad6a33e48,3282,3303,expression_statement,0,,,True,"i << ""Expecting: \"""";"
+cpp_0c9ad6a33e48,3540,3555,return_statement,0,,,True,return i.str();
+cpp_0c9ad6a33e48,3660,3689,declaration,1,new,new,True,UnitTest *u = new UnitTest();
+cpp_0c9ad6a33e48,3890,3922,expression_statement,0,,,True,u->param = YAJL_GET_STRING(val);
+cpp_0c9ad6a33e48,4434,4455,expression_statement,1,&,&,True,json2bin(&u->output);
+cpp_0c9ad6a33e48,4654,4663,return_statement,0,,,True,return u;
+cpp_1aa92b401787,2143,2181,declaration,0,,,True,Sk64 bitmap_size = bitmap.getSize64();
+cpp_1aa92b401787,3594,3629,expression_statement,0,,,True,SetError(errors::kInvalidManifest);
+cpp_1aa92b401787,3728,3789,declaration,1,&,&,True,"scoped_ptr<Value> root(serializer.Deserialize(NULL, &error));"
+cpp_1aa92b401787,4478,4527,expression_statement,1,&,&,True,extension_l10n_util::GetAllLocales(&all_locales);
+cpp_1aa92b401787,5097,5190,expression_statement,0,,,True,temp_install_dir_ = extension_path_.DirName().AppendASCII(filenames::kTempExtensionName);
+cpp_1aa92b401787,5410,5463,expression_statement,0,,,True,SetError(kCouldNotCreateDirectoryError + dir_string);
+cpp_1aa92b401787,6666,6710,expression_statement,1,new,new,True,parsed_catalogs_.reset(new DictionaryValue);
+cpp_1aa92b401787,7813,7825,return_statement,0,,,True,return true;
+cpp_1aa92b401787,8710,8758,return_statement,1,&,&,True,"return IPC::ReadParam(&pickle, &iter, catalogs);"
+cpp_1aa92b401787,9434,9543,declaration,1,&,&,True,"scoped_ptr<DictionaryValue> root( static_cast<DictionaryValue*>(serializer.Deserialize(NULL, &error)));"
+cpp_1c47c6fdcf4b,773,789,expression_statement,1,*,*,True,*this = xmlNode;
+cpp_1c47c6fdcf4b,952,1021,declaration,0,,,True,"XmlNode httpHeaderNameNode = resultNode.FirstChild(""HttpHeaderName"");"
+cpp_1c47c6fdcf4b,1071,1158,expression_statement,0,,,True,m_httpHeaderName = Aws::Utils::Xml::DecodeEscapedXmlText(httpHeaderNameNode.GetText());
+cpp_1c47c6fdcf4b,1165,1199,expression_statement,0,,,True,m_httpHeaderNameHasBeenSet = true;
+cpp_1c47c6fdcf4b,1568,1581,return_statement,1,*,*,True,return *this;
+cpp_1c47c6fdcf4b,1771,1898,expression_statement,0,,,True,"oStream << location << index << locationValue << "".HttpHeaderName="" << StringUtils::URLEncode(m_httpHeaderName.c_str()) << ""&"";"
+cpp_1c47c6fdcf4b,2308,2409,expression_statement,0,,,True,"oStream << location << "".HttpHeaderName="" << StringUtils::URLEncode(m_httpHeaderName.c_str()) << ""&"";"
+cpp_1d7b220b0cc8,169,216,declaration,1,new,new,True,RdtReceiver *pSRReceiver = new SRRdtReceiver();
+cpp_1d7b220b0cc8,219,260,declaration,1,new,new,True,RdtSender *pSRSender = new SRRdtSender();
+cpp_1d7b220b0cc8,267,279,expression_statement,0,,,True,pns->init();
+cpp_1d7b220b0cc8,282,311,expression_statement,0,,,True,pns->setRtdSender(pSRSender);
+cpp_1d7b220b0cc8,314,347,expression_statement,0,,,True,pns->setRtdReceiver(pSRReceiver);
+cpp_1d7b220b0cc8,350,387,expression_statement,0,,,True,"pns->setInputFile(""../../input.txt"");"
+cpp_1d7b220b0cc8,436,449,expression_statement,0,,,True,pns->start();
+cpp_1d7b220b0cc8,454,471,expression_statement,1,delete,delete,True,delete pSRSender;
+cpp_1d7b220b0cc8,474,493,expression_statement,1,delete,delete,True,delete pSRReceiver;
+cpp_1d7b220b0cc8,496,510,expression_statement,1,delete,delete,True,delete pUtils;
+cpp_1ef337539ad6,1908,1949,declaration,1,&,&,True,"int ret = waitpid(g_waitPid, &status, 0);"
+cpp_1ef337539ad6,2500,2537,expression_statement,0,,,True,"ICUNIT_GOTO_EQUAL(ret, 0, ret, EXIT);"
+cpp_1ef337539ad6,2633,2674,declaration,1,&,&,True,"int ret = waitpid(g_waitPid, &status, 0);"
+cpp_1ef337539ad6,3473,3492,expression_statement,0,,,True,g_backPid1Flag = 0;
+cpp_1ef337539ad6,3519,3533,expression_statement,0,,,True,g_waitPid = 0;
+cpp_1ef337539ad6,4470,4530,expression_statement,1,&,&,True,"ret = pthread_create(&newPthread1, NULL, ThreadFunc1, NULL);"
+cpp_1ef337539ad6,4651,4681,expression_statement,1,&,&,True,"ret = waitpid(-1, &status, 0);"
+cpp_1ef337539ad6,5220,5257,expression_statement,0,,,True,"ICUNIT_GOTO_EQUAL(ret, 0, ret, EXIT);"
+cpp_1ef337539ad6,5573,5625,expression_statement,0,,,True,"ICUNIT_GOTO_WITHIN_EQUAL(pid, 0, 100000, pid, EXIT);"
+cpp_1ef337539ad6,5750,5781,expression_statement,1,&,&,True,"ret = waitpid(pid, &status, 0);"
+cpp_2130c731defa,1235,1255,declaration,0,,,True,float fzFar = 61.0f;
+cpp_2130c731defa,2493,2530,expression_statement,1,&,&,True,"glGenBuffers(1, &vertexBufferObject);"
+cpp_2130c731defa,2707,2743,expression_statement,1,&,&,True,"glGenBuffers(1, &indexBufferObject);"
+cpp_2130c731defa,3010,3076,declaration,0,,,True,"float fValue = fmodf(fElapsedTime, fLoopDuration) / fLoopDuration;"
+cpp_2130c731defa,3201,3236,return_statement,0,,,True,"return glm::vec3(1.0f, 1.0f, 1.0f);"
+cpp_2130c731defa,4821,4848,expression_statement,1,&,&,True,"glGenVertexArrays(1, &vao);"
+cpp_2130c731defa,5118,5193,expression_statement,1,cast,cast,True,"glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)colorDataOffset);"
+cpp_2130c731defa,5714,5751,expression_statement,0,,,True,"glClearColor(0.0f, 0.0f, 0.0f, 0.0f);"
+cpp_2130c731defa,5832,5857,expression_statement,0,,,True,glUseProgram(theProgram);
+cpp_2b63cf230796,1016,1040,expression_statement,0,,,True,distiller_page_->Init();
+cpp_2b63cf230796,1271,1301,expression_statement,0,,,True,distiller_page_->LoadURL(url);
+cpp_2b63cf230796,1580,1623,expression_statement,0,,,True,distiller_page_->ExecuteJavaScript(script);
+cpp_2b63cf230796,1767,1832,declaration,1,new,new,True,scoped_ptr<DistilledPageInfo> page_info(new DistilledPageInfo());
+cpp_2b63cf230796,1857,1899,declaration,0,,,True,const base::ListValue* result_list = NULL;
+cpp_2b63cf230796,1945,2083,expression_statement,1,&,&,True,"base::MessageLoop::current()->PostTask( FROM_HERE, base::Bind(page_distiller_callback_, base::Passed(&page_info), false));"
+cpp_2b63cf230796,2247,2264,declaration,0,,,True,std::string item;
+cpp_2b63cf230796,2271,2299,expression_statement,1,& *,& *,True,(*iter)->GetAsString(&item);
+cpp_2b63cf230796,2901,3038,expression_statement,1,&,&,True,"base::MessageLoop::current()->PostTask( FROM_HERE, base::Bind(page_distiller_callback_, base::Passed(&page_info), true));"
+cpp_2fd8fb967d6f,11726,11803,expression_statement,0,,,True,desc.texture.samples = static_cast<uint16_t>(internal_desc.SampleDesc.Count);
+cpp_2fd8fb967d6f,20580,20681,expression_statement,1,cast,cast,True,"convert_resource_view_desc(desc, reinterpret_cast<D3D10_SHADER_RESOURCE_VIEW_DESC &>(internal_desc));"
+cpp_2fd8fb967d6f,22538,22562,expression_statement,0,,,True,desc.texture.levels = 1;
+cpp_2fd8fb967d6f,24363,24397,declaration,0,,,True,api::resource_view_desc desc = {};
+cpp_2fd8fb967d6f,27561,27669,return_statement,1,cast,cast,True,return convert_resource_view_desc(reinterpret_cast<const D3D10_SHADER_RESOURCE_VIEW_DESC &>(internal_desc));
+cpp_2fd8fb967d6f,29750,29798,expression_statement,0,,,True,assert(value != api::cull_mode::front_and_back);
+cpp_2fd8fb967d6f,30313,30368,expression_statement,0,,,True,assert(value != api::primitive_topology::triangle_fan);
+cpp_3d4c77cbc16e,1744,1787,declaration,0,,,True,class GlobalData& global = getGlobalData();
+cpp_3d4c77cbc16e,1792,1846,declaration,0,,,True,char* cdp = strdup_new(global.m_commondata_base_path);
+cpp_3d4c77cbc16e,1853,1892,declaration,0,,,True,"char* volumeName = strdup_new(""Phone"");"
+cpp_3d4c77cbc16e,1900,1941,declaration,0,,,True,"char* dirName = strdup_new(""volumeName"");"
+cpp_3d4c77cbc16e,1946,2048,declaration,1,new,new,True,"class FileLocation *FileLoc = new FileLocation(volumeName, cdp, dirName, file_type_directory);"
+cpp_3d4c77cbc16e,2053,2083,expression_statement,0,,,True,locations->push_back(FileLoc);
+cpp_40d084cca066,495,577,declaration,1,new,new,True,scoped_refptr<RenderWidgetFullscreen> widget( new RenderWidgetFullscreen());
+cpp_40d084cca066,607,631,return_statement,0,,,True,return widget.release();
+cpp_40d084cca066,750,793,return_statement,0,,,True,return RenderWidget::CreateWebWidget(this);
+cpp_40d084cca066,876,1036,expression_statement,1,& new,& new,True,"RenderWidget::DoInit( opener_id, CreateWebWidget(), new ViewHostMsg_CreateFullscreenWidget( opener_id, &routing_id_, &surface_id_));"
+cpp_40d084cca066,1164,1205,expression_statement,0,,,True,"DCHECK_NE(MSG_ROUTING_NONE, routing_id_);"
+cpp_40d084cca066,1208,1248,expression_statement,0,,,True,"DCHECK_NE(MSG_ROUTING_NONE, opener_id_);"
+cpp_40d084cca066,1296,1364,expression_statement,1,new,new,True,"Send(new ViewHostMsg_ShowFullscreenWidget(opener_id_, routing_id_));"
+cpp_40d084cca066,1369,1404,expression_statement,0,,,True,SetPendingWindowRect(initial_pos_);
+cpp_4d2c316798b9,2510,2572,expression_statement,0,,,True,"m_standardPSs.emplace_back(Resource(U""engine/shader/sdf.ps""));"
+cpp_4d2c316798b9,3820,3895,declaration,0,,,True,"const Image boxShadowImage(Resource(U""engine/texture/box-shadow/256.png""));"
+cpp_4d2c316798b9,7964,8033,declaration,0,,,True,"const auto& samplerState = m_commands.getPSSamplerState(slot, index);"
+cpp_4d2c316798b9,9675,9709,expression_statement,1,&,&,True,"m_context->RSSetViewports(1, &vp);"
+cpp_4d2c316798b9,12780,12820,expression_statement,1,&,&,True,"m_context->RSSetViewports(1, &viewport);"
+cpp_4d2c316798b9,14118,14149,expression_statement,0,,,True,m_commands.pushColorMul(color);
+cpp_4d2c316798b9,15717,15758,return_statement,0,,,True,return m_commands.getCurrentMaxScaling();
+cpp_4d2c316798b9,23646,23710,expression_statement,1,*,*,True,"addCirclePie(*pts, thicknessHalf, startAngle, Math::PiF, color);"
+cpp_4d2c316798b9,23715,23790,expression_statement,1,*,*,True,"addCirclePie(*(pts + size - 1), thicknessHalf, endAngle, Math::PiF, color);"
+cpp_4d2c316798b9,29001,29028,return_statement,1,*,*,True,return *m_boxShadowTexture;
+cpp_4f774daf7918,5317,5332,return_statement,0,,,True,return nullptr;
+cpp_4f774daf7918,11460,11491,expression_statement,0,,,True,child_tss.eflags = regs.eflags;
+cpp_4f774daf7918,14231,14270,declaration,1,*,*,True,ProcessPagingScope paging_scope(*this);
+cpp_4f774daf7918,14310,14377,declaration,1,*,*,True,auto vmo = InodeVMObject::create_with_inode(*description->inode());
+cpp_4f774daf7918,27610,27641,declaration,0,,,True,"Vector<Thread*, 16> my_threads;"
+cpp_4f774daf7918,31705,31720,expression_statement,0,,,True,dump_regions();
+cpp_4f774daf7918,60348,60382,expression_statement,1,*,*,True,*set = current->m_pending_signals;
+cpp_4f774daf7918,76809,76889,return_statement,1,*,*,True,"return socket.sendto(*description, data, data_length, flags, addr, addr_length);"
+cpp_4f774daf7918,87668,87701,declaration,1,* new,* new,True,auto* thread = new Thread(*this);
+cpp_4f774daf7918,95110,95183,declaration,0,,,True,"auto result = VFS::the().mount(fs.release_nonnull(), mountpoint_custody);"
+cpp_5ac729849489,1449,1663,expression_statement,1,new,new,True,"wolf_manager_ = new WolfManager(PO_2D, state_initial_length, odom_sensor_ptr_,Eigen::Vector3s::Zero(), Eigen::Matrix3s::Identity()*0.01, window_length_, new_frame_elapsed_time_);"
+cpp_5ac729849489,3365,3403,declaration,0,,,True,std::stringstream lidar_topic_name_ii;
+cpp_5ac729849489,5466,5501,expression_statement,0,,,True,line_list_Marker_msg.scale.x = 0.1;
+cpp_5ac729849489,5828,5875,declaration,0,,,True,visualization_msgs::Marker vehicle_head_marker;
+cpp_5ac729849489,10501,10548,expression_statement,0,,,True,"tfl_.transformPose(""odom"", base2map, odom2map);"
+cpp_5ac729849489,12562,12600,expression_statement,1,*,*,True,(*fr_it)->getConstraintList(ctr_list);
+cpp_5ac729849489,13063,13121,expression_statement,1,*,*,True,point2.x = *(*c_it)->getFrameToPtr()->getPPtr()->getPtr();
+cpp_5ac729849489,13547,13563,expression_statement,0,,,True,point1.z = 0.25;
+cpp_5ac729849489,16990,17041,expression_statement,1,*,*,True,new_landmark.scale.x = (*l_it)->getDescriptor()(1);
+cpp_5ac729849489,20500,20706,declaration,1,new,new,True,"CaptureLaser2D* new_capture = new CaptureLaser2D(TimeStamp(msg->header.stamp.sec, msg->header.stamp.nsec), laser_sensor_ptr_[lidar_id], msg->ranges);"
+cpp_5dc5b981a417,1243,1256,return_statement,0,,,True,return false;
+cpp_5dc5b981a417,1363,1375,return_statement,0,,,True,return true;
+cpp_5dc5b981a417,1574,1601,expression_statement,1,*,*,True,"*enclosing_type = ""uint64"";"
+cpp_5dc5b981a417,2571,2656,declaration,1,*,*,True,std::string element_type_str = PackedTypeString(*array_type->element_type());
+cpp_5dc5b981a417,4193,4217,declaration,0,,,True,std::string type_string;
+cpp_5dc5b981a417,5570,5626,return_statement,0,,,True,return MatchTypeSpecialization(return_type).has_value();
+cpp_5dc5b981a417,6131,6174,declaration,1,*,*,True,const Type& param_type = *param->GetType();
+cpp_5dc5b981a417,6967,7057,declaration,0,,,True,"std::string signature = CreateDeclSpecialization(function, std::string(class_name));"
+cpp_5dc5b981a417,7732,7794,declaration,1,*,*,True,const Type& return_type = *function.return_value()->GetType();
+cpp_5dc5b981a417,10106,10210,expression_statement,1,*,*,True,"packed_params.push_back( absl::StrCat(PackedTypeString(*param->GetType()), "" "", param->name()));"
+cpp_62393bfa2eba,8101,8470,expression_statement,1,& call,& call,True,BIND_SYNC(get_navigation_mesh) << [this]() -> R<std::vector<uint8_t>> { REQUIRE_CARLA_EPISODE(); auto FileContents = FNavigationMesh::Load(Episode->GetMapName()); // make a mem copy (from TArray to std::vector) std::vector<uint8_t> Result(F
+cpp_62393bfa2eba,10453,10488,declaration,0,,,True,auto View = Episode->FindActor(Id);
+cpp_62393bfa2eba,15942,15968,return_statement,0,,,True,return R<void>::Success();
+cpp_62393bfa2eba,19995,20066,expression_statement,0,,,True,"RESPOND_ERROR(""unable to set actor simulate physics: actor not found"");"
+cpp_62393bfa2eba,20468,21067,expression_statement,0,,,True,"BIND_SYNC(apply_control_to_vehicle) << [this]( cr::ActorId ActorId, cr::VehicleControl Control) -> R<void> { REQUIRE_CARLA_EPISODE(); auto ActorView = Episode->FindActor(ActorId); if (!ActorView.IsValid()) { RESPOND_ERROR(""unable to apply c"
+cpp_62393bfa2eba,28761,29073,expression_statement,0,,,True,"BIND_SYNC(replay_file) << [this]( std::string name, double start, double duration, uint32_t follow_id) -> R<std::string> { REQUIRE_CARLA_EPISODE(); return R<std::string>(Episode->GetRecorder()->ReplayFile( name, start, duration, follow_id))"
+cpp_62393bfa2eba,29583,29859,expression_statement,1,*,*,True,BIND_SYNC(draw_debug_shape) << [this](const cr::DebugShape &shape) -> R<void> { REQUIRE_CARLA_EPISODE(); auto *World = Episode->GetWorld(); check(World != nullptr); FDebugShapeDrawer Drawer(*World); Drawer.Draw(shape); return R<void>::Succe
+cpp_62393bfa2eba,30246,32201,declaration,1,*,*,True,"auto command_visitor = carla::Functional::MakeRecursiveOverload( [=](auto self, const C::SpawnActor &c) -> CR { auto result = c.parent.has_value() ? spawn_actor_with_parent( c.description, c.transform, *c.parent, cr::AttachmentType::Rigid) "
+cpp_62393bfa2eba,33804,33889,expression_statement,1,*,*,True,"UE_LOG(LogCarlaServer, Log, TEXT(""New episode '%s' started""), *Episode.GetMapName());"
+cpp_62393bfa2eba,33892,33918,expression_statement,1,&,&,True,Pimpl->Episode = &Episode;
+cpp_6b740f74020c,2333,2350,declaration,0,,,True,errlHndl_t l_err;
+cpp_6b740f74020c,3094,3133,expression_statement,0,,,True,l_semiData.magic = Util::PERSIST_MAGIC;
+cpp_6b740f74020c,3146,3172,expression_statement,0,,,True,l_semiData.reboot_cnt = 0;
+cpp_6b740f74020c,3348,3503,expression_statement,0,,,True,"TRACFCOMP(ISTEPS_TRACE::g_trac_isteps_trace, ""ERROR 0x%.8X: clearGardByType( )"", l_err->reasonCode() );"
+cpp_6b740f74020c,4938,5285,expression_statement,1,new,new,True,"l_err = new ERRORLOG::ErrlEntry( ERRORLOG::ERRL_SEV_UNRECOVERABLE, ISTEP::MOD_SET_IPL_PARMS, ISTEP::RC_P9N_DD1_NOT_SUPPORTED, l_pvr.word, l_dummy);"
+cpp_6b740f74020c,5408,5443,expression_statement,0,,,True,"errlCommit( l_err, ISTEP_COMP_ID );"
+cpp_6ff9dba21013,2139,2181,expression_statement,0,,,True,forceSigmaObstacle = CONFIG.sigmaObstacle;
+cpp_6ff9dba21013,2348,2391,expression_statement,1,new,new,True,stateMachine = new AgentStateMachine(this);
+cpp_6ff9dba21013,2515,2535,expression_statement,1,delete,delete,True,delete currentForce;
+cpp_6ff9dba21013,2995,3014,declaration,0,,,True,Ped::Tvector force;
+cpp_6ff9dba21013,3123,3165,declaration,0,,,True,"emit socialForceChanged(force.x, force.y);"
+cpp_6ff9dba21013,4547,4573,return_statement,0,,,True,return currentDestination;
+cpp_6ff9dba21013,6263,6284,expression_statement,0,,,True,Ped::Tagent::move(h);
+cpp_72cfb767e6d7,2400,2437,declaration,0,,,True,wxArrayString m_subtypechoiceChoices;
+cpp_72cfb767e6d7,2840,2953,expression_statement,1,new,new,True,"m_text4 = new wxStaticText( sbSizer8->GetStaticBox(), ID_TEXT, _(""Tags:""), wxDefaultPosition, wxDefaultSize, 0 );"
+cpp_72cfb767e6d7,3591,3646,expression_statement,0,,,True,"bSizer84->Add( m_edittag, 0, wxALIGN_CENTER|wxALL, 5 );"
+cpp_72cfb767e6d7,4602,4719,expression_statement,1,new,new,True,"m_text5 = new wxStaticText( sbSizer9->GetStaticBox(), ID_TEXT, _(""Filename:""), wxDefaultPosition, wxDefaultSize, 0 );"
+cpp_72cfb767e6d7,5666,5687,declaration,0,,,True,wxBoxSizer* bSizer88;
+cpp_72cfb767e6d7,5735,5849,expression_statement,1,new,new,True,"m_text7 = new wxStaticText( sbSizer9->GetStaticBox(), ID_TEXT, _(""Scale:""), wxDefaultPosition, wxDefaultSize, 0 );"
+cpp_72cfb767e6d7,9944,10058,expression_statement,1,new,new,True,"m_light = new wxChoice( this, ID_LIGHT, wxDefaultPosition, wxSize( 100,-1 ), m_lightNChoices, m_lightChoices, 0 );"
+cpp_72cfb767e6d7,11205,11259,expression_statement,0,,,True,"bSizer94->Add( fgSizer5, 0, wxALIGN_CENTER|wxALL, 5 );"
+cpp_72cfb767e6d7,11452,11506,expression_statement,0,,,True,"bSizer96->Add( m_text15, 0, wxALIGN_CENTER|wxALL, 5 );"
+cpp_72cfb767e6d7,11709,11821,expression_statement,1,new,new,True,"m_diry = new wxTextCtrl( this, ID_DIRY, wxEmptyString, wxDefaultPosition, wxSize( 80,-1 ), wxTE_PROCESS_ENTER );"
+cpp_73b9e07e8987,334,379,expression_statement,0,,,True,"printf(""[mutex_inc] inc: %d\n"", mutex_count);"
+cpp_73b9e07e8987,476,488,return_statement,0,,,True,return NULL;
+cpp_73b9e07e8987,615,625,expression_statement,1,*,*,True,sleep(*p);
+cpp_73b9e07e8987,660,690,expression_statement,0,,,True,"printf(""[spin_inc] locked\n"");"
+cpp_73b9e07e8987,1261,1273,return_statement,0,,,True,return NULL;
+cpp_73b9e07e8987,1374,1405,expression_statement,1,&,&,True,pthread_rwlock_wrlock(&rwlock);
+cpp_73b9e07e8987,1540,1571,expression_statement,1,&,&,True,pthread_rwlock_unlock(&rwlock);
+cpp_73b9e07e8987,1999,2025,expression_statement,0,,,True,args[i] = rand() % 15 + 1;
+cpp_73b9e07e8987,2179,2228,expression_statement,1,&,&,True,"pthread_spin_init(&spin, PTHREAD_PROCESS_SHARED);"
+cpp_73b9e07e8987,2778,2810,expression_statement,1,&,&,True,pthread_rwlock_destroy(&rwlock);
+cpp_7571b7602534,3707,3727,expression_statement,0,,,True,closeInstance(pDev);
+cpp_7571b7602534,7631,7660,expression_statement,1,call,call,True,"memset(tmp_buff,0,PARAM_LEN);"
+cpp_7571b7602534,9000,9029,expression_statement,1,call,call,True,"memset(tmp_buff,0,PARAM_LEN);"
+cpp_7571b7602534,9413,9448,expression_statement,1,& call,& call,True,"memset(&msgData,0,sizeof(msgData));"
+cpp_7571b7602534,9606,9694,expression_statement,0,,,True,"snprintf(tmp_buff, PARAM_LEN, UPDATE_FORMAT_STRING, BASE_NAME, dev_id, FORCEPCM_STRING);"
+cpp_7571b7602534,9914,9943,expression_statement,1,call,call,True,"memset(tmp_buff,0,PARAM_LEN);"
+cpp_7571b7602534,13221,13232,return_statement,0,,,True,return ret;
+cpp_7571b7602534,14308,14343,expression_statement,0,,,True,backupStatus[_BUF_LEN_16-1] = '\0';
+cpp_7571b7602534,16704,16789,expression_statement,0,,,True,"RDK_LOG(RDK_LOG_WARN,LOG_TR69HOSTIF,""[%s] Exception: %s\r\n"",__FUNCTION__, e.what());"
+cpp_7571b7602534,18034,18051,expression_statement,1,*,*,True,*pChanged = true;
+cpp_8464fdd71a67,792,878,declaration,0,,,True,"const base::FilePath kExistingFile( FILE_PATH_LITERAL(""drive/root/File 1.txt""));"
+cpp_8464fdd71a67,976,1080,declaration,0,,,True,"const base::FilePath kNonExistingFile( FILE_PATH_LITERAL(""drive/root/Directory 1/not exist.png""));"
+cpp_8464fdd71a67,1260,1296,declaration,0,,,True,FileError error = FILE_ERROR_FAILED;
+cpp_8464fdd71a67,1299,1435,expression_statement,1,&,&,True,"operation.CreateFile( kExistingFile, true, // is_exclusive google_apis::test_util::CreateCopyResultCallback(&error));"
+cpp_8464fdd71a67,1474,1510,expression_statement,0,,,True,"EXPECT_EQ(FILE_ERROR_EXISTS, error);"
+cpp_8464fdd71a67,1578,1715,expression_statement,1,&,&,True,"operation.CreateFile( kExistingFile, false, // is_exclusive google_apis::test_util::CreateCopyResultCallback(&error));"
+cpp_8464fdd71a67,1863,2005,expression_statement,1,&,&,True,"operation.CreateFile( kExistingDirectory, false, // is_exclusive google_apis::test_util::CreateCopyResultCallback(&error));"
+cpp_8464fdd71a67,2008,2041,expression_statement,0,,,True,test_util::RunBlockingPoolTask();
+cpp_8464fdd71a67,2125,2265,expression_statement,1,&,&,True,"operation.CreateFile( kNonExistingFile, true, // is_exclusive google_apis::test_util::CreateCopyResultCallback(&error));"
+cpp_8464fdd71a67,2398,2549,expression_statement,1,&,&,True,"operation.CreateFile( kFileInNonExistingDirectory, false, // is_exclusive google_apis::test_util::CreateCopyResultCallback(&error));"
+cpp_8761ef329eca,682,718,return_statement,0,,,True,"return data_->LoadBody(input, rows);"
+cpp_8761ef329eca,933,989,declaration,0,,,True,"auto col = data_->Slice(begin, len)->As<ColumnUInt16>();"
+cpp_8761ef329eca,1737,1781,expression_statement,0,,,True,data_->Append(static_cast<uint32_t>(value));
+cpp_8761ef329eca,2552,2601,declaration,0,,,True,auto result = std::make_shared<ColumnDateTime>();
+cpp_8761ef329eca,2854,2876,expression_statement,0,,,True,data_.swap(col.data_);
+cpp_8761ef329eca,5179,5238,return_statement,1,new,new,True,"return ColumnRef{new ColumnDateTime64(type_, sliced_data)};"
+cpp_8761ef329eca,5295,5383,return_statement,1,new,new,True,"return ColumnRef{new ColumnDateTime64(type_, data_->CloneEmpty()->As<ColumnDecimal>())};"
+cpp_8db94566215e,2109,2156,return_statement,1,cast,cast,True,return reinterpret_cast<void*>(alloced->first);
+cpp_8db94566215e,3238,3304,declaration,0,,,True,"Arena::Stats r{ 0, 0, 0, chunks_used.size(), chunks_free.size() };"
+cpp_8db94566215e,3455,3481,expression_statement,0,,,True,r.total = r.used + r.free;
+cpp_8db94566215e,5482,5526,expression_statement,1,cast,cast,True,"VirtualUnlock(const_cast<void*>(addr), len);"
+cpp_8db94566215e,5636,5678,return_statement,0,,,True,return std::numeric_limits<size_t>::max();
+cpp_8db94566215e,6867,6907,expression_statement,1,*,*,True,"*lockingSuccess = mlock(addr, len) == 0;"
+cpp_8db94566215e,9124,9133,return_statement,0,,,True,return r;
+cpp_8db94566215e,9677,9731,declaration,1,&,&,True,"void *addr = allocator->AllocateLocked(size, &locked);"
+cpp_8db94566215e,10058,10092,expression_statement,0,,,True,"allocator->FreeLocked(addr, size);"
+cpp_8db94566215e,11638,11679,expression_statement,1,&,&,True,LockedPoolManager::_instance = &instance;
+cpp_92cf3d3d5ded,1229,1241,return_statement,0,,,True,return true;
+cpp_92cf3d3d5ded,2583,2602,expression_statement,0,,,True,service->Dispose();
+cpp_92cf3d3d5ded,3125,3205,declaration,0,,,True,IServiceLocator::Pointer factoryParent(WorkbenchServiceRegistry::GLOBAL_PARENT);
+cpp_92cf3d3d5ded,3245,3292,expression_statement,1,new,new,True,"factoryParent = new ParentLocator(parent, key);"
+cpp_92cf3d3d5ded,4744,4765,expression_statement,0,,,True,nestable->Activate();
+cpp_92cf3d3d5ded,4831,4847,return_statement,0,,,True,return disposed;
+cpp_9b6569545022,773,835,expression_statement,0,,,True,sBrokerService = sandbox::SandboxFactory::GetBrokerServices();
+cpp_9b6569545022,1591,1641,expression_statement,1,*,*,True,mozilla::sandboxing::ApplyLoggingPolicy(*mPolicy);
+cpp_9b6569545022,1746,1824,expression_statement,1,&,&,True,"result = sBrokerService->SpawnTarget(aPath, aArguments, mPolicy, &targetInfo);"
+cpp_9b6569545022,2050,2088,expression_statement,1,*,*,True,*aProcessHandle = targetInfo.hProcess;
+cpp_9b6569545022,3149,3178,expression_statement,0,,,True,jobLevel = sandbox::JOB_NONE;
+cpp_9b6569545022,6056,6087,declaration,0,,,True,sandbox::TokenLevel tokenLevel;
+cpp_9b6569545022,6179,6218,expression_statement,0,,,True,tokenLevel = sandbox::USER_INTERACTIVE;
+cpp_9b6569545022,12275,12509,expression_statement,0,,,True,"result = mPolicy->AddRule(sandbox::TargetPolicy::SUBSYS_REGISTRY, sandbox::TargetPolicy::REG_ALLOW_READONLY, L""HKEY_CURRENT_USER\\Control Panel\\Desktop\\LanguageConfiguration"");"
+cpp_9e170443308b,741,756,expression_statement,1,*,*,True,*this = result;
+cpp_9e170443308b,901,949,declaration,0,,,True,JsonView jsonValue = result.GetPayload().View();
+cpp_9e170443308b,997,1040,expression_statement,0,,,True,"m_poolArn = jsonValue.GetString(""PoolArn"");"
+cpp_9e170443308b,1093,1134,expression_statement,0,,,True,"m_poolId = jsonValue.GetString(""PoolId"");"
+cpp_9e170443308b,1342,1409,expression_statement,0,,,True,"m_originationIdentity = jsonValue.GetString(""OriginationIdentity"");"
+cpp_9e170443308b,1470,1527,expression_statement,0,,,True,"m_isoCountryCode = jsonValue.GetString(""IsoCountryCode"");"
+cpp_9e170443308b,1538,1551,return_statement,1,*,*,True,return *this;
+cpp_9ef6c4c8f7ac,1901,1915,expression_statement,0,,,True,m_private = 0;
+cpp_9ef6c4c8f7ac,1978,2033,expression_statement,1,cast,cast,True,assign(const_cast<WebStringPrivate*>(other.m_private));
+cpp_9ef6c4c8f7ac,2239,2313,return_statement,1,cast,cast,True,return m_private ? const_cast<WebStringPrivate*>(m_private)->length() : 0;
+cpp_9ef6c4c8f7ac,2363,2441,return_statement,1,cast,cast,True,return m_private ? const_cast<WebStringPrivate*>(m_private)->characters() : 0;
+cpp_9ef6c4c8f7ac,2596,2639,return_statement,0,,,True,"return WTF::String::fromUTF8(data, length);"
+cpp_9ef6c4c8f7ac,3097,3110,return_statement,1,*,*,True,return *this;
+cpp_9ef6c4c8f7ac,3160,3177,return_statement,0,,,True,return m_private;
+cpp_9ef6c4c8f7ac,3255,3274,expression_statement,0,,,True,assign(s.string());
+cpp_9ef6c4c8f7ac,3368,3381,return_statement,1,*,*,True,return *this;
+cpp_9ef6c4c8f7ac,3692,3706,expression_statement,0,,,True,m_private = p;
+cpp_9fc214432878,664,677,return_statement,0,,,True,return index;
+cpp_9fc214432878,1405,1415,return_statement,0,,,True,return ix;
+cpp_9fc214432878,1913,1940,expression_statement,0,,,True,colours = img.colorTable();
+cpp_9fc214432878,2729,2766,declaration,0,,,True,"int prevIndex = img.pixelIndex(x, 0);"
+cpp_9fc214432878,3656,3682,return_statement,1,&,&,True,return &points[i.value()];
+cpp_9fc214432878,3689,3704,return_statement,0,,,True,return nullptr;
+cpp_9fc4e1faf478,461,476,expression_statement,1,*,*,True,x->parent=*ptr;
+cpp_9fc4e1faf478,489,513,expression_statement,1,& *,& *,True,"insert(&(*ptr)->left,x);"
+cpp_9fc4e1faf478,586,601,expression_statement,1,*,*,True,x->parent=*ptr;
+cpp_9fc4e1faf478,614,639,expression_statement,1,& *,& *,True,"insert(&(*ptr)->right,x);"
+cpp_9fc4e1faf478,874,890,expression_statement,1,&,&,True,"insert(&root,x);"
+cpp_9fc4e1faf478,931,948,declaration,0,,,True,vertex *ptr=root;
+cpp_9fc4e1faf478,1112,1128,expression_statement,0,,,True,ptr=ptr->parent;
+cpp_9fc4e1faf478,1194,1206,declaration,0,,,True,binary tree;
+cpp_9fc4e1faf478,1246,1260,expression_statement,0,,,True,"system(""cls"");"
+cpp_9fc4e1faf478,1269,1291,expression_statement,0,,,True,"cout<<""\n 1. Insert "";"
+cpp_a1ec0da95e0f,1554,1564,expression_statement,1,delete,delete,True,delete ui;
+cpp_a1ec0da95e0f,3611,3618,return_statement,0,,,True,return;
+cpp_a1ec0da95e0f,4743,4837,expression_statement,1,&,&,True,"ui->signatureOut_SM->setText(QString::fromStdString(EncodeBase64(&vchSig[0], vchSig.size())));"
+cpp_a1ec0da95e0f,5175,5204,expression_statement,0,,,True,ui->addressIn_SM->setFocus();
+cpp_a1ec0da95e0f,5429,5473,expression_statement,0,,,True,dlg.setModel(model->getAddressTableModel());
+cpp_a1ec0da95e0f,6387,6497,declaration,1,&,&,True,"std::vector<unsigned char> vchSig = DecodeBase64(ui->signatureIn_VM->text().toStdString().c_str(), &fInvalid);"
+cpp_a1ec0da95e0f,7952,7981,expression_statement,0,,,True,ui->addressIn_VM->setFocus();
+cpp_a1ec0da95e0f,8697,8740,return_statement,0,,,True,"return QDialog::eventFilter(object, event);"
+cpp_a2cb32e5988b,1387,1399,expression_statement,1,*,*,True,*pCount = 0;
+cpp_a2cb32e5988b,2792,2871,expression_statement,1,cast,cast,True,"ss << ""<Xtra child \"""" << xtra_name_ <<""\"" 0x""<<std::hex<<(void*) this << "">"";"
+cpp_a2cb32e5988b,3060,3081,return_statement,0,,,True,return kMoaErr_NoErr;
+cpp_a2cb32e5988b,3148,3161,expression_statement,1,*,*,True,*pIntVal = 0;
+cpp_a2cb32e5988b,3992,4029,declaration,0,,,True,auto mtype = mobj.utils_.is_type(mv);
+cpp_a2cb32e5988b,4639,4684,expression_statement,1,&,&,True,"mobj_.utils_.GetImageInfo(&this->mv_, &info);"
+cpp_a2cb32e5988b,4746,4786,expression_statement,0,,,True,this->image_row_bytes_ = info.iRowBytes;
+cpp_a2cb32e5988b,5336,5401,declaration,0,,,True,"RECT full_rect = { 0, 0, this->width() - 1, this->height() - 1 };"
+cpp_a2cb32e5988b,5532,5576,expression_statement,1,&,&,True,this->mobj_.utils_.UnlockPixels(&this->mv_);
+cpp_a2cb32e5988b,5750,5769,return_statement,0,,,True,return this->data_;
+cpp_a61ed7b26319,912,931,expression_statement,0,,,True,files[1] = outfile;
+cpp_a61ed7b26319,1202,1219,expression_statement,0,,,True,::fflush(infile);
+cpp_a61ed7b26319,1595,1633,return_statement,0,,,True,return h && h != INVALID_HANDLE_VALUE;
+cpp_a61ed7b26319,1711,1743,return_statement,1,&,&,True,"return GetConsoleMode(h, &mode);"
+cpp_a61ed7b26319,4724,4748,expression_statement,0,,,True,cn[input].owning = true;
+cpp_a61ed7b26319,5343,5405,expression_statement,1,&,&,True,"GetConsoleScreenBufferInfo(cn[startupOutput].handle, &sbInfo);"
+cpp_a61ed7b26319,5743,5810,expression_statement,0,,,True,"SetConsoleScreenBufferSize(cn[activeOutput].handle, sbInfo.dwSize);"
+cpp_ab1434ddc500,3796,3817,expression_statement,0,,,True,KuduTest::TearDown();
+cpp_ab1434ddc500,9716,9760,expression_statement,0,,,True,ASSERT_OK(master_->WaitForTxnManagerInit());
+cpp_ab1434ddc500,11537,11594,expression_statement,1,&,&,True,"ASSERT_OK(proxy_->GetTransactionState(req, &resp, &ctx));"
+cpp_ab1434ddc500,11728,11750,expression_statement,1,*,*,True,*state = resp.state();
+cpp_ab1434ddc500,11915,11969,expression_statement,1,&,&,True,"ASSERT_OK(proxy_->BeginTransaction(req, &resp, &ctx));"
+cpp_ab1434ddc500,13408,13440,declaration,0,,,True,AbortTransactionResponsePB resp;
+cpp_ab1434ddc500,13652,13700,expression_statement,1,&,&,True,"NO_FATALS(fetch_txn_status(txn_id, &txn_state));"
+cpp_ab1434ddc500,18022,18061,expression_statement,0,,,True,txn_ids_per_thread.resize(kNumThreads);
+cpp_ab1434ddc500,18218,18361,expression_statement,1,&,&,True,"threads.emplace_back(txn_initiator, kNumTransactionsPerThread, &txn_ids_per_thread[idx]);"
+cpp_ab1434ddc500,18667,18718,expression_statement,0,,,True,"EXPECT_EQ(kNumTransactionsPerThread, slice.size());"
+cpp_ac2b4d6d7bc1,4435,4444,return_statement,0,,,True,return 1;
+cpp_ac2b4d6d7bc1,4474,4510,expression_statement,1,new,new,True,raw_data_file = new std::ofstream();
+cpp_ac2b4d6d7bc1,4515,4600,expression_statement,0,,,True,"raw_data_file->open(output_file_path.string(), std::ios_base::out | std::ios::trunc);"
+cpp_ac2b4d6d7bc1,4722,4742,expression_statement,1,&,&,True,output = &std::cout;
+cpp_ac2b4d6d7bc1,5007,5034,declaration,0,,,True,cryptonote::transaction tx;
+cpp_ac2b4d6d7bc1,6897,6950,expression_statement,0,,,True,"std::cout << ""Failed to parse tx_extra"" << std::endl;"
+cpp_ac2b4d6d7bc1,7089,7105,expression_statement,0,,,True,output->flush();
+cpp_afa59c6ad250,364,421,expression_statement,0,,,True,"std::cout << ""test"" << beSpeaker->GetValue() <<std::endl;"
+cpp_afa59c6ad250,461,494,expression_statement,0,,,True,"std::cout << ""press"" <<std::endl;"
+cpp_afa59c6ad250,514,544,expression_statement,0,,,True,"std::cout << ""up"" <<std::endl;"
+cpp_afa59c6ad250,617,654,expression_statement,0,,,True,"std::cout << ""response"" << std::endl;"
+cpp_afa59c6ad250,659,706,declaration,1,new,new,True,auto* frame = new BlueSideMeetingPage(nullptr);
+cpp_afa59c6ad250,734,750,expression_statement,0,,,True,this->Destroy();
+cpp_b0e0343fecee,1819,1842,declaration,1,new,new,True,fam *myFam = new fam();
+cpp_b0e0343fecee,1889,1923,declaration,0,,,True,Fam_Descriptor *descriptor = NULL;
+cpp_b0e0343fecee,1928,1989,declaration,1,call cast,call cast,True,Fam_Options *fm = (Fam_Options *)malloc(sizeof(Fam_Options));
+cpp_b0e0343fecee,1994,2037,expression_statement,1,call cast,call cast,True,"memset((void *)fm, 0, sizeof(Fam_Options));"
+cpp_b0e0343fecee,3315,3325,return_statement,0,,,True,return -1;
+cpp_b0e0343fecee,4025,4034,expression_statement,0,,,True,ret = -1;
+cpp_b0e0343fecee,4477,4503,expression_statement,0,,,True,"printf(""FAM finalized\n"");"
+cpp_b0e0343fecee,4781,4791,return_statement,0,,,True,return -1;
+cpp_be4ca53b8bcc,463,478,expression_statement,0,,,True,this->Root = 0;
+cpp_be4ca53b8bcc,664,682,expression_statement,1,delete,delete,True,delete this->Root;
+cpp_be4ca53b8bcc,730,748,expression_statement,1,delete,delete,True,delete this->Root;
+cpp_be4ca53b8bcc,3544,3551,return_statement,0,,,True,return;
+cpp_be4ca53b8bcc,4528,4554,expression_statement,1,delete,delete,True,delete this->CurrentToken;
+cpp_be4ca53b8bcc,4812,4827,expression_statement,0,,,True,this->uiLine++;
+cpp_be4ca53b8bcc,6354,6374,return_statement,0,,,True,return this->uiLine;
+cpp_be4ca53b8bcc,6692,6718,expression_statement,1,delete,delete,True,delete this->CurrentToken;
+cpp_be4ca53b8bcc,13435,13467,expression_statement,0,,,True,Token = this->Tokenizer->Next();
+cpp_be4ca53b8bcc,14299,14349,declaration,1,&,&,True,CTokenizer Tokenizer = CTokenizer(&ByteTokenizer);
+cpp_cd8762cc0a60,751,765,expression_statement,1,*,*,True,*this = nWord;
+cpp_cd8762cc0a60,787,801,expression_statement,1,*,*,True,*this = nWord;
+cpp_cd8762cc0a60,810,836,expression_statement,1,*,*,True,*this <<= 8 * (nSize - 3);
+cpp_cd8762cc0a60,1145,1158,return_statement,1,*,*,True,return *this;
+cpp_cd8762cc0a60,1306,1347,expression_statement,0,,,True,nCompact = GetLow64() << 8 * (3 - nSize);
+cpp_cd8762cc0a60,1369,1407,declaration,1,*,*,True,uint256 bn = *this >> 8 * (nSize - 3);
+cpp_cd8762cc0a60,1762,1830,expression_statement,0,,,True,nCompact |= (fNegative && (nCompact & 0x007fffff) ? 0x00800000 : 0);
+cpp_cd8762cc0a60,1908,1918,declaration,0,,,True,uint256 b;
+cpp_cd8762cc0a60,2001,2010,return_statement,0,,,True,return b;
+cpp_cd8762cc0a60,2324,2333,return_statement,0,,,True,return b;
+cpp_d3f4833e9bdb,3197,3216,expression_statement,0,,,True,expect.data = NULL;
+cpp_d3f4833e9bdb,3665,3709,declaration,0,,,True,RPCSendInterfaceMock::SendCallExpect expect;
+cpp_d3f4833e9bdb,3797,3817,expression_statement,1,&,&,True,expect.data = &size;
+cpp_d3f4833e9bdb,4947,4969,expression_statement,1,&,&,True,expect.data = &params;
+cpp_d3f4833e9bdb,5417,5438,expression_statement,1,&,&,True,expect.data = &value;
+cpp_d3f4833e9bdb,6403,6444,expression_statement,0,,,True,server_mock()->AddSendCallExpect(expect);
+cpp_d3f4833e9bdb,6823,6844,expression_statement,1,&,&,True,expect.data = &value;
+cpp_d3f4833e9bdb,6847,6875,expression_statement,0,,,True,expect.size = sizeof(value);
+cpp_d3f4833e9bdb,7411,7433,expression_statement,1,&,&,True,expect.data = &params;
+cpp_d3f4833e9bdb,7984,8008,expression_statement,0,,,True,expect.handle_count = 0;
+cpp_d692107721e5,1520,1554,expression_statement,1,&,&,True,vp8_remove_compressor(&vp8_comp_);
+cpp_d692107721e5,2158,2196,expression_statement,0,,,True,vp8cx_frame_init_quantizer(vp8_comp_);
+cpp_d692107721e5,2282,2388,expression_statement,1,* cast,* cast,True,"macroblockd_dst_ = reinterpret_cast<MACROBLOCKD *>( aom_memalign(32, sizeof(*macroblockd_dst_)));"
+cpp_d692107721e5,2394,2468,expression_statement,1,& * call,& * call,True,"memcpy(macroblockd_dst_, &vp8_comp_->mb.e_mbd, sizeof(*macroblockd_dst_));"
+cpp_d692107721e5,3391,3621,expression_statement,1,*,*,True,"EXPECT_EQ(0, memcmp(vp8_comp_->mb.e_mbd.dqcoeff, macroblockd_dst_->dqcoeff, sizeof(*macroblockd_dst_->dqcoeff) * kNumBlocks * kNumBlockEntries)) << ""dqcoeff mismatch"";"
+cpp_d692107721e5,4066,4084,expression_statement,0,,,True,SetupCompressor();
+cpp_d692107721e5,4342,4445,expression_statement,1,&,&,True,"ASM_REGISTER_STATE_CHECK( asm_quant_(&vp8_comp_->mb.block[i], &macroblockd_dst_->block[i]));"
+cpp_d692107721e5,4691,4712,expression_statement,0,,,True,FillCoeffConstant(0);
+cpp_d692107721e5,4979,4997,expression_statement,0,,,True,FillCoeffRandom();
+cpp_d692107721e5,5160,5176,expression_statement,0,,,True,RunComparison();
+cpp_e20509df1736,826,866,return_statement,1,&,&,True,"return std::memcmp(&lhs, &rhs, 16) == 0;"
+cpp_e20509df1736,990,1065,return_statement,1,& cast,cast,False,"return jhash2((uint32_t*)&s, sizeof(s) / sizeof(uint32_t), 0xbeefdead);"
+cpp_e20509df1736,1494,1594,expression_statement,1,& cast,cast,False,"ret = getnameinfo((const struct sockaddr *)&sa, sizeof(sa), hostname, 48, NULL, 0, NI_NAMEREQD);"
+cpp_e20509df1736,1662,1715,expression_statement,0,,,True,"ret = open(hostname, O_TRUNC|O_WRONLY|O_CREAT, 0644);"
+cpp_e20509df1736,1738,1784,expression_statement,0,,,True,"fprintf(stderr, ""FATAL: open() failed: %m\n"");"
+cpp_e20509df1736,1869,1879,expression_statement,0,,,True,close(fd);
+cpp_e20509df1736,2393,2412,return_statement,0,,,True,return itr->second;
+cpp_e20509df1736,2923,2992,expression_statement,1,new,new,True,"maps = new std::unordered_map<struct in6_addr, struct logtarget>[nr];"
+cpp_e20509df1736,3053,3067,expression_statement,1,delete,delete,True,delete[] maps;
+cpp_e20509df1736,3246,3289,declaration,0,,,True,"struct logtarget& cur = get_target(t, src);"
+cpp_e698cc2a183e,6157,6173,return_statement,0,,,True,return o_target;
+cpp_e698cc2a183e,22381,22393,expression_statement,0,,,True,o_rc = FAIL;
+cpp_e698cc2a183e,25578,25608,declaration,0,,,True,TargetHandle_t o_child = NULL;
+cpp_e698cc2a183e,30261,30497,expression_statement,1,&,&,True,"targetService().getAssociated( l_list, i_target, TargetService::PARENT, TargetService::ALL, &l_predClass );"
+cpp_e698cc2a183e,39475,39527,expression_statement,0,,,True,"PRDF_ERR( PRDF_FUNC ""getConnectedParent() failed"" );"
+cpp_e698cc2a183e,39809,39823,return_statement,0,,,True,return o_chnl;
+cpp_e698cc2a183e,46723,46787,expression_statement,1,&,&,True,l_funcAndOscFilter.push(&l_oscFilter).push(&l_funcFilter).And();
+cpp_e698cc2a183e,46796,46862,expression_statement,1,&,&,True,l_funcAndPeerFilter.push(&l_peerFilter).push(&l_funcFilter).And();
+cpp_e698cc2a183e,46987,47350,expression_statement,1,&,&,True,"getPeerTargets( l_clockCardlist, // List of connected OSCs l_target, // to this proc // filter to get to clock endpoints &l_funcAndPeerFilter/*&l_peerFilter*/, // filter to get the driving OSC &l_funcAndOscFilter/*&l_oscFilter*/);"
+cpp_e698cc2a183e,47511,47701,expression_statement,1,*,*,True,"PRDF_TRAC(PRDF_FUNC ""OSC 0x%.8X, pos: %d is connected to "" ""proc 0x%.8X, inputOscPos: %d"", getHuid(*l_itr), getTargetPosition(*l_itr), getHuid(l_target), i_oscPos);"
+cpp_eac5aadcf3d4,1594,1654,expression_statement,0,,,True,EXPECT_TRUE(TEnumTraits<MyEnum3>::min() == MyEnum3::ME3_N2);
+cpp_eac5aadcf3d4,2103,2146,expression_statement,0,,,True,"EXPECT_EQ(int(MyEnum4::ME4_C), 0x7fffffff);"
+cpp_eac5aadcf3d4,2270,2317,expression_statement,1,*,*,True,EXPECT_TRUE(*ms.me2_2_ref() == MyEnum2::ME2_2);
+cpp_eac5aadcf3d4,2712,2723,declaration,0,,,True,MyEnum2 e2;
+cpp_eac5aadcf3d4,2741,2781,expression_statement,1,&,&,True,"EXPECT_TRUE(tryParseEnum(""ME2_2"", &e2));"
+cpp_eac5aadcf3d4,3853,3896,expression_statement,1,&,&,True,"EXPECT_TRUE(tryParseEnum(""MEU_A"", &value));"
+cpp_eac5aadcf3d4,3899,3943,expression_statement,0,,,True,"EXPECT_EQ(MEU_A, value) << ""unscoped usage"";"
+cpp_eac5aadcf3d4,4144,4195,expression_statement,1,*,*,True,"EXPECT_EQ(MyForwardRefEnum::NONZERO, *obj.b_ref());"
+cpp_eac5aadcf3d4,4749,4810,expression_statement,1,*,*,True,"EXPECT_EQ(*ms2.me1_optional_ref(), static_cast<MyEnum1>(42));"
+cpp_eac5aadcf3d4,5283,5345,expression_statement,0,,,True,"EXPECT_EQ(true, has_type_member<TEnumTraits<MyEnum1>>::value);"
+cpp_ee7ec51de0f1,1564,1611,return_statement,0,,,True,return (dynamic_cast<const TM*>(this) != NULL);
+cpp_ee7ec51de0f1,1679,1713,declaration,0,,,True,TM *ptr = dynamic_cast<TM*>(this);
+cpp_ee7ec51de0f1,1722,1794,expression_statement,0,,,True,"OCCA_ERROR(""Unable to cast type_t::to"", ptr != NULL);"
+cpp_ee7ec51de0f1,1803,1815,return_statement,1,*,*,True,return *ptr;
+cpp_ee7ec51de0f1,1895,1941,declaration,0,,,True,const TM *ptr = dynamic_cast<const TM*>(this);
+cpp_ee7ec51de0f1,1950,2022,expression_statement,0,,,True,"OCCA_ERROR(""Unable to cast type_t::to"", ptr != NULL);"
+cpp_ee7ec51de0f1,2031,2043,return_statement,1,*,*,True,return *ptr;
+cpp_ee7ec51de0f1,2122,2177,declaration,1,cast,cast,True,TM *ptr = dynamic_cast<TM*>(const_cast<type_t*>(this));
+cpp_ee7ec51de0f1,2267,2279,return_statement,1,*,*,True,return *ptr;
+cpp_f30e443e8b86,571,629,expression_statement,1,*,*,True,"logFile.open(*config.loggingFilePath, std::ios_base::app);"
+cpp_f30e443e8b86,1024,1062,expression_statement,0,,,True,logFile << prettyMessage << std::endl;
+cpp_f30e443e8b86,1160,1182,declaration,0,,,True,std::thread apiThread;
+cpp_f30e443e8b86,1627,1685,expression_statement,1,&,&,True,"apiThread = std::thread(&ApiDispatcher::start, api.get());"
+cpp_f30e443e8b86,2050,2137,declaration,0,,,True,"std::string address = ""http://"" + config.rpcBindIp + "":"" + std::to_string(config.port);"
+cpp_f30e443e8b86,2278,2338,expression_statement,0,,,True,"std::cout << ""Type exit to save and shutdown."" << std::endl;"
+cpp_f30e443e8b86,3305,3354,expression_statement,0,,,True,"std::cout << (""\nSaving and shutting down...\n"");"
+cpp_f720e8a84479,680,713,expression_statement,0,,,True,f = spiffs::open(fileName);
+cpp_f720e8a84479,1055,1075,expression_statement,0,,,True,"debugf(""Sending: "");"
+cpp_f720e8a84479,1365,1380,expression_statement,0,,,True,debug(char(b));
+cpp_f720e8a84479,1610,1661,expression_statement,1,call cast,call cast,True,prevMessage = (char*)malloc(prevMessageLen + 1);
+cpp_f720e8a84479,1674,1706,expression_statement,1,call,call,True,"memcpy(prevMessage, buf, buf_i);"
+cpp_f720e8a84479,1982,2041,expression_statement,1,cast,cast,True,"i2c::transmit((const uint8_t*)prevMessage, prevMessageLen);"
+cpp_f720e8a84479,2335,2345,expression_statement,0,,,True,f.close();
+cpp_f720e8a84479,2358,2374,expression_statement,0,,,True,running = false;
+cpp_fa69b9675fa9,507,556,expression_statement,0,,,True,ui->passEdit3->setMaxLength(MAX_PASSPHRASE_SIZE);
+cpp_fa69b9675fa9,2279,2359,expression_statement,0,,,True,"connect(ui->passEdit3, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));"
+cpp_fa69b9675fa9,2733,2743,expression_statement,1,delete,delete,True,delete ui;
+cpp_fa69b9675fa9,2992,3030,expression_statement,0,,,True,newpass1.reserve(MAX_PASSPHRASE_SIZE);
+cpp_fa69b9675fa9,7536,7560,declaration,0,,,True,bool acceptable = false;
+cpp_fa69b9675fa9,9613,9636,expression_statement,0,,,True,ui->capsLabel->clear();
+cpp_fc3a6b96bd59,3407,3422,return_statement,1,*,*,True,return (*this);
+cpp_fc3a6b96bd59,4840,4855,return_statement,1,*,*,True,return (*this);
+cpp_fc3a6b96bd59,5659,5702,expression_statement,0,,,True,TRACE_SCOPE(main_HelloThread_onThreadRuns);
+cpp_fc3a6b96bd59,6289,6362,declaration,1,&,&,True,"IESynchObject * synchObjects[] = {&gEventExit, &gMutexWait, &gEventRun};"
+cpp_fc3a6b96bd59,7343,7401,expression_statement,0,,,True,"TRACE_ERR(""Unexpected waiting result, breaking the loop"");"
+cpp_fc3a6b96bd59,8427,8446,expression_statement,0,,,True,mQuit.resetEvent();
+cpp_fc3a6b96bd59,8553,8615,declaration,1,&,&,True,"IESynchObject * synchObjects[] = {&gEventExit, &gMutexDummy};"
+cpp_fc3a6b96bd59,11430,11520,declaration,1,&,&,True,"IESynchObject * synchObjects[] = {&helloThread.mQuit, &goodbyeThread.mQuit, &gMutexDummy};"
+cpp_fc3a6b96bd59,11591,11661,declaration,0,,,True,"MultiLock multiLock(synchObjects, MACRO_ARRAYLEN(synchObjects), true);"
+cpp_fc3a6b96bd59,11904,11957,expression_statement,0,,,True,goodbyeThread.destroyThread(NECommon::WAIT_INFINITE);
+cpp_fc4d3dd68a67,3252,3265,expression_statement,0,,,True,wasError = 0;
+cpp_fc4d3dd68a67,4133,4155,expression_statement,1,*,*,True,*DIAG_STAT_OUT = 0b10;
+cpp_fc4d3dd68a67,5068,5105,expression_statement,1,*,*,True,*DIAG_STAT_OUT = (1 << 1) | wasError;
+cpp_fc4d3dd68a67,5188,5225,expression_statement,1,*,*,True,*DIAG_STAT_OUT = (0 << 1) | wasError;
+cpp_fc4d3dd68a67,5580,5602,expression_statement,0,,,True,currentMemPattern = 0;
+cpp_fc4d3dd68a67,5746,5783,expression_statement,1,*,*,True,*DIAG_STAT_OUT = (0 << 1) | wasError;
+cpp_fc4d3dd68a67,8522,8560,expression_statement,0,,,True,"printf(""error in pattern reading!\n"");"
+cpp_fc4d3dd68a67,8886,8901,expression_statement,0,,,True,timeoutCnt = 0;
+cpp_fc4d3dd68a67,10795,10822,expression_statement,0,,,True,fsmState = FSM_WR_ANTI_STS;
+cpp_fc4d3dd68a67,13140,13162,expression_statement,1,*,*,True,*debug_out = debugVec;

@@ -1,0 +1,89 @@
+golden_gate 43878
+setup 43879
+data 43880
+teacher_extract 43881
+student_extract 43882
+holdout 43883
+teacher_regen_verify 43884
+student_score 43885
+# 43878 gate FAILED (student model left on CPU under --device cuda; fixed in escape_distill/extract.py); 43882/43885 cancelled
+golden_gate 43889
+student_extract 43890
+student_score 43891
+# 2026-10-28 05:55:08 resubmitted for u22 MaxMemPerCPU=3000 (GPU 4cpu/12000M, CPU 24cpu/72000M); cancelled 43897 43898; 43889 (gate PASS) purged so not a dependency
+teacher_extract 43908
+t512_extract 43909
+student_extract 43910
+teacher_regen_verify 43911
+student_score 43912
+t512_score 43913
+tau_sweep_teacher 43914
+tau_sweep_student 43915
+o5_audit 43919
+tau_confirm_teacher_retau 46532
+tau_confirm_teacher_cli 46533
+tau_confirm_teacher_k0 46534
+# 2026-10-29 15:44:42 teacher tau*=2.0 (all langs, comparators agree) confirmatory submitted
+positions_teacher 46544
+o4_sweep_build 46546
+o4_sweep_extract 46547
+o4_sweep_score 46548
+# 2026-10-29 15:52:01 held 46534 (teacher k0 test scoring; lower priority than positions / O4 sweep)
+k_sensitivity_teacher 46557
+efficiency 46560
+alpha1_control 46562
+holdout_score 46573
+# 2026-10-29 16:05:20 English holdout scoring signed off by the user (one confirmatory run)
+tau_confirm_student_retau 46644
+tau_confirm_student_cli 46645
+# 2026-10-29 16:46:10 student confirmatory chained after 43915 (self-gated on student_tau_star.json; per-language mode if tau* differ)
+tau_sweep_student 46650
+tau_confirm_student_retau 46651
+tau_confirm_student_cli 46652
+# 2026-10-29 16:51:36 user-approved: cancelled 43915 (7.7h in pure-Python null) + 46644/46645; rescoring with the identical fast null (SKIP_RETAU=1); new jobs prefer nodes > 060 (same 2080 Ti; bigger-GPU partitions ihub/plafnet2/rrc are closed to account research)
+tau_sweep_student 46653
+tau_confirm_student_retau 46654
+tau_confirm_student_cli 46655
+# 2026-10-29 16:52:18 resubmitted the student sweep at 12 CPUs (fast null) so it fits sooner; 46650-46652 cancelled before starting
+tau_sweep_student 46678
+tau_confirm_student_retau 46679
+tau_confirm_student_cli 46680
+# 2026-10-29 17:05:45 resubmitted the pending student sweep at 8 CPUs so it fits beside the last O4 shard (46653-46655 cancelled before starting)
+alpha1_control 46762
+holdout_score 46763
+tau_confirm_student_cli 46764
+# 2026-10-29 18:13:41 46562/46573/46680 failed in 2s on gnode082 (/tmp full, no space); resubmitted excluding gnode082
+alpha1_control 46769
+# 2026-10-29 18:17:02 46762 hit the known prose exit crash (PyGILState_Release rc 134 after writing all files); resubmitted with the run_all.sbatch completeness guard
+o4_sweep_score 46774
+# 2026-10-29 18:19:24 O4 extraction done; pending score job 46548 (24 CPU) resubmitted at 6 CPU to fit now
+# 2026-10-29 19:00:26 cancelled held 46534 (teacher k0 rescoring): redundant, the paired tau*-vs-1.335 comparison is computed from the CLI per_file outputs
+tau_confirm_student_cli_cpp 46907
+tau_confirm_student_cli_python 46908
+tau_confirm_student_cli_english 46909
+# 2026-10-29 20:51:36 46764 OOM-killed (49 GB at 16 workers) in the cpp score step before writing any score; rerun per language in parallel (cpp 12 workers/88 GB), reusing the finished cpp calibration record
+tau_confirm_student_cli_cpp 47008
+# 2026-10-29 22:16:51 46907 OOM again (90 GB, 12 workers): imap result buffering scales with 16*workers chunks x ~0.5 GB (2k strata x 10k perms); rerun with 8 workers / 115 GB on gnode077 reusing its converted data (re-validated)
+tau_confirm_student_cli_cpp 47044
+# 2026-10-29 22:29:15 47008 (115 GB) could not fit on gnode077 after another user took 60 GB; resubmitted with 6 workers / 66 GB (fewer imap chunks => less buffered memory), still reusing the converted data
+tau_confirm_student_cli_cpp_alt 47053
+# 2026-10-29 22:31:39 47044 pending on gnode077 (node PLANNED for another job); submitted the same cpp run elsewhere (fresh convert); whichever starts first is kept
+tau_confirm_student_cli_cpp 47054
+# 2026-10-29 22:32:12 nodes > 060 had no room for a 66 GB CPU-only job; cancelled 47044/47053 (pending) and resubmitted on any healthy node, 8 workers / 118 GB, fresh convert
+# 2026-10-30 00:54:22 47054 COMPLETED on gnode027 (2:16:38, MaxRSS 114.5 GiB at 8 workers): student-tau-STAR-cpp scored once; all student tau* runs done
+# 2026-10-30 04:25:23 Optional arms (user: use the higher-numbered GPU nodes for training): nodes > 060 only
+adapt_teacher 47445
+balanced_control 47446
+hf_full_extract 47447
+# 2026-10-30 04:26:36 47445 (gnode066) and 47447 (gnode077): torch CUDA init failed ("CUDA unknown error"); 47445 would have trained on CPU -> cancelled
+# 2026-10-30 04:26:52 47446 (gnode077, RTX 3080): same CUDA init failure inside its allocation (srun --overlap test) -> cancelled before training
+# 2026-10-30 04:28:17 resubmitted on nodes > 060 excluding gnode066/077 (CUDA init fails there); GPU scripts now assert CUDA first
+adapt_teacher 47453
+balanced_control 47454
+hf_full_extract 47455
+newarms_score_hf_full 47458
+newarms_score 47548
+more_perms_o4 48197
+more_perms_iou 48198
+tau_sweep_test_teacher 49126
+tau_sweep_test_student 49127

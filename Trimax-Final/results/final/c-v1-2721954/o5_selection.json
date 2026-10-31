@@ -1,0 +1,40 @@
+{
+  "seed": 20260927,
+  "per_file": 5,
+  "max_files": 1500,
+  "statement_types": [
+    "declaration",
+    "expression_statement",
+    "return_statement"
+  ],
+  "unsafe_calls": [
+    "alloca",
+    "calloc",
+    "free",
+    "gets",
+    "malloc",
+    "memcpy",
+    "memmove",
+    "memset",
+    "realloc",
+    "scanf",
+    "sprintf",
+    "sscanf",
+    "strcat",
+    "strcpy",
+    "strncat",
+    "strncpy",
+    "vsprintf"
+  ],
+  "unsafe_casts": [
+    "const_cast",
+    "reinterpret_cast"
+  ],
+  "n_cpp_parse_ok": 5752,
+  "n_eligible_files": 2902,
+  "n_selected_files": 1500,
+  "n_units": {
+    "unsafe": 5271,
+    "comparison": 7338
+  }
+}

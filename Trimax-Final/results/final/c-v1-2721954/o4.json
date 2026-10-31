@@ -1,0 +1,274 @@
+{
+  "bootstrap": 2000,
+  "build": {
+    "calibration_record_sha256": "d5f08e4f4c63aeb34618a3ae2db9783ddadf0988e47cef600942a3093a9b2ae5",
+    "case_rate": 0.5,
+    "files_per_language": 1000,
+    "rate": 0.2,
+    "seed": 20260927,
+    "summary": [
+      {
+        "condition": "case_inversion",
+        "dropped": 0,
+        "edits": 83037,
+        "files": 1000,
+        "language": "cpp",
+        "nodes": 388309
+      },
+      {
+        "condition": "clean",
+        "dropped": 0,
+        "edits": 0,
+        "files": 1000,
+        "language": "cpp",
+        "nodes": 388309
+      },
+      {
+        "condition": "indentation",
+        "dropped": 0,
+        "edits": 68746,
+        "files": 1000,
+        "language": "cpp",
+        "nodes": 388309
+      },
+      {
+        "condition": "keyword_typo",
+        "dropped": 0,
+        "edits": 17884,
+        "files": 1000,
+        "language": "cpp",
+        "nodes": 388309
+      },
+      {
+        "condition": "missing_semicolon",
+        "dropped": 69,
+        "edits": 25972,
+        "files": 1000,
+        "language": "cpp",
+        "nodes": 388309
+      },
+      {
+        "condition": "case_inversion",
+        "dropped": 0,
+        "edits": 4601,
+        "files": 1000,
+        "language": "python",
+        "nodes": 23941
+      },
+      {
+        "condition": "clean",
+        "dropped": 0,
+        "edits": 0,
+        "files": 1000,
+        "language": "python",
+        "nodes": 23941
+      },
+      {
+        "condition": "indentation",
+        "dropped": 0,
+        "edits": 4416,
+        "files": 1000,
+        "language": "python",
+        "nodes": 23941
+      },
+      {
+        "condition": "keyword_typo",
+        "dropped": 0,
+        "edits": 1626,
+        "files": 1000,
+        "language": "python",
+        "nodes": 23941
+      }
+    ]
+  },
+  "calibration_record_sha256": "d5f08e4f4c63aeb34618a3ae2db9783ddadf0988e47cef600942a3093a9b2ae5",
+  "definitions": "Objective 4 scoring: robustness of start alignment and BPP to code noise.\n\nFor every O4 file and condition (clean or one noise type), score interior entropy\nboundaries against the condition's mapped clean-structure starts with the frozen\nper-language k and one-to-one matching (fast.counts_fast), and compute the mean F1 of\nthe fixed-EOF null (fast.FixedEofNull) over R permutations. Targets follow the primary\nrules (depth > 0, non-wrapper, non-empty, 0 < start < n, unique starts).\n\nPooled per language and condition: P, R, F1, null F1, margin = F1 - null F1, mean BPP.\nRobustness is the paired file-bootstrap interval of (noised - clean) for the margin\nand for mean BPP, on the same files. Clean-condition patches are the primary run's.\n",
+  "permutations": 1000,
+  "rows": [
+    {
+      "condition": "clean",
+      "f1": 0.16702336187358932,
+      "f1_margin": 0.13125123513351128,
+      "h0_f1": 0.035772126740078035,
+      "language": "cpp",
+      "mean_bpp": 7.879611763651486,
+      "n_files": 1000,
+      "n_targets": 280277,
+      "precision": 0.09599404423520579,
+      "recall": 0.6422360735986186
+    },
+    {
+      "condition": "case_inversion",
+      "delta_bpp": -0.10118929653542086,
+      "delta_bpp_ci": [
+        -0.11370209193109426,
+        -0.08899849982894346
+      ],
+      "delta_margin": -0.002109855370264674,
+      "delta_margin_ci": [
+        -0.0025707986502687317,
+        -0.0017158289004449026
+      ],
+      "f1": 0.1649329128574194,
+      "f1_margin": 0.1291413797632466,
+      "h0_f1": 0.0357915330941728,
+      "language": "cpp",
+      "mean_bpp": 7.778422467116065,
+      "n_files": 1000,
+      "n_targets": 280277,
+      "precision": 0.09460035509059429,
+      "recall": 0.6429389496819218
+    },
+    {
+      "condition": "indentation",
+      "delta_bpp": -0.13143817909121847,
+      "delta_bpp_ci": [
+        -0.14321446997323825,
+        -0.11945472515544882
+      ],
+      "delta_margin": -0.013347616629761389,
+      "delta_margin_ci": [
+        -0.014605781383725884,
+        -0.01215997660299392
+      ],
+      "f1": 0.1537217244182483,
+      "f1_margin": 0.11790361850374989,
+      "h0_f1": 0.035818105914498403,
+      "language": "cpp",
+      "mean_bpp": 7.748173584560267,
+      "n_files": 1000,
+      "n_targets": 280278,
+      "precision": 0.08820184910066659,
+      "recall": 0.5977672168347141
+    },
+    {
+      "condition": "keyword_typo",
+      "delta_bpp": -0.3376304657994016,
+      "delta_bpp_ci": [
+        -0.36426599338023846,
+        -0.31326853811845157
+      ],
+      "delta_margin": -0.00043562650544098913,
+      "delta_margin_ci": [
+        -0.0010427894805524064,
+        0.00014044478147407625
+      ],
+      "f1": 0.16675147171627874,
+      "f1_margin": 0.1308156086280703,
+      "h0_f1": 0.03593586308820846,
+      "language": "cpp",
+      "mean_bpp": 7.541981297852084,
+      "n_files": 1000,
+      "n_targets": 280277,
+      "precision": 0.09540594748536398,
+      "recall": 0.6612137278478077
+    },
+    {
+      "condition": "missing_semicolon",
+      "delta_bpp": -0.0553775879150189,
+      "delta_bpp_ci": [
+        -0.061872993010354406,
+        -0.048921140772259085
+      ],
+      "delta_margin": -0.0020393097999904797,
+      "delta_margin_ci": [
+        -0.002443967586386011,
+        -0.00160820104549844
+      ],
+      "f1": 0.16508010183725919,
+      "f1_margin": 0.1292119253335208,
+      "h0_f1": 0.035868176503738386,
+      "language": "cpp",
+      "mean_bpp": 7.824234175736467,
+      "n_files": 1000,
+      "n_targets": 280208,
+      "precision": 0.09482375397734606,
+      "recall": 0.6371659624279107
+    },
+    {
+      "condition": "clean",
+      "f1": 0.1455118452510324,
+      "f1_margin": 0.11500247772223422,
+      "h0_f1": 0.030509367528798164,
+      "language": "python",
+      "mean_bpp": 5.608964008698179,
+      "n_files": 1000,
+      "n_targets": 16378,
+      "precision": 0.07986305781870669,
+      "recall": 0.8175601416534375
+    },
+    {
+      "condition": "case_inversion",
+      "delta_bpp": -0.050178771042771686,
+      "delta_bpp_ci": [
+        -0.057890567527019265,
+        -0.04239975019179769
+      ],
+      "delta_margin": -0.001219242754980962,
+      "delta_margin_ci": [
+        -0.001685794514202694,
+        -0.0008062491300852688
+      ],
+      "f1": 0.14442010768118602,
+      "f1_margin": 0.11378323496725326,
+      "h0_f1": 0.03063687271393276,
+      "language": "python",
+      "mean_bpp": 5.558785237655408,
+      "n_files": 1000,
+      "n_targets": 16378,
+      "precision": 0.07920868247881456,
+      "recall": 0.8172548540725363
+    },
+    {
+      "condition": "indentation",
+      "delta_bpp": 0.0035175318010880474,
+      "delta_bpp_ci": [
+        -0.0031454426981795567,
+        0.01004682137348598
+      ],
+      "delta_margin": -0.016443642878092232,
+      "delta_margin_ci": [
+        -0.01774279516769196,
+        -0.015172691995062977
+      ],
+      "f1": 0.1295303940745236,
+      "f1_margin": 0.09855883484414199,
+      "h0_f1": 0.030971559230381612,
+      "language": "python",
+      "mean_bpp": 5.612481540499267,
+      "n_files": 1000,
+      "n_targets": 16583,
+      "precision": 0.07115897509167976,
+      "recall": 0.7207984080082012
+    },
+    {
+      "condition": "keyword_typo",
+      "delta_bpp": -0.22757980074043527,
+      "delta_bpp_ci": [
+        -0.24883458307115347,
+        -0.20777547008878072
+      ],
+      "delta_margin": -0.003342508114014764,
+      "delta_margin_ci": [
+        -0.003961256210169117,
+        -0.0027300738385394783
+      ],
+      "f1": 0.1420947192966774,
+      "f1_margin": 0.11165996960821946,
+      "h0_f1": 0.03043474968845795,
+      "language": "python",
+      "mean_bpp": 5.381384207957744,
+      "n_files": 1000,
+      "n_targets": 16378,
+      "precision": 0.07774229740226116,
+      "recall": 0.8250091586274271
+    }
+  ],
+  "schema_version": "1.0.0",
+  "selected_k": {
+    "cpp": 0,
+    "english": 0,
+    "python": 0
+  },
+  "synthetic": false
+}

@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "pdf": "Trimax-Final.pdf",
+  "sha256": "e1e98dd12199cf24f4b78e37fc79c3de1136f6256a5fe5e682df4e0f6605a383",
+  "pages": 10,
+  "references_start_page": 8,
+  "body_pages_upper_bound": 8,
+  "a4": true,
+  "all_fonts_embedded": true
+}

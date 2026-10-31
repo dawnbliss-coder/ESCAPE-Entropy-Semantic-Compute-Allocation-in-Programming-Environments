@@ -1,0 +1,26 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-16bd3937-7d0d-34dc-82e9-34a0016266a3)
+
+=== 2026-10-29 18:13:45  extract teacher + student on the holdout ===
+[holdout extract] 500/4107 teacher 16s student 657s
+[holdout extract] 1000/4107 teacher 32s student 1312s
+[holdout extract] 1500/4107 teacher 49s student 1979s
+[holdout extract] 2000/4107 teacher 65s student 2609s
+[holdout extract] 2500/4107 teacher 81s student 3242s
+[holdout extract] 3000/4107 teacher 97s student 3868s
+[holdout extract] 3500/4107 teacher 113s student 4493s
+[holdout extract] 4000/4107 teacher 129s student 5136s
+[holdout extract] 4107/4107 teacher 132s student 5270s
+[holdout extract] 4107 files, 3063441 bytes; missing artifacts: 0
+[holdout view] 4107 files at /scratch/divyansh.atri/escape-46763/holdout_view
+
+=== 2026-10-29 19:44:55  score once (k=0, 10,000 permutations) ===
+[wrote] /home2/divyansh.atri/escape-final-20260928/results/final/analysis/english_holdout_scores.json
+
+=== prose (n=4107, targets=317378) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.0110 [0.0106,0.0114] P=0.4310 R=0.0056 tp=1770
+  baseline_word_start F1=0.7737 [0.7724,0.7750] P=0.6342 R=0.9920 tp=314825
+  holdout-teacher-swa512 F1=0.5003 [0.4983,0.5021] P=0.3463 R=0.9005 tp=285806 | margin=+0.3504 p=0.0001 | vs word_start=-0.2735
+  holdout-student-v1 F1=0.4627 [0.4609,0.4643] P=0.3042 R=0.9663 tp=306691 | margin=+0.3050 p=0.0001 | vs word_start=-0.3110
+
+=== 2026-10-29 19:52:46  HOLDOUT SCORE DONE ===

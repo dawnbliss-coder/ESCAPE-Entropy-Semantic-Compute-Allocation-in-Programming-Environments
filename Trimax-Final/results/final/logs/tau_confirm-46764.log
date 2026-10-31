@@ -1,0 +1,15 @@
+MODEL=student SRC=student-v1-14326k PART=cli
+cpp 2.0 student-tau-STAR-cpp
+english 2.5 student-tau-STAR-english
+python 2.0 student-tau-STAR-python
+
+=== 2026-10-29 18:59:51  convert + validate student-tau-STAR-cpp ===
+Converted 8000 files
+Validated 8000 samples
+
+=== 2026-10-29 20:16:44  calibrate student-tau-STAR-cpp (k co-frozen under tau*; own record) ===
+{"cpp": 0}
+
+=== 2026-10-29 20:26:20  score student-tau-STAR-cpp (the single confirmatory test run) ===
+scripts/ada_final/env.sh: line 21: 982842 Killed                  PYTHONPATH="$PWD/.deps-c:$PWD" "$ESCAPE_BASE_PYTHON" "$@"
+[2026-10-29T20:49:25.115] error: Detected 1 oom_kill event in StepId=46764.batch. Some of the step tasks have been OOM Killed.

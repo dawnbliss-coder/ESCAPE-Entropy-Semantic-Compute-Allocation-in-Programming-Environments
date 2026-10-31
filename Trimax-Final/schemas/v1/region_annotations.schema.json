@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escape.example/schemas/v1/region_annotations.schema.json",
+  "title": "region_annotations",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "region_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start_byte": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "end_byte": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "region_kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "sample_id",
+    "region_id",
+    "start_byte",
+    "end_byte",
+    "region_kind"
+  ],
+  "additionalProperties": false
+}

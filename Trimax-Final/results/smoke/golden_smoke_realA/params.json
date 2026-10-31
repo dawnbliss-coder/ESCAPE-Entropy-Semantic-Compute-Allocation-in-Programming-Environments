@@ -1,0 +1,160 @@
+{
+  "analysis_id": "golden_smoke_realA",
+  "axes": [
+    "all",
+    "depth",
+    "node_type",
+    "category"
+  ],
+  "ci_level": 0.95,
+  "ci_method": "percentile, paired cluster (file) bootstrap",
+  "created": "2026-09-15T07:02:51Z",
+  "domains": [
+    "py",
+    "cpp",
+    "prose"
+  ],
+  "engine_seconds": {
+    "cpp": 0.2353217601776123,
+    "prose": 0.4658646583557129,
+    "py": 0.3312869071960449
+  },
+  "file_ids": {
+    "cpp": [
+      "cpp_11562d1c691d",
+      "cpp_2b2c690055bf",
+      "cpp_34e849a078b1",
+      "cpp_aa3a0337370b",
+      "cpp_aa561f7c0078",
+      "cpp_d337aa88b1c3"
+    ],
+    "prose": [
+      "prose_dc4e423d093d",
+      "prose_e2e92c7ca331",
+      "prose_e8bc068f77d1",
+      "prose_ec3316e574b3",
+      "prose_f3f2891305fb",
+      "prose_f5c8c2c9ad96"
+    ],
+    "py": [
+      "py_07fbe9f688ef",
+      "py_330c5ac1b62f",
+      "py_70c461e16fe6",
+      "py_8bf2cc2f468d",
+      "py_a30150e6da73",
+      "py_ecbef3331744"
+    ]
+  },
+  "file_ids_sha256": {
+    "cpp": "61bc8e36da1b4136100ba73a93598e031f155b48fb1d4234c5ef1077d6b8822a",
+    "prose": "79b6a185662a2d0e43f482b185f58fbfe796698f9a4214fc79c3a4b74a55ec92",
+    "py": "ebe976efbfa368cd38d7f23af343f3f2fb0c0e36db3761e6518ac8bf82ae3c4d"
+  },
+  "git_commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+  "git_dirty": true,
+  "git_status_lines": 16,
+  "iou": true,
+  "iou_resamples": 100,
+  "k_calibration_run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+  "k_source": "results/smoke/k_calibration/selected_k.json",
+  "k_source_sha256": "b6fe8537398931b26f3cd182db29d4798374d4f7c86212d67755dbab2ed12f7d",
+  "kinds": [
+    "start",
+    "end"
+  ],
+  "ks": {
+    "cpp": 0,
+    "py": 0
+  },
+  "manifest_sha256": "336ff1182497c4640c2529de0cb16c30d55c073c6ffb0ee8c43d28438c7d166f",
+  "master_seed": 20260915,
+  "n_bootstrap": 10000,
+  "n_resamples": 10000,
+  "outputs": [
+    "alignment.parquet",
+    "alignment.csv",
+    "p2_start_end.parquet",
+    "p2_start_end.csv",
+    "p4_openers.parquet",
+    "p4_openers.csv",
+    "iou.parquet",
+    "iou.csv",
+    "p3_bpp.parquet",
+    "p3_bpp.csv",
+    "p3_alignment.parquet",
+    "p3_alignment.csv"
+  ],
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "python": "3.12.14",
+    "scipy": "1.18.1"
+  },
+  "preliminary": true,
+  "problems": [],
+  "prose_split": "main",
+  "run_entry": {
+    "add_bos": true,
+    "add_eos": false,
+    "attn_implementation": "sdpa",
+    "backend": "patcher",
+    "boundary_convention": "one row per patch; byte_offset = first byte of the patch (start-of-patch convention); trigger init = byte 0 (architecturally forced), entropy = entropies[byte_offset] > tau (strict, float64 comparison of the stored float32), length_cap = cut of a patch longer than max_patch_length",
+    "checkpoint": "itazap/blt-1b-hf",
+    "checkpoint_revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+    "chunk_len": 8192,
+    "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+    "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+    "commit_dirty": true,
+    "context_mode": "swa512",
+    "created_by": "stream_a/extract.py",
+    "cuda_version": "13.0",
+    "date": "2026-09-15T06:39:59+00:00",
+    "device": "cuda",
+    "dtype": "float32",
+    "entropy_definition": "entropies[i] = -sum_v p(v) ln p(v) over all 260 patcher logits of the prediction made at token position i of [BOS, b_0+4, ..., b_{n-1}+4], i.e. the distribution of byte i given BOS and bytes < i (nats)",
+    "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+    "invocations": [
+      {
+        "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:39:59+00:00"
+      },
+      {
+        "code_sha256": "a31494b218863f7b09688d35ff512023ee316b9ba1a274cd15e58eaeff3320b0",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:47:03+00:00",
+        "device": "cuda",
+        "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+        "torch_version": "2.12.1+cu130",
+        "transformers_version": "5.17.0"
+      },
+      {
+        "code_sha256": "c0a7aac2eed10e850f324e0cb54107786c7dc20fd1da420e099397854507a20f",
+        "commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+        "commit_dirty": true,
+        "date": "2026-09-15T06:49:38+00:00",
+        "device": "cuda",
+        "hardware": "NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64",
+        "torch_version": "2.12.1+cu130",
+        "transformers_version": "5.17.0"
+      }
+    ],
+    "max_patch_length": null,
+    "patcher_weights_sha256": "888df74288bb8cc332bb57895a100e2e26031c21ba24f91caf0ef3a33e2e1b4d",
+    "python_version": "3.12.14",
+    "seed": null,
+    "seed_note": "no randomness in Stream A: inference and patching are deterministic",
+    "sliding_window": 512,
+    "tau": 1.335442066192627,
+    "tf32_matmul": false,
+    "torch_version": "2.12.1+cu130",
+    "transformers_version": "5.17.0"
+  },
+  "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+  "smoke": true,
+  "source": "golden",
+  "split": "main"
+}

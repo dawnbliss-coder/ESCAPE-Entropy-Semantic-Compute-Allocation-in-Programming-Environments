@@ -1,0 +1,449 @@
+{
+  "calibration_input_sha256": {
+    "synthetic_cpp_3": "6058b07f80c660686ed644e62216e5f7aa9204201c65ac4ac43f5e6198369ab3",
+    "synthetic_english_3": "dbe767d02a6c042ff76732ab149b4b3bec9c84322be8ddea34dc51d095bbe3c4",
+    "synthetic_python_4": "b2583b55924f6c4ce07ff736bc5344d8f46646a453eeb8ebaa61df32aa6dc2a8"
+  },
+  "candidates": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ],
+  "criterion": "maximize median per-file (F1_observed - mean_F1_H0), calibration only; ties smallest k",
+  "curves": [
+    {
+      "k": 0,
+      "language": "cpp",
+      "margin": 0.7890142857143031,
+      "mean_h0_f1": 0.21098571428569693,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_cpp_3"
+    },
+    {
+      "k": 1,
+      "language": "cpp",
+      "margin": 0.7188142857142836,
+      "mean_h0_f1": 0.2811857142857164,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_cpp_3"
+    },
+    {
+      "k": 2,
+      "language": "cpp",
+      "margin": 0.6284142857142991,
+      "mean_h0_f1": 0.3715857142857009,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_cpp_3"
+    },
+    {
+      "k": 4,
+      "language": "cpp",
+      "margin": 0.5406142857142724,
+      "mean_h0_f1": 0.45938571428572766,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_cpp_3"
+    },
+    {
+      "k": 8,
+      "language": "cpp",
+      "margin": 0.4323714285714487,
+      "mean_h0_f1": 0.5676285714285513,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_cpp_3"
+    },
+    {
+      "k": 0,
+      "language": "english",
+      "margin": 0.7668857142857223,
+      "mean_h0_f1": 0.23311428571427772,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_english_3"
+    },
+    {
+      "k": 1,
+      "language": "english",
+      "margin": 0.7342142857142883,
+      "mean_h0_f1": 0.26578571428571174,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_english_3"
+    },
+    {
+      "k": 2,
+      "language": "english",
+      "margin": 0.6785857142857137,
+      "mean_h0_f1": 0.3214142857142863,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_english_3"
+    },
+    {
+      "k": 4,
+      "language": "english",
+      "margin": 0.5352428571428478,
+      "mean_h0_f1": 0.46475714285715214,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_english_3"
+    },
+    {
+      "k": 8,
+      "language": "english",
+      "margin": 0.36675714285719474,
+      "mean_h0_f1": 0.6332428571428053,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_english_3"
+    },
+    {
+      "k": 0,
+      "language": "python",
+      "margin": 0.7044142857142799,
+      "mean_h0_f1": 0.29558571428572006,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_python_4"
+    },
+    {
+      "k": 1,
+      "language": "python",
+      "margin": 0.5978999999999928,
+      "mean_h0_f1": 0.4021000000000072,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_python_4"
+    },
+    {
+      "k": 2,
+      "language": "python",
+      "margin": 0.4844428571428607,
+      "mean_h0_f1": 0.5155571428571393,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_python_4"
+    },
+    {
+      "k": 4,
+      "language": "python",
+      "margin": 0.35094285714291995,
+      "mean_h0_f1": 0.64905714285708,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_python_4"
+    },
+    {
+      "k": 8,
+      "language": "python",
+      "margin": 0.15527142857139586,
+      "mean_h0_f1": 0.8447285714286041,
+      "observed_f1": 1.0,
+      "sample_id": "synthetic_python_4"
+    }
+  ],
+  "eof_policy": "fixed_eof",
+  "input_manifest_sha256": "d53530fcfdcf1d2b8b2e772ba51e22ae8b0031bd77f2d222057987b3597cab4c",
+  "model_signature": {
+    "entropy_definition": "global_next_byte_shannon",
+    "entropy_unit": "nats",
+    "model": {
+      "checkpoint": "SYNTHETIC-NOT-A-MODEL",
+      "configuration": {},
+      "revision": "fixture-v1",
+      "run_id": "synthetic-v1"
+    },
+    "threshold": 1.34
+  },
+  "permutations": 10000,
+  "record_sha256": "42af143825a6e53b1b895cee6cfa74254256bb3c798a1a48a8190c4035b4539e",
+  "schema_version": "1.0.0",
+  "seed": 20260927,
+  "selected_k": {
+    "cpp": 0,
+    "english": 0,
+    "python": 0
+  },
+  "split_manifest": [
+    {
+      "byte_length": 105,
+      "domain": "code",
+      "language": "cpp",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_cpp_0",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_cpp_0.bin",
+      "text_sha256": "0fa0901278a351d37633940e89d74247e7194e77da6147b7c2fde113e5cc5116"
+    },
+    {
+      "byte_length": 105,
+      "domain": "code",
+      "language": "cpp",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_cpp_1",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_cpp_1.bin",
+      "text_sha256": "19152ba5cdd0eadcfdb7a9ffaaeca6762ca611bcd1d15ef49654270bcdd08bf2"
+    },
+    {
+      "byte_length": 105,
+      "domain": "code",
+      "language": "cpp",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_cpp_2",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_cpp_2.bin",
+      "text_sha256": "4bfc1d02db91d165494821c70389c21ab793d8b4145f4510b49c6f0707834f4f"
+    },
+    {
+      "byte_length": 105,
+      "domain": "code",
+      "language": "cpp",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_cpp_3",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "calibration",
+      "synthetic": true,
+      "text_path": "text/synthetic_cpp_3.bin",
+      "text_sha256": "c14695bf45b06a7dedc5517c14b85b2b5a82db3143eefea45e1834601fec538b"
+    },
+    {
+      "byte_length": 105,
+      "domain": "code",
+      "language": "cpp",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_cpp_4",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_cpp_4.bin",
+      "text_sha256": "cce313aa4dd76eab874038ead3cdc065b41eb991559c0b678ca1eacafd4939d7"
+    },
+    {
+      "byte_length": 109,
+      "domain": "prose",
+      "language": "english",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_english_0",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_english_0.bin",
+      "text_sha256": "f6013222a30b458ca21a20beca0531c972eaa2647b9dd67c0c74906c94f88206"
+    },
+    {
+      "byte_length": 109,
+      "domain": "prose",
+      "language": "english",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_english_1",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_english_1.bin",
+      "text_sha256": "df4b683d840d38242a320cf67bd37c744ca06b1a8fa1b3007ca57a520bea59b2"
+    },
+    {
+      "byte_length": 109,
+      "domain": "prose",
+      "language": "english",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_english_2",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_english_2.bin",
+      "text_sha256": "276eb9519fc8221a082843752fdeefa9d75ff8eca6569f1619be584ec4c49693"
+    },
+    {
+      "byte_length": 109,
+      "domain": "prose",
+      "language": "english",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_english_3",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "calibration",
+      "synthetic": true,
+      "text_path": "text/synthetic_english_3.bin",
+      "text_sha256": "a3f692f24f99f3bfb3a977e4924ff3f511660a54ffa2bb2963f1679eaa371b66"
+    },
+    {
+      "byte_length": 109,
+      "domain": "prose",
+      "language": "english",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_english_4",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_english_4.bin",
+      "text_sha256": "cd2271384e56e259c2c915938c7f7b0a08fcaa1bec466662c17fe4d74ffe3033"
+    },
+    {
+      "byte_length": 108,
+      "domain": "code",
+      "language": "python",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_python_0",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_python_0.bin",
+      "text_sha256": "2225fdd6e49258398afb46f6db5f292305265ffc7c559adad71e13823e51abb8"
+    },
+    {
+      "byte_length": 108,
+      "domain": "code",
+      "language": "python",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_python_1",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_python_1.bin",
+      "text_sha256": "4cbd50c544c1c502f83cc2c5d40040d9ce07e2fcdc0b87fcfca8b8e9a8a94bf9"
+    },
+    {
+      "byte_length": 108,
+      "domain": "code",
+      "language": "python",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_python_2",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_python_2.bin",
+      "text_sha256": "930e1d42e9b1f8bc52516cfcba7cd788d8999dbd4dd30fe09d7da8b1bff03241"
+    },
+    {
+      "byte_length": 108,
+      "domain": "code",
+      "language": "python",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_python_3",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "test",
+      "synthetic": true,
+      "text_path": "text/synthetic_python_3.bin",
+      "text_sha256": "fec89278405077e0142a252c35d7a222c60dfcf33b22eb674cc466fba7ac9b42"
+    },
+    {
+      "byte_length": 108,
+      "domain": "code",
+      "language": "python",
+      "license_metadata": {
+        "licenses": [],
+        "status": "synthetic"
+      },
+      "sample_id": "synthetic_python_4",
+      "schema_version": "1.0.0",
+      "source_metadata": {
+        "generator_seed": 71
+      },
+      "source_name": "synthetic_fixture",
+      "split": "calibration",
+      "synthetic": true,
+      "text_path": "text/synthetic_python_4.bin",
+      "text_sha256": "0ebab39fe9942aee3fa25d4acc5fb692edcab002fb05b2c1a423042bc1129a48"
+    }
+  ],
+  "split_rule": "per-language SHA256 rank; ceil(n/5) calibration; minimum 5 files",
+  "synthetic": true,
+  "tie_tolerance": 1e-12
+}

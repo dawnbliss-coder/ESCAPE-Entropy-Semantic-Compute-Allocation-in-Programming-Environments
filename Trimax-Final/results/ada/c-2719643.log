@@ -1,0 +1,39 @@
+==========================================
+SLURM_JOB_ID = 2719643
+SLURM_NODELIST = gnode052
+SLURM_JOB_GPUS = 
+==========================================
+gnode052
+Python 3.12.4
+{'numpy': '2.5.3', 'pandas': '2.3.3', 'pyarrow': '25.0.1', 'scipy': '1.18.1', 'jsonschema': '4.26.0', 'pytest': '9.1.1'}
+........................................................................ [ 42%]
+........................................................................ [ 85%]
+.........................                                                [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_stream_a_model.py:11: could not import 'transformers': No module named 'transformers'
+169 passed, 1 skipped in 46.06s
+SYNTHETIC data written to results/ada/synthetic-2719643/data
+Validated 15 samples
+{"cpp": 0, "english": 0, "python": 0}
+{"kind": "start", "axis": "global", "language": "all", "stratum": "all", "n_files": 12, "tp": 84, "fp": 0, "fn": 0, "precision": 1.0, "precision_h0_mean": 0.259675, "precision_h0_sd": 0.037533833473628396, "precision_h0_p025": 0.19047619047619047, "precision_h0_p975": 0.3333333333333333, "precision_permutation_p": 9.999000099990002e-05, "precision_margin": 0.740325, "precision_ratio": 3.850967555598344, "recall": 1.0, "recall_h0_mean": 0.259675, "recall_h0_sd": 0.037533833473628396, "recall_h0_p025": 0.19047619047619047, "recall_h0_p975": 0.3333333333333333, "recall_permutation_p": 9.999000099990002e-05, "recall_margin": 0.740325, "recall_ratio": 3.850967555598344, "f1": 1.0, "f1_h0_mean": 0.259675, "f1_h0_sd": 0.037533833473628396, "f1_h0_p025": 0.19047619047619047, "f1_h0_p975": 0.3333333333333333, "f1_permutation_p": 9.999000099990002e-05, "f1_margin": 0.740325, "f1_ratio": 3.850967555598344, "precision_ci_low": 1.0, "precision_ci_high": 1.0, "recall_ci_low": 1.0, "recall_ci_high": 1.0, "f1_ci_low": 1.0, "f1_ci_high": 1.0, "f1_margin_ci_low": 0.7232919345238096, "f1_margin_ci_high": 0.7570428571428571, "f1_ratio_ci_low": 3.613917067117681, "f1_ratio_ci_high": 4.115952270375773, "ci_method": "paired file percentile bootstrap"}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home2/divyansh.atri/escape-mid-c-20260927/escape_scoring/__main__.py", line 89, in <module>
+    main()
+  File "/home2/divyansh.atri/escape-mid-c-20260927/escape_scoring/__main__.py", line 82, in main
+    write_json(out / "o5.json", result, exclusive=True)
+  File "/home2/divyansh.atri/escape-mid-c-20260927/escape_scoring/contract.py", line 37, in write_json
+    json.dump(value, stream, sort_keys=True, indent=2, allow_nan=False)
+  File "/usr/local/apps/python-3.12.4/lib/python3.12/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/local/apps/python-3.12.4/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/local/apps/python-3.12.4/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/local/apps/python-3.12.4/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/usr/local/apps/python-3.12.4/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

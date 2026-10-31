@@ -1,0 +1,192 @@
+{
+  "sweep": "results/final/teacher_tau_sweep_calib.json",
+  "k": 0,
+  "tie_tolerance": 1e-12,
+  "rule": "per language: argmax over tau of median per-file (F1_observed - mean_F1_H0), calibration files only, k=0; ties -> smaller tau",
+  "languages": {
+    "python": {
+      "tau_star_snippet": 2.0,
+      "tau_star_frozen": 2.0,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "teacher-tau08",
+          "n_files": 1600,
+          "median_margin_snippet": 0.08529930984458925,
+          "median_margin_frozen": 0.08124537184067752,
+          "pooled_f1": 0.11137535477503188,
+          "pooled_margin": 0.07902760579609172
+        },
+        {
+          "tau": 1.0,
+          "run_id": "teacher-tau10",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09897369013336396,
+          "median_margin_frozen": 0.09515626747437092,
+          "pooled_f1": 0.12474365795577227,
+          "pooled_margin": 0.09244321681500497
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+          "n_files": 1600,
+          "median_margin_snippet": 0.12446455675292521,
+          "median_margin_frozen": 0.1213282878953108,
+          "pooled_f1": 0.14929989689693018,
+          "pooled_margin": 0.11716257025975321
+        },
+        {
+          "tau": 1.7,
+          "run_id": "teacher-tau17",
+          "n_files": 1600,
+          "median_margin_snippet": 0.15004600789753628,
+          "median_margin_frozen": 0.1472847700427243,
+          "pooled_f1": 0.17180499276569144,
+          "pooled_margin": 0.1400328188450459
+        },
+        {
+          "tau": 2.0,
+          "run_id": "teacher-tau20",
+          "n_files": 1600,
+          "median_margin_snippet": 0.16188750183669573,
+          "median_margin_frozen": 0.15798315340909092,
+          "pooled_f1": 0.1811265709156194,
+          "pooled_margin": 0.150137302513465
+        },
+        {
+          "tau": 2.5,
+          "run_id": "teacher-tau25",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09718528431148664,
+          "median_margin_frozen": 0.0926401225666907,
+          "pooled_f1": 0.12622059831011648,
+          "pooled_margin": 0.09840588262160312
+        }
+      ]
+    },
+    "cpp": {
+      "tau_star_snippet": 2.0,
+      "tau_star_frozen": 2.0,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "teacher-tau08",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09104894905335655,
+          "median_margin_frozen": 0.09085784962487023,
+          "pooled_f1": 0.12792615588829917,
+          "pooled_margin": 0.09221365835442806
+        },
+        {
+          "tau": 1.0,
+          "run_id": "teacher-tau10",
+          "n_files": 1600,
+          "median_margin_snippet": 0.10469774449735303,
+          "median_margin_frozen": 0.10460798964354387,
+          "pooled_f1": 0.13974592784378315,
+          "pooled_margin": 0.10454014558320346
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+          "n_files": 1600,
+          "median_margin_snippet": 0.12703802850302942,
+          "median_margin_frozen": 0.12581027806276446,
+          "pooled_f1": 0.15938649304544839,
+          "pooled_margin": 0.12515521732528379
+        },
+        {
+          "tau": 1.7,
+          "run_id": "teacher-tau17",
+          "n_files": 1600,
+          "median_margin_snippet": 0.1475134079866144,
+          "median_margin_frozen": 0.14698665526090676,
+          "pooled_f1": 0.1777443090987514,
+          "pooled_margin": 0.14492372455625133
+        },
+        {
+          "tau": 2.0,
+          "run_id": "teacher-tau20",
+          "n_files": 1600,
+          "median_margin_snippet": 0.15108421780639977,
+          "median_margin_frozen": 0.1500476666450315,
+          "pooled_f1": 0.18362555297339825,
+          "pooled_margin": 0.1523856417065195
+        },
+        {
+          "tau": 2.5,
+          "run_id": "teacher-tau25",
+          "n_files": 1600,
+          "median_margin_snippet": 0.09516143687238204,
+          "median_margin_frozen": 0.09594665927664754,
+          "pooled_f1": 0.14911297453709377,
+          "pooled_margin": 0.12229084409369656
+        }
+      ]
+    },
+    "english": {
+      "tau_star_snippet": 2.0,
+      "tau_star_frozen": 2.0,
+      "agree": true,
+      "grid": [
+        {
+          "tau": 0.8,
+          "run_id": "teacher-tau08",
+          "n_files": 60,
+          "median_margin_snippet": 0.24562452347423633,
+          "median_margin_frozen": 0.24351828953279425,
+          "pooled_f1": 0.4030538051381483,
+          "pooled_margin": 0.2379749959605752
+        },
+        {
+          "tau": 1.0,
+          "run_id": "teacher-tau10",
+          "n_files": 60,
+          "median_margin_snippet": 0.29501296259969817,
+          "median_margin_frozen": 0.2884017079889807,
+          "pooled_f1": 0.4415888903918121,
+          "pooled_margin": 0.28162514089904866
+        },
+        {
+          "tau": 1.335442066192627,
+          "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+          "n_files": 60,
+          "median_margin_snippet": 0.35730181974588904,
+          "median_margin_frozen": 0.3559211744639376,
+          "pooled_f1": 0.5019737544009388,
+          "pooled_margin": 0.3512817774458551
+        },
+        {
+          "tau": 1.7,
+          "run_id": "teacher-tau17",
+          "n_files": 60,
+          "median_margin_snippet": 0.41519900242413105,
+          "median_margin_frozen": 0.4078685807778609,
+          "pooled_f1": 0.5507519979862815,
+          "pooled_margin": 0.4104116418098294
+        },
+        {
+          "tau": 2.0,
+          "run_id": "teacher-tau20",
+          "n_files": 60,
+          "median_margin_snippet": 0.4384443132495196,
+          "median_margin_frozen": 0.4355377568633898,
+          "pooled_f1": 0.565994565994566,
+          "pooled_margin": 0.4351099242099242
+        },
+        {
+          "tau": 2.5,
+          "run_id": "teacher-tau25",
+          "n_files": 60,
+          "median_margin_snippet": 0.39404685000526835,
+          "median_margin_frozen": 0.38673871703853957,
+          "pooled_f1": 0.49154942876026814,
+          "pooled_margin": 0.38197309035973936
+        }
+      ]
+    }
+  },
+  "all_agree": true
+}

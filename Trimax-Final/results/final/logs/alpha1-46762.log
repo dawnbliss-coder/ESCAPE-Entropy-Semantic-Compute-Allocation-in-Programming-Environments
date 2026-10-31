@@ -1,0 +1,55 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-4fffb4d0-daf1-322b-a4e8-8e00411bfbcc)
+
+=== 2026-10-29 18:13:45  materialize ext corpus (same limits as run_all.sbatch) ===
+Generating train split:   0%|          | 0/412178 [00:00<?, ? examples/s]Generating train split:   1%|          | 5000/412178 [00:00<00:12, 33309.49 examples/s]Generating train split:   3%|▎         | 13000/412178 [00:00<00:07, 50555.06 examples/s]Generating train split:   6%|▌         | 24000/412178 [00:00<00:05, 69313.28 examples/s]Generating train split:   8%|▊         | 33000/412178 [00:00<00:05, 72514.92 examples/s]Generating train split:  11%|█         | 45000/412178 [00:00<00:04, 83359.26 examples/s]Generating train split:  13%|█▎        | 55000/412178 [00:00<00:04, 83823.37 examples/s]Generating train split:  16%|█▌        | 66000/412178 [00:00<00:03, 86549.25 examples/s]Generating train split:  19%|█▊        | 77000/412178 [00:00<00:03, 89921.37 examples/s]Generating train split:  21%|██▏       | 88000/412178 [00:01<00:03, 85598.98 examples/s]Generating train split:  25%|██▍       | 101000/412178 [00:01<00:03, 84037.05 examples/s]Generating train split:  27%|██▋       | 113000/412178 [00:01<00:03, 79444.99 examples/s]Generating train split:  30%|██▉       | 122000/412178 [00:01<00:03, 79195.23 examples/s]Generating train split:  32%|███▏      | 131000/412178 [00:01<00:03, 75792.81 examples/s]Generating train split:  35%|███▍      | 143000/412178 [00:01<00:03, 81469.52 examples/s]Generating train split:  37%|███▋      | 152000/412178 [00:01<00:03, 83301.86 examples/s]Generating train split:  39%|███▉      | 162000/412178 [00:02<00:03, 78718.65 examples/s]Generating train split:  42%|████▏     | 172000/412178 [00:02<00:02, 82842.79 examples/s]Generating train split:  45%|████▍     | 184000/412178 [00:02<00:02, 89244.71 examples/s]Generating train split:  47%|████▋     | 194000/412178 [00:02<00:02, 79894.08 examples/s]Generating train split:  50%|████▉     | 205000/412178 [00:02<00:02, 84585.49 examples/s]Generating train split:  53%|█████▎    | 218000/412178 [00:02<00:02, 81667.00 examples/s]Generating train split:  56%|█████▌    | 229000/412178 [00:02<00:02, 85206.10 examples/s]Generating train split:  59%|█████▉    | 243000/412178 [00:03<00:02, 83019.10 examples/s]Generating train split:  62%|██████▏   | 254000/412178 [00:03<00:01, 86491.63 examples/s]Generating train split:  64%|██████▍   | 265000/412178 [00:03<00:01, 83659.58 examples/s]Generating train split:  67%|██████▋   | 277000/412178 [00:03<00:01, 88848.59 examples/s]Generating train split:  70%|██████▉   | 287000/412178 [00:03<00:01, 89242.64 examples/s]Generating train split:  73%|███████▎  | 300000/412178 [00:03<00:01, 86434.45 examples/s]Generating train split:  75%|███████▌  | 311000/412178 [00:03<00:01, 91145.04 examples/s]Generating train split:  78%|███████▊  | 321000/412178 [00:03<00:01, 87542.50 examples/s]Generating train split:  80%|████████  | 330000/412178 [00:03<00:00, 87666.10 examples/s]Generating train split:  83%|████████▎ | 341000/412178 [00:04<00:00, 90606.98 examples/s]Generating train split:  86%|████████▌ | 353000/412178 [00:04<00:00, 82517.97 examples/s]Generating train split:  88%|████████▊ | 363000/412178 [00:04<00:00, 83942.97 examples/s]Generating train split:  90%|█████████ | 372000/412178 [00:04<00:00, 79034.90 examples/s]Generating train split:  93%|█████████▎| 382000/412178 [00:04<00:00, 81403.85 examples/s]Generating train split:  95%|█████████▌| 393000/412178 [00:04<00:00, 86962.07 examples/s]Generating train split:  99%|█████████▊| 407000/412178 [00:04<00:00, 82673.47 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:05<00:00, 82059.96 examples/s]
+Generating test split:   0%|          | 0/22176 [00:00<?, ? examples/s]Generating test split:  32%|███▏      | 7000/22176 [00:00<00:00, 58223.72 examples/s]Generating test split:  81%|████████  | 18000/22176 [00:00<00:00, 79819.23 examples/s]Generating test split: 100%|██████████| 22176/22176 [00:00<00:00, 82257.40 examples/s]
+Generating validation split:   0%|          | 0/23107 [00:00<?, ? examples/s]Generating validation split:  30%|███       | 7000/23107 [00:00<00:00, 62264.21 examples/s]Generating validation split:  78%|███████▊  | 18000/23107 [00:00<00:00, 77980.49 examples/s]Generating validation split: 100%|██████████| 23107/23107 [00:00<00:00, 82117.50 examples/s]
+{
+  "domain": "py",
+  "files": 15000,
+  "bytes": 15932154,
+  "by_split": {
+    "train": 13975,
+    "val": 1025
+  },
+  "by_source": {
+    "code_search_net": 15000
+  },
+  "groups": 4765,
+  "dropped": {
+    "duplicate_hash": 8000,
+    "evaluation_repo": 106
+  },
+  "limit": 15000,
+  "evaluation_repos": 317,
+  "pool_after_filters": null
+}
+wrote 15000 files to /scratch/divyansh.atri/escape-46762/corpus_ext/py
+{
+  "domain": "prose",
+  "files": 8000,
+  "bytes": 6144905,
+  "by_split": {
+    "train": 7470,
+    "val": 530
+  },
+  "by_source": {
+    "wikitext-103": 8000
+  },
+  "groups": 374,
+  "dropped": {
+    "evaluation_article": 313,
+    "length_or_bytes": 2646
+  },
+  "limit": 8000,
+  "evaluation_articles": 18
+}
+wrote 8000 files to /scratch/divyansh.atri/escape-46762/corpus_ext/prose
+Fatal Python error: PyGILState_Release: thread state 0x14d810004250 must be current when releasing
+Python runtime state: finalizing (tstate=0x00005606dc0479b8)
+
+Thread 0x000014d82bd6f740 (most recent call first):
+  <no Python frame>
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, pyarrow.lib, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, pyarrow._acero, pyarrow._fs, pyarrow._csv, pyarrow._json, pyarrow._substrait, pyarrow._dataset, pyarrow._dataset_orc, pyarrow._parquet, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, pyarrow._parquet_encryption, pyarrow._dataset_parquet_encryption, pyarrow._dataset_parquet, yaml._yaml, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist, xxhash._xxhash, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special (total: 95)
+scripts/ada_final/env.sh: line 20: 1203497 Aborted                 (core dumped) PYTHONPATH="$PWD" "$ESCAPE_BASE_PYTHON" "$@"

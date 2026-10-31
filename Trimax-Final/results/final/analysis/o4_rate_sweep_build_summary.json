@@ -1,0 +1,244 @@
+{
+  "seed": 20260927,
+  "rate": 0.2,
+  "case_rate": 0.5,
+  "files_per_language": 1000,
+  "sweep_rates": [
+    0.05,
+    0.1,
+    0.2,
+    0.4
+  ],
+  "sweep_case_rates": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "calibration_record_sha256": "d5f08e4f4c63aeb34618a3ae2db9783ddadf0988e47cef600942a3093a9b2ae5",
+  "summary": [
+    {
+      "language": "cpp",
+      "condition": "case_inversion_r0.25",
+      "files": 1000,
+      "edits": 41791,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "case_inversion_r0.5",
+      "files": 1000,
+      "edits": 83037,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "case_inversion_r1",
+      "files": 1000,
+      "edits": 168877,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "clean",
+      "files": 1000,
+      "edits": 0,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "indentation_r0.05",
+      "files": 1000,
+      "edits": 17084,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "indentation_r0.1",
+      "files": 1000,
+      "edits": 34224,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "indentation_r0.2",
+      "files": 1000,
+      "edits": 68746,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "indentation_r0.4",
+      "files": 1000,
+      "edits": 136951,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "keyword_typo_r0.05",
+      "files": 1000,
+      "edits": 4428,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "keyword_typo_r0.1",
+      "files": 1000,
+      "edits": 8924,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "keyword_typo_r0.2",
+      "files": 1000,
+      "edits": 17884,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "keyword_typo_r0.4",
+      "files": 1000,
+      "edits": 35866,
+      "dropped": 0,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "missing_semicolon_r0.05",
+      "files": 1000,
+      "edits": 6604,
+      "dropped": 13,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "missing_semicolon_r0.1",
+      "files": 1000,
+      "edits": 13074,
+      "dropped": 33,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "missing_semicolon_r0.2",
+      "files": 1000,
+      "edits": 25972,
+      "dropped": 69,
+      "nodes": 388309
+    },
+    {
+      "language": "cpp",
+      "condition": "missing_semicolon_r0.4",
+      "files": 1000,
+      "edits": 52162,
+      "dropped": 147,
+      "nodes": 388309
+    },
+    {
+      "language": "python",
+      "condition": "case_inversion_r0.25",
+      "files": 1000,
+      "edits": 2520,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "case_inversion_r0.5",
+      "files": 1000,
+      "edits": 4601,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "case_inversion_r1",
+      "files": 1000,
+      "edits": 9273,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "clean",
+      "files": 1000,
+      "edits": 0,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "indentation_r0.05",
+      "files": 1000,
+      "edits": 1093,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "indentation_r0.1",
+      "files": 1000,
+      "edits": 2177,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "indentation_r0.2",
+      "files": 1000,
+      "edits": 4416,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "indentation_r0.4",
+      "files": 1000,
+      "edits": 8648,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "keyword_typo_r0.05",
+      "files": 1000,
+      "edits": 420,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "keyword_typo_r0.1",
+      "files": 1000,
+      "edits": 813,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "keyword_typo_r0.2",
+      "files": 1000,
+      "edits": 1626,
+      "dropped": 0,
+      "nodes": 23941
+    },
+    {
+      "language": "python",
+      "condition": "keyword_typo_r0.4",
+      "files": 1000,
+      "edits": 3288,
+      "dropped": 0,
+      "nodes": 23941
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-bf89e450-7dac-6425-5f66-3ce63f009c27)
+student 1 {'seconds_per_pass': 0.009349501179531216, 'tokens_per_s': 54869.23742232437, 'peak_mem_mib': 457.16064453125}
+student 8 {'seconds_per_pass': 0.021545606991276146, 'tokens_per_s': 190479.66491088958, 'peak_mem_mib': 515.5390625}
+student 32 {'seconds_per_pass': 0.07376367668621242, 'tokens_per_s': 222548.55963637732, 'peak_mem_mib': 713.53125}
+student 64 {'seconds_per_pass': 0.14551238669082522, 'tokens_per_s': 225630.27620294064, 'peak_mem_mib': 978.171875}
+teacher 1 {'seconds_per_pass': 0.015177822625264525, 'tokens_per_s': 33799.31447782743, 'peak_mem_mib': 476.6435546875}
+teacher 8 {'seconds_per_pass': 0.0964150461833924, 'tokens_per_s': 42565.97037970323, 'peak_mem_mib': 641.296875}
+teacher 32 {'seconds_per_pass': 0.37009805799461903, 'tokens_per_s': 44355.81231890354, 'peak_mem_mib': 1218.515625}
+teacher 64 {'seconds_per_pass': 0.7206823707092553, 'tokens_per_s': 45556.82410780852, 'peak_mem_mib': 1988.140625}
+student rolling {'files': 20, 'bytes': 24134, 'batch_windows': 64, 'seconds': 47.68262741714716, 'bytes_per_s': 506.1382165220444, 'peak_mem_mib': 1010.73681640625}
+teacher rolling {'files': 20, 'bytes': 24134, 'batch_windows': 32, 'seconds': 227.82516620401293, 'bytes_per_s': 105.93210751084663, 'peak_mem_mib': 1234.798828125}
+{"forward_B32_tokens_per_s_student_over_teacher": 5.017348302322302, "rolling_bytes_per_s_student_over_teacher": 4.777949088478389}
+
+=== 2026-10-29 12:41:45  EFFICIENCY DONE ===

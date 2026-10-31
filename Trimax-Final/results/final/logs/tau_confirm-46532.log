@@ -1,0 +1,6 @@
+MODEL=teacher SRC=swa512-float32-t1.3354-mplnone-91aa6b8e DST=teacher-tau-STAR tau*=2.0 PART=retau
+
+=== 2026-10-29 15:44:53  retau teacher-tau-STAR at tau*=2.0 (full corpus) ===
+[retau] DONE dst_run=teacher-tau-STAR tau=2.0 shard=None: 16300 done, 0 failed
+
+=== 2026-10-29 15:47:55  TAU CONFIRM teacher retau DONE ===

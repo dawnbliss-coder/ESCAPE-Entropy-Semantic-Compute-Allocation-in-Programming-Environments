@@ -1,0 +1,78 @@
+{
+  "created": "2026-09-15T06:50:45Z",
+  "file_ids": {
+    "cpp": [
+      "cpp_11562d1c691d",
+      "cpp_2b2c690055bf",
+      "cpp_34e849a078b1",
+      "cpp_aa3a0337370b",
+      "cpp_aa561f7c0078",
+      "cpp_d337aa88b1c3"
+    ],
+    "py": [
+      "py_07fbe9f688ef",
+      "py_330c5ac1b62f",
+      "py_70c461e16fe6",
+      "py_8bf2cc2f468d",
+      "py_a30150e6da73",
+      "py_ecbef3331744"
+    ]
+  },
+  "file_ids_sha256": {
+    "cpp": "61bc8e36da1b4136100ba73a93598e031f155b48fb1d4234c5ef1077d6b8822a",
+    "py": "ebe976efbfa368cd38d7f23af343f3f2fb0c0e36db3761e6518ac8bf82ae3c4d"
+  },
+  "git_commit": "2b3d1d8da8612cf99a76fe7e955e1dff0bb52077",
+  "git_dirty": true,
+  "git_status_lines": 15,
+  "grid": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "manifest_sha256": "336ff1182497c4640c2529de0cb16c30d55c073c6ffb0ee8c43d28438c7d166f",
+  "master_seed": 20260915,
+  "method": "argmax over k of pooled F1(BLT entropy-triggered vs AST start targets) minus the mean pooled F1 of density-matched H0 resamples; ties -> smallest k; calib split only",
+  "n_resamples": 1000,
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "python": "3.12.14",
+    "scipy": "1.18.1"
+  },
+  "preliminary": true,
+  "run_entry": {
+    "checkpoint": "itazap/blt-1b-hf",
+    "checkpoint_revision": "91aa6b8e168046ad91e517d2191e1e974f50cc01",
+    "chunk_len": 8192,
+    "context_mode": "swa512",
+    "dtype": "float32",
+    "max_patch_length": null,
+    "sliding_window": 512,
+    "tau": 1.335442066192627
+  },
+  "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+  "selected_k": {
+    "cpp": {
+      "f1_blt": 0.24489795918367346,
+      "f1_h0_mean": 0.04102551020408163,
+      "k": 0,
+      "margin_f1": 0.20387244897959184
+    },
+    "py": {
+      "f1_blt": 0.15625,
+      "f1_h0_mean": 0.0495,
+      "k": 0,
+      "margin_f1": 0.10675
+    }
+  },
+  "smoke": true,
+  "source": "golden"
+}

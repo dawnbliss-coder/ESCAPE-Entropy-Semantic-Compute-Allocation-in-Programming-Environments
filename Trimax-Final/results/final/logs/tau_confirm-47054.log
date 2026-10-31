@@ -1,0 +1,18 @@
+MODEL=student SRC=student-v1-14326k PART=cli
+cpp 2.0 student-tau-STAR-cpp
+english 2.5 student-tau-STAR-english
+python 2.0 student-tau-STAR-python
+
+=== 2026-10-29 22:32:13  convert + validate student-tau-STAR-cpp ===
+Converted 8000 files
+Validated 8000 samples
+
+=== 2026-10-29 23:39:50  calibrate student-tau-STAR-cpp: reusing existing record (verified at scoring) ===
+
+=== 2026-10-29 23:39:50  score student-tau-STAR-cpp (the single confirmatory test run) ===
+{"kind": "start", "axis": "global", "language": "all", "stratum": "all", "n_files": 6400, "tp": 1045981, "fp": 8135767, "fn": 786740, "precision": 0.11391959352402178, "precision_h0_mean": 0.02032904524280126, "precision_h0_sd": 4.4041528641303476e-05, "precision_h0_p025": 0.020242877500014158, "precision_h0_p975": 0.020415393670137755, "precision_permutation_p": 9.999000099990002e-05, "precision_margin": 0.09359054828122053, "precision_ratio": 5.603784740671084, "recall": 0.5707257132973322, "recall_h0_mean": 0.10184647335846538, "recall_h0_sd": 0.00022064363180169312, "recall_h0_p025": 0.10141478162797284, "recall_h0_p975": 0.10227907030038942, "recall_permutation_p": 9.999000099990002e-05, "recall_margin": 0.4688792399388669, "recall_ratio": 5.603784740671083, "f1": 0.18992853854325614, "f1_h0_mean": 0.03389290405193387, "f1_h0_sd": 7.342672942639922e-05, "f1_h0_p025": 0.03374924383554032, "f1_h0_p975": 0.034036865508450746, "f1_permutation_p": 9.999000099990002e-05, "f1_margin": 0.15603563449132227, "f1_ratio": 5.603784740671084, "precision_ci_low": 0.11058476033947336, "precision_ci_high": 0.11713387882746822, "recall_ci_low": 0.545807332078208, "recall_ci_high": 0.5890771210645502, "f1_ci_low": 0.18480926659275596, "f1_ci_high": 0.1947662325897128, "f1_margin_ci_low": 0.15115551458672935, "f1_margin_ci_high": 0.16045696937807907, "f1_ratio_ci_low": 5.439806872449852, "f1_ratio_ci_high": 5.729993470765754, "ci_method": "paired file percentile bootstrap"}
+
+=== 2026-10-30 00:41:39  baselines student-tau-STAR-cpp ===
+16 baseline rows written to results/final/student-tau-STAR-cpp-baselines.json
+
+=== 2026-10-30 00:48:51  TAU CONFIRM student cli DONE ===

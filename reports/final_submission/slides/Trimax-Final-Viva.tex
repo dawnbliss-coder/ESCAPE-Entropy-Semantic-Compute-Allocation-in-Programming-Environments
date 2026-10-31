@@ -52,7 +52,7 @@
 \item HF port \texttt{itazap/blt-1b-hf} omits BLT's 512-byte sliding window; \hl{we restored it} (8{,}192-token chunks), float32, $\tau=1.3354$.
 \item Without it (HF full attention) the test margin collapses: \xHfMarginPy{} vs.\ \xHfSwaMarginPy{} (Py), \xHfMarginCpp{} vs.\ \xHfSwaMarginCpp{} (C++ $<$8\,KB).
 \item 8 fidelity gates; logits match an independent reimplementation to $1.05\times10^{-4}$; amended gate set \FidelityAda{} on Ada.
-\item Ada artefacts regenerated; \hl{per-file, score and diagnostic CSVs byte-identical} to the frozen run.
+\item Teacher outputs re-extracted on Ada; \hl{per-file, score and diagnostic CSVs byte-identical} to the frozen run.
 \item Extension: 14.3M student distilled from the 99.5M patcher; golden gate reproduced within \xGateMaxDev{} F1 on GPU.
 \end{itemize}
 \column{.45\textwidth}

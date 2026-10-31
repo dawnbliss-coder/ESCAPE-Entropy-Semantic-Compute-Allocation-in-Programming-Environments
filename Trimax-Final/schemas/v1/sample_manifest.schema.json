@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://escape.example/schemas/v1/sample_manifest.schema.json",
+  "title": "sample_manifest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "sample_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split": {
+      "enum": [
+        "unassigned",
+        "calibration",
+        "test"
+      ]
+    },
+    "domain": {
+      "enum": [
+        "code",
+        "prose"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "byte_length": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "text_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_metadata": {
+      "type": "object"
+    },
+    "license_metadata": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "known",
+            "unknown",
+            "synthetic"
+          ]
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "status",
+        "licenses"
+      ],
+      "additionalProperties": false
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "sample_id",
+    "split",
+    "domain",
+    "language",
+    "source_name",
+    "text_sha256",
+    "byte_length",
+    "text_path",
+    "source_metadata",
+    "license_metadata",
+    "synthetic"
+  ],
+  "additionalProperties": false
+}

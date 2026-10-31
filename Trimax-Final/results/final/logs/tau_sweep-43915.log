@@ -1,0 +1,20 @@
+MODEL=student SRC=student-v1-14326k
+calibration files: 3260
+
+=== 2026-10-29 09:05:24  retau student-tau08 ===
+[retau] DONE dst_run=student-tau08 tau=0.8 shard=None: 3260 done, 0 failed
+
+=== 2026-10-29 09:06:10  retau student-tau10 ===
+[retau] DONE dst_run=student-tau10 tau=1.0 shard=None: 3260 done, 0 failed
+
+=== 2026-10-29 09:06:46  retau student-tau17 ===
+[retau] DONE dst_run=student-tau17 tau=1.7 shard=None: 3260 done, 0 failed
+
+=== 2026-10-29 09:07:22  retau student-tau20 ===
+[retau] DONE dst_run=student-tau20 tau=2.0 shard=None: 3260 done, 0 failed
+
+=== 2026-10-29 09:07:57  retau student-tau25 ===
+[retau] DONE dst_run=student-tau25 tau=2.5 shard=None: 3260 done, 0 failed
+
+=== 2026-10-29 09:08:31  score the grid on calibration files ===
+[2026-10-29T16:51:20.731] error: *** JOB 43915 ON gnode007 CANCELLED AT 2026-10-29T16:51:20 DUE to SIGNAL Terminated ***

@@ -1,0 +1,44 @@
+
+=== 2026-10-29 16:51:31  score_a_runs swa512-float32-t1.3354-mplnone-91aa6b8e k=1 (test split, sensitivity only) ===
+[wrote] results/final/analysis/teacher_test_k1.json
+
+=== cpp (n=6400, targets=1832721) ===
+  baseline_newline   F1=0.0690 [0.0642,0.0743] P=0.0596 R=0.0821 tp=150448
+  baseline_indent_change F1=0.2849 [0.2790,0.2913] P=0.4555 R=0.2073 tp=379904
+  baseline_word_start F1=0.3420 [0.3346,0.3489] P=0.2073 R=0.9763 tp=1789224
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1698 [0.1657,0.1737] P=0.0974 R=0.6636 tp=1216269 | margin=+0.0902 p=0.000999 | vs word_start=-0.1721
+
+=== prose (n=240, targets=19916) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.0075 [0.0061,0.0090] P=0.3167 R=0.0038 tp=76
+  baseline_word_start F1=0.7696 [0.7648,0.7745] P=0.6277 R=0.9944 tp=19804
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.4966 [0.4888,0.5039] P=0.3433 R=0.8971 tp=17866 | margin=+0.1766 p=0.000999 | vs word_start=-0.2730
+
+=== py (n=6400, targets=105338) ===
+  baseline_newline   F1=0.0024 [0.0015,0.0035] P=0.0021 R=0.0029 tp=307
+  baseline_indent_change F1=0.3944 [0.3893,0.3994] P=0.5451 R=0.3090 tp=32545
+  baseline_word_start F1=0.2516 [0.2481,0.2554] P=0.1459 R=0.9159 tp=96478
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1555 [0.1531,0.1579] P=0.0856 R=0.8429 tp=88786 | margin=+0.0855 p=0.000999 | vs indent_change=-0.2389
+
+=== 2026-10-29 16:57:41  score_a_runs swa512-float32-t1.3354-mplnone-91aa6b8e k=2 (test split, sensitivity only) ===
+[wrote] results/final/analysis/teacher_test_k2.json
+
+=== cpp (n=6400, targets=1832721) ===
+  baseline_newline   F1=0.1769 [0.1646,0.1896] P=0.1526 R=0.2103 tp=385495
+  baseline_indent_change F1=0.2872 [0.2814,0.2937] P=0.4592 R=0.2090 tp=382983
+  baseline_word_start F1=0.3443 [0.3370,0.3513] P=0.2087 R=0.9828 tp=1801284
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1729 [0.1690,0.1767] P=0.0991 R=0.6756 tp=1238267 | margin=+0.0626 p=0.000999 | vs word_start=-0.1714
+
+=== prose (n=240, targets=19916) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.0076 [0.0062,0.0091] P=0.3208 R=0.0039 tp=77
+  baseline_word_start F1=0.7705 [0.7658,0.7754] P=0.6285 R=0.9956 tp=19828
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.5003 [0.4925,0.5075] P=0.3459 R=0.9037 tp=17998 | margin=+0.0801 p=0.000999 | vs word_start=-0.2703
+
+=== py (n=6400, targets=105338) ===
+  baseline_newline   F1=0.0071 [0.0058,0.0085] P=0.0061 R=0.0086 tp=908
+  baseline_indent_change F1=0.3948 [0.3898,0.3998] P=0.5457 R=0.3093 tp=32584
+  baseline_word_start F1=0.2541 [0.2505,0.2579] P=0.1473 R=0.9249 tp=97432
+  swa512-float32-t1.3354-mplnone-91aa6b8e F1=0.1563 [0.1539,0.1588] P=0.0861 R=0.8473 tp=89254 | margin=+0.0603 p=0.000999 | vs indent_change=-0.2386
+
+=== 2026-10-29 17:03:13  K SENSITIVITY teacher DONE ===

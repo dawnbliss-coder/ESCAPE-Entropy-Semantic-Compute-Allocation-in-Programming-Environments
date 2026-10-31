@@ -1,0 +1,20 @@
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{xcolor}
+% adjustbox's "max width" on a minimal TeX install: shrink only boxes wider than the line.
+\IfFileExists{adjustbox.sty}{\usepackage{adjustbox}}{%
+  \newsavebox{\escapebox}%
+  \newenvironment{adjustbox}[1]{\begin{lrbox}{\escapebox}}%
+    {\end{lrbox}\ifdim\wd\escapebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\escapebox}}\else\usebox{\escapebox}\fi}}
+\setlength{\titlebox}{6cm}
+\title{Project ESCAPE: Does Entropy-Based Patching Find Syntax?\\
+Final Results Across Code and Natural Language}
+\hypersetup{pdfsubject={ANLP final submission; held-out C-v1 results and distillation extension}}
+\input{generated/results}
+\input{generated/final}

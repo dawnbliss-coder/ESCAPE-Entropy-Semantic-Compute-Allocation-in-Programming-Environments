@@ -1,0 +1,23 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-54766cbe-bd65-d6f2-e132-8f2b1c8eb353)
+[extract] 18 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] FAIL cpp_aa561f7c0078: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL cpp_11562d1c691d: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL cpp_d337aa88b1c3: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL cpp_2b2c690055bf: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL cpp_34e849a078b1: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL cpp_aa3a0337370b: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_e8bc068f77d1: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_ec3316e574b3: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_e2e92c7ca331: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_dc4e423d093d: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_f3f2891305fb: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL prose_f5c8c2c9ad96: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_182f41b1a962: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_ca2ef22485b6: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_dd8332bfcc3f: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_61c03226d22f: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_a0132d6203e8: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] FAIL py_44f23ec7455e: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[extract] DONE run_id=student-golden-gate shard=None: 0 done, 0 skipped, 18 failed
+18 files failed

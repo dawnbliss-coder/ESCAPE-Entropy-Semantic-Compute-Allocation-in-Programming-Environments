@@ -1,0 +1,79 @@
+MODEL=student SRC=student-v1-14326k test files: 13040
+
+=== 2026-10-30 20:44:25  retau student-test-tau08 (test files, scratch view) ===
+[retau] DONE dst_run=student-test-tau08 tau=0.8 shard=None: 13040 done, 0 failed
+
+=== 2026-10-30 21:03:03  retau student-test-tau10 (test files, scratch view) ===
+[retau] DONE dst_run=student-test-tau10 tau=1.0 shard=None: 13040 done, 0 failed
+
+=== 2026-10-30 21:21:32  retau student-test-tau17 (test files, scratch view) ===
+[retau] DONE dst_run=student-test-tau17 tau=1.7 shard=None: 13040 done, 0 failed
+
+=== 2026-10-30 21:39:31  retau student-test-tau20 (test files, scratch view) ===
+[retau] DONE dst_run=student-test-tau20 tau=2.0 shard=None: 13040 done, 0 failed
+
+=== 2026-10-30 21:56:42  retau student-test-tau25 (test files, scratch view) ===
+[retau] DONE dst_run=student-test-tau25 tau=2.5 shard=None: 13040 done, 0 failed
+
+=== 2026-10-30 22:14:35  score the grid on test files (1,000 permutations) ===
+[wrote] /home2/divyansh.atri/escape-final-20260928/results/final/analysis/student_tau_sweep_test.json
+
+=== cpp (n=6400, targets=1832721) ===
+  baseline_newline   F1=0.0412 [0.0392,0.0432] P=0.0356 R=0.0490 tp=89893
+  baseline_indent_change F1=0.2806 [0.2750,0.2869] P=0.4486 R=0.2042 tp=374205
+  baseline_word_start F1=0.3386 [0.3313,0.3457] P=0.2053 R=0.9668 tp=1771816
+  student-test-tau08 F1=0.1221 [0.1194,0.1248] P=0.0659 R=0.8254 tp=1512743 | margin=+0.0842 p=0.000999 | vs word_start=-0.2165
+  student-test-tau10 F1=0.1341 [0.1309,0.1372] P=0.0732 R=0.7913 tp=1450256 | margin=+0.0966 p=0.000999 | vs word_start=-0.2046
+  student-v1-14326k  F1=0.1552 [0.1515,0.1590] P=0.0868 R=0.7321 tp=1341748 | margin=+0.1187 p=0.000999 | vs word_start=-0.1834
+  student-test-tau17 F1=0.1777 [0.1729,0.1822] P=0.1028 R=0.6548 tp=1200066 | margin=+0.1424 p=0.000999 | vs word_start=-0.1610
+  student-test-tau20 F1=0.1899 [0.1853,0.1948] P=0.1139 R=0.5707 tp=1045981 | margin=+0.1560 p=0.000999 | vs word_start=-0.1487
+  student-test-tau25 F1=0.1761 [0.1709,0.1811] P=0.1172 R=0.3538 tp=648477 | margin=+0.1458 p=0.000999 | vs word_start=-0.1626
+
+=== prose (n=240, targets=19916) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.0075 [0.0061,0.0090] P=0.3167 R=0.0038 tp=76
+  baseline_word_start F1=0.7689 [0.7642,0.7738] P=0.6272 R=0.9935 tp=19787
+  student-test-tau08 F1=0.3560 [0.3507,0.3610] P=0.2175 R=0.9814 tp=19546 | margin=+0.1896 p=0.000999 | vs word_start=-0.4129
+  student-test-tau10 F1=0.3951 [0.3894,0.4009] P=0.2477 R=0.9762 tp=19442 | margin=+0.2328 p=0.000999 | vs word_start=-0.3738
+  student-v1-14326k  F1=0.4588 [0.4521,0.4656] P=0.3010 R=0.9646 tp=19211 | margin=+0.3039 p=0.000999 | vs word_start=-0.3101
+  student-test-tau17 F1=0.5386 [0.5311,0.5462] P=0.3765 R=0.9458 tp=18836 | margin=+0.3932 p=0.000999 | vs word_start=-0.2304
+  student-test-tau20 F1=0.5858 [0.5783,0.5931] P=0.4318 R=0.9105 tp=18134 | margin=+0.4479 p=0.000999 | vs word_start=-0.1832
+  student-test-tau25 F1=0.5826 [0.5750,0.5898] P=0.4883 R=0.7222 tp=14384 | margin=+0.4605 p=0.000999 | vs word_start=-0.1863
+
+=== py (n=6400, targets=105338) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.3936 [0.3884,0.3987] P=0.5439 R=0.3083 tp=32477
+  baseline_word_start F1=0.2450 [0.2414,0.2488] P=0.1420 R=0.8916 tp=93917
+  student-test-tau08 F1=0.1049 [0.1031,0.1066] P=0.0556 R=0.9297 tp=97934 | margin=+0.0731 p=0.000999 | vs indent_change=-0.2887
+  student-test-tau10 F1=0.1170 [0.1150,0.1191] P=0.0625 R=0.9080 tp=95647 | margin=+0.0853 p=0.000999 | vs indent_change=-0.2765
+  student-v1-14326k  F1=0.1403 [0.1379,0.1427] P=0.0764 R=0.8591 tp=90491 | margin=+0.1088 p=0.000999 | vs indent_change=-0.2533
+  student-test-tau17 F1=0.1651 [0.1621,0.1680] P=0.0924 R=0.7773 tp=81881 | margin=+0.1340 p=0.000999 | vs indent_change=-0.2285
+  student-test-tau20 F1=0.1777 [0.1746,0.1810] P=0.1024 R=0.6744 tp=71037 | margin=+0.1471 p=0.000999 | vs indent_change=-0.2158
+  student-test-tau25 F1=0.1370 [0.1341,0.1399] P=0.0853 R=0.3477 tp=36623 | margin=+0.1085 p=0.000999 | vs indent_change=-0.2565
+python
+  tau=0.8                snippet=+0.0803 frozen=+0.0757 pooled F1=0.1049
+  tau=1.0                snippet=+0.0939 frozen=+0.0892 pooled F1=0.1170
+  tau=1.335442066192627  snippet=+0.1191 frozen=+0.1146 pooled F1=0.1403
+  tau=1.7                snippet=+0.1480 frozen=+0.1437 pooled F1=0.1651
+  tau=2.0                snippet=+0.1638 frozen=+0.1606 pooled F1=0.1777
+  tau=2.5                snippet=+0.1048 frozen=+0.1026 pooled F1=0.1370
+  test argmax=2.0 (calibration tau*=2.0)
+cpp
+  tau=0.8                snippet=+0.0850 frozen=+0.0863 pooled F1=0.1221
+  tau=1.0                snippet=+0.0987 frozen=+0.0995 pooled F1=0.1341
+  tau=1.335442066192627  snippet=+0.1223 frozen=+0.1223 pooled F1=0.1552
+  tau=1.7                snippet=+0.1456 frozen=+0.1462 pooled F1=0.1777
+  tau=2.0                snippet=+0.1555 frozen=+0.1561 pooled F1=0.1899
+  tau=2.5                snippet=+0.1236 frozen=+0.1229 pooled F1=0.1761
+  test argmax=2.0 (calibration tau*=2.0)
+english
+  tau=0.8                snippet=+0.1936 frozen=+0.1916 pooled F1=0.3560
+  tau=1.0                snippet=+0.2347 frozen=+0.2361 pooled F1=0.3951
+  tau=1.335442066192627  snippet=+0.3085 frozen=+0.3087 pooled F1=0.4588
+  tau=1.7                snippet=+0.3964 frozen=+0.3939 pooled F1=0.5386
+  tau=2.0                snippet=+0.4475 frozen=+0.4471 pooled F1=0.5858
+  tau=2.5                snippet=+0.4620 frozen=+0.4619 pooled F1=0.5826
+  test argmax=2.5 (calibration tau*=2.5)
+[wrote] results/final/analysis/student_tau_sweep_test_summary.json
+
+=== 2026-10-30 22:30:48  TAU SWEEP TEST student DONE ===

@@ -1,0 +1,11 @@
+sample_id,region_id,outcome,intercept,is_memory_unsafe,mean_identifier_entropy_nats,identifier_byte_proportion,region_length,sample_id=synthetic_cpp_1,sample_id=synthetic_cpp_2,sample_id=synthetic_cpp_3,sample_id=synthetic_cpp_4
+synthetic_cpp_0,unit0,0.057692307692307696,1.0,1.0,0.2,0.15384615384615385,52.0,0.0,0.0,0.0,0.0
+synthetic_cpp_0,unit1,0.07547169811320754,1.0,0.0,0.0,0.0,53.0,0.0,0.0,0.0,0.0
+synthetic_cpp_1,unit0,0.11538461538461539,1.0,1.0,0.2,0.15384615384615385,52.0,1.0,0.0,0.0,0.0
+synthetic_cpp_1,unit1,0.018867924528301886,1.0,0.0,0.0,0.0,53.0,1.0,0.0,0.0,0.0
+synthetic_cpp_2,unit0,0.057692307692307696,1.0,1.0,0.2,0.15384615384615385,52.0,0.0,1.0,0.0,0.0
+synthetic_cpp_2,unit1,0.07547169811320754,1.0,0.0,0.0,0.0,53.0,0.0,1.0,0.0,0.0
+synthetic_cpp_3,unit0,0.09615384615384616,1.0,1.0,0.2,0.15384615384615385,52.0,0.0,0.0,1.0,0.0
+synthetic_cpp_3,unit1,0.03773584905660377,1.0,0.0,0.0,0.0,53.0,0.0,0.0,1.0,0.0
+synthetic_cpp_4,unit0,0.038461538461538464,1.0,1.0,0.2,0.15384615384615385,52.0,0.0,0.0,0.0,1.0
+synthetic_cpp_4,unit1,0.09433962264150944,1.0,0.0,0.0,0.0,53.0,0.0,0.0,0.0,1.0

@@ -1,0 +1,33 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-54766cbe-bd65-d6f2-e132-8f2b1c8eb353)
+[extract] 18 files selected (shard None/None)
+[extract] model=student mode=rolling device=cuda 14262144
+[extract] DONE run_id=student-golden-gate shard=None: 18 done, 0 skipped, 0 failed
+[wrote] results/distill/golden_gate_ada.json
+
+=== py (n=6, targets=71) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.4771 [0.3922,0.5153] P=0.6842 R=0.3662 tp=26
+  baseline_word_start F1=0.2234 [0.1564,0.2561] P=0.1275 R=0.9014 tp=64
+  student-golden-gate F1=0.1313 [0.1044,0.1626] P=0.0716 R=0.7887 tp=56 | margin=+0.1005 p=0.0001 | vs indent_change=-0.3458
+
+=== cpp (n=6, targets=55) ===
+  baseline_newline   F1=0.0970 [0.0316,0.2044] P=0.0727 R=0.1455 tp=8
+  baseline_indent_change F1=0.2410 [0.1495,0.3333] P=0.3571 R=0.1818 tp=10
+  baseline_word_start F1=0.3869 [0.2097,0.5166] P=0.2420 R=0.9636 tp=53
+  student-golden-gate F1=0.2196 [0.0998,0.3401] P=0.1264 R=0.8364 tp=46 | margin=+0.1718 p=0.0001 | vs word_start=-0.1673
+
+=== prose (n=6, targets=217) ===
+  baseline_newline   F1=0.0000 [0.0000,0.0000] P=0.0000 R=0.0000 tp=0
+  baseline_indent_change F1=0.0269 [0.0075,0.0549] P=0.5000 R=0.0138 tp=3
+  baseline_word_start F1=0.7601 [0.7160,0.7866] P=0.6130 R=1.0000 tp=217
+  student-golden-gate F1=0.4290 [0.3714,0.4772] P=0.2756 R=0.9677 tp=210 | margin=+0.2742 p=0.0001 | vs word_start=-0.3311
+py     student-golden-gate      obs=0.1313 0.0716 0.7887 exp=0.1313 0.0716 0.7887 PASS
+py     baseline_indent_change   obs=0.4771 exp=0.4771 PASS
+py     tp/fp/fn ada=56/726/15 local=56/726/15
+cpp    student-golden-gate      obs=0.2196 0.1264 0.8364 exp=0.2196 0.1264 0.8364 PASS
+cpp    baseline_word_start      obs=0.3869 exp=0.3869 PASS
+cpp    tp/fp/fn ada=46/318/9 local=46/318/9
+prose  student-golden-gate      obs=0.4290 0.2756 0.9677 exp=0.4290 0.2756 0.9677 PASS
+prose  baseline_word_start      obs=0.7601 exp=0.7601 PASS
+prose  tp/fp/fn ada=210/552/7 local=210/552/7
+GATE 1 PASS

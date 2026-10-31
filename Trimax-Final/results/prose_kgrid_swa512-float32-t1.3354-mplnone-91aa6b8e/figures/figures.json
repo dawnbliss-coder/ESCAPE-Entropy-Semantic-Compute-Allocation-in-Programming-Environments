@@ -1,0 +1,12 @@
+{
+  "analysis_dir": "results/prose_kgrid_swa512-float32-t1.3354-mplnone-91aa6b8e",
+  "k_dir": null,
+  "outputs": [
+    "p1_alignment_effects.png",
+    "depth_alignment.png",
+    "alignment_vs_k.png",
+    "p2_start_end.png"
+  ],
+  "preliminary": true,
+  "smoke": false
+}

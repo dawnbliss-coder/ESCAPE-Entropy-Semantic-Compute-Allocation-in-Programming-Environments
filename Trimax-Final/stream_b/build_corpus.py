@@ -1,0 +1,96 @@
+"""Day 2 step 2: from the validated cpp pool (the-stack-smol), select calib/main
+splits, freeze raw bytes to corpus/{domain}/{file_id}.bin, and write
+corpus/manifest.parquet. py now comes from build_py_corpus.py (CodeSearchNet, per
+proposal §6) instead of this script's the-stack-smol path.
+
+file_id convention: "{domain}_{sha256[:12]}" — content-addressed, stable across reruns,
+unique across domains. Once written, corpus/*.bin are never re-encoded downstream.
+
+GROWTH-SAFETY: calib/main are assigned as fixed-position PREFIXES of corpus_lib's
+stably-ordered `records` (first CALIB_PER_DOMAIN -> calib, next MAIN_PER_DOMAIN -> main),
+never a reshuffle. `the-stack-smol` is already a random per-language sample, so there's
+nothing to gain from reshuffling and real cost to it: a shuffle's permutation depends on
+the list's length, so reshuffling after pulling a bigger pool would silently move files
+between calib and main. With a fixed prefix split, raising CALIB_PER_DOMAIN/MAIN_PER_DOMAIN
+later and re-running this script only APPENDS new files — every file_id already assigned
+to calib or main (and anything Stream A/C built on top of it) stays exactly as it was.
+"""
+
+import os
+
+import pandas as pd
+
+from corpus_lib import DOMAIN_TO_DATA_DIR, pull_pool
+
+CALIB_PER_DOMAIN = 100
+MAIN_PER_DOMAIN = 7_900
+
+CORPUS_DIR = "corpus"
+
+
+def select_split(records: list):
+    n_needed = CALIB_PER_DOMAIN + MAIN_PER_DOMAIN
+    if len(records) < n_needed:
+        raise ValueError(f"only {len(records)} candidates, need {n_needed}")
+    calib = records[:CALIB_PER_DOMAIN]
+    main = records[CALIB_PER_DOMAIN : CALIB_PER_DOMAIN + MAIN_PER_DOMAIN]
+    return calib, main
+
+
+def write_domain(domain: str, calib: list, main: list) -> list:
+    os.makedirs(f"{CORPUS_DIR}/{domain}", exist_ok=True)
+    manifest_rows = []
+    for split_name, records in [("calib", calib), ("main", main)]:
+        for rec in records:
+            file_id = f"{domain}_{rec['sha256'][:12]}"
+            path = f"{CORPUS_DIR}/{domain}/{file_id}.bin"
+            with open(path, "wb") as f:
+                f.write(rec["content"].encode("utf-8"))
+            manifest_rows.append(
+                {
+                    "file_id": file_id,
+                    "domain": domain,
+                    "n_bytes": rec["n_bytes"],
+                    "sha256": rec["sha256"],
+                    "split": split_name,
+                    "source_path": rec["path"],
+                    "licenses": ",".join(rec["licenses"]),
+                }
+            )
+    return manifest_rows
+
+
+def main():
+    n_needed = CALIB_PER_DOMAIN + MAIN_PER_DOMAIN
+    all_rows = []
+    for domain in DOMAIN_TO_DATA_DIR:
+        print(f"--- {domain} ---")
+        r = pull_pool(domain, n_needed=n_needed)
+        if r["kept"] < n_needed:
+            raise SystemExit(
+                f"{domain}: only {r['kept']} usable candidates, need {n_needed}"
+            )
+        calib, main_ = select_split(r["records"])
+        rows = write_domain(domain, calib, main_)
+        all_rows.extend(rows)
+        print(f"wrote {len(rows)} files ({len(calib)} calib + {len(main_)} main)")
+
+    new_rows = pd.DataFrame(all_rows)
+    manifest_path = f"{CORPUS_DIR}/manifest.parquet"
+    # Replace only the domains THIS script owns (py, cpp) - other domains
+    # (prose) and columns added later by other scripts (parse_ok) must survive
+    # a re-run, e.g. to grow N. Overwriting the whole manifest unconditionally
+    # would silently destroy both.
+    if os.path.exists(manifest_path):
+        existing = pd.read_parquet(manifest_path)
+        existing = existing[~existing["domain"].isin(DOMAIN_TO_DATA_DIR.keys())]
+        manifest = pd.concat([existing, new_rows], ignore_index=True)
+    else:
+        manifest = new_rows
+    manifest.to_parquet(manifest_path, index=False)
+    print(f"\nmanifest.parquet: {len(manifest)} rows total")
+    print(manifest.groupby(["domain", "split"]).size())
+
+
+if __name__ == "__main__":
+    main()

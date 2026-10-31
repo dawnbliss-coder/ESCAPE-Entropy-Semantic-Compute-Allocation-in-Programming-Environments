@@ -1,0 +1,65 @@
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-7eeb4183-d4c5-0cf0-fa63-162b564dec22)
+2.6.0+cu124 NVIDIA GeForce RTX 2080 Ti
+
+=== 2026-10-28 06:30:40  checkpoint-fidelity gate under this environment ===
+[fidelity] G1 weights
+[fidelity] G2 tokenizer
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (1497 > 1024). Running this sequence through the model will result in indexing errors
+[fidelity] G3 math
+[fidelity] G4/G5 entropy units + boundary logic
+[fidelity] G6 context window
+[fidelity] G7 behaviour
+[fidelity] G8 determinism, bf16 agreement, throughput
+wrote results/final/stream_a_fidelity_ada/fidelity.json
+declared gates:
+  G1_weights                             PASS
+  G2_tokenizer                           FAIL
+  G3_math                                PASS
+  G4_entropy_nats                        PASS
+  G5_boundaries                          PASS
+  G6_context                             PASS
+  G7_behaviour                           FAIL
+  G8_determinism                         PASS
+amended gates (see STREAM_A_FIDELITY.md §5.1):
+  G2a_tokenizer_equals_pipeline_input    PASS
+  G7a_behaviour                          PASS
+  ALL DECLARED GATES PASS: False
+  ALL EFFECTIVE GATES PASS (declared with G2->G2a, G7->G7a): True  (22s)
+shard 0/4: 4075 files
+
+=== 2026-10-28 06:31:23  extract ===
+WARNING: torch_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '2.12.1+cu130' -> '2.6.0+cu124'
+WARNING: cuda_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '13.0' -> '12.4'
+WARNING: hardware changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: 'NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64' -> 'NVIDIA GeForce RTX 2080 Ti (10.6 GiB) / x86_64'
+run_id=swa512-float32-t1.3354-mplnone-91aa6b8e input=corpus domains=['py', 'cpp', 'prose'] split=all selected=4075 device=cuda dtype=float32
+[200/4075] done=200 skipped=0 failed=0 15.2 kB/s elapsed=5s
+[400/4075] done=400 skipped=0 failed=0 21.2 kB/s elapsed=12s
+[600/4075] done=600 skipped=0 failed=0 23.1 kB/s elapsed=24s
+[800/4075] done=800 skipped=0 failed=0 23.1 kB/s elapsed=43s
+[1000/4075] done=1000 skipped=0 failed=0 21.9 kB/s elapsed=76s
+[1200/4075] done=1200 skipped=0 failed=0 19.8 kB/s elapsed=132s
+[1400/4075] done=1400 skipped=0 failed=0 17.0 kB/s elapsed=235s
+[1600/4075] done=1600 skipped=0 failed=0 15.8 kB/s elapsed=393s
+[1800/4075] done=1800 skipped=0 failed=0 14.7 kB/s elapsed=693s
+[2000/4075] done=2000 skipped=0 failed=0 13.6 kB/s elapsed=1743s
+[2200/4075] done=2200 skipped=0 failed=0 13.4 kB/s elapsed=2114s
+[2400/4075] done=2400 skipped=0 failed=0 13.4 kB/s elapsed=2118s
+[2600/4075] done=2600 skipped=0 failed=0 13.4 kB/s elapsed=2123s
+[2800/4075] done=2800 skipped=0 failed=0 13.5 kB/s elapsed=2127s
+[3000/4075] done=3000 skipped=0 failed=0 13.5 kB/s elapsed=2132s
+[3200/4075] done=3200 skipped=0 failed=0 13.5 kB/s elapsed=2137s
+[3400/4075] done=3400 skipped=0 failed=0 13.5 kB/s elapsed=2144s
+[3600/4075] done=3600 skipped=0 failed=0 13.6 kB/s elapsed=2152s
+[3800/4075] done=3800 skipped=0 failed=0 13.6 kB/s elapsed=2163s
+[4000/4075] done=4000 skipped=0 failed=0 13.7 kB/s elapsed=2183s
+[4075/4075] done=4075 skipped=0 failed=0 13.7 kB/s elapsed=2212s
+finished: processed=4075 skipped_already_done=0 failed=0 bytes=30395865 elapsed=2212s status_snapshot={'success': 7275, 'pending': 1530, 'interrupted': 278, 'succe': 1, 'runninss': 1}
+
+=== 2026-10-28 07:08:27  retry failures once ===
+WARNING: torch_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '2.12.1+cu130' -> '2.6.0+cu124'
+WARNING: cuda_version changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: '13.0' -> '12.4'
+WARNING: hardware changed for run swa512-float32-t1.3354-mplnone-91aa6b8e: 'NVIDIA GeForce RTX 3050 Laptop GPU (3.7 GiB) / x86_64' -> 'NVIDIA GeForce RTX 2080 Ti (10.6 GiB) / x86_64'
+run_id=swa512-float32-t1.3354-mplnone-91aa6b8e input=corpus domains=['py', 'cpp', 'prose'] split=all selected=0 device=cuda dtype=float32
+finished: processed=0 skipped_already_done=0 failed=0 bytes=0 elapsed=0s status_snapshot={'success': 7966, 'pending': 1530, 'interrupted': 278, 'succe': 1, 'runninss': 1}
+
+=== 2026-10-28 07:08:40  EXTRACT SHARD 0 DONE ===
