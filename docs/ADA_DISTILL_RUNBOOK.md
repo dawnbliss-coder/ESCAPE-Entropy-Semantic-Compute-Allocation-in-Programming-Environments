@@ -1,3 +1,5 @@
+> **Status: EXECUTED** (Ada, 28–31 Oct 2026). Results, numbers and job ids: [`docs/FULL_RUN_RESULTS.md`](FULL_RUN_RESULTS.md). The document is retained as the pre-registration/plan record.
+
 # ADA Runbook — Distilled Student: Training, C-v1 Scoring, and Next Experiments
 
 **For:** Divyansh · **Repo:** ESCAPE (main @ `c4384eb`) · **Last updated:** 2026-10-23

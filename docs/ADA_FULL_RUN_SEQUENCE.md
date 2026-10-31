@@ -1,5 +1,9 @@
 # ADA FULL-RUN SEQUENCE — Student C-v1, τ sweep, Teacher-512 control, English holdout, Domain adaptation
 
+> **Status: EXECUTED** (Ada, 28–31 Oct 2026). Every step below was run and gated;
+> results, numbers and job ids are in [`docs/FULL_RUN_RESULTS.md`](FULL_RUN_RESULTS.md),
+> logs in `results/final/logs/`. The document is retained as the pre-registration record.
+
 **For:** Divyansh · **Run everything in order. Do not skip a step or a gate.** · **Base:** repo `main`
 with `escape_distill/extract.py`, `retau.py`, `score_a_runs.py` and `train.py --init-from` (all
 committed; `git pull` first). Companion docs: `docs/ADA_DISTILL_RUNBOOK.md` (details),
