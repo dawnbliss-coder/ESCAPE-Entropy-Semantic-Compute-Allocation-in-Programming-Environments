@@ -1,346 +1,0 @@
-GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-be07cf9b-3f3b-cc8f-3945-37a655156baf)
-cuda: NVIDIA GeForce RTX 2080 Ti
-
-=== 2026-10-30 04:28:22  GPU memory probe: two full-length steps at the pre-registered batch size ===
-[distill] initialised from teacher checkpoint (129 keys; 0 unused)
-[distill] files=18 windows=23 steps=2 student_params=99,512,064 device=cuda
-  step     0/2  loss 0.0739  KL -0.0000  CE 0.739 nats  lr 6.00e-06
-  step     1/2  loss 0.0698  KL 0.0006  CE 0.692 nats  lr 1.20e-05
-[distill] saved student to /scratch/divyansh.atri/escape-47453/probe/student.pt  (2 steps, 3.1s)
-[distill] peak GPU memory 8.11 GiB
-
-=== 2026-10-30 04:28:44  materialize ext corpus (same limits as run_all.sbatch) ===
-Generating train split:   0%|          | 0/412178 [00:00<?, ? examples/s]Generating train split:   0%|          | 1000/412178 [00:00<00:44, 9142.28 examples/s]Generating train split:   2%|▏         | 9000/412178 [00:00<00:08, 45498.02 examples/s]Generating train split:   4%|▍         | 17000/412178 [00:00<00:07, 54950.78 examples/s]Generating train split:   6%|▌         | 25000/412178 [00:00<00:06, 59540.56 examples/s]Generating train split:   8%|▊         | 34000/412178 [00:00<00:05, 66129.01 examples/s]Generating train split:  11%|█         | 46000/412178 [00:00<00:04, 79059.98 examples/s]Generating train split:  13%|█▎        | 55000/412178 [00:00<00:04, 80378.95 examples/s]Generating train split:  16%|█▌        | 66000/412178 [00:00<00:04, 84838.61 examples/s]Generating train split:  19%|█▊        | 77000/412178 [00:01<00:03, 89680.16 examples/s]Generating train split:  22%|██▏       | 89000/412178 [00:01<00:03, 86762.34 examples/s]Generating train split:  24%|██▍       | 98000/412178 [00:01<00:03, 86301.11 examples/s]Generating train split:  26%|██▌       | 107000/412178 [00:01<00:03, 81130.67 examples/s]Generating train split:  28%|██▊       | 117000/412178 [00:01<00:03, 82889.44 examples/s]Generating train split:  31%|███       | 127000/412178 [00:01<00:03, 85052.12 examples/s]Generating train split:  33%|███▎      | 137000/412178 [00:01<00:03, 80727.29 examples/s]Generating train split:  36%|███▌      | 148000/412178 [00:01<00:03, 84536.96 examples/s]Generating train split:  38%|███▊      | 157000/412178 [00:02<00:03, 80125.66 examples/s]Generating train split:  41%|████      | 167000/412178 [00:02<00:02, 82907.26 examples/s]Generating train split:  43%|████▎     | 179000/412178 [00:02<00:02, 90601.39 examples/s]Generating train split:  47%|████▋     | 192000/412178 [00:02<00:02, 84656.36 examples/s]Generating train split:  49%|████▉     | 202000/412178 [00:02<00:02, 86738.02 examples/s]Generating train split:  51%|█████     | 211000/412178 [00:02<00:02, 81787.66 examples/s]Generating train split:  54%|█████▍    | 222000/412178 [00:02<00:02, 86887.11 examples/s]Generating train split:  57%|█████▋    | 233000/412178 [00:02<00:01, 90110.24 examples/s]Generating train split:  59%|█████▉    | 243000/412178 [00:03<00:01, 85214.22 examples/s]Generating train split:  62%|██████▏   | 254000/412178 [00:03<00:01, 89224.97 examples/s]Generating train split:  64%|██████▍   | 265000/412178 [00:03<00:01, 85589.92 examples/s]Generating train split:  67%|██████▋   | 277000/412178 [00:03<00:01, 91059.59 examples/s]Generating train split:  70%|██████▉   | 287000/412178 [00:03<00:01, 91225.84 examples/s]Generating train split:  73%|███████▎  | 299000/412178 [00:03<00:01, 87418.48 examples/s]Generating train split:  75%|███████▌  | 311000/412178 [00:03<00:01, 93169.86 examples/s]Generating train split:  78%|███████▊  | 321000/412178 [00:03<00:01, 89336.89 examples/s]Generating train split:  81%|████████  | 332000/412178 [00:03<00:00, 90259.16 examples/s]Generating train split:  83%|████████▎ | 344000/412178 [00:04<00:00, 92051.32 examples/s]Generating train split:  87%|████████▋ | 358000/412178 [00:04<00:00, 83859.17 examples/s]Generating train split:  89%|████████▉ | 368000/412178 [00:04<00:00, 86268.91 examples/s]Generating train split:  91%|█████████▏| 377000/412178 [00:04<00:00, 80191.86 examples/s]Generating train split:  94%|█████████▍| 389000/412178 [00:04<00:00, 87228.01 examples/s]Generating train split:  97%|█████████▋| 398000/412178 [00:04<00:00, 86324.86 examples/s]Generating train split:  99%|█████████▊| 407000/412178 [00:04<00:00, 84469.21 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:04<00:00, 82863.29 examples/s]
-Generating test split:   0%|          | 0/22176 [00:00<?, ? examples/s]Generating test split:  32%|███▏      | 7000/22176 [00:00<00:00, 60137.95 examples/s]Generating test split:  81%|████████  | 18000/22176 [00:00<00:00, 84233.07 examples/s]Generating test split: 100%|██████████| 22176/22176 [00:00<00:00, 86202.46 examples/s]
-Generating validation split:   0%|          | 0/23107 [00:00<?, ? examples/s]Generating validation split:  30%|███       | 7000/23107 [00:00<00:00, 63095.42 examples/s]Generating validation split:  78%|███████▊  | 18000/23107 [00:00<00:00, 77653.10 examples/s]Generating validation split: 100%|██████████| 23107/23107 [00:00<00:00, 82282.31 examples/s]
-{
-  "domain": "py",
-  "files": 15000,
-  "bytes": 15932154,
-  "by_split": {
-    "train": 13975,
-    "val": 1025
-  },
-  "by_source": {
-    "code_search_net": 15000
-  },
-  "groups": 4765,
-  "dropped": {
-    "duplicate_hash": 8000,
-    "evaluation_repo": 106
-  },
-  "limit": 15000,
-  "evaluation_repos": 317,
-  "pool_after_filters": null
-}
-wrote 15000 files to /scratch/divyansh.atri/escape-47453/corpus_ext/py
-{
-  "domain": "prose",
-  "files": 8000,
-  "bytes": 6144905,
-  "by_split": {
-    "train": 7470,
-    "val": 530
-  },
-  "by_source": {
-    "wikitext-103": 8000
-  },
-  "groups": 374,
-  "dropped": {
-    "evaluation_article": 313,
-    "length_or_bytes": 2646
-  },
-  "limit": 8000,
-  "evaluation_articles": 18
-}
-wrote 8000 files to /scratch/divyansh.atri/escape-47453/corpus_ext/prose
-Fatal Python error: PyGILState_Release: thread state 0x14f7740041e0 must be current when releasing
-Python runtime state: finalizing (tstate=0x0000558de6d7a9b8)
-
-Thread 0x000014f78e431740 (most recent call first):
-  <no Python frame>
-
-Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg, pyarrow.lib, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, pyarrow._acero, pyarrow._fs, pyarrow._csv, pyarrow._json, pyarrow._substrait, pyarrow._dataset, pyarrow._dataset_orc, pyarrow._parquet, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, pyarrow._parquet_encryption, pyarrow._dataset_parquet_encryption, pyarrow._dataset_parquet, yaml._yaml, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist, xxhash._xxhash, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special (total: 95)
-scripts/ada_final/env.sh: line 20: 2887432 Aborted                 (core dumped) PYTHONPATH="$PWD" "$ESCAPE_BASE_PYTHON" "$@"
-prose output complete: 8000 manifest rows, all .bin present
-WARN: prose materialize exited rc=134 at interpreter exit; output verified complete, continuing
-Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1500 examples [00:00, 9192.10 examples/s]Generating train split: 2841 examples [00:00, 9971.50 examples/s]Generating train split: 4268 examples [00:00, 10471.59 examples/s]Generating train split: 5647 examples [00:00, 10827.42 examples/s]Generating train split: 6904 examples [00:00, 11192.59 examples/s]Generating train split: 8315 examples [00:00, 12033.93 examples/s]Generating train split: 9594 examples [00:00, 11973.57 examples/s]Generating train split: 10000 examples [00:00, 11374.84 examples/s]
-Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1313 examples [00:00, 10620.99 examples/s]Generating train split: 2532 examples [00:00, 10964.87 examples/s]Generating train split: 3957 examples [00:00, 11921.02 examples/s]Generating train split: 5180 examples [00:00, 11697.66 examples/s]Generating train split: 6519 examples [00:00, 11756.17 examples/s]Generating train split: 7802 examples [00:00, 11834.69 examples/s]Generating train split: 9195 examples [00:00, 11797.23 examples/s]Generating train split: 10000 examples [00:00, 11542.98 examples/s]
-{
-  "domain": "cpp",
-  "files": 6000,
-  "bytes": 59585583,
-  "by_split": {
-    "train": 5708,
-    "val": 292
-  },
-  "by_source": {
-    "the-stack-smol-xl": 4590,
-    "the-stack-smol": 1410
-  },
-  "groups": 5375,
-  "dropped": {
-    "evaluation_repo": 1185,
-    "too_large": 144
-  },
-  "limit": 6000,
-  "candidates": 12000,
-  "evaluation_repos": 6551
-}
-wrote 6000 files to /scratch/divyansh.atri/escape-47453/corpus_ext/cpp
-
-=== 2026-10-30 04:30:30  data identity vs the distilled student's manifest ===
-manifest identical to results/distill/full: True 29000 29000
-
-=== 2026-10-30 04:30:30  train adapted teacher (STEP 9 command) ===
-[distill] initialised from teacher checkpoint (129 keys; 0 unused)
-[distill] files=27153 windows=164627 steps=20580 student_params=99,512,064 device=cuda
-  step     0/20580  loss 0.0739  KL -0.0000  CE 0.739 nats  lr 2.00e-06
-  step   100/20580  loss 0.1839  KL 0.1117  CE 0.834 nats  lr 2.00e-04
-  step   200/20580  loss 0.2688  KL 0.2142  CE 0.760 nats  lr 2.00e-04
-  step   300/20580  loss 0.1977  KL 0.1410  CE 0.708 nats  lr 2.00e-04
-  step   400/20580  loss 0.1829  KL 0.1188  CE 0.759 nats  lr 2.00e-04
-  step   500/20580  loss 0.2080  KL 0.1440  CE 0.784 nats  lr 2.00e-04
-  step   600/20580  loss 0.1969  KL 0.1238  CE 0.855 nats  lr 2.00e-04
-  step   700/20580  loss 0.1862  KL 0.1160  CE 0.819 nats  lr 2.00e-04
-  step   800/20580  loss 0.1968  KL 0.1317  CE 0.782 nats  lr 1.99e-04
-  step   900/20580  loss 0.2042  KL 0.1452  CE 0.735 nats  lr 1.99e-04
-  step  1000/20580  loss 0.1863  KL 0.1176  CE 0.804 nats  lr 1.99e-04
-  step  1100/20580  loss 0.1894  KL 0.1263  CE 0.758 nats  lr 1.99e-04
-  step  1200/20580  loss 0.2008  KL 0.1289  CE 0.847 nats  lr 1.99e-04
-  step  1300/20580  loss 0.2177  KL 0.1563  CE 0.771 nats  lr 1.98e-04
-  step  1400/20580  loss 0.1977  KL 0.1335  CE 0.776 nats  lr 1.98e-04
-  step  1500/20580  loss 0.1963  KL 0.1205  CE 0.878 nats  lr 1.98e-04
-  step  1600/20580  loss 0.1904  KL 0.1235  CE 0.793 nats  lr 1.97e-04
-  step  1700/20580  loss 0.1762  KL 0.1101  CE 0.771 nats  lr 1.97e-04
-  step  1800/20580  loss 0.2006  KL 0.1313  CE 0.823 nats  lr 1.97e-04
-  step  1900/20580  loss 0.2047  KL 0.1406  CE 0.782 nats  lr 1.96e-04
-  step  2000/20580  loss 0.1815  KL 0.1163  CE 0.768 nats  lr 1.96e-04
-  step  2100/20580  loss 0.1788  KL 0.1128  CE 0.773 nats  lr 1.95e-04
-  step  2200/20580  loss 0.1712  KL 0.1239  CE 0.597 nats  lr 1.95e-04
-  step  2300/20580  loss 0.1923  KL 0.1308  CE 0.745 nats  lr 1.94e-04
-  step  2400/20580  loss 0.1870  KL 0.1177  CE 0.811 nats  lr 1.94e-04
-  step  2500/20580  loss 0.2005  KL 0.1246  CE 0.883 nats  lr 1.93e-04
-  step  2600/20580  loss 0.1898  KL 0.1136  CE 0.876 nats  lr 1.93e-04
-  step  2700/20580  loss 0.1638  KL 0.0995  CE 0.743 nats  lr 1.92e-04
-  step  2800/20580  loss 0.1664  KL 0.0957  CE 0.803 nats  lr 1.92e-04
-  step  2900/20580  loss 0.2135  KL 0.1437  CE 0.841 nats  lr 1.91e-04
-  step  3000/20580  loss 0.2144  KL 0.1456  CE 0.834 nats  lr 1.90e-04
-  step  3100/20580  loss 0.2009  KL 0.1386  CE 0.762 nats  lr 1.90e-04
-  step  3200/20580  loss 0.1828  KL 0.1138  CE 0.803 nats  lr 1.89e-04
-  step  3300/20580  loss 0.1567  KL 0.0964  CE 0.700 nats  lr 1.88e-04
-  step  3400/20580  loss 0.1985  KL 0.1377  CE 0.745 nats  lr 1.87e-04
-  step  3500/20580  loss 0.2169  KL 0.1556  CE 0.769 nats  lr 1.87e-04
-  step  3600/20580  loss 0.1525  KL 0.0884  CE 0.729 nats  lr 1.86e-04
-  step  3700/20580  loss 0.1851  KL 0.1131  CE 0.833 nats  lr 1.85e-04
-  step  3800/20580  loss 0.1446  KL 0.0903  CE 0.634 nats  lr 1.84e-04
-  step  3900/20580  loss 0.2074  KL 0.1311  CE 0.894 nats  lr 1.83e-04
-  step  4000/20580  loss 0.1601  KL 0.0919  CE 0.774 nats  lr 1.83e-04
-  step  4100/20580  loss 0.1459  KL 0.0838  CE 0.704 nats  lr 1.82e-04
-  step  4200/20580  loss 0.1443  KL 0.0882  CE 0.650 nats  lr 1.81e-04
-  step  4300/20580  loss 0.1377  KL 0.0834  CE 0.626 nats  lr 1.80e-04
-  step  4400/20580  loss 0.1604  KL 0.0973  CE 0.728 nats  lr 1.79e-04
-  step  4500/20580  loss 0.1714  KL 0.1104  CE 0.720 nats  lr 1.78e-04
-  step  4600/20580  loss 0.1466  KL 0.0855  CE 0.696 nats  lr 1.77e-04
-  step  4700/20580  loss 0.1748  KL 0.1131  CE 0.730 nats  lr 1.76e-04
-  step  4800/20580  loss 0.1674  KL 0.0971  CE 0.800 nats  lr 1.75e-04
-  step  4900/20580  loss 0.1470  KL 0.0857  CE 0.699 nats  lr 1.74e-04
-  step  5000/20580  loss 0.1625  KL 0.1037  CE 0.692 nats  lr 1.73e-04
-  step  5100/20580  loss 0.1736  KL 0.1033  CE 0.806 nats  lr 1.72e-04
-  step  5200/20580  loss 0.1773  KL 0.1086  CE 0.795 nats  lr 1.71e-04
-  step  5300/20580  loss 0.1632  KL 0.0984  CE 0.747 nats  lr 1.70e-04
-  step  5400/20580  loss 0.1916  KL 0.1199  CE 0.837 nats  lr 1.69e-04
-  step  5500/20580  loss 0.1600  KL 0.0805  CE 0.876 nats  lr 1.68e-04
-  step  5600/20580  loss 0.1720  KL 0.1143  CE 0.692 nats  lr 1.66e-04
-  step  5700/20580  loss 0.1671  KL 0.1009  CE 0.763 nats  lr 1.65e-04
-  step  5800/20580  loss 0.1731  KL 0.0988  CE 0.841 nats  lr 1.64e-04
-  step  5900/20580  loss 0.1811  KL 0.1081  CE 0.838 nats  lr 1.63e-04
-  step  6000/20580  loss 0.1713  KL 0.0897  CE 0.905 nats  lr 1.62e-04
-  step  6100/20580  loss 0.1539  KL 0.0872  CE 0.755 nats  lr 1.61e-04
-  step  6200/20580  loss 0.1621  KL 0.0902  CE 0.810 nats  lr 1.59e-04
-  step  6300/20580  loss 0.1551  KL 0.0904  CE 0.737 nats  lr 1.58e-04
-  step  6400/20580  loss 0.1761  KL 0.1119  CE 0.754 nats  lr 1.57e-04
-  step  6500/20580  loss 0.1821  KL 0.1159  CE 0.778 nats  lr 1.56e-04
-  step  6600/20580  loss 0.1700  KL 0.1090  CE 0.719 nats  lr 1.54e-04
-  step  6700/20580  loss 0.1469  KL 0.0884  CE 0.673 nats  lr 1.53e-04
-  step  6800/20580  loss 0.1641  KL 0.1012  CE 0.730 nats  lr 1.52e-04
-  step  6900/20580  loss 0.1691  KL 0.1062  CE 0.735 nats  lr 1.50e-04
-  step  7000/20580  loss 0.1607  KL 0.0996  CE 0.711 nats  lr 1.49e-04
-  step  7100/20580  loss 0.1414  KL 0.0737  CE 0.750 nats  lr 1.48e-04
-  step  7200/20580  loss 0.1425  KL 0.0789  CE 0.715 nats  lr 1.46e-04
-  step  7300/20580  loss 0.1475  KL 0.0789  CE 0.765 nats  lr 1.45e-04
-  step  7400/20580  loss 0.1644  KL 0.1036  CE 0.712 nats  lr 1.44e-04
-  step  7500/20580  loss 0.1571  KL 0.0867  CE 0.791 nats  lr 1.42e-04
-  step  7600/20580  loss 0.1297  KL 0.0719  CE 0.651 nats  lr 1.41e-04
-  step  7700/20580  loss 0.1537  KL 0.0976  CE 0.659 nats  lr 1.39e-04
-  step  7800/20580  loss 0.1381  KL 0.0779  CE 0.680 nats  lr 1.38e-04
-  step  7900/20580  loss 0.1862  KL 0.1168  CE 0.811 nats  lr 1.37e-04
-  step  8000/20580  loss 0.1362  KL 0.0748  CE 0.689 nats  lr 1.35e-04
-  step  8100/20580  loss 0.1574  KL 0.0899  CE 0.765 nats  lr 1.34e-04
-  step  8200/20580  loss 0.1345  KL 0.0707  CE 0.709 nats  lr 1.32e-04
-  step  8300/20580  loss 0.1633  KL 0.0970  CE 0.759 nats  lr 1.31e-04
-  step  8400/20580  loss 0.1367  KL 0.0655  CE 0.777 nats  lr 1.29e-04
-  step  8500/20580  loss 0.1529  KL 0.0854  CE 0.761 nats  lr 1.28e-04
-  step  8600/20580  loss 0.1478  KL 0.0805  CE 0.753 nats  lr 1.26e-04
-  step  8700/20580  loss 0.1496  KL 0.0742  CE 0.829 nats  lr 1.25e-04
-  step  8800/20580  loss 0.1547  KL 0.0859  CE 0.774 nats  lr 1.23e-04
-  step  8900/20580  loss 0.1411  KL 0.0776  CE 0.713 nats  lr 1.22e-04
-  step  9000/20580  loss 0.1339  KL 0.0689  CE 0.719 nats  lr 1.20e-04
-  step  9100/20580  loss 0.1349  KL 0.0719  CE 0.702 nats  lr 1.19e-04
-  step  9200/20580  loss 0.1465  KL 0.0764  CE 0.777 nats  lr 1.17e-04
-  step  9300/20580  loss 0.1367  KL 0.0715  CE 0.724 nats  lr 1.16e-04
-  step  9400/20580  loss 0.1428  KL 0.0741  CE 0.762 nats  lr 1.14e-04
-  step  9500/20580  loss 0.1415  KL 0.0796  CE 0.699 nats  lr 1.13e-04
-  step  9600/20580  loss 0.1456  KL 0.0783  CE 0.751 nats  lr 1.11e-04
-  step  9700/20580  loss 0.1439  KL 0.0798  CE 0.720 nats  lr 1.10e-04
-  step  9800/20580  loss 0.1311  KL 0.0655  CE 0.722 nats  lr 1.08e-04
-  step  9900/20580  loss 0.1326  KL 0.0696  CE 0.699 nats  lr 1.07e-04
-  step 10000/20580  loss 0.1469  KL 0.0822  CE 0.729 nats  lr 1.05e-04
-  step 10100/20580  loss 0.1285  KL 0.0589  CE 0.755 nats  lr 1.04e-04
-  step 10200/20580  loss 0.1268  KL 0.0663  CE 0.671 nats  lr 1.02e-04
-  step 10300/20580  loss 0.1588  KL 0.0890  CE 0.787 nats  lr 1.01e-04
-  step 10400/20580  loss 0.1264  KL 0.0634  CE 0.694 nats  lr 9.91e-05
-  step 10500/20580  loss 0.1164  KL 0.0552  CE 0.668 nats  lr 9.75e-05
-  step 10600/20580  loss 0.1222  KL 0.0530  CE 0.745 nats  lr 9.60e-05
-  step 10700/20580  loss 0.1185  KL 0.0520  CE 0.718 nats  lr 9.45e-05
-  step 10800/20580  loss 0.1272  KL 0.0593  CE 0.738 nats  lr 9.29e-05
-  step 10900/20580  loss 0.1143  KL 0.0525  CE 0.671 nats  lr 9.14e-05
-  step 11000/20580  loss 0.1221  KL 0.0481  CE 0.789 nats  lr 8.99e-05
-  step 11100/20580  loss 0.1308  KL 0.0550  CE 0.812 nats  lr 8.84e-05
-  step 11200/20580  loss 0.1383  KL 0.0711  CE 0.743 nats  lr 8.68e-05
-  step 11300/20580  loss 0.1189  KL 0.0520  CE 0.721 nats  lr 8.53e-05
-  step 11400/20580  loss 0.1586  KL 0.0695  CE 0.961 nats  lr 8.38e-05
-  step 11500/20580  loss 0.1171  KL 0.0471  CE 0.747 nats  lr 8.23e-05
-  step 11600/20580  loss 0.1305  KL 0.0645  CE 0.724 nats  lr 8.08e-05
-  step 11700/20580  loss 0.1162  KL 0.0496  CE 0.716 nats  lr 7.93e-05
-  step 11800/20580  loss 0.1074  KL 0.0443  CE 0.675 nats  lr 7.78e-05
-  step 11900/20580  loss 0.1258  KL 0.0495  CE 0.812 nats  lr 7.63e-05
-  step 12000/20580  loss 0.1320  KL 0.0563  CE 0.814 nats  lr 7.48e-05
-  step 12100/20580  loss 0.1272  KL 0.0519  CE 0.805 nats  lr 7.33e-05
-  step 12200/20580  loss 0.1317  KL 0.0550  CE 0.822 nats  lr 7.19e-05
-  step 12300/20580  loss 0.1151  KL 0.0520  CE 0.683 nats  lr 7.04e-05
-  step 12400/20580  loss 0.1103  KL 0.0438  CE 0.709 nats  lr 6.89e-05
-  step 12500/20580  loss 0.1253  KL 0.0559  CE 0.750 nats  lr 6.75e-05
-  step 12600/20580  loss 0.1172  KL 0.0478  CE 0.742 nats  lr 6.60e-05
-  step 12700/20580  loss 0.1325  KL 0.0571  CE 0.811 nats  lr 6.46e-05
-  step 12800/20580  loss 0.1292  KL 0.0514  CE 0.829 nats  lr 6.32e-05
-  step 12900/20580  loss 0.1124  KL 0.0462  CE 0.708 nats  lr 6.17e-05
-  step 13000/20580  loss 0.1127  KL 0.0450  CE 0.722 nats  lr 6.03e-05
-  step 13100/20580  loss 0.1032  KL 0.0462  CE 0.616 nats  lr 5.89e-05
-  step 13200/20580  loss 0.1188  KL 0.0458  CE 0.776 nats  lr 5.75e-05
-  step 13300/20580  loss 0.1092  KL 0.0455  CE 0.682 nats  lr 5.61e-05
-  step 13400/20580  loss 0.1350  KL 0.0598  CE 0.812 nats  lr 5.48e-05
-  step 13500/20580  loss 0.1111  KL 0.0420  CE 0.733 nats  lr 5.34e-05
-  step 13600/20580  loss 0.1075  KL 0.0386  CE 0.728 nats  lr 5.21e-05
-  step 13700/20580  loss 0.1143  KL 0.0416  CE 0.769 nats  lr 5.07e-05
-  step 13800/20580  loss 0.1107  KL 0.0445  CE 0.706 nats  lr 4.94e-05
-  step 13900/20580  loss 0.1192  KL 0.0433  CE 0.802 nats  lr 4.81e-05
-  step 14000/20580  loss 0.0968  KL 0.0387  CE 0.619 nats  lr 4.68e-05
-  step 14100/20580  loss 0.1121  KL 0.0390  CE 0.770 nats  lr 4.55e-05
-  step 14200/20580  loss 0.1192  KL 0.0498  CE 0.744 nats  lr 4.42e-05
-  step 14300/20580  loss 0.1130  KL 0.0369  CE 0.798 nats  lr 4.29e-05
-  step 14400/20580  loss 0.1035  KL 0.0399  CE 0.675 nats  lr 4.17e-05
-  step 14500/20580  loss 0.0929  KL 0.0350  CE 0.615 nats  lr 4.04e-05
-  step 14600/20580  loss 0.1095  KL 0.0349  CE 0.780 nats  lr 3.92e-05
-  step 14700/20580  loss 0.1054  KL 0.0378  CE 0.714 nats  lr 3.80e-05
-  step 14800/20580  loss 0.1148  KL 0.0408  CE 0.780 nats  lr 3.68e-05
-  step 14900/20580  loss 0.1118  KL 0.0388  CE 0.769 nats  lr 3.56e-05
-  step 15000/20580  loss 0.1073  KL 0.0348  CE 0.759 nats  lr 3.45e-05
-  step 15100/20580  loss 0.1204  KL 0.0446  CE 0.802 nats  lr 3.33e-05
-  step 15200/20580  loss 0.1104  KL 0.0378  CE 0.763 nats  lr 3.22e-05
-  step 15300/20580  loss 0.1079  KL 0.0375  CE 0.741 nats  lr 3.10e-05
-  step 15400/20580  loss 0.1080  KL 0.0358  CE 0.757 nats  lr 2.99e-05
-  step 15500/20580  loss 0.1071  KL 0.0360  CE 0.747 nats  lr 2.89e-05
-  step 15600/20580  loss 0.0991  KL 0.0325  CE 0.698 nats  lr 2.78e-05
-  step 15700/20580  loss 0.1092  KL 0.0395  CE 0.737 nats  lr 2.67e-05
-  step 15800/20580  loss 0.1014  KL 0.0344  CE 0.704 nats  lr 2.57e-05
-  step 15900/20580  loss 0.0950  KL 0.0307  CE 0.674 nats  lr 2.47e-05
-  step 16000/20580  loss 0.1111  KL 0.0448  CE 0.708 nats  lr 2.37e-05
-  step 16100/20580  loss 0.1104  KL 0.0375  CE 0.766 nats  lr 2.27e-05
-  step 16200/20580  loss 0.1114  KL 0.0376  CE 0.776 nats  lr 2.17e-05
-  step 16300/20580  loss 0.1108  KL 0.0407  CE 0.742 nats  lr 2.08e-05
-  step 16400/20580  loss 0.1111  KL 0.0388  CE 0.762 nats  lr 1.99e-05
-  step 16500/20580  loss 0.1128  KL 0.0315  CE 0.844 nats  lr 1.90e-05
-  step 16600/20580  loss 0.1051  KL 0.0335  CE 0.750 nats  lr 1.81e-05
-  step 16700/20580  loss 0.0939  KL 0.0300  CE 0.670 nats  lr 1.72e-05
-  step 16800/20580  loss 0.1019  KL 0.0307  CE 0.742 nats  lr 1.63e-05
-  step 16900/20580  loss 0.1039  KL 0.0310  CE 0.760 nats  lr 1.55e-05
-  step 17000/20580  loss 0.1071  KL 0.0409  CE 0.703 nats  lr 1.47e-05
-  step 17100/20580  loss 0.1129  KL 0.0329  CE 0.833 nats  lr 1.39e-05
-  step 17200/20580  loss 0.1063  KL 0.0327  CE 0.768 nats  lr 1.31e-05
-  step 17300/20580  loss 0.0995  KL 0.0321  CE 0.707 nats  lr 1.24e-05
-  step 17400/20580  loss 0.0958  KL 0.0305  CE 0.683 nats  lr 1.17e-05
-  step 17500/20580  loss 0.0978  KL 0.0282  CE 0.724 nats  lr 1.10e-05
-  step 17600/20580  loss 0.1005  KL 0.0285  CE 0.749 nats  lr 1.03e-05
-  step 17700/20580  loss 0.1099  KL 0.0311  CE 0.819 nats  lr 9.60e-06
-  step 17800/20580  loss 0.0929  KL 0.0302  CE 0.657 nats  lr 8.96e-06
-  step 17900/20580  loss 0.1140  KL 0.0291  CE 0.878 nats  lr 8.33e-06
-  step 18000/20580  loss 0.1030  KL 0.0332  CE 0.731 nats  lr 7.73e-06
-  step 18100/20580  loss 0.1071  KL 0.0352  CE 0.754 nats  lr 7.15e-06
-  step 18200/20580  loss 0.1022  KL 0.0306  CE 0.747 nats  lr 6.59e-06
-  step 18300/20580  loss 0.0987  KL 0.0334  CE 0.687 nats  lr 6.05e-06
-  step 18400/20580  loss 0.0941  KL 0.0275  CE 0.694 nats  lr 5.54e-06
-  step 18500/20580  loss 0.1014  KL 0.0337  CE 0.711 nats  lr 5.05e-06
-  step 18600/20580  loss 0.0927  KL 0.0267  CE 0.686 nats  lr 4.58e-06
-  step 18700/20580  loss 0.0933  KL 0.0275  CE 0.685 nats  lr 4.13e-06
-  step 18800/20580  loss 0.1060  KL 0.0305  CE 0.786 nats  lr 3.70e-06
-  step 18900/20580  loss 0.1031  KL 0.0340  CE 0.725 nats  lr 3.30e-06
-  step 19000/20580  loss 0.0998  KL 0.0305  CE 0.723 nats  lr 2.92e-06
-  step 19100/20580  loss 0.0974  KL 0.0277  CE 0.724 nats  lr 2.57e-06
-  step 19200/20580  loss 0.0916  KL 0.0277  CE 0.667 nats  lr 2.23e-06
-  step 19300/20580  loss 0.0947  KL 0.0317  CE 0.662 nats  lr 1.92e-06
-  step 19400/20580  loss 0.1104  KL 0.0327  CE 0.809 nats  lr 1.63e-06
-  step 19500/20580  loss 0.1036  KL 0.0299  CE 0.768 nats  lr 1.37e-06
-  step 19600/20580  loss 0.0944  KL 0.0259  CE 0.711 nats  lr 1.13e-06
-  step 19700/20580  loss 0.0987  KL 0.0282  CE 0.734 nats  lr 9.10e-07
-  step 19800/20580  loss 0.0949  KL 0.0278  CE 0.700 nats  lr 7.15e-07
-  step 19900/20580  loss 0.1018  KL 0.0287  CE 0.759 nats  lr 5.44e-07
-  step 20000/20580  loss 0.0916  KL 0.0289  CE 0.656 nats  lr 3.96e-07
-  step 20100/20580  loss 0.0944  KL 0.0244  CE 0.724 nats  lr 2.71e-07
-  step 20200/20580  loss 0.0869  KL 0.0238  CE 0.655 nats  lr 1.70e-07
-  step 20300/20580  loss 0.0923  KL 0.0297  CE 0.655 nats  lr 9.22e-08
-  step 20400/20580  loss 0.0961  KL 0.0253  CE 0.733 nats  lr 3.81e-08
-  step 20500/20580  loss 0.0970  KL 0.0254  CE 0.741 nats  lr 7.53e-09
-  step 20579/20580  loss 0.1104  KL 0.0255  CE 0.875 nats  lr 1.18e-12
-[distill] saved student to results/adapt/teacher-finetuned/student.pt  (20580 steps, 17578.8s)
-[distill] peak GPU memory 9.20 GiB
-
-=== 2026-10-30 09:23:48  evaluate adapted on held-out val (same windows) ===
-[eval] files=1847 windows=8887
-
-=== Student vs teacher (overall) ===
-  boundary F1        trained 0.955   untrained 0.386
-  entropy Pearson r  trained 0.992   untrained -0.036
-  entropy MAE (nats) trained 0.059   untrained 4.660
-  KL(teacher||stud)  trained 0.016   untrained 4.809
-  bits/byte  student 1.089  vs teacher 1.136
-[eval] wrote results/adapt/teacher-finetuned/eval_adapted/distill_eval.json
-
-=== 2026-10-30 09:33:40  evaluate distilled on held-out val (same windows) ===
-[eval] files=1847 windows=8887
-
-=== Student vs teacher (overall) ===
-  boundary F1        trained 0.871   untrained 0.386
-  entropy Pearson r  trained 0.946   untrained -0.037
-  entropy MAE (nats) trained 0.172   untrained 4.723
-  KL(teacher||stud)  trained 0.135   untrained 4.821
-  bits/byte  student 1.235  vs teacher 1.136
-[eval] wrote results/adapt/teacher-finetuned/eval_distilled/distill_eval.json
-
-=== 2026-10-30 09:40:59  rolling extraction teacher-adapt-v1 on 840 subset + English test files ===
-[extract] 840 files selected (shard None/None)
-[extract] model=student mode=rolling device=cuda 99512064
-[extract] 100 done / 0 skipped / 0 failed; last cpp_25a05c109d2c 1008B in 9.4s
-[extract] 200 done / 0 skipped / 0 failed; last cpp_fc3922c76c4a 1484B in 15.3s
-[extract] 300 done / 0 skipped / 0 failed; last cpp_ece4e62afd0c 1991B in 21.6s
-[extract] 400 done / 0 skipped / 0 failed; last prose_6d326eae41b5 688B in 5.5s
-[extract] 500 done / 0 skipped / 0 failed; last prose_213f40e819bc 1177B in 11.5s
-[extract] 600 done / 0 skipped / 0 failed; last py_2d4198bf5b9e 726B in 5.9s
-[extract] 700 done / 0 skipped / 0 failed; last py_f8f8d8fc3791 998B in 9.3s
-[extract] 800 done / 0 skipped / 0 failed; last py_5006ff0b51e4 1490B in 15.4s
-[extract] DONE run_id=teacher-adapt-v1 shard=None: 840 done, 0 skipped, 0 failed
-[extract] 840 files selected (shard None/None)
-[extract] model=student mode=rolling device=cuda 99512064
-[extract] DONE run_id=teacher-adapt-v1 shard=None: 0 done, 840 skipped, 0 failed
-
-=== 2026-10-30 12:00:34  ADAPT TEACHER DONE ===

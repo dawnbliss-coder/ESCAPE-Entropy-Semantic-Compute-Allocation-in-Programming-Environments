@@ -168,7 +168,7 @@ English & \FoneEn{} & \FoneNullEn{} & \MarginEn{} \MarginCIEn{} & \xRatioEn{}$\t
 \item File FE only: \hl{\xOFiveRaw{} \xOFiveRawCI{}} --- unsafe statements get \emph{fewer} boundaries (more predictable identifiers).
 \item Positive only after conditioning on identifier entropy; size \xOFiveRel{} of the mean, \xOFiveVsIdent{} of a 1-SD identifier-entropy effect.
 \item Inverse BPP with file FE only: \xOFiveRawBpp{} \xOFiveRawBppCI{} (null).
-\item Reading: a small conditional effect, not risk awareness; that it sits on the \texttt{*}, \texttt{\&}, \texttt{new} bytes is an untested conjecture.
+\item Reading: a small conditional effect, not risk awareness.
 \end{itemize}
 \end{frame}
 
@@ -212,10 +212,8 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 \end{frame}
 
 \begin{frame}{Threshold sweep and the confirmatory English holdout}
-\begin{columns}[T]
-\column{.5\textwidth}
-\includegraphics[width=\linewidth]{generated/tau_sweep.pdf}
-\column{.5\textwidth}\small
+\centering\includegraphics[width=.92\linewidth]{generated/tau_sweep.pdf}
+\footnotesize
 \begin{itemize}
 \item Pre-registered $\tau^*$ on calibration: teacher \xTauStarTeacherPy{}; student \xTauStarStudentPy{}/\xTauStarStudentCpp{}/\xTauStarStudentEn{}.
 \item One test run at $\tau^*$: teacher $\Delta$ \xTauConfTeacherPy{} (Py), \xTauConfTeacherCpp{} (C++), \xTauConfTeacherEn{} (En) --- still below baselines (\xTauConfVsBaseTeacherPy{}).
@@ -223,7 +221,6 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
 \item Later, exploratory: grid on test (dashed) peaks at the same $\tau^*$ (\xTauTestAgreeTeacher{}/3, \xTauTestAgreeStudent{}/3); every $\tau$ trails the best baseline by $\ge$\xTauTestMinGap{} F1.
 \item English holdout (\xHoldFiles{} unseen paragraphs, scored once): teacher \xHoldTeaMargin{}, student \xHoldStuMargin{}; vs.\ word starts \xHoldTeaVsWord{}.
 \end{itemize}
-\end{columns}
 \end{frame}
 
 \begin{frame}{Verdict on H1 and the proposal's deliverables}
@@ -238,6 +235,7 @@ English & \xBalDiffEn{} \xBalDiffCIEn{} & \xAdaptDiffEn{} \xAdaptDiffCIEn{} & \x
   \item Precision $>$ recall (proposal's mechanism): fails.
   \end{itemize}
 \item \textbf{Deliverables:} (1) extraction pipeline \texttt{stream\_a}; (2) tree-sitter / benepar mapping with memory-unsafe queries \texttt{stream\_b}; (3) harness with P1--P4, both baselines, permutation test, depth and type stratification \texttt{escape\_scoring}, \texttt{escape\_eval}; (4) entropy heatmaps and BPP profiles; (5) report and these slides.
+\item \textbf{Released models:} \href{https://huggingface.co/Devatri/escape-blt-entropy-student}{student}, \href{https://huggingface.co/Devatri/escape-blt-entropy-student-alpha1}{no-teacher control ($\alpha{=}1$)}, \href{https://huggingface.co/Devatri/escape-blt-entropy-student-balanced}{byte-balanced student} on Hugging Face; checkpoints and curves in the \href{https://forge.coreweave.com/wandb/kanhadivyansh123-iiit-hyderabad/escape-blt-patching}{W\&B project}.
 \end{itemize}
 \end{frame}
 

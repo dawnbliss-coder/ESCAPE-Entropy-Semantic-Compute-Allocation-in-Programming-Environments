@@ -173,29 +173,29 @@ English & 0.894 & 0.495 & +0.348 & 0.066 & 0.026 & -0.079 [-0.081, -0.076] \\
 \newcommand{\TableTypes}{
 \begin{table}[t]\centering\small
 
-\begin{adjustbox}{max width=\columnwidth}\begin{tabular}{llcrrrr}\toprule
-Lang. & Type & Opener & Starts & R & $H_0$ R & $\Delta$R \\\midrule
-Python & \texttt{assignment} & open & 39 & 0.872 & 0.156 & +0.715 \\
-Python & \texttt{binary\_operator} & open & 7,276 & 0.683 & 0.184 & +0.498 \\
-Python & \texttt{call} & open & 33,643 & 0.766 & 0.168 & +0.598 \\
-Python & \texttt{expression\_statement} & open & 43,709 & 0.864 & 0.169 & +0.695 \\
-Python & \texttt{for\_statement} & det. & 2,829 & 0.934 & 0.162 & +0.772 \\
-Python & \texttt{function\_definition} & det. & 485 & 0.891 & 0.166 & +0.724 \\
-Python & \texttt{if\_statement} & det. & 10,084 & 0.903 & 0.158 & +0.745 \\
-Python & \texttt{return\_statement} & open & 7,010 & 0.798 & 0.249 & +0.550 \\
-Python & \texttt{while\_statement} & det. & 263 & 0.954 & 0.161 & +0.794 \\
-C++ & \texttt{assignment\_expression} & open & 8,078 & 0.452 & 0.133 & +0.319 \\
-C++ & \texttt{binary\_expression} & open & 285,064 & 0.506 & 0.144 & +0.362 \\
-C++ & \texttt{call\_expression} & open & 456,491 & 0.595 & 0.138 & +0.457 \\
-C++ & \texttt{declaration} & open & 249,479 & 0.773 & 0.142 & +0.632 \\
-C++ & \texttt{expression\_statement} & open & 486,954 & 0.655 & 0.138 & +0.517 \\
-C++ & \texttt{for\_statement} & det. & 21,326 & 0.823 & 0.136 & +0.686 \\
-C++ & \texttt{function\_definition} & det. & 101,613 & 0.768 & 0.134 & +0.635 \\
-C++ & \texttt{if\_statement} & det. & 126,003 & 0.795 & 0.146 & +0.649 \\
-C++ & \texttt{return\_statement} & open & 93,611 & 0.562 & 0.144 & +0.418 \\
-C++ & \texttt{while\_statement} & det. & 4,102 & 0.942 & 0.150 & +0.792 \\
+\begin{adjustbox}{max width=\columnwidth}\begin{tabular}{llcrrr}\toprule
+Lang. & Type & Opener & Starts & R & $\Delta$R \\\midrule
+Python & \texttt{assignment} & open & 39 & 0.872 & +0.715 \\
+Python & \texttt{binary\_operator} & open & 7,276 & 0.683 & +0.498 \\
+Python & \texttt{call} & open & 33,643 & 0.766 & +0.598 \\
+Python & \texttt{expression\_statement} & open & 43,709 & 0.864 & +0.695 \\
+Python & \texttt{for\_statement} & det. & 2,829 & 0.934 & +0.772 \\
+Python & \texttt{function\_definition} & det. & 485 & 0.891 & +0.724 \\
+Python & \texttt{if\_statement} & det. & 10,084 & 0.903 & +0.745 \\
+Python & \texttt{return\_statement} & open & 7,010 & 0.798 & +0.550 \\
+Python & \texttt{while\_statement} & det. & 263 & 0.954 & +0.794 \\
+C++ & \texttt{assignment\_expression} & open & 8,078 & 0.452 & +0.319 \\
+C++ & \texttt{binary\_expression} & open & 285,064 & 0.506 & +0.362 \\
+C++ & \texttt{call\_expression} & open & 456,491 & 0.595 & +0.457 \\
+C++ & \texttt{declaration} & open & 249,479 & 0.773 & +0.632 \\
+C++ & \texttt{expression\_statement} & open & 486,954 & 0.655 & +0.517 \\
+C++ & \texttt{for\_statement} & det. & 21,326 & 0.823 & +0.686 \\
+C++ & \texttt{function\_definition} & det. & 101,613 & 0.768 & +0.635 \\
+C++ & \texttt{if\_statement} & det. & 126,003 & 0.795 & +0.649 \\
+C++ & \texttt{return\_statement} & open & 93,611 & 0.562 & +0.418 \\
+C++ & \texttt{while\_statement} & det. & 4,102 & 0.942 & +0.792 \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Start recall by constituent type (P4). Types are rematched separately, so rows are not additive. A start shared by several nodes is credited to the outermost one, which is why nested types such as Python \texttt{assignment} have few starts. Opener class follows the empirically checked \texttt{taxonomy.json}.}
+\caption{Start recall R by constituent type (P4); $\Delta$R is recall minus the null mean. Types are rematched separately, so rows are not additive. A start shared by several nodes is credited to the outermost one (hence few Python \texttt{assignment} starts).}
 \label{tab:types}\end{table}}
 \newcommand{\TableIoU}{
 \begin{table}[t]\centering\small
@@ -211,19 +211,19 @@ English & 240 & 0.377 & 0.334 & 0.049 & 0.397 & +0.042 [0.040, 0.045] \\
 \newcommand{\TableOFour}{
 \begin{table*}[t]\centering\small
 
-\begin{adjustbox}{max width=\textwidth}\begin{tabular}{llrrlrl}\toprule
-Lang. & Noise & Edits & $\Delta$F1 vs.\ $H_0$ & Change vs.\ clean [95\% CI] & BPP & Change vs.\ clean [95\% CI] \\\midrule
-Python & clean & 0 & +0.115 & -- & 5.61 & -- \\
-Python & camel$\leftrightarrow$snake & 4,601 & +0.114 & -0.001 [-0.002, -0.001] & 5.56 & -0.05 [-0.06, -0.04] \\
-Python & indentation & 4,416 & +0.099 & -0.016 [-0.018, -0.015] & 5.61 & +0.004 [-0.003, 0.010] \\
-Python & keyword typo & 1,626 & +0.112 & -0.003 [-0.004, -0.003] & 5.38 & -0.23 [-0.25, -0.21] \\
-C++ & clean & 0 & +0.131 & -- & 7.88 & -- \\
-C++ & camel$\leftrightarrow$snake & 83,037 & +0.129 & -0.002 [-0.003, -0.002] & 7.78 & -0.10 [-0.11, -0.09] \\
-C++ & indentation & 68,746 & +0.118 & -0.013 [-0.015, -0.012] & 7.75 & -0.13 [-0.14, -0.12] \\
-C++ & keyword typo & 17,884 & +0.131 & -0.0004 [-0.0010, 0.0001] & 7.54 & -0.34 [-0.36, -0.31] \\
-C++ & missing \texttt{;} & 25,972 & +0.129 & -0.002 [-0.002, -0.002] & 7.82 & -0.06 [-0.06, -0.05] \\
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{llrrl}\toprule
+Lang. & Noise & Edits & $\Delta$F1 vs.\ $H_0$ & Change vs.\ clean [95\% CI] \\\midrule
+Python & clean & 0 & +0.115 & -- \\
+Python & camel$\leftrightarrow$snake & 4,601 & +0.114 & -0.001 [-0.002, -0.001] \\
+Python & indentation & 4,416 & +0.099 & -0.016 [-0.018, -0.015] \\
+Python & keyword typo & 1,626 & +0.112 & -0.003 [-0.004, -0.003] \\
+C++ & clean & 0 & +0.131 & -- \\
+C++ & camel$\leftrightarrow$snake & 83,037 & +0.129 & -0.002 [-0.003, -0.002] \\
+C++ & indentation & 68,746 & +0.118 & -0.013 [-0.015, -0.012] \\
+C++ & keyword typo & 17,884 & +0.131 & -0.0004 [-0.0010, 0.0001] \\
+C++ & missing \texttt{;} & 25,972 & +0.129 & -0.002 [-0.002, -0.002] \\
 \bottomrule\end{tabular}\end{adjustbox}
-\caption{Objective 4: robustness to code noise on 1,000 held-out test files per language (so the clean margin differs slightly from Table~\ref{tab:main}). Each noise type is applied alone; targets are the clean constituents mapped to noised offsets; $k$ is the frozen value. The null uses 1,000 fixed-EOF permutations per file; intervals are paired file bootstraps of noised minus clean.}
+\caption{Objective 4: robustness to code noise on 1,000 held-out test files per language (clean margin differs slightly from Table~\ref{tab:main}). Each noise type is applied alone; targets are clean constituents mapped to noised offsets. The null uses 1,000 permutations per file; intervals are paired bootstraps of noised minus clean.}
 \label{tab:o4}\end{table*}}
 \newcommand{\TableOFive}{
 \begin{table}[t]\centering\small

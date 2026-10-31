@@ -1,56 +1,0 @@
-GPU 0: NVIDIA GeForce RTX 3080 (UUID: GPU-3a1c1cd7-c30f-e493-6d36-997d58202572)
-
-=== 2026-10-30 04:25:26  materialize ext corpus (same limits as run_all.sbatch) ===
-Generating train split:   0%|          | 0/412178 [00:00<?, ? examples/s]Generating train split:   1%|▏         | 6000/412178 [00:00<00:10, 39018.23 examples/s]Generating train split:   4%|▍         | 17000/412178 [00:00<00:05, 67874.55 examples/s]Generating train split:   6%|▋         | 26000/412178 [00:00<00:05, 71059.71 examples/s]Generating train split:   9%|▉         | 38000/412178 [00:00<00:04, 84041.02 examples/s]Generating train split:  12%|█▏        | 51000/412178 [00:00<00:03, 94053.22 examples/s]Generating train split:  15%|█▍        | 61000/412178 [00:00<00:03, 89586.14 examples/s]Generating train split:  17%|█▋        | 71000/412178 [00:00<00:03, 90511.45 examples/s]Generating train split:  20%|██        | 83000/412178 [00:00<00:03, 88788.33 examples/s]Generating train split:  23%|██▎       | 94000/412178 [00:01<00:03, 89921.56 examples/s]Generating train split:  25%|██▌       | 104000/412178 [00:01<00:03, 89733.84 examples/s]Generating train split:  28%|██▊       | 117000/412178 [00:01<00:03, 82038.36 examples/s]Generating train split:  31%|███       | 127000/412178 [00:01<00:03, 84019.61 examples/s]Generating train split:  33%|███▎      | 137000/412178 [00:01<00:03, 80464.15 examples/s]Generating train split:  36%|███▌      | 148000/412178 [00:01<00:03, 83984.22 examples/s]Generating train split:  38%|███▊      | 157000/412178 [00:01<00:03, 80056.41 examples/s]Generating train split:  41%|████      | 168000/412178 [00:02<00:02, 84774.39 examples/s]Generating train split:  44%|████▎     | 180000/412178 [00:02<00:02, 92005.52 examples/s]Generating train split:  47%|████▋     | 192000/412178 [00:02<00:02, 84629.90 examples/s]Generating train split:  49%|████▉     | 202000/412178 [00:02<00:02, 85804.27 examples/s]Generating train split:  51%|█████     | 211000/412178 [00:02<00:02, 81183.41 examples/s]Generating train split:  54%|█████▍    | 222000/412178 [00:02<00:02, 86335.42 examples/s]Generating train split:  57%|█████▋    | 233000/412178 [00:02<00:01, 89811.75 examples/s]Generating train split:  59%|█████▉    | 243000/412178 [00:02<00:01, 85118.40 examples/s]Generating train split:  62%|██████▏   | 254000/412178 [00:02<00:01, 90026.82 examples/s]Generating train split:  64%|██████▍   | 265000/412178 [00:03<00:01, 85045.52 examples/s]Generating train split:  67%|██████▋   | 277000/412178 [00:03<00:01, 90062.21 examples/s]Generating train split:  70%|██████▉   | 287000/412178 [00:03<00:01, 90533.82 examples/s]Generating train split:  73%|███████▎  | 301000/412178 [00:03<00:01, 87847.35 examples/s]Generating train split:  76%|███████▌  | 313000/412178 [00:03<00:01, 93027.34 examples/s]Generating train split:  79%|███████▉  | 327000/412178 [00:03<00:00, 89978.03 examples/s]Generating train split:  82%|████████▏ | 338000/412178 [00:03<00:00, 90209.05 examples/s]Generating train split:  84%|████████▍ | 348000/412178 [00:04<00:00, 85820.23 examples/s]Generating train split:  88%|████████▊ | 361000/412178 [00:04<00:00, 84174.66 examples/s]Generating train split:  90%|█████████ | 371000/412178 [00:04<00:00, 86617.97 examples/s]Generating train split:  93%|█████████▎| 383000/412178 [00:04<00:00, 81853.80 examples/s]Generating train split:  96%|█████████▌| 394000/412178 [00:04<00:00, 87097.95 examples/s]Generating train split:  99%|█████████▊| 407000/412178 [00:04<00:00, 83470.55 examples/s]Generating train split: 100%|██████████| 412178/412178 [00:04<00:00, 85005.16 examples/s]
-Generating test split:   0%|          | 0/22176 [00:00<?, ? examples/s]Generating test split:  32%|███▏      | 7000/22176 [00:00<00:00, 62822.70 examples/s]Generating test split:  81%|████████  | 18000/22176 [00:00<00:00, 84706.91 examples/s]Generating test split: 100%|██████████| 22176/22176 [00:00<00:00, 85602.29 examples/s]
-Generating validation split:   0%|          | 0/23107 [00:00<?, ? examples/s]Generating validation split:  30%|███       | 7000/23107 [00:00<00:00, 61930.22 examples/s]Generating validation split:  78%|███████▊  | 18000/23107 [00:00<00:00, 78225.52 examples/s]Generating validation split: 100%|██████████| 23107/23107 [00:00<00:00, 82324.39 examples/s]
-{
-  "domain": "py",
-  "files": 15000,
-  "bytes": 15932154,
-  "by_split": {
-    "train": 13975,
-    "val": 1025
-  },
-  "by_source": {
-    "code_search_net": 15000
-  },
-  "groups": 4765,
-  "dropped": {
-    "duplicate_hash": 8000,
-    "evaluation_repo": 106
-  },
-  "limit": 15000,
-  "evaluation_repos": 317,
-  "pool_after_filters": null
-}
-wrote 15000 files to /scratch/divyansh.atri/escape-47446/corpus_ext/py
-{
-  "domain": "prose",
-  "files": 8000,
-  "bytes": 6144905,
-  "by_split": {
-    "train": 7470,
-    "val": 530
-  },
-  "by_source": {
-    "wikitext-103": 8000
-  },
-  "groups": 374,
-  "dropped": {
-    "evaluation_article": 313,
-    "length_or_bytes": 2646
-  },
-  "limit": 8000,
-  "evaluation_articles": 18
-}
-wrote 8000 files to /scratch/divyansh.atri/escape-47446/corpus_ext/prose
-Fatal Python error: PyGILState_Release: thread state 0x14e03c0041c0 must be current when releasing
-Python runtime state: finalizing (tstate=0x000055f9717219b8)
-
-Thread 0x000014e0553ee740 (most recent call first):
-  <no Python frame>
-scripts/ada_final/env.sh: line 20: 89922 Aborted                 (core dumped) PYTHONPATH="$PWD" "$ESCAPE_BASE_PYTHON" "$@"
-prose output complete: 8000 manifest rows, all .bin present
-WARN: prose materialize exited rc=134 at interpreter exit; output verified complete, continuing
-[2026-10-30T04:26:52.454] error: *** JOB 47446 ON gnode077 CANCELLED AT 2026-10-30T04:26:52 DUE to SIGNAL Terminated ***

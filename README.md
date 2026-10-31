@@ -10,6 +10,17 @@
 
 ---
 
+## Deliverables
+
+| Deliverable | File |
+| --- | --- |
+| Final report (ACL format: 8 pages including references, plus a 1-page appendix) | [`reports/final_submission/Trimax-Final.pdf`](reports/final_submission/Trimax-Final.pdf) |
+| Viva slides (18 slides) | [`reports/final_submission/slides/Trimax-Final-Viva.pdf`](reports/final_submission/slides/Trimax-Final-Viva.pdf) |
+| Code, results and documentation | this repository (layout below) |
+| Released models | Hugging Face and W&B, see [Checkpoints](#checkpoints) |
+
+---
+
 ## Research question
 
 The [Byte Latent Transformer](https://aclanthology.org/2025.acl-long.453/) (BLT) reads raw bytes and
@@ -100,7 +111,7 @@ All numbers, sources and job ids: [`docs/FULL_RUN_RESULTS.md`](docs/FULL_RUN_RES
 
 ## Checkpoints
 
-Every trained model is on Hugging Face with `student.pt` (as trained), `model.safetensors`, its config, training log,
+Every released model is on Hugging Face with `student.pt` (as trained), `model.safetensors`, its config, training log,
 held-out evaluation and a model card. The same checkpoints and their training curves are model artifacts in the W&B
 project [`escape-blt-patching`](https://forge.coreweave.com/wandb/kanhadivyansh123-iiit-hyderabad/escape-blt-patching).
 
@@ -109,8 +120,9 @@ project [`escape-blt-patching`](https://forge.coreweave.com/wandb/kanhadivyansh1
 | Distilled student (α = 0.1, T = 2); also `results/distill/full/student/student.pt` here | 14.3M | [`Devatri/escape-blt-entropy-student`](https://huggingface.co/Devatri/escape-blt-entropy-student) |
 | No-teacher control (α = 1) | 14.3M | [`Devatri/escape-blt-entropy-student-alpha1`](https://huggingface.co/Devatri/escape-blt-entropy-student-alpha1) |
 | Byte-balanced student | 14.3M | [`Devatri/escape-blt-entropy-student-balanced`](https://huggingface.co/Devatri/escape-blt-entropy-student-balanced) |
-| Adapted teacher (BLT patcher fine-tuned with the same loss and data) | 99.5M | [`Devatri/escape-blt-patcher-adapted`](https://huggingface.co/Devatri/escape-blt-patcher-adapted) |
 | Teacher: BLT entropy patcher, third-party conversion (not re-uploaded; `python -m stream_a.fetch_patcher`) | 99.5M | [`itazap/blt-1b-hf`](https://huggingface.co/itazap/blt-1b-hf) @ `91aa6b8e` |
+
+The adapted teacher (BLT patcher fine-tuned with the same loss and data, 99.5M) is an exploratory follow-up; its weights are not released, and its scores are in `docs/FULL_RUN_RESULTS.md` and `results/final/analysis/`.
 
 ## Method in one screen
 

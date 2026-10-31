@@ -13,6 +13,7 @@
   \newenvironment{adjustbox}[1]{\begin{lrbox}{\escapebox}}%
     {\end{lrbox}\ifdim\wd\escapebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\escapebox}}\else\usebox{\escapebox}\fi}}
 \setlength{\titlebox}{6cm}
+\emergencystretch=2em
 \title{Project ESCAPE: Does Entropy-Based Patching Find Syntax?\\
 Final Results Across Code and Natural Language}
 \hypersetup{pdfsubject={ANLP final submission; held-out C-v1 results and distillation extension}}

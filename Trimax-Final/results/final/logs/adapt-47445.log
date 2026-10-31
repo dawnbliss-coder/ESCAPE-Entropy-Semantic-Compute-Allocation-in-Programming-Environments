@@ -1,7 +1,0 @@
-GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-fbedd7d4-33d0-0c5c-75a5-82ce2e1525b5)
-GPU 1: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-4cbdf311-dd80-7a5f-e87d-adcab84b71a1)
-
-=== 2026-10-29 22:55:24  GPU memory probe: two full-length steps at the pre-registered batch size ===
-/home2/divyansh.atri/anlp_a2/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
-  return torch._C._cuda_getDeviceCount() > 0
-[2026-10-29T22:56:36.702] error: *** JOB 47445 ON gnode066 CANCELLED AT 2026-10-29T22:56:36 DUE to SIGNAL Terminated ***

@@ -256,7 +256,7 @@ def t512_table():
 
 def tau_section():
     taus = [0.8, 1.0, 1.335442066192627, 1.7, 2.0, 2.5]
-    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.9), constrained_layout=True, sharey=False)
+    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.45), constrained_layout=True, sharey=False)
     ev = {}
     gaps = []  # model minus strongest baseline at every test grid point
     for ax, model in zip(axes, ("teacher", "student")):
@@ -296,9 +296,9 @@ def tau_section():
         ax.axvline(1.335442066192627, color="#888888", linewidth=.6, linestyle=":")
         title = model if test is not None else f"{model}: calibration split"  # caption explains solid/dashed
         ax.set(xlabel="threshold $\\tau$ (nats)", title=title,
-               ylabel="median per-file F1 $-$ $H_0$" if model == "teacher" else None)
+               ylabel="F1 margin over $H_0$" if model == "teacher" else None)
         ax.grid(axis="y", color="#dddddd", linewidth=.5)
-    axes[0].legend(frameon=False, fontsize=7)
+    axes[0].legend(frameon=False, fontsize=7, loc="center right")
     macro("xTauTestMinGap", num(-max(gaps)) if len(gaps) == 36 else None)
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / "tau_sweep.pdf")
@@ -475,9 +475,8 @@ def holdout():
     rows = []
     for run, name, tag in (("holdout-teacher-swa512", "Teacher", "Tea"), ("holdout-student-v1", "Student", "Stu")):
         r = R[run]
-        rows.append(f"{name} & {num(r['precision'])} & {num(r['recall'])} & {num(r['f1'])} [{num(r['f1_ci_low'])}, {num(r['f1_ci_high'])}] & "
-                    f"{num(r['f1_h0_mean'])} & {signed(r['f1_margin'])} & {mid.pval(r['f1_permutation_p'], h['perms'])} & "
-                    f"{signed(r['f1_minus_best_baseline'])} {ci_pair(r['f1_minus_best_baseline_ci'])} \\\\")
+        rows.append(f"{name} & {num(r['f1'])} & {num(r['f1_h0_mean'])} & {signed(r['f1_margin'])} & "
+                    f"{signed(r['f1_minus_best_baseline'])} \\\\")
         macro(f"xHold{tag}Margin", signed(r["f1_margin"]))
         macro(f"xHold{tag}Fone", num(r["f1"]))
         macro(f"xHold{tag}VsWord", signed(r["f1_minus_best_baseline"]))
@@ -489,12 +488,12 @@ def holdout():
     evidence["holdout"] = {k: {kk: vv for kk, vv in v.items() if kk not in ("per_file", "per_file_f1_h0_mean")} for k, v in R.items()}
     tables["xTableHoldout"] = "\n".join([
         "\\begin{table}[t]\\centering\\small",
-        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrlrrrl}\\toprule",
-        "Model & P & R & F1 [95\\% CI] & $H_0$ & $\\Delta$ & $p$ & vs.\\ word-start [95\\% CI] \\\\\\midrule",
+        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrrr}\\toprule",
+        "Model & F1 & $H_0$ F1 & $\\Delta$ & vs.\\ word \\\\\\midrule",
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
         f"\\caption{{The confirmatory English result: the pre-registered holdout of {h['domains']['prose']['n_files']:,} paragraphs "
         f"from 120 WikiText-103 articles unused by evaluation and distillation, scored once at the frozen $k=0$ "
-        f"({h['perms']:,} permutations). Word-start F1 = {num(w['f1'])}.}}",
+        f"({h['perms']:,} permutations; all $p\\le10^{{-4}}$). Word-start F1 = {num(w['f1'])}; the last column is F1 minus word-start F1.}}",
         "\\label{tab:holdout}\\end{table}"])
 
 
@@ -516,7 +515,7 @@ def p4_positions():
             for fam in ("deterministic_opener", "open_ended"):
                 r = R.get((lang, "p4", lab, fam))
                 cells.append("--" if r is None else
-                             f"{num(r['rate'])} & {signed(r['margin'])} {ci(r['margin_ci_low'], r['margin_ci_high'])}")
+                             f"{num(r['rate'])} & {signed(r['margin'])}")
             rows.append(f"{name if lab == 'start' else ''} & {pretty} & " + " & ".join(cells) + " \\\\")
         for lab, short in (("start", "Start"), ("tok_interior", "Kw"), ("post_tok", "PostKw"), ("next_choice", "Next")):
             for fam, fs in (("deterministic_opener", "Det"), ("open_ended", "Open")):
@@ -541,13 +540,13 @@ def p4_positions():
     evidence["p4_positions"] = {"frozen_check_all_match": d.get("frozen_check_all_match"), "n_files": d["n_files"]}
     tables["xTableFour"] = "\n".join([
         "\\begin{table}[t]\\centering\\small",
-        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{llrlrl}\\toprule",
+        "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{llrrrr}\\toprule",
         " & & \\multicolumn{2}{c}{Forced opener} & \\multicolumn{2}{c}{Open-ended} \\\\",
-        "Lang. & Position & rate & $\\Delta$ [95\\% CI] & rate & $\\Delta$ [95\\% CI] \\\\\\midrule",
+        "Lang. & Position & rate & $\\Delta$ & rate & $\\Delta$ \\\\\\midrule",
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
-        "\\caption{P4 follow-up: boundary rate at fixed positions relative to each constituent start $s$, against the "
+        "\\caption{P4 follow-up: boundary rate at fixed positions relative to each constituent start $s$ (intervals are in the text), against the "
         "same 10{,}000 null draws as the frozen scorer ($\\Delta$ = rate $-$ $H_0$ rate). The first token is the identifier "
-        "run starting at $s$: the keyword (\\texttt{if}, \\texttt{for}, \\texttt{while}, \\texttt{def}) for forced openers.}",
+        "run at $s$ (the keyword for forced openers).}",
         "\\label{tab:p4pos}\\end{table}"])
     # offset curve figure
     fig, axes = plt.subplots(1, 2, figsize=(3.1, 1.75), constrained_layout=True, sharey=True)
@@ -576,7 +575,7 @@ def p4_positions():
 
 def o3_depth():
     d = load(ANALYSIS / "positions_teacher.json")
-    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.9), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.45), constrained_layout=True)
     if d is None:
         for ax in axes:
             ax.text(.5, .5, "pending", ha="center", va="center", transform=ax.transAxes)
@@ -614,7 +613,7 @@ def o3_depth():
 
 def o4_sweep():
     d = load(ANALYSIS / "o4_rate_sweep.json")
-    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.9), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.45), constrained_layout=True)
     if d is None:
         for ax in axes:
             ax.text(.5, .5, "pending", ha="center", va="center", transform=ax.transAxes)
@@ -646,8 +645,8 @@ def o4_sweep():
         ax.set(title=name, xlabel="noise rate")
         ax.set_xscale("log")
         ax.grid(axis="y", color="#dddddd", linewidth=.5)
-        ax.legend(frameon=False, fontsize=6)
-    axes[0].set_ylabel("$\\Delta$ margin vs.\\ clean")
+        ax.legend(frameon=False, fontsize=6, loc="lower left")
+    axes[0].set_ylabel("$\\Delta$ margin vs. clean")
     fig.savefig(OUT / "o4_sweep.pdf")
     plt.close(fig)
     evidence["o4_sweep"] = ev
@@ -673,9 +672,9 @@ def o4_sweep():
 def o5_confound():
     d = load(ANALYSIS / "o5_confound.json")
     rows = []
-    names = {"A_unsafe_fileFE": "file FE only", "B_plus_statement_type": "+ statement type",
-             "B1_plus_identifier_entropy_only": "+ identifier entropy", "B2_plus_identifier_proportion_only": "+ identifier share",
-             "C_frozen_full": "full (frozen)"}
+    names = {"A_unsafe_fileFE": "file FE", "B_plus_statement_type": "+ stmt type",
+             "B1_plus_identifier_entropy_only": "+ id.\\ entropy", "B2_plus_identifier_proportion_only": "+ id.\\ share",
+             "C_frozen_full": "frozen"}
     for model, pretty in names.items():
         cells = []
         for outcome in ("all_boundary_density", "inverse_bpp_compute_density"):
@@ -866,7 +865,13 @@ def new_arms():
         macro(f"xArmsN{tag}", f"{n:,}")
         macro(f"xAdaptVsBase{tag}", signed(R["teacher-adapt-v1"]["f1_minus_best_baseline"]))
         macro(f"xBalVsBase{tag}", signed(R["student-bal-v1"]["f1_minus_best_baseline"]))
-        rows.append(f"{name} & {n} & " + " & ".join(cells) + " \\\\")
+        first = True
+        for run, label in ARMS:
+            if run not in R:
+                continue
+            lead = f"{name} & {n}" if first else " & "
+            rows.append(f"{lead} & {label} & {num(R[run]['f1'])} & {signed(R[run]['f1_margin'])} \\\\")
+            first = False
     verdict = wins >= 2
     macro("xAdaptWins", str(wins))
     macro("xAdaptVerdict", "met" if verdict else "not met")
@@ -884,14 +889,12 @@ def new_arms():
     evidence["new_arms"] = ev
     tables["xTableArms"] = "\n".join([
         "\\begin{table*}[t]\\centering\\small",
-        "\\begin{adjustbox}{max width=\\textwidth}\\begin{tabular}{lr" + "rr" * len(ARMS) + "}\\toprule",
-        " & & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{label}}}" for _, label in ARMS) + " \\\\",
-        "Lang. & Files & " + " & ".join(["F1 & $\\Delta$"] * len(ARMS)) + " \\\\\\midrule",
+        "\\begin{adjustbox}{max width=\\textwidth}\\begin{tabular}{lrlrr}\\toprule",
+        "Lang. & Files & Arm & F1 & $\\Delta$ \\\\\\midrule",
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
         "\\caption{Follow-up arms on the pre-registered subset (300 test files per code language, "
-        "600--2{,}000 bytes, as in Table~\\ref{tab:t512}) and the English test split, $k=0$, 10{,}000 permutations. "
-        "All models except the native teacher see fresh 512-byte windows. The teacher-512 control was not extracted "
-        "for English.}",
+        "600--2{,}000 bytes) and the English test split, $k=0$, 10{,}000 permutations. "
+        "All models except the native teacher see fresh 512-byte windows.}",
         "\\label{tab:arms}\\end{table*}"])
 
 

@@ -217,7 +217,7 @@ def main(argv=None):
                 continue
             groups[cls].append(r["recall_margin"])
             t4.append(f"{name} & \\texttt{{{texescape(nt)}}} & {'det.' if cls == 'deterministic_opener' else 'open'} & "
-                      f"{r['tp'] + r['fn']:,} & {num(r['recall'])} & {num(r['recall_h0_mean'])} & {signed(r['recall_margin'])} \\\\")
+                      f"{r['tp'] + r['fn']:,} & {num(r['recall'])} & {signed(r['recall_margin'])} \\\\")
         means = {c: (sum(v) / len(v) if v else None) for c, v in groups.items()}
         p4[lang] = {"mean_recall_margin": means, "n_types": {c: len(v) for c, v in groups.items()}}
         t = tag[lang]
@@ -336,10 +336,9 @@ def main(argv=None):
                 b = builds.get((lang, r["condition"]), {})
                 cells = (f"{names[lang]} & {pretty[r['condition']]} & {b.get('edits', 0):,} & {signed(r['f1_margin'])} & ")
                 if r["condition"] == "clean":
-                    cells += f"-- & {num(r['mean_bpp'], 2)} & -- \\\\"
+                    cells += "-- \\\\"
                 else:
-                    cells += (f"{signed(r['delta_margin'])} {ci(*r['delta_margin_ci'])} & {num(r['mean_bpp'], 2)} & "
-                              f"{signed(r['delta_bpp'], 2)} {ci(*r['delta_bpp_ci'], 2)} \\\\")
+                    cells += f"{signed(r['delta_margin'])} {ci(*r['delta_margin_ci'])} \\\\"
                 t7.append(cells)
 
     # ---- fidelity rerun and extraction completeness -------------------------------------
@@ -464,12 +463,11 @@ def main(argv=None):
               "\\caption{Starts versus ends (P2). $\\Delta$ is F1 minus the mean $H_0$ F1.}",
               "\\label{tab:startend}\\end{table}}",
               "\\newcommand{\\TableTypes}{", "\\begin{table}[t]\\centering\\small", mark,
-              "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{llcrrrr}\\toprule",
-              "Lang. & Type & Opener & Starts & R & $H_0$ R & $\\Delta$R \\\\\\midrule",
+              "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{llcrrr}\\toprule",
+              "Lang. & Type & Opener & Starts & R & $\\Delta$R \\\\\\midrule",
               *t4, "\\bottomrule\\end{tabular}\\end{adjustbox}",
-              "\\caption{Start recall by constituent type (P4). Types are rematched separately, so rows are not additive. "
-              "A start shared by several nodes is credited to the outermost one, which is why nested types such as Python "
-              "\\texttt{assignment} have few starts. Opener class follows the empirically checked \\texttt{taxonomy.json}.}",
+              "\\caption{Start recall R by constituent type (P4); $\\Delta$R is recall minus the null mean. Types are rematched separately, so rows are not additive. "
+              "A start shared by several nodes is credited to the outermost one (hence few Python \\texttt{assignment} starts).}",
               "\\label{tab:types}\\end{table}}",
               "\\newcommand{\\TableIoU}{", "\\begin{table}[t]\\centering\\small", mark,
               "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{lrrrrrl}\\toprule",
@@ -480,13 +478,13 @@ def main(argv=None):
               + macros.get("IouResamples", "--") + " fixed-EOF permutations; Line and Word are newline and word-start segmentations.}",
               "\\label{tab:iou}\\end{table}}",
               "\\newcommand{\\TableOFour}{", "\\begin{table*}[t]\\centering\\small", mark,
-              "\\begin{adjustbox}{max width=\\textwidth}\\begin{tabular}{llrrlrl}\\toprule",
-              "Lang. & Noise & Edits & $\\Delta$F1 vs.\\ $H_0$ & Change vs.\\ clean [95\\% CI] & BPP & Change vs.\\ clean [95\\% CI] \\\\\\midrule",
+              "\\begin{adjustbox}{max width=\\textwidth}\\begin{tabular}{llrrl}\\toprule",
+              "Lang. & Noise & Edits & $\\Delta$F1 vs.\\ $H_0$ & Change vs.\\ clean [95\\% CI] \\\\\\midrule",
               *t7, "\\bottomrule\\end{tabular}\\end{adjustbox}",
               "\\caption{Objective 4: robustness to code noise on " + macros.get("OFourFiles", "--") + " held-out test files per language "
-              "(so the clean margin differs slightly from Table~\\ref{tab:main}). Each noise type is applied alone; "
-              "targets are the clean constituents mapped to noised offsets; $k$ is the frozen value. "
-              "The null uses " + macros.get("OFourPerm", "--") + " fixed-EOF permutations per file; intervals are paired file bootstraps of noised minus clean.}",
+              "(clean margin differs slightly from Table~\\ref{tab:main}). Each noise type is applied alone; "
+              "targets are clean constituents mapped to noised offsets. "
+              "The null uses " + macros.get("OFourPerm", "--") + " permutations per file; intervals are paired bootstraps of noised minus clean.}",
               "\\label{tab:o4}\\end{table*}}",
               "\\newcommand{\\TableOFive}{", "\\begin{table}[t]\\centering\\small", mark,
               "\\begin{adjustbox}{max width=\\columnwidth}\\begin{tabular}{llrlr}\\toprule",

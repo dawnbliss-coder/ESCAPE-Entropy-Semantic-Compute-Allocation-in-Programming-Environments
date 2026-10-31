@@ -1,4 +1,0 @@
-MODEL=student SRC=student-v1-14326k test files: 13040
-
-=== 2026-10-30 20:43:27  retau student-tau08 (test files, scratch view) ===
-run_id student-tau08 exists with different settings: {'entropy_definition': ('global_next_byte_shannon (arrays copied verbatim from the source run)', 'entropies[i] = -sum_v p(v) ln p(v) over all 260 patcher logits of the prediction made at token position i of [BOS, b_0+4, ..., b_{n-1}+4], i.e. the distribution of byte i given BOS and bytes < i (nats)')}
