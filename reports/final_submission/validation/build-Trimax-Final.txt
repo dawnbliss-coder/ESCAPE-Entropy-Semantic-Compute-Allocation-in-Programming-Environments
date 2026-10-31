@@ -154,32 +154,91 @@ Underfull \hbox (badness 6575) in paragraph at lines 100--101
 rvised teacher,
 (build/Trimax-Final.bbl [8])
 
+LaTeX Warning: Reference `tab:release' on page 9 undefined on input line 111.
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) Face (Ta-ble []), each with its con-fig-u-ra-tion,
+
+Underfull \hbox (badness 1259) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) and as \T1/pcr/m/n/10.95 model.safetensors\T1/ptm/m/n/1
+0.95 (+20) ; for ex-am-ple
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+[][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / Devatri /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 escape-[]blt-[]entropy-[]student$[][]\T1/ptm/m/n/10.95 (+20) 
+. The
+
+Underfull \hbox (badness 1221) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) model ar-ti-facts in the W&B project [][]$\T1/pcr/m/n/1
+0.95 https :
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 / / forge . coreweave . com / wandb /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 kanhadivyansh123-[]iiit-[]hyderabad /
+
+Underfull \hbox (badness 8132) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) pub-lic con-ver-sion \T1/pcr/m/n/10.95 itazap/blt-1b-hf
+ \T1/ptm/m/n/10.95 (+20) at
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 python -m stream_a.fetch_patcher
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [9 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bp
-p_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.3354-mpl
-none-91aa6b8e/patch_length_distribution.png>] [10 <./generated/p4_offsets.pdf> 
-<./generated/tau_sweep.pdf>] [11] (build/Trimax-Final.aux) )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 1016089 bytes).
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [9] [10 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b
+8e/bpp_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.335
+4-mplnone-91aa6b8e/patch_length_distribution.png> <./generated/p4_offsets.pdf> 
+<./generated/tau_sweep.pdf>] [11] (build/Trimax-Final.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+pdfTeX warning (dest): name{figure.caption.35} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{table.caption.32} has been referenced but does not 
+exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.30} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{table.caption.36} has been referenced but does not 
+exist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/Trimax-Final.pdf (11 pages, 1018499 bytes).
 Transcript written on build/Trimax-Final.log.
 This is BibTeX, Version 0.99d (TeX Live 2023)
 The top-level auxiliary file: build/Trimax-Final.aux
@@ -340,12 +399,46 @@ Underfull \hbox (badness 6575) in paragraph at lines 100--101
  []\T1/ptm/b/n/10.95 (+20) Future work.[] \T1/ptm/m/n/10.95 (+20) A parser-supe
 rvised teacher,
 (build/Trimax-Final.bbl [8])
+Underfull \hbox (badness 1946) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) as \T1/pcr/m/n/10.95 student.pt\T1/ptm/m/n/10.95 (+20) 
+, the check-point as trained,
+
+Underfull \hbox (badness 1259) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) and as \T1/pcr/m/n/10.95 model.safetensors\T1/ptm/m/n/1
+0.95 (+20) ; for ex-am-ple
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+[][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / Devatri /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 escape-[]blt-[]entropy-[]student$[][]\T1/ptm/m/n/10.95 (+20) 
+. The
+
+Underfull \hbox (badness 1221) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) model ar-ti-facts in the W&B project [][]$\T1/pcr/m/n/1
+0.95 https :
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 / / forge . coreweave . com / wandb /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 kanhadivyansh123-[]iiit-[]hyderabad /
+
+Underfull \hbox (badness 8132) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) pub-lic con-ver-sion \T1/pcr/m/n/10.95 itazap/blt-1b-hf
+ \T1/ptm/m/n/10.95 (+20) at
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 python -m stream_a.fetch_patcher
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [9 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bp
-p_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.3354-mpl
-none-91aa6b8e/patch_length_distribution.png>] [10 <./generated/p4_offsets.pdf> 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [9] [10 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b
+8e/bpp_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.335
+4-mplnone-91aa6b8e/patch_length_distribution.png> <./generated/p4_offsets.pdf> 
 <./generated/tau_sweep.pdf>] [11] (build/Trimax-Final.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
@@ -366,7 +459,7 @@ nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 1016089 bytes).
+Output written on build/Trimax-Final.pdf (11 pages, 1018479 bytes).
 Transcript written on build/Trimax-Final.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -523,12 +616,46 @@ Underfull \hbox (badness 6575) in paragraph at lines 100--101
  []\T1/ptm/b/n/10.95 (+20) Future work.[] \T1/ptm/m/n/10.95 (+20) A parser-supe
 rvised teacher,
 (build/Trimax-Final.bbl [8])
+Underfull \hbox (badness 1946) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) as \T1/pcr/m/n/10.95 student.pt\T1/ptm/m/n/10.95 (+20) 
+, the check-point as trained,
+
+Underfull \hbox (badness 1259) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) and as \T1/pcr/m/n/10.95 model.safetensors\T1/ptm/m/n/1
+0.95 (+20) ; for ex-am-ple
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+[][]$\T1/pcr/m/n/10.95 https : / / huggingface . co / Devatri /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 escape-[]blt-[]entropy-[]student$[][]\T1/ptm/m/n/10.95 (+20) 
+. The
+
+Underfull \hbox (badness 1221) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) model ar-ti-facts in the W&B project [][]$\T1/pcr/m/n/1
+0.95 https :
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 / / forge . coreweave . com / wandb /
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 kanhadivyansh123-[]iiit-[]hyderabad /
+
+Underfull \hbox (badness 8132) in paragraph at lines 111--123
+\T1/ptm/m/n/10.95 (+20) pub-lic con-ver-sion \T1/pcr/m/n/10.95 itazap/blt-1b-hf
+ \T1/ptm/m/n/10.95 (+20) at
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--123
+\T1/pcr/m/n/10.95 python -m stream_a.fetch_patcher
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [9 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b8e/bp
-p_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.3354-mpl
-none-91aa6b8e/patch_length_distribution.png>] [10 <./generated/p4_offsets.pdf> 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [9] [10 <../../results/figures/stream_a/swa512-float32-t1.3354-mplnone-91aa6b
+8e/bpp_distributions.png> <../../results/figures/stream_a/swa512-float32-t1.335
+4-mplnone-91aa6b8e/patch_length_distribution.png> <./generated/p4_offsets.pdf> 
 <./generated/tau_sweep.pdf>] [11] (build/Trimax-Final.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
@@ -549,5 +676,5 @@ nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/Trimax-Final.pdf (11 pages, 1016089 bytes).
+Output written on build/Trimax-Final.pdf (11 pages, 1018479 bytes).
 Transcript written on build/Trimax-Final.log.

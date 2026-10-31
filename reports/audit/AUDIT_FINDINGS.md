@@ -8,9 +8,9 @@ The findings below are kept as found. This table records what was done about eac
 
 | # | Status | What changed |
 |---|---|---|
-| C1 | Fixed | The body, Limitations included, now ends on p.8 and References start at the top of p.9. To make room: the BPP and patch-length distributions moved to a new appendix figure (Fig. 4; Fig. 1 keeps the heatmaps), the per-type table (Table 7) and the O5 regression table (Table 8) moved to the appendix, the Cost paragraph moved into the Table 16 caption, and Limitations and Future Work were tightened. `check_final.py` now fails when the body runs past p.8. |
+| C1 | Fixed | The body, Limitations included, now ends on p.8 and References start at the top of p.9. To make room: the BPP and patch-length distributions moved to a new appendix figure (Fig. 4; Fig. 1 keeps the heatmaps), the per-type table (Table 8) and the O5 regression table (Table 9) moved to the appendix, the Cost paragraph moved into the Table 17 caption, and Limitations and Future Work were tightened. `check_final.py` now fails when the body runs past p.8. |
 | C2 | Added; **confirm wording** | One sentence at the end of Ethical Considerations says AI assistants were used for parts of the implementation, the analysis scripts and the drafting, under the course's disclosure rules. The team should check it against the course policy. |
-| C3 | Fixed | The ratio claim is gone from the abstract, the P3 paragraph, the verdict, the conclusion, the slides and the README. They now say the ratio is capped at 1/R0 (5.8 / 7.1 / 3.8), and they report chance-corrected recall (0.784 / 0.588 / 0.856), which ranks English first. Table 10 has both new columns and a corrected caption. |
+| C3 | Fixed | The ratio claim is gone from the abstract, the P3 paragraph, the verdict, the conclusion, the slides and the README. They now say the ratio is capped at 1/R0 (5.8 / 7.1 / 3.8), and they report chance-corrected recall (0.784 / 0.588 / 0.856), which ranks English first. Table 11 has both new columns and a corrected caption. |
 | M1 | Fixed | The P1 paragraph states the F1 cap (0.184 / 0.256 / 0.554) and the word-start precision-and-recall comparison, and cites span IoU. The τ sentence now says higher τ raises precision and the margin. Slides and README updated. |
 | M2 | Fixed | "H1 is not supported: only P2 holds as stated" (report, slides, README). |
 | M3 | Fixed | The mid-report is now quoted correctly (it raised the reading and set it aside for formatting consistency), and the report says the formatting-conditioned test was not run. |
@@ -29,7 +29,7 @@ The findings below are kept as found. This table records what was done about eac
 | m8 | Fixed | The slide uses +0.0069. |
 | m9 | Fixed | The window is "512-byte" everywhere, the Fig. 1 caption is capitalised, and C-v1 is defined in §3. |
 | m10 | Fixed | The slide and the README say the P4 margins are unweighted means over types. |
-| m11 | Fixed | The text gives both intervals, and the Table 11 caption explains that its bootstrap draws differ from Table 1's. |
+| m11 | Fixed | The text gives both intervals, and the Table 12 caption explains that its bootstrap draws differ from Table 1's. |
 | m12 | Not changed | 4th-decimal differences between documents come from re-run null draws; each document is internally consistent. |
 | m13 | Fixed | O3 adds C++ at depth 8+ (+0.151). |
 | m14, m15 | Fixed | Both added to Limitations (report and slides). |
@@ -39,6 +39,7 @@ The findings below are kept as found. This table records what was done about eac
 | h1 | Not fixable here | GitHub's contributor cache. |
 | h2 | Fixed | `v1.2-final` tags the audit-fix commit. |
 | h3 | Fixed | See C1. |
+| Checkpoints | Added | All four trained models are on Hugging Face (`Devatri/escape-blt-*`) and W&B (`escape-blt-patching`), listed in the new Appendix A (Table 7) and the README. |
 | h4, h5 | Left for you | Deleting files on Ada or the local backup branches needs an explicit go-ahead. |
 
 ## How the audit was done

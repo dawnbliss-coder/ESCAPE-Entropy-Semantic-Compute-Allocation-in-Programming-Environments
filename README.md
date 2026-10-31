@@ -98,6 +98,20 @@ own calibration record (k = 0 everywhere). Sources: `results/final/student-v1-*`
 
 All numbers, sources and job ids: [`docs/FULL_RUN_RESULTS.md`](docs/FULL_RUN_RESULTS.md).
 
+## Checkpoints
+
+Every trained model is on Hugging Face with `student.pt` (as trained), `model.safetensors`, its config, training log,
+held-out evaluation and a model card. The same checkpoints and their training curves are model artifacts in the W&B
+project [`escape-blt-patching`](https://forge.coreweave.com/wandb/kanhadivyansh123-iiit-hyderabad/escape-blt-patching).
+
+| Model | Params | Hugging Face |
+| --- | --- | --- |
+| Distilled student (α = 0.1, T = 2); also `results/distill/full/student/student.pt` here | 14.3M | [`Devatri/escape-blt-entropy-student`](https://huggingface.co/Devatri/escape-blt-entropy-student) |
+| No-teacher control (α = 1) | 14.3M | [`Devatri/escape-blt-entropy-student-alpha1`](https://huggingface.co/Devatri/escape-blt-entropy-student-alpha1) |
+| Byte-balanced student | 14.3M | [`Devatri/escape-blt-entropy-student-balanced`](https://huggingface.co/Devatri/escape-blt-entropy-student-balanced) |
+| Adapted teacher (BLT patcher fine-tuned with the same loss and data) | 99.5M | [`Devatri/escape-blt-patcher-adapted`](https://huggingface.co/Devatri/escape-blt-patcher-adapted) |
+| Teacher: BLT entropy patcher, third-party conversion (not re-uploaded; `python -m stream_a.fetch_patcher`) | 99.5M | [`itazap/blt-1b-hf`](https://huggingface.co/itazap/blt-1b-hf) @ `91aa6b8e` |
+
 ## Method in one screen
 
 ```
