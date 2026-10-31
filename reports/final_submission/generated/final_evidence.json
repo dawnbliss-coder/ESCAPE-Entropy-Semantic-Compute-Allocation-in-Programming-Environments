@@ -506,8 +506,12 @@
   "results/final/analysis/o4_rate_sweep.json": "b29f6c8a6267a62fc0c1113c758569b7c4a0cf79f7b73c40dc5b6c191693072e",
   "results/final/analysis/o5_confound.json": "dc29284345ecd749022429161ddec1aa8fae9861baaa853a7ee78e6eeeca6c9c",
   "results/final/analysis/positions_teacher.json": "6846974dbe392580f2e9187e5bb0f5e762a790a04fefc05ce9a2b1b83aff0835",
+  "results/final/analysis/student_tau_sweep_test.json": "e083394447e95be9fa8b59eef98198b5cef42493abf4bf73589cb27aef47ea7e",
+  "results/final/analysis/student_tau_sweep_test_summary.json": "1c22768bce007690a43098d696fa815f020395ec59983c0a817390f7245589c1",
   "results/final/analysis/subsets_student.json": "ea073082b446bc7b87ceb73a53179e89e369e3da895f121ed4a0dc282127bcfb",
   "results/final/analysis/subsets_teacher.json": "f27aef9abfc270c22c0cc178518c9846246fd8cd924c344f61d08b930c2c53c7",
+  "results/final/analysis/teacher_tau_sweep_test.json": "1d39ad24fcac08291c73e3d9c1563989d1b222f3ef364ecc3470c5c7799da2cb",
+  "results/final/analysis/teacher_tau_sweep_test_summary.json": "6cf83ea82264e5fcd1e0764d491fe3259bb06e9aafb15f8b922411f034aa6090",
   "results/final/analysis/teacher_test_k1.json": "eec683ee79e9235258b0d49092f8e677db2090cfe0c472eae7855194ba71b322",
   "results/final/analysis/teacher_test_k2.json": "dcf6489c0d95be0af02890732317473f0cdc0095c87cb770d5c037976de7baa1",
   "results/final/c-v1-2721954/baselines.json": "a8462bd48977ed57bacdca249e5a005bf55cd14984ccf49bb2d2f9ea8fc9239c",
@@ -872,6 +876,15 @@
   "xTauStarTeacherCpp": "2",
   "xTauStarTeacherEn": "2",
   "xTauStarTeacherPy": "2",
+  "xTauTestAgreeStudent": "3",
+  "xTauTestAgreeTeacher": "3",
+  "xTauTestMinGap": "0.148",
+  "xTauTestStudentCpp": "2",
+  "xTauTestStudentEn": "2.5",
+  "xTauTestStudentPy": "2",
+  "xTauTestTeacherCpp": "2",
+  "xTauTestTeacherEn": "2",
+  "xTauTestTeacherPy": "2",
   "xTeaBppCpp": "7.86",
   "xTeaBppEn": "3.77",
   "xTeaBppPy": "5.68",
@@ -2991,6 +3004,203 @@
    "sweep": "results/final/student_tau_sweep_calib.json",
    "tie_tolerance": 1e-12
   },
+  "student_test": {
+   "boot": 2000,
+   "k": 0,
+   "languages": {
+    "cpp": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.08626425169267618,
+       "median_margin_snippet": 0.08502217195413303,
+       "n_files": 6400,
+       "pooled_f1": 0.12212768030728767,
+       "pooled_margin": 0.08419903258928957,
+       "run_id": "student-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.09948269072131231,
+       "median_margin_snippet": 0.09865088000792549,
+       "n_files": 6400,
+       "pooled_f1": 0.1340685154070688,
+       "pooled_margin": 0.09661584308432578,
+       "run_id": "student-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.12229929437769213,
+       "median_margin_snippet": 0.1223460498882252,
+       "n_files": 6400,
+       "pooled_f1": 0.15524233344124433,
+       "pooled_margin": 0.11869707619850038,
+       "run_id": "student-v1-14326k",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.14622919792868644,
+       "median_margin_snippet": 0.1455721911179551,
+       "n_files": 6400,
+       "pooled_f1": 0.17765205309698226,
+       "pooled_margin": 0.14239280824100314,
+       "run_id": "student-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.15606401611089962,
+       "median_margin_snippet": 0.1554816786697199,
+       "n_files": 6400,
+       "pooled_f1": 0.18992853854325614,
+       "pooled_margin": 0.15603320105581123,
+       "run_id": "student-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.12287509726761378,
+       "median_margin_snippet": 0.12356574811645124,
+       "n_files": 6400,
+       "pooled_f1": 0.17609218705428054,
+       "pooled_margin": 0.14581178132457792,
+       "run_id": "student-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.0,
+     "test_argmax_frozen": 2.0,
+     "test_argmax_snippet": 2.0
+    },
+    "english": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.19159889852251613,
+       "median_margin_snippet": 0.19358035488956696,
+       "n_files": 240,
+       "pooled_f1": 0.35601941659153213,
+       "pooled_margin": 0.18959904556341814,
+       "run_id": "student-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.23609874870126937,
+       "median_margin_snippet": 0.23474511293159367,
+       "n_files": 240,
+       "pooled_f1": 0.3951224469058023,
+       "pooled_margin": 0.2327935372421502,
+       "run_id": "student-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.30874533861319736,
+       "median_margin_snippet": 0.30854360106555245,
+       "n_files": 240,
+       "pooled_f1": 0.45880301872372947,
+       "pooled_margin": 0.3038678114252961,
+       "run_id": "student-v1-14326k",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.39390888425331627,
+       "median_margin_snippet": 0.3964035141886016,
+       "n_files": 240,
+       "pooled_f1": 0.5385638107764228,
+       "pooled_margin": 0.39316624969620717,
+       "run_id": "student-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.4471394468462476,
+       "median_margin_snippet": 0.44754537919485177,
+       "n_files": 240,
+       "pooled_f1": 0.5857708148267786,
+       "pooled_margin": 0.4479340709036582,
+       "run_id": "student-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.461903079662242,
+       "median_margin_snippet": 0.46200502272573724,
+       "n_files": 240,
+       "pooled_f1": 0.5826312378483474,
+       "pooled_margin": 0.4605365764744005,
+       "run_id": "student-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.5,
+     "test_argmax_frozen": 2.5,
+     "test_argmax_snippet": 2.5
+    },
+    "python": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.07574855643044619,
+       "median_margin_snippet": 0.08033546449478005,
+       "n_files": 6400,
+       "pooled_f1": 0.10486965982198693,
+       "pooled_margin": 0.0730555916064866,
+       "run_id": "student-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.08922647399875122,
+       "median_margin_snippet": 0.09388197342905436,
+       "n_files": 6400,
+       "pooled_f1": 0.117024081534024,
+       "pooled_margin": 0.08534820252591524,
+       "run_id": "student-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.1146404958677686,
+       "median_margin_snippet": 0.1190825038035612,
+       "n_files": 6400,
+       "pooled_f1": 0.1402840530776034,
+       "pooled_margin": 0.10882892247256243,
+       "run_id": "student-v1-14326k",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.14367096018301206,
+       "median_margin_snippet": 0.1479991498298501,
+       "n_files": 6400,
+       "pooled_f1": 0.1650876538604998,
+       "pooled_margin": 0.13398232607840962,
+       "run_id": "student-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.1606140303358613,
+       "median_margin_snippet": 0.1637964695458434,
+       "n_files": 6400,
+       "pooled_f1": 0.17774402678283235,
+       "pooled_margin": 0.1470960518842313,
+       "run_id": "student-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.10257972367438387,
+       "median_margin_snippet": 0.1047907964791582,
+       "n_files": 6400,
+       "pooled_f1": 0.13700905524993126,
+       "pooled_margin": 0.10846651839575613,
+       "run_id": "student-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.0,
+     "test_argmax_frozen": 2.0,
+     "test_argmax_snippet": 2.0
+    }
+   },
+   "perms": 1000,
+   "split": "test",
+   "status": "exploratory, scored after tau* was fixed and confirmed; not used to select tau or k",
+   "sweep": "results/final/analysis/student_tau_sweep_test.json",
+   "tau_star_record": "results/final/student_tau_star.json"
+  },
   "teacher": {
    "all_agree": true,
    "k": 0,
@@ -3182,6 +3392,203 @@
    "rule": "per language: argmax over tau of median per-file (F1_observed - mean_F1_H0), calibration files only, k=0; ties -> smaller tau",
    "sweep": "results/final/teacher_tau_sweep_calib.json",
    "tie_tolerance": 1e-12
+  },
+  "teacher_test": {
+   "boot": 2000,
+   "k": 0,
+   "languages": {
+    "cpp": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.0947850355103746,
+       "median_margin_snippet": 0.09319053936031282,
+       "n_files": 6400,
+       "pooled_f1": 0.1318583230813433,
+       "pooled_margin": 0.09420774094632903,
+       "run_id": "teacher-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.10822613725840115,
+       "median_margin_snippet": 0.1072661518380201,
+       "n_files": 6400,
+       "pooled_f1": 0.14423399568000408,
+       "pooled_margin": 0.10719574718010028,
+       "run_id": "teacher-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.1312151121372802,
+       "median_margin_snippet": 0.13017588794463889,
+       "n_files": 6400,
+       "pooled_f1": 0.16528823839023576,
+       "pooled_margin": 0.12941806880316942,
+       "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.15135337623372025,
+       "median_margin_snippet": 0.15060250777826267,
+       "n_files": 6400,
+       "pooled_f1": 0.18458072022382535,
+       "pooled_margin": 0.15037338729574162,
+       "run_id": "teacher-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.15287555309734513,
+       "median_margin_snippet": 0.15348036241766777,
+       "n_files": 6400,
+       "pooled_f1": 0.1903196830940266,
+       "pooled_margin": 0.1579575879311333,
+       "run_id": "teacher-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.09380660931988366,
+       "median_margin_snippet": 0.09348140809871215,
+       "n_files": 6400,
+       "pooled_f1": 0.1526550482189282,
+       "pooled_margin": 0.12543879679085776,
+       "run_id": "teacher-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.0,
+     "test_argmax_frozen": 2.0,
+     "test_argmax_snippet": 2.0
+    },
+    "english": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.23887269922085938,
+       "median_margin_snippet": 0.24284678125568604,
+       "n_files": 240,
+       "pooled_f1": 0.3983539614380736,
+       "pooled_margin": 0.2375646627936348,
+       "run_id": "teacher-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.28594960535117053,
+       "median_margin_snippet": 0.2880680195285262,
+       "n_files": 240,
+       "pooled_f1": 0.4381457891012031,
+       "pooled_margin": 0.2824523000707714,
+       "run_id": "teacher-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.34928030264732146,
+       "median_margin_snippet": 0.34919246655824776,
+       "n_files": 240,
+       "pooled_f1": 0.49493419315386433,
+       "pooled_margin": 0.34789609884229983,
+       "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.4089940245478036,
+       "median_margin_snippet": 0.40944524694240747,
+       "n_files": 240,
+       "pooled_f1": 0.5427469009112552,
+       "pooled_margin": 0.40574406042196864,
+       "run_id": "teacher-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.42757291249610746,
+       "median_margin_snippet": 0.4295653727974723,
+       "n_files": 240,
+       "pooled_f1": 0.5537536408907263,
+       "pooled_margin": 0.4258848444987316,
+       "run_id": "teacher-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.37677631951657065,
+       "median_margin_snippet": 0.37636106258700586,
+       "n_files": 240,
+       "pooled_f1": 0.47533476031659117,
+       "pooled_margin": 0.37044875304893227,
+       "run_id": "teacher-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.0,
+     "test_argmax_frozen": 2.0,
+     "test_argmax_snippet": 2.0
+    },
+    "python": {
+     "grid": [
+      {
+       "median_margin_frozen": 0.08045302386400785,
+       "median_margin_snippet": 0.08478906104106998,
+       "n_files": 6400,
+       "pooled_f1": 0.11264245022624966,
+       "pooled_margin": 0.08051042066201852,
+       "run_id": "teacher-test-tau08",
+       "tau": 0.8
+      },
+      {
+       "median_margin_frozen": 0.09455323886639676,
+       "median_margin_snippet": 0.09834732087991772,
+       "n_files": 6400,
+       "pooled_f1": 0.1264137059600415,
+       "pooled_margin": 0.09432624423126358,
+       "run_id": "teacher-test-tau10",
+       "tau": 1.0
+      },
+      {
+       "median_margin_frozen": 0.11979887640449438,
+       "median_margin_snippet": 0.12421960533158696,
+       "n_files": 6400,
+       "pooled_f1": 0.15159161388720108,
+       "pooled_margin": 0.11956121921878804,
+       "run_id": "swa512-float32-t1.3354-mplnone-91aa6b8e",
+       "tau": 1.335442066192627
+      },
+      {
+       "median_margin_frozen": 0.14483314154200227,
+       "median_margin_snippet": 0.15014254900175053,
+       "n_files": 6400,
+       "pooled_f1": 0.1748064502726085,
+       "pooled_margin": 0.1431308174561772,
+       "run_id": "teacher-test-tau17",
+       "tau": 1.7
+      },
+      {
+       "median_margin_frozen": 0.15789937578027466,
+       "median_margin_snippet": 0.16170047646264257,
+       "n_files": 6400,
+       "pooled_f1": 0.18385978645365403,
+       "pooled_margin": 0.1527891785789472,
+       "run_id": "teacher-test-tau20",
+       "tau": 2.0
+      },
+      {
+       "median_margin_frozen": 0.09175086206896552,
+       "median_margin_snippet": 0.0936256447233502,
+       "n_files": 6400,
+       "pooled_f1": 0.12610908283645297,
+       "pooled_margin": 0.09852260634768195,
+       "run_id": "teacher-test-tau25",
+       "tau": 2.5
+      }
+     ],
+     "same_as_calibration": true,
+     "tau_star_calibration": 2.0,
+     "test_argmax_frozen": 2.0,
+     "test_argmax_snippet": 2.0
+    }
+   },
+   "perms": 1000,
+   "split": "test",
+   "status": "exploratory, scored after tau* was fixed and confirmed; not used to select tau or k",
+   "sweep": "results/final/analysis/teacher_tau_sweep_test.json",
+   "tau_star_record": "results/final/teacher_tau_star.json"
   }
  },
  "teacher512": {

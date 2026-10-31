@@ -87,6 +87,7 @@ own calibration record (k = 0 everywhere). Sources: `results/final/student-v1-*`
 | Student at τ\* − best baseline                      | −0.216                  | −0.149                  | −0.186                  |
 | **English holdout** (4,107 unseen paragraphs, scored once): margin teacher / student | — | — | +0.350 / +0.305 (eval set: +0.348 / +0.304) |
 
+- Afterwards, as an exploratory check that selects nothing, the whole τ grid was also scored on the test files (1,000 null permutations; jobs 49126/49127, `docs/FULL_RUN_RESULTS.md`): the test maximum is the calibration τ\* for both models in all three languages, and at no τ does either model come within 0.148 F1 of the best baseline.
 - Restricting the teacher to the student's 512-byte windows costs 0.004 F1 on 300 test files per code language, about 40% of the student's deficit there.
 - Against the teacher's own boundaries on held-out windows: distilled student F1 0.871, no-teacher (α = 1) student 0.789, word starts 0.475. The α = 1 student compresses better (1.17 vs 1.24 bits/byte; teacher 1.14).
 - Cost on an RTX 2080 Ti: the student's forward pass is 5.0× faster than the teacher's, and its rolling extraction 4.8× faster.

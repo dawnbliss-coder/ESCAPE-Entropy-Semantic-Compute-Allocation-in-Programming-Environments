@@ -27,6 +27,20 @@ def pick(table, key):
     return min(r["tau"] for r in table if r[key] >= best - TIE)
 
 
+def grid(sweep, runs, taus, dom):
+    """Per-tau median per-file margins under both comparators, plus pooled F1 and margin."""
+    table = []
+    for run, tau in zip(runs, taus):
+        row = sweep["domains"][dom]["rows"][run]
+        per = np.asarray(row["per_file"], dtype=float)
+        f1_obs = 2 * per[:, 0] / np.maximum(1e-12, 2 * per[:, 0] + per[:, 1] + per[:, 2])
+        table.append({"tau": tau, "run_id": run, "n_files": len(per),
+                      "median_margin_snippet": float(np.median(f1_obs - row["f1_h0_mean"])),
+                      "median_margin_frozen": float(np.median(f1_obs - np.asarray(row["per_file_f1_h0_mean"]))),
+                      "pooled_f1": row["f1"], "pooled_margin": row["f1_margin"]})
+    return table
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("sweep")
@@ -42,15 +56,7 @@ def main():
                    "calibration files only, k=0; ties -> smaller tau",
            "languages": {}}
     for lang, dom in LANGS:
-        table = []
-        for run, tau in zip(args.runs, args.taus):
-            row = sweep["domains"][dom]["rows"][run]
-            per = np.asarray(row["per_file"], dtype=float)
-            f1_obs = 2 * per[:, 0] / np.maximum(1e-12, 2 * per[:, 0] + per[:, 1] + per[:, 2])
-            table.append({"tau": tau, "run_id": run, "n_files": len(per),
-                          "median_margin_snippet": float(np.median(f1_obs - row["f1_h0_mean"])),
-                          "median_margin_frozen": float(np.median(f1_obs - np.asarray(row["per_file_f1_h0_mean"]))),
-                          "pooled_f1": row["f1"], "pooled_margin": row["f1_margin"]})
+        table = grid(sweep, args.runs, args.taus, dom)
         ts, tf = pick(table, "median_margin_snippet"), pick(table, "median_margin_frozen")
         out["languages"][lang] = {"tau_star_snippet": ts, "tau_star_frozen": tf, "agree": ts == tf, "grid": table}
         print(lang)

@@ -67,7 +67,7 @@ Confirmatory test run at τ* (job 46533; k re-frozen on calibration under τ*: p
 | C++ | 0.1903 | +0.1580 [+0.1526, +0.1631] | 0.1200 | 0.4594 | -0.1483 [-0.1564, -0.1416] (word_start) |
 | English | 0.5538 | +0.4259 [+0.4185, +0.4327] | 0.4425 | 0.7398 | -0.2152 [-0.2211, -0.2097] (word_start) |
 
-Sources: `results/final/teacher-tau-STAR-{calibration.json,eval/,baselines.json}`. The test split was scored once.
+Sources: `results/final/teacher-tau-STAR-{calibration.json,eval/,baselines.json}`. The confirmatory test run was scored once.
 
 ### Student (job 46678)
 
@@ -91,7 +91,39 @@ Confirmatory test run at τ* (one run per language: python job 46908, cpp job 47
 | C++ | 0.1899 | +0.1560 [+0.1514, +0.1605] | 0.1139 | 0.5707 | -0.1487 [-0.1555, -0.1431] (word_start) |
 | English | 0.5826 | +0.4604 [+0.4533, +0.4675] | 0.4883 | 0.7222 | -0.1863 [-0.1926, -0.1802] (word_start) |
 
-Sources: `results/final/student-tau-STAR-<lang>-{calibration.json,eval/,baselines.json}`. The test split was scored once (earlier C++ attempts 46764 and 46907 were OOM-killed in the score step before writing any score).
+Sources: `results/final/student-tau-STAR-<lang>-{calibration.json,eval/,baselines.json}`. The confirmatory test run was scored once (earlier C++ attempts 46764 and 46907 were OOM-killed in the score step before writing any score).
+
+### Exploratory: the same grid on test files (30 Oct)
+
+Requested after τ* was fixed and both confirmatory runs were scored. Descriptive only: it selects neither τ nor k. The grid was re-thresholded on the 13,040 test files under its own run ids (`<model>-test-tau08`, ...) and scored at k = 0 with 1,000 null permutations (`scripts/ada_distill/tau_sweep_test.{sbatch,py}`). Median per-file margin (the file's own null mean); bold marks the test-file maximum.
+
+Teacher (job 49126):
+
+| τ | Python | C++ | English |
+|---|---:|---:|---:|
+| 0.8 | 0.0805 | 0.0948 | 0.2389 |
+| 1 | 0.0946 | 0.1082 | 0.2859 |
+| 1.33544 | 0.1198 | 0.1312 | 0.3493 |
+| 1.7 | 0.1448 | 0.1514 | 0.4090 |
+| 2 | **0.1579** | **0.1529** | **0.4276** |
+| 2.5 | 0.0918 | 0.0938 | 0.3768 |
+| test maximum (calibration τ\*) | 2 (2) | 2 (2) | 2 (2) |
+
+Source: `results/final/analysis/teacher_tau_sweep_test_summary.json` (scores: `results/final/analysis/teacher_tau_sweep_test.json`).
+
+Student (job 49127):
+
+| τ | Python | C++ | English |
+|---|---:|---:|---:|
+| 0.8 | 0.0757 | 0.0863 | 0.1916 |
+| 1 | 0.0892 | 0.0995 | 0.2361 |
+| 1.33544 | 0.1146 | 0.1223 | 0.3087 |
+| 1.7 | 0.1437 | 0.1462 | 0.3939 |
+| 2 | **0.1606** | **0.1561** | 0.4471 |
+| 2.5 | 0.1026 | 0.1229 | **0.4619** |
+| test maximum (calibration τ\*) | 2 (2) | 2 (2) | 2.5 (2.5) |
+
+Source: `results/final/analysis/student_tau_sweep_test_summary.json` (scores: `results/final/analysis/student_tau_sweep_test.json`).
 
 ## Step 7: English holdout (pre-registered; scored once after sign-off on 2026-10-29)
 

@@ -85,3 +85,5 @@ newarms_score_hf_full 47458
 newarms_score 47548
 more_perms_o4 48197
 more_perms_iou 48198
+tau_sweep_test_teacher 49126
+tau_sweep_test_student 49127

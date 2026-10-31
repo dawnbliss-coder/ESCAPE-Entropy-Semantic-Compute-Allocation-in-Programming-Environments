@@ -183,11 +183,36 @@ def main():
                 b = best(bb, lang)
                 L.append(f"| {name} | {f(S['f1'])} | {s(S['f1_margin'])} {c([S['f1_margin_ci_low'], S['f1_margin_ci_high']])} | "
                          f"{f(S['precision'])} | {f(S['recall'])} | {s(b['blt_minus_baseline_f1'])} {c([b['ci_low'], b['ci_high']])} ({b['proposer']}) |")
-            L += ["", f"Sources: {src}. The test split was scored once"
+            L += ["", f"Sources: {src}. The confirmatory test run was scored once"
                   + (" (earlier C++ attempts 46764 and 46907 were OOM-killed in the score step before writing any score)"
                      if model == "student" else "") + ".", ""]
         else:
             L += ["Confirmatory test run: pending.", ""]
+    # exploratory: the whole grid on test files, after both confirmatory runs
+    L += ["### Exploratory: the same grid on test files (30 Oct)", "",
+          "Requested after τ* was fixed and both confirmatory runs were scored. Descriptive only: it selects neither τ nor k. "
+          "The grid was re-thresholded on the 13,040 test files under its own run ids (`<model>-test-tau08`, ...) and scored at "
+          "k = 0 with 1,000 null permutations (`scripts/ada_distill/tau_sweep_test.{sbatch,py}`). Median per-file margin "
+          "(the file's own null mean); bold marks the test-file maximum.", ""]
+    for model in ("teacher", "student"):
+        t = j(AN / f"{model}_tau_sweep_test_summary.json")
+        if not t:
+            L += [f"{model.capitalize()}: pending.", ""]
+            continue
+        L += [f"{model.capitalize()} ({job('tau_sweep_test_' + model)}):", "",
+              "| τ | " + " | ".join(n for _, n, _ in LANGS) + " |", "|---|" + "---:|" * 3]
+        for i, tau in enumerate(r["tau"] for r in t["languages"]["python"]["grid"]):
+            cells = []
+            for lang, _, _ in LANGS:
+                tl = t["languages"][lang]
+                v = f(tl["grid"][i]["median_margin_frozen"])
+                cells.append(f"**{v}**" if tl["grid"][i]["tau"] == tl["test_argmax_frozen"] else v)
+            L.append(f"| {tau:g} | " + " | ".join(cells) + " |")
+        L.append("| test maximum (calibration τ\\*) | " + " | ".join(
+            f"{t['languages'][lang]['test_argmax_frozen']:g} ({t['languages'][lang]['tau_star_calibration']:g})"
+            for lang, _, _ in LANGS) + " |")
+        L += ["", f"Source: `results/final/analysis/{model}_tau_sweep_test_summary.json` "
+              f"(scores: `results/final/analysis/{model}_tau_sweep_test.json`).", ""]
     # Step 7
     h = j(AN / "english_holdout_scores.json")
     L += ["## Step 7: English holdout (pre-registered; scored once after sign-off on 2026-10-29)", "",

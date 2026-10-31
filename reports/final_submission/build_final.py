@@ -258,6 +258,7 @@ def tau_section():
     taus = [0.8, 1.0, 1.335442066192627, 1.7, 2.0, 2.5]
     fig, axes = plt.subplots(1, 2, figsize=(6.3, 1.9), constrained_layout=True, sharey=False)
     ev = {}
+    gaps = []  # model minus strongest baseline at every test grid point
     for ax, model in zip(axes, ("teacher", "student")):
         rec = load(FINAL / f"{model}_tau_star.json")
         if rec is None:
@@ -266,6 +267,9 @@ def tau_section():
                 macro(f"xTauStar{model.capitalize()}{tag}", None)
             continue
         ev[model] = rec
+        # exploratory: the same grid on test files, scored after tau* was confirmed (dashed)
+        test = load(ANALYSIS / f"{model}_tau_sweep_test_summary.json")
+        agree = 0
         for lang, name, tag in LANGS:
             g = rec["languages"][lang]["grid"]
             ax.plot([r["tau"] for r in g], [r["median_margin_frozen"] for r in g], marker="o", markersize=2.5,
@@ -275,11 +279,27 @@ def tau_section():
             ckpt = next(r for r in g if abs(r["tau"] - 1.335442066192627) < 1e-9)
             best = next(r for r in g if r["tau"] == star)
             macro(f"xTauGain{model.capitalize()}{tag}", signed(best["median_margin_frozen"] - ckpt["median_margin_frozen"]))
+            if test is None:
+                macro(f"xTauTest{model.capitalize()}{tag}", None)
+                continue
+            t = test["languages"][lang]
+            ax.plot([r["tau"] for r in t["grid"]], [r["median_margin_frozen"] for r in t["grid"]], marker="o",
+                    markersize=1.8, linewidth=.8, linestyle="--", color=COLORS[lang])
+            macro(f"xTauTest{model.capitalize()}{tag}", f"{t['test_argmax_frozen']:g}")
+            agree += t["test_argmax_frozen"] == star
+        macro(f"xTauTestAgree{model.capitalize()}", None if test is None else str(agree))
+        sweep = load(ANALYSIS / f"{model}_tau_sweep_test.json") if test is not None else None
+        if sweep is not None:
+            ev[f"{model}_test"] = test
+            gaps += [r["f1_minus_best_baseline"] for lang in DOM for r in
+                     (sweep["domains"][DOM[lang]]["rows"][g["run_id"]] for g in test["languages"][lang]["grid"])]
         ax.axvline(1.335442066192627, color="#888888", linewidth=.6, linestyle=":")
-        ax.set(xlabel="threshold $\\tau$ (nats)", title=f"{model}: calibration split",
+        title = model if test is not None else f"{model}: calibration split"  # caption explains solid/dashed
+        ax.set(xlabel="threshold $\\tau$ (nats)", title=title,
                ylabel="median per-file F1 $-$ $H_0$" if model == "teacher" else None)
         ax.grid(axis="y", color="#dddddd", linewidth=.5)
     axes[0].legend(frameon=False, fontsize=7)
+    macro("xTauTestMinGap", num(-max(gaps)) if len(gaps) == 36 else None)
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / "tau_sweep.pdf")
     plt.close(fig)
@@ -328,7 +348,7 @@ def tau_section():
         *rows, "\\bottomrule\\end{tabular}\\end{adjustbox}",
         "\\caption{The single confirmatory test-split run at the pre-registered $\\tau^*$ (argmax over "
         "$\\{0.8, 1.0, 1.335, 1.7, 2.0, 2.5\\}$ of the median per-file margin on calibration files only, ties to the smaller "
-        "$\\tau$), with $k$ re-frozen on the calibration split under $\\tau^*$ by the frozen criterion. The test split was "
+        "$\\tau$), with $k$ re-frozen on the calibration split under $\\tau^*$ by the frozen criterion. This run was "
         "scored once per model.}",
         "\\label{tab:tau}\\end{table*}"])
 
